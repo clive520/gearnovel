@@ -35,6 +35,31 @@ const chapterTitles = [
   "點亮永恆之光"
 ];
 
+const chapterTitlesEn = [
+  "The Stolen Twenty-Four Hours",
+  "The Morse-Code Metal Cube",
+  "The Inverted Gears in the Library",
+  "The Rogue Janitor Android Swarm",
+  "The Memory Fragment Projector",
+  "The Ghost Corridor of Code 404",
+  "The Mirror Dilemma of the Dual Mentors",
+  "The Clockwork Heart Behind the Hologram",
+  "Ten Minutes to Full Format",
+  "Rebooting the Wednesday World",
+  "Setting Sail Toward the Horizon",
+  "The Tempest Girl of Sea-Breeze Island",
+  "The Clockwork Pirate Ship of the Iron Anchor Gang",
+  "Maritime Flags and the Buoy Signal Labyrinth",
+  "PICO's High-Speed Hydrofoil Wavebreaker",
+  "The Underwater Maze in the Gear Vortex",
+  "Superior Mirages and the Holographic Course",
+  "Sonar Resonance and the Bioluminescent Swarm",
+  "Boarding the Lost Lighthouse!",
+  "The Old Keeper's Thirty-Year Vow",
+  "The Ultimate Defense Gate of the Abyssal Rift",
+  "Kindling the Light of Eternity"
+];
+
 const puzzleData = [
   {
     chapter: 1,
@@ -205,7 +230,8 @@ const allChapters = files.map((file, idx) => {
 
   if (fs.existsSync(enPath)) {
     rawContentEn = fs.readFileSync(enPath, 'utf8');
-    enTitle = `Chapter ${chapNum}: The Stolen Twenty-Four Hours`;
+    const titleEn = chapterTitlesEn[idx] || title;
+    enTitle = `Chapter ${chapNum}: ${titleEn}`;
   }
   
   return {
