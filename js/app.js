@@ -120,7 +120,7 @@
     }
   }
 
-  function addBookmark(bookId, chapterId, scrollY, percent, snippet) {
+  function addBookmark(bookId, chapterId, scrollY, percent, snippet, paraIndex = null) {
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
     const chapter = book ? book.chapters.find(c => c.id === chapterId) : null;
     if (!book || !chapter) return;
@@ -137,6 +137,7 @@
       scrollY: Math.round(scrollY),
       percent: Math.round(percent),
       snippet: snippet || chapter.title,
+      paraIndex: (paraIndex !== null && paraIndex !== undefined) ? parseInt(paraIndex, 10) : null,
       timestamp: Date.now(),
       dateStr
     };
@@ -157,6 +158,28 @@
     showToast('🗑️ 已移除該書籤', 'info');
   }
 
+  function scrollToBookmarkPosition(bm) {
+    let targetEl = null;
+    if (bm.paraIndex !== null && bm.paraIndex !== undefined) {
+      targetEl = document.querySelector(`[data-para-index="${bm.paraIndex}"]`);
+    }
+
+    if (targetEl) {
+      // 跨語系或不同字級：動態計算目標段落在當前版面中的精確座標
+      const targetTop = targetEl.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+      setTimeout(() => {
+        targetEl.classList.remove('bookmark-focus');
+        void targetEl.offsetWidth;
+        targetEl.classList.add('bookmark-focus');
+      }, 250);
+    } else {
+      // 降級使用像素高度捲動
+      window.scrollTo({ top: bm.scrollY, behavior: 'smooth' });
+      applyBookmarkHighlight(bm.scrollY);
+    }
+  }
+
   function jumpToBookmark(id) {
     const bm = state.bookmarks.find(b => b.id === id);
     if (!bm) return;
@@ -166,10 +189,13 @@
 
     const targetHash = `#/read/${bm.bookId}/${bm.chapterId}`;
     if (window.location.hash === targetHash) {
-      window.scrollTo({ top: bm.scrollY, behavior: 'smooth' });
-      applyBookmarkHighlight(bm.scrollY);
+      scrollToBookmarkPosition(bm);
     } else {
-      sessionStorage.setItem('target_bookmark_scroll', JSON.stringify({ scrollY: bm.scrollY, id: bm.id }));
+      sessionStorage.setItem('target_bookmark_scroll', JSON.stringify({
+        scrollY: bm.scrollY,
+        paraIndex: bm.paraIndex !== undefined ? bm.paraIndex : null,
+        id: bm.id
+      }));
       navigate(targetHash);
     }
   }
@@ -261,74 +287,67 @@
     }, 3200);
   }
 
-  // 簡易 Markdown 轉 HTML 解析器
+  // 簡易 Markdown 轉 HTML 解析器（支援語意段落索引 data-para-index）
   function parseMarkdown(md) {
     if (!md) return '';
-    const lines = md.split('\n');
+    const blocks = md.split(/\r?\n\r?\n/).map(b => b.trim()).filter(b => b.length > 0);
     let html = '';
-    let inBlockquote = false;
-    let inCodeblock = false;
-    let codeContent = '';
 
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i].trim();
+    for (let idx = 0; idx < blocks.length; idx++) {
+      const b = blocks[idx];
+
+      // 頂部大標題不在此處重複渲染
+      if (b.startsWith('# ')) continue;
+
+      // 二級標題
+      if (b.startsWith('## ')) {
+        const titleText = b.replace(/^##\s*/, '');
+        html += `<h2 data-para-index="${idx}"><span class="text-amber-500">⚙️</span> ${formatInline(titleText)}</h2>`;
+        continue;
+      }
+
+      // 三級標題
+      if (b.startsWith('### ')) {
+        const titleText = b.replace(/^###\s*/, '');
+        html += `<h3 data-para-index="${idx}" class="text-xl font-bold text-amber-600 mt-6 mb-3">${formatInline(titleText)}</h3>`;
+        continue;
+      }
+
+      // 分隔線
+      if (b === '---') {
+        html += '<hr class="my-8 border-amber-500/20" />';
+        continue;
+      }
 
       // 程式碼區塊
-      if (line.startsWith('```')) {
-        if (!inCodeblock) {
-          inCodeblock = true;
-          codeContent = '';
-        } else {
-          inCodeblock = false;
-          html += `<div class="my-4 p-4 rounded-xl bg-slate-900 text-amber-300 font-mono text-sm overflow-x-auto shadow-inner border border-amber-500/20"><code>${escapeHtml(codeContent)}</code></div>`;
-        }
-        continue;
-      }
-      if (inCodeblock) {
-        codeContent += (codeContent ? '\n' : '') + lines[i];
+      if (b.startsWith('```')) {
+        const codeText = b.replace(/```/g, '').trim();
+        html += `<div data-para-index="${idx}" class="my-4 p-4 rounded-xl bg-slate-900 text-amber-300 font-mono text-sm overflow-x-auto shadow-inner border border-amber-500/20"><code>${escapeHtml(codeText)}</code></div>`;
         continue;
       }
 
-      // 引言 blockquote
-      if (line.startsWith('>')) {
-        if (!inBlockquote) {
-          inBlockquote = true;
-          html += '<blockquote>';
-        }
-        const text = line.replace(/^>\s*/, '');
-        html += `<p>${formatInline(text)}</p>`;
+      // 引言區塊
+      if (b.startsWith('>')) {
+        const lines = b.split('\n').map(l => l.replace(/^>\s*/, '').trim()).filter(l => l.length > 0);
+        html += `<blockquote data-para-index="${idx}">` + lines.map(l => `<p>${formatInline(l)}</p>`).join('') + `</blockquote>`;
         continue;
-      } else if (inBlockquote && line === '') {
-        inBlockquote = false;
-        html += '</blockquote>';
-        continue;
-      } else if (inBlockquote && !line.startsWith('>')) {
-        inBlockquote = false;
-        html += '</blockquote>';
       }
 
-      // 標題
-      if (line.startsWith('# ')) {
-        // 第一級大標題在頂部另外渲染
+      // 列表區塊
+      if (b.startsWith('* ') || b.startsWith('- ')) {
+        const lines = b.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        html += `<ul data-para-index="${idx}" class="my-4 space-y-1">` + lines.map(l => `<li>${formatInline(l.replace(/^[\*\-]\s*/, ''))}</li>`).join('') + `</ul>`;
         continue;
-      } else if (line.startsWith('## ')) {
-        const titleText = line.replace(/^##\s*/, '');
-        html += `<h2><span class="text-amber-500">⚙️</span> ${formatInline(titleText)}</h2>`;
-      } else if (line.startsWith('### ')) {
-        const titleText = line.replace(/^###\s*/, '');
-        html += `<h3 class="text-xl font-bold text-amber-600 mt-6 mb-3">${formatInline(titleText)}</h3>`;
-      } else if (line === '---') {
-        html += '<hr />';
-      } else if (line !== '') {
-        html += `<p>${formatInline(line)}</p>`;
       }
+
+      // 一般段落
+      html += `<p data-para-index="${idx}">${formatInline(b)}</p>`;
     }
 
-    if (inBlockquote) html += '</blockquote>';
     return html;
   }
 
-  // 中英雙語對照排版解析器
+  // 中英雙語對照排版解析器（支援語意段落索引 data-para-index）
   function renderBilingualContent(zhMd, enMd) {
     if (!zhMd || !enMd) return parseMarkdown(zhMd || enMd);
 
@@ -352,7 +371,7 @@
         const zhTitle = zh.replace(/^##\s*/, '');
         const enTitle = en.replace(/^##\s*/, '');
         html += `
-          <h2 class="mt-10 mb-4 pb-2 border-b border-amber-500/20">
+          <h2 data-para-index="${i}" class="mt-10 mb-4 pb-2 border-b border-amber-500/20">
             <span class="text-amber-500">⚙️</span> ${formatInline(zhTitle)}
             ${en ? `<span class="block text-sm font-serif italic text-amber-700 dark:text-amber-400 font-normal mt-1">${formatInline(enTitle)}</span>` : ''}
           </h2>
@@ -369,7 +388,7 @@
       // 引言區塊
       if (zh.startsWith('>')) {
         html += `
-          <div class="my-5 p-4 rounded-xl border-l-4 border-amber-500 bg-amber-500/5 space-y-2">
+          <div data-para-index="${i}" class="my-5 p-4 rounded-xl border-l-4 border-amber-500 bg-amber-500/5 space-y-2">
             <div class="text-sm font-medium text-slate-800 dark:text-slate-200">${formatInline(zh.replace(/^>\s*/gm, ''))}</div>
             ${en ? `<div class="text-xs font-serif italic text-slate-500 dark:text-slate-400 border-t border-amber-500/20 pt-2">${formatInline(en.replace(/^>\s*/gm, ''))}</div>` : ''}
           </div>
@@ -380,14 +399,14 @@
       // 程式碼區塊
       if (zh.startsWith('```')) {
         const codeText = zh.replace(/```/g, '').trim();
-        html += `<div class="my-4 p-4 rounded-xl bg-slate-900 text-amber-300 font-mono text-sm overflow-x-auto shadow-inner border border-amber-500/20"><code>${escapeHtml(codeText)}</code></div>`;
+        html += `<div data-para-index="${i}" class="my-4 p-4 rounded-xl bg-slate-900 text-amber-300 font-mono text-sm overflow-x-auto shadow-inner border border-amber-500/20"><code>${escapeHtml(codeText)}</code></div>`;
         continue;
       }
 
       // 清單列表
       if (zh.startsWith('* ') || zh.startsWith('- ')) {
         html += `
-          <div class="bilingual-pair my-4 pl-2 space-y-2">
+          <div data-para-index="${i}" class="bilingual-pair my-4 pl-2 space-y-2">
             <div class="text-sm text-slate-800 dark:text-slate-200">${formatInline(zh)}</div>
             ${en ? `<div class="en-para text-xs">${formatInline(en)}</div>` : ''}
           </div>
@@ -397,7 +416,7 @@
 
       // 一般段落雙語對照
       html += `
-        <div class="bilingual-pair mb-6">
+        <div data-para-index="${i}" class="bilingual-pair mb-6">
           <p class="zh-para text-slate-800 dark:text-slate-200 leading-relaxed">${formatInline(zh)}</p>
           ${en ? `<p class="en-para text-slate-500 dark:text-slate-400 font-serif italic text-[15px] leading-relaxed border-l-2 border-amber-500/40 pl-3.5 mt-1">${formatInline(en)}</p>` : ''}
         </div>
@@ -872,7 +891,7 @@
       tocModal.onclick = (e) => { if (e.target === tocModal) tocModal.classList.add('hidden'); };
     }
 
-    // 放入書籤事件
+    // 放入書籤事件（結合語意段落索引與像素高度）
     const btnAddBookmark = document.getElementById('btn-add-bookmark');
     if (btnAddBookmark) {
       btnAddBookmark.onclick = () => {
@@ -880,22 +899,30 @@
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const percent = height > 0 ? (scrollY / height) * 100 : 0;
 
-        // 智慧抓取螢幕正中央段落文字摘要
-        let snippet = '';
-        const paras = document.querySelectorAll('.reader-content p');
-        for (let p of paras) {
-          const rect = p.getBoundingClientRect();
-          if (rect.top >= 60 && rect.top <= window.innerHeight * 0.75) {
-            snippet = p.innerText.trim().slice(0, 48);
-            if (p.innerText.length > 48) snippet += '...';
-            break;
+        // 搜尋當前視窗頂端下緣最接近的語意段落元素
+        const indexedEls = document.querySelectorAll('.reader-content [data-para-index]');
+        let activeEl = null;
+        let minDiff = Infinity;
+        indexedEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          const diff = Math.abs(rect.top - 120);
+          if (diff < minDiff) {
+            minDiff = diff;
+            activeEl = el;
           }
-        }
-        if (!snippet && paras.length > 0) {
-          snippet = paras[0].innerText.trim().slice(0, 48) + '...';
+        });
+
+        const paraIndex = activeEl ? activeEl.getAttribute('data-para-index') : null;
+        let snippet = '';
+        if (activeEl) {
+          snippet = activeEl.innerText.trim().slice(0, 48);
+          if (activeEl.innerText.length > 48) snippet += '...';
+        } else {
+          const firstP = document.querySelector('.reader-content p');
+          if (firstP) snippet = firstP.innerText.trim().slice(0, 48) + '...';
         }
 
-        addBookmark(bookId, chapterId, scrollY, percent, snippet);
+        addBookmark(bookId, chapterId, scrollY, percent, snippet, paraIndex);
 
         // 更新閱讀器工具列的書籤計數
         const countSpan = document.getElementById('reader-bookmark-count');
@@ -917,16 +944,15 @@
       };
     }
 
-    // 檢查是否有等待精確捲動的書籤跳轉
+    // 檢查是否有等待精確捲動的書籤跳轉（跨章或從首頁點入）
     const pendingBm = sessionStorage.getItem('target_bookmark_scroll');
     if (pendingBm) {
       try {
-        const { scrollY } = JSON.parse(pendingBm);
+        const bmData = JSON.parse(pendingBm);
         sessionStorage.removeItem('target_bookmark_scroll');
         setTimeout(() => {
-          window.scrollTo({ top: scrollY, behavior: 'smooth' });
-          applyBookmarkHighlight(scrollY);
-        }, 150);
+          scrollToBookmarkPosition(bmData);
+        }, 180);
       } catch (e) {
         console.warn(e);
       }
