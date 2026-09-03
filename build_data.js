@@ -20,7 +20,19 @@ const chapterTitles = [
   "雙重導師的鏡像迷局",
   "全息投影背後的齒輪心臟",
   "格式化倒數十分鐘",
-  "重啟星期三的世界"
+  "重啟星期三的世界",
+  "向著海平線啟航",
+  "海風島的暴風少女",
+  "鐵錨幫的發條海盜船",
+  "海事旗語與浮標信號迷陣",
+  "皮可的水翼極速破浪",
+  "齒輪漩渦中的水下迷宮",
+  "海市蜃樓與全息折射航線",
+  "聲納共振與夜光機械群",
+  "登上迷失燈塔！",
+  "老守燈人的三十年約定",
+  "深海大裂谷的終極防衛機關",
+  "點亮永恆之光"
 ];
 
 const puzzleData = [
@@ -93,18 +105,25 @@ const puzzleData = [
     cipher: "【是否抹除恐懼與痛苦記憶？YES or NO？】",
     decoded: "堅決選擇 YES (恢復全部記憶)",
     concept: "成長不是逃避傷痛，而是在接納真實的過程中學會堅強與守護。真誠的面對，遠比虛假的平靜更加寶貴。"
+  },
+  {
+    chapter: 11,
+    title: "海事燈質光學信標與真航向角計算",
+    cipher: "TC = (第一段秒數 3 × 100) ＋ (第二段次數 3 × 10) ＋ (第三段總秒數 2 × 5) - 50°",
+    decoded: "TC = 300 + 30 + 10 - 50 = 290° (西北西方向)",
+    concept: "國際航標協會（IALA）海事光學燈質信號。船舶航行於危險暗礁海域時，需依據引航浮標的特定節奏計算真航向角（True Course），配合羅盤引導航向，避開旋轉水下暗礁。"
   }
 ];
 
-const chapters = files.map((file, idx) => {
+const allChapters = files.map((file, idx) => {
   const content = fs.readFileSync(path.join(chaptersDir, file), 'utf8');
-  const lines = content.split('\n');
   const title = chapterTitles[idx] || file;
+  const chapNum = idx + 1;
   
   return {
-    id: idx + 1,
+    id: chapNum,
     file: file,
-    title: `第${idx + 1}章：${title}`,
+    title: `第${chapNum}章：${title}`,
     shortTitle: title,
     wordCount: content.replace(/\s+/g, '').length,
     readTimeMin: Math.ceil(content.replace(/\s+/g, '').length / 400),
@@ -112,6 +131,13 @@ const chapters = files.map((file, idx) => {
     rawContent: content
   };
 });
+
+const book1Chapters = allChapters.filter(c => c.id <= 10);
+const book2Chapters = allChapters.filter(c => c.id > 10).map((c, idx) => ({
+  ...c,
+  volChapterNum: idx + 1,
+  title: `第${c.id}章（二卷${idx + 1}）：${c.shortTitle}`
+}));
 
 const characters = [
   {
@@ -121,12 +147,12 @@ const characters = [
     age: "12 歲",
     class: "鹿陽國小 六年一班",
     avatar: "🎒",
-    badge: "S級非法觀察者",
-    desc: "動手能力極強、熱愛拆解與改裝機械。平時成績普通，但在危機中擁有不可思議的冷靜直覺與工程大腦。",
+    badge: "S級非法觀察者 / 青木齒輪號船長",
+    desc: "動手能力極強、熱愛拆解與改裝機械。第二卷換上防風救生背心出海，為皮可加裝水下渦輪與水翼模組，立志尋找爺爺留下的終極密鑰。",
     items: [
-      { name: "爺爺的幽靈護目鏡", desc: "可過濾現實光波，透視隱藏代碼、紫色光纜與全息光譜。" },
-      { name: "多功能瑞士刀螺絲筆", desc: "彈出導電金屬探針，多次引發關鍵電路短路與避雷接地。" },
-      { name: "改裝金屬鉛筆盒", desc: "看似尋常，齒輪軸心內部暗藏「第零天透明單晶矽密鑰」。" }
+      { name: "爺爺的幽靈護目鏡（海事升級）", desc: "可過濾海面偏振光，透視水下電纜、洋流溫差與隱形海圖代碼。" },
+      { name: "多功能瑞士刀螺絲筆", desc: "具備耐水壓電焊與機械快修功能。" },
+      { name: "青木齒輪號舵輪", desc: "親手駕馭三十年前爺爺造的蒸氣外輪船。" }
     ]
   },
   {
@@ -136,27 +162,69 @@ const characters = [
     age: "12 歲",
     class: "鹿陽國小 六年一班班長",
     avatar: "👓",
-    badge: "邏輯推理中樞",
-    desc: "黑色高馬尾、細金屬框眼鏡。記憶力驚人、思維敏銳嚴謹。每天記錄日記，最早從空白筆記本察覺時間異常。",
+    badge: "首席航海領航員",
+    desc: "高馬尾綁天藍吸汗帶，眼鏡換上防海水腐蝕鈦合金架。第二卷迅速掌握海事燈光信標、國際信號旗語與星象幾何，是團隊的智慧之眼。",
     items: [
-      { name: "黑皮解謎筆記本", desc: "記滿全鎮歷史、杜威索書號、摩斯電碼與布林代數公式。" },
-      { name: "破譯鋼筆", desc: "關鍵時刻計算真值表與物理公式的利器。" }
+      { name: "防水黑皮筆記本（海事版）", desc: "記滿洋流流速公式、航海六分儀測算法與旗語對照表。" },
+      { name: "航海六分儀", desc: "配合星圖精確測算經緯度的傳統航海神器。" }
+    ]
+  },
+  {
+    name: "嵐",
+    enName: "Lan",
+    role: "第二卷新同伴 · 海風島暴風舵手",
+    age: "12 歲",
+    class: "千島齒輪海原住民女孩",
+    avatar: "⛵",
+    badge: "海鷗號船長",
+    desc: "小麥色皮膚、俐落短髮，戴插著海鷗羽毛的草帽。熱血豪爽，對洋流與風向有野性般的直覺，駕駛自製的蒸氣滑行艇海鷗號。",
+    items: [
+      { name: "蒸氣滑行艇「海鷗號」", desc: "時速達五十浬的高速雙體滑行艇，靈巧無比。" },
+      { name: "合金折疊雙刃船槳", desc: "可划水、可當撐桿跳高、槳柄暗藏微型煙霧彈。" }
     ]
   },
   {
     name: "皮可",
     enName: "Pico",
-    role: "核心機械寵物夥伴",
+    role: "核心機械寵物夥伴 · 兩棲守護者",
     age: "型號：PICO-001",
     class: "誠爺爺的心血傑作",
     avatar: "🐕",
-    badge: "常溫超導記憶合金體",
-    desc: "平時是銀色金屬摺紙柴犬，擁有幽藍色微型鏡頭眼與光譜嗅覺。激動時用尾巴敲擊摩斯電碼，忠誠護主。",
+    badge: "常溫超導兩棲合金體",
+    desc: "獲得誠浩親手加裝的海事外骨骼。尾巴可化為水下超導推進渦輪，四肢可展開為高速水翼衝浪板，腳底配備真空吸盤。",
     forms: [
       { name: "柴犬型態", desc: "高速奔跑、光譜感測與通訊中繼。" },
-      { name: "魔術方塊模式", desc: "遇險時一秒收縮成巴掌大六面體，方便收納攜帶。" },
-      { name: "記憶合金防暴盾", desc: "層層翻折展開為高溫耐受盾牌，抵擋電磁死光。" },
-      { name: "超導外骨骼臂鎧", desc: "變形包裹誠浩手臂，將數萬伏特高壓安全導入地心。" }
+      { name: "水下渦輪推進器", desc: "尾巴變形為螺旋槳，在水下高速拖曳潛水。" },
+      { name: "水翼衝浪滑板", desc: "展開一米寬合金翼板，載誠浩海面破浪滑行！" },
+      { name: "魔術方塊與防暴盾", desc: "秒速收縮攜帶，展開抵禦電磁死光與水下暗器。" }
+    ]
+  },
+  {
+    name: "巴克船長",
+    enName: "Captain Buck",
+    role: "鐵錨幫少主 · 臭屁海盜王",
+    age: "13 歲",
+    class: "發條海盜團領袖",
+    avatar: "🏴‍☠️",
+    badge: "破浪鐵錨號船長",
+    desc: "披著破舊海軍大衣、戴黃銅單眼齒輪鏡片（夜視用）。嘴硬心軟、重情重義，熱愛收集古董齒輪與發條零件，亦敵亦友。",
+    items: [
+      { name: "破浪鐵錨號", desc: "由三艘舊貨船與廢棄蒸汽火車頭焊接而成的鋼鐵巨艦。" },
+      { name: "蒸汽魚叉槍", desc: "能發射高壓抓鉤與牽引鋼纜。" }
+    ]
+  },
+  {
+    name: "將江",
+    enName: "Jiang Jiang",
+    role: "同桌死黨 · 海上首席行政大廚",
+    age: "12 歲",
+    class: "鹿陽國小 六年一班",
+    avatar: "🥐",
+    badge: "菠蘿麵包守護神",
+    desc: "拖著裝有上百個菠蘿麵包的迷彩大保溫箱出海，脖掛巨型雙筒望遠鏡。自稱「沒有我你們在海上餓死怎麼辦」，團隊的歡樂福星。",
+    items: [
+      { name: "黑鐵多功能平底鍋", desc: "煎魚做海鮮菠蘿麵包，關鍵時刻能反彈魚雷與子彈！" },
+      { name: "迷彩巨型保溫箱", desc: "源源不絕的能量補給站。" }
     ]
   },
   {
@@ -167,10 +235,9 @@ const characters = [
     class: "掌控全局的幕後守護者",
     avatar: "👔",
     badge: "避難所404共同創始人",
-    desc: "戴金邊老花眼鏡，看似嚴肅不茍言笑，實則洞悉全局。三十年前與誠爺爺共同建造地下要塞，暗中一路為孩子們護航。",
+    desc: "親自將三十年前自己與誠爺爺建造的「青木齒輪號」託付給孩子們，在陸地坐鎮守護齒輪鎮。",
     items: [
-      { name: "黃銅雙齒輪懷錶", desc: "誠爺爺親贈，刻著「當指針倒流，唯真理不朽」。" },
-      { name: "磁暴干擾扳手", desc: "三十年前共同打造的重型防衛工具，一人擊退夜巡部隊。" }
+      { name: "黃銅雙齒輪懷錶", desc: "刻著「當指針倒流，唯真理不朽」。" }
     ]
   },
   {
@@ -181,22 +248,9 @@ const characters = [
     class: "深受愛戴的啟蒙導師",
     avatar: "📘",
     badge: "探索精神傳承者",
-    desc: "溫柔儒雅、耐心引導學生。在星期三試圖阻止格式化而遭冷卻休眠，被病毒生成鏡像假身，大結局平安獲救。",
+    desc: "大結局平安獲救，在碼頭送別時將三十年前的「千島洋流手冊」親手交給旖緁。",
     items: [
-      { name: "紅繩黃銅指南針", desc: "少年探索社的象徵徽記，代表「解題不是為了滿分，而是為了尋找真實」。" }
-    ]
-  },
-  {
-    name: "將江",
-    enName: "Jiang Jiang",
-    role: "誠浩的同桌死黨",
-    age: "12 歲",
-    class: "鹿陽國小 六年一班",
-    avatar: "🥐",
-    badge: "菠蘿麵包守護者",
-    desc: "留平頭、身材微胖、神經大條，但極講義氣。差點喝下記憶牛奶被誠浩救下，大結局買了熱騰騰的菠蘿麵包上鐘樓分享。",
-    items: [
-      { name: "熱騰騰的菠蘿麵包", desc: "代表校園純真日常與不可割捨的友情。" }
+      { name: "原始海圖手冊", desc: "記錄著三十年前千島海域奇異發條洋流的秘密筆記。" }
     ]
   }
 ];
@@ -211,7 +265,8 @@ const badges = [
   { id: 7, name: "鏡像識破者", icon: "🪞", desc: "閱讀第 7 章：識破虛擬假象，飛躍奇偶橋" },
   { id: 8, name: "齒輪傳承人", icon: "⚙️", desc: "閱讀第 8 章：計算傳動比插入第零天密鑰" },
   { id: 9, name: "逆轉雷霆", icon: "⚡", desc: "閱讀第 9 章：超導並聯接地，逮捕真兇" },
-  { id: 10, name: "記憶守護神", icon: "🌟", desc: "閱讀第 10 章大結局：重啟真實的星期三世界！" }
+  { id: 10, name: "記憶守護神", icon: "🌟", desc: "閱讀第 10 章大結局：重啟真實的星期三世界！" },
+  { id: 11, name: "破浪啟航", icon: "⛵", desc: "閱讀第 11 章：破譯光學浮標，駛入千島齒輪海！" }
 ];
 
 const books = [
@@ -224,24 +279,24 @@ const books = [
     coverTag: "科幻 × 校園冒險 × 密室解謎",
     author: "鹿陽故事工坊",
     targetAge: "9～13 歲（國小中高年級至國一）",
-    totalWords: chapters.reduce((acc, c) => acc + c.wordCount, 0),
-    totalChapters: chapters.length,
+    totalWords: book1Chapters.reduce((acc, c) => acc + c.wordCount, 0),
+    totalChapters: book1Chapters.length,
     description: "某個看似平靜的早晨，鹿陽國小全校師生的記憶被神秘地跳過了整整二十四個小時——「星期三」不翼而飛！發明少年誠浩戴上爺爺留下的黃銅護目鏡，赫然看見空氣中漂浮的報錯代碼與地下深處的巨大數據電纜。攜手學霸班長葉旖緁與神奇的變形機械摺紙犬皮可，一場穿梭於校園鐘樓、圖書館地底與鋼鐵兵工廠的硬核解謎大冒險就此展開！",
-    chapters: chapters
+    chapters: book1Chapters
   },
   {
     id: "book-2",
     title: "千島齒輪海的迷失燈塔",
-    subtitle: "第二卷 · 即將啟航",
-    status: "籌備中",
+    subtitle: "第二卷 · 連載熱播中",
+    status: "連載中",
     statusColor: "amber",
     coverTag: "海事冒險 × 深海機械 × 家族密鑰",
     author: "鹿陽故事工坊",
     targetAge: "9～13 歲",
-    totalWords: 0,
-    totalChapters: "預計 12 章",
-    description: "誠浩在護目鏡深處發現了爺爺留下的神秘手寫信：『若想探尋世界的下一個終極密鑰……我在千島齒輪海等你。』帶著皮可與新裝備，少年偵探團即將啟程前往漂浮著無數發條浮島、古代蒸氣燈塔與深海機械巨獸的神秘海域，解開誠爺爺當年不辭而別的真正身世！",
-    chapters: []
+    totalWords: book2Chapters.reduce((acc, c) => acc + c.wordCount, 0),
+    totalChapters: "共 12 章（第 1 回已上線）",
+    description: "誠浩在護目鏡深處發現了爺爺留下的神秘手寫信：『若想探尋世界的下一個終極密鑰……我在千島齒輪海等你。』帶著皮可與新裝備，四人小隊駕駛「青木齒輪號」啟程前往漂浮著發條浮島與古代燈塔的神秘海域，遭遇暴風少女「嵐」與發條海盜「鐵錨幫」，解開誠爺爺當年的航海身世！",
+    chapters: book2Chapters
   },
   {
     id: "book-3",
@@ -267,7 +322,7 @@ const jsContent = `/**
 window.GEAR_NOVELS_DATA = {
   appName: "冒險齒輪 · 少兒科幻小說庫",
   appEnName: "GearNovel Online",
-  version: "1.0.0",
+  version: "1.1.0",
   books: ${JSON.stringify(books, null, 2)},
   characters: ${JSON.stringify(characters, null, 2)},
   badges: ${JSON.stringify(badges, null, 2)}
@@ -275,4 +330,4 @@ window.GEAR_NOVELS_DATA = {
 `;
 
 fs.writeFileSync(path.join(__dirname, 'js', 'data', 'books.js'), jsContent, 'utf8');
-console.log(`Successfully generated js/data/books.js with ${chapters.length} chapters and ${characters.length} characters!`);
+console.log(`Successfully generated js/data/books.js! Book 1: ${book1Chapters.length} chs, Book 2: ${book2Chapters.length} chs, Characters: ${characters.length}`);
