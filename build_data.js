@@ -182,6 +182,13 @@ const puzzleData = [
     cipher: "行星輪系 Z_s = 20, Z_p = 15, Z_r = 50，鎖死行星架 ω_c = 0，求差速轉速比 ω_s / ω_r",
     decoded: "Willis 方程 ω_s / ω_r = -Z_r / Z_s = -50/20 = -2.5 (反向 5 : 2)，平抑數十萬牛頓·米扭矩熄滅最後地震針",
     concept: "機械動力學行星齒輪系（Planetary Gear Train）與 Willis 轉速特性方程。利用鎖死行星架產生反向 2.5 倍速差速自平衡，降解極限過載扭矩，並以洛倫茲強磁斥力偏轉兩千度等離子電漿！"
+  },
+  {
+    chapter: 22,
+    title: "光柵繞射方程式與菲涅耳色散角校準",
+    cipher: "光柵狹縫常數 d = 2000 nm，恆光波長 λ = 589 nm，一階繞射 m = 1，求精確色散偏轉角 θ",
+    decoded: "sin(θ) = (1 * 589) / 2000 = 0.2945 => θ = arcsin(0.2945) ≈ 17.1°，鎖定 17.1° 注入恆光光子點亮永恆之塔",
+    concept: "物理光學光柵繞射方程式（Diffraction Grating Equation）與光譜色散。利用精密的繞射角計算使光子產生相干建設性干涉，引燃直徑十公尺的菲涅耳永恆巨鏡，照亮整片千島齒輪海！"
   }
 ];
 
@@ -388,7 +395,8 @@ const badges = [
   { id: 18, name: "星海樂章", icon: "🎵", desc: "閱讀第 18 章：奏響天琴純律和弦，引導夜光水母電漿雷霆！" },
   { id: 19, name: "共焦追光者", icon: "🔦", desc: "閱讀第 19 章：精確校準菲涅耳水晶透鏡，激發直貫地心神聖光束！" },
   { id: 20, name: "地心守護者", icon: "🔥", desc: "閱讀第 20 章：祖孫三十年深海重逢，破譯七芒星模運算阻尼矩陣！" },
-  { id: 21, name: "差速平抑宗師", icon: "⚙️", desc: "閱讀第 21 章：洛倫茲超導護盾硬抗電漿，行星差速自平衡拯救地心！" }
+  { id: 21, name: "差速平抑宗師", icon: "⚙️", desc: "閱讀第 21 章：洛倫茲超導護盾硬抗電漿，行星差速自平衡拯救地心！" },
+  { id: 22, name: "永恆點燈人", icon: "🌟", desc: "閱讀第 22 章大結局：三神具合體，點亮千島齒輪海的永恆之光！" }
 ];
 
 const books = [
@@ -409,14 +417,14 @@ const books = [
   {
     id: "book-2",
     title: "千島齒輪海的迷失燈塔",
-    subtitle: "第二卷 · 連載熱播中",
-    status: "連載中",
-    statusColor: "amber",
+    subtitle: "第二卷 · 全十二章完結",
+    status: "已完結",
+    statusColor: "emerald",
     coverTag: "海事冒險 × 深海機械 × 家族密鑰",
     author: "鹿陽故事工坊",
     targetAge: "9～13 歲",
     totalWords: book2Chapters.reduce((acc, c) => acc + c.wordCount, 0),
-    totalChapters: "共 12 章（第 1 回已上線）",
+    totalChapters: book2Chapters.length,
     description: "誠浩在護目鏡深處發現了爺爺留下的神秘手寫信：『若想探尋世界的下一個終極密鑰……我在千島齒輪海等你。』帶著皮可與新裝備，四人小隊駕駛「青木齒輪號」啟程前往漂浮著發條浮島與古代燈塔的神秘海域，遭遇暴風少女「嵐」與發條海盜「鐵錨幫」，解開誠爺爺當年的航海身世！",
     chapters: book2Chapters
   },
