@@ -24,7 +24,8 @@
 * **第十二章（二卷02）**：[海風島的暴風少女](file:///c:/Antigravity/story/chapters/12_%E6%B5%B7%E9%A2%A8%E5%B3%B6%E7%9A%84%E6%9A%B4%E9%A2%A8%E5%B0%91%E5%A5%B3.md)（力學向量合成與離心逃逸 22.54 節）
 * **第十三章（二卷03）**：[鐵錨幫的發條海盜船](file:///c:/Antigravity/story/chapters/13_%E9%90%B5%E9%8C%A8%E5%B9%AB%E7%9A%84%E7%99%BC%E6%A2%9D%E6%B5%B7%E7%9B%9C%E8%88%B9.md)（超聲波波長 3.75cm 與反相共振破壞）
 * **第十四章（二卷04）**：[海事旗語與浮標信號迷陣](file:///c:/Antigravity/story/chapters/14_%E6%B5%B7%E4%BA%8B%E6%97%97%E8%AA%9E%E8%88%87%E6%B5%AE%E6%A8%99%E4%BF%A1%E8%99%9F%E8%BF%B7%E9%99%A3.md)（國際海事旗語 PILOT 與音叉諧波）
-* **第十五章（二卷05）**：*皮可的水翼極速破浪（即將連載）*
+* **第十五章（二卷05）**：[皮可的水翼極速破浪](file:///c:/Antigravity/story/chapters/15_%E7%9A%AE%E5%8F%AF%E7%9A%84%E6%B0%B4%E7%BF%BC%E6%A5%B5%E9%80%9F%E7%A0%B4%E6%B5%AA.md)（水翼升力 7000N 與 18° 攻角極限救援）
+* **第十六章（二卷06）**：*齒輪漩渦中的水下迷宮（即將連載）*
 
 ---
 
