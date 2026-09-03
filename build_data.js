@@ -32,7 +32,17 @@ const chapterTitles = [
   "登上迷失燈塔！",
   "老守燈人的三十年約定",
   "深海大裂谷的終極防衛機關",
-  "點亮永恆之光"
+  "點亮永恆之光",
+  "萬米高空的下墜訊號",
+  "奔向平流層的熱氣球飛艦",
+  "雲海中的天穹翼龍機群",
+  "法拉第籠與雷暴迷宮",
+  "登陸浮空城「奧秘之翼」！",
+  "失控的無重力走廊",
+  "懸空千米的行星齒輪天梯",
+  "被吞噬的第十二個音符",
+  "暗物質黑晶的湮滅決戰",
+  "敲響第十二個音符，天穹破曉！"
 ];
 
 const chapterTitlesEn = [
@@ -57,7 +67,17 @@ const chapterTitlesEn = [
   "Boarding the Lost Lighthouse!",
   "The Old Keeper's Thirty-Year Vow",
   "The Ultimate Defense Gate of the Abyssal Rift",
-  "Kindling the Light of Eternity"
+  "Kindling the Light of Eternity",
+  "The Falling Signal from 30,000 Feet",
+  "The Stratospheric Airship Ascent",
+  "The Aether Pterosaurs in the Cloud Sea",
+  "The Faraday Cage and the Thundercloud Maze",
+  "Landing on the Floating City of Aether",
+  "The Runaway Zero-G Corridor",
+  "The Suspended Planetary Gear Stairway",
+  "The Devoured Twelfth Note",
+  "The Annihilation Battle Against the Black Crystals",
+  "Striking the Twelfth Note, Dawn Over the Firmament!"
 ];
 
 const puzzleData = [
@@ -214,6 +234,76 @@ const puzzleData = [
     cipher: "光柵狹縫常數 d = 2000 nm，恆光波長 λ = 589 nm，一階繞射 m = 1，求精確色散偏轉角 θ",
     decoded: "sin(θ) = (1 * 589) / 2000 = 0.2945 => θ = arcsin(0.2945) ≈ 17.1°，鎖定 17.1° 注入恆光光子點亮永恆之塔",
     concept: "物理光學光柵繞射方程式（Diffraction Grating Equation）與光譜色散。利用精密的繞射角計算使光子產生相干建設性干涉，引燃直徑十公尺的菲涅耳永恆巨鏡，照亮整片千島齒輪海！"
+  },
+  {
+    chapter: 23,
+    title: "平流層氣壓高度計大氣物理方程",
+    cipher: "h = - (RT / Mg) * ln(P_curr / P0) = - 6438 * ln(0.2609)",
+    decoded: "h ≈ 8,650 公尺（墜落高度警報）",
+    concept: "等溫大氣壓強高度公式（Barometric Formula）！大氣壓強隨著海拔升高呈指數型遞減。透過精密氣壓計比對標準海平面氣壓，即可反推當前絕對飛行高度。"
+  },
+  {
+    chapter: 24,
+    title: "理想氣體狀態方程與雙層熱氣球浮力",
+    cipher: "V_min = m_total / (ρ_air - ρ_gas) = 45,000 / 0.900",
+    decoded: "V = 50,000 立方公尺（加熱至 116.85°C）",
+    concept: "理想氣體狀態方程 PV = nRT 與阿基米德浮力定律！加熱氣囊內氣體降低密度，當排開外界冷空氣的浮力大於全艦 45 噸總重時，產生垂直向上的淨爬升加速度！"
+  },
+  {
+    chapter: 25,
+    title: "伯努利流體力學與臨界失速攻角",
+    cipher: "α_total = α0 + arctan(w / u) = 5° + 26.57° = 31.57° >> 16.5°",
+    decoded: "深度失速（Deep Stall），升力雪崩 90%",
+    concept: "伯努利原理與機翼氣動升力！當氣流衝擊機翼的迎角（攻角）超過臨界失速角 16.5° 時，上翼面邊界層氣流全面剝離，升力歸零，使機械翼龍瞬間陷入螺旋下墜！"
+  },
+  {
+    chapter: 26,
+    title: "靜電屏蔽與法拉第籠高斯定律",
+    cipher: "∮ E · dA = Q / ε0 ➡️ E_inside ≡ 0 (百萬伏特雷擊表面趨膚效應)",
+    decoded: "黑鐵平底鍋高導電閉合，法拉第籠完全等勢！",
+    concept: "高斯靜電定律與法拉第籠（Faraday Cage）！金屬導體空腔外表面能完美阻絕外來數十萬安培雷擊，使內部電場強度處處為零，保護人員與鍋爐免受雷擊傷害！"
+  },
+  {
+    chapter: 27,
+    title: "旋轉參考系人造重力與科氏力著陸補償",
+    cipher: "a_coriolis = 2 * (v_r * ω) = 2 * 15 * 0.05 = 1.5 m/s²",
+    decoded: "反向橫推 1.5 m/s²，切向速度 125 m/s 零相對速度咬合",
+    concept: "旋轉參考系中的離心力與科氏力（Coriolis Effect）！在以角速度 ω 旋轉的浮空城甲板著陸時，徑向運動會產生橫向偏折，必須施加反向向量推力才能精確平穩對接！"
+  },
+  {
+    chapter: 28,
+    title: "無重力走廊動量守恆與反衝火箭推力",
+    cipher: "0 = M_body * v_recoil - m_gas * v_eject ➡️ (1.5 * 2000) / 200",
+    decoded: "v = 15.0 m/s（十二秒極限穿越無重力區）",
+    concept: "動量守恆定律（Conservation of Momentum）！在沒有重力與摩擦力的絕對漂浮環境中，向後高速噴射氣體所產生的反作用力，能將物體精確加速至預定目標航速！"
+  },
+  {
+    chapter: 29,
+    title: "開普勒第三定律與行星天梯軌道共振",
+    cipher: "T² / a³ = K ➡️ 水星(8s) / 地球(64s) / 木星(216s)",
+    decoded: "t_align = 432 秒同相週期，18 秒倒數 5 秒黃金光橋",
+    concept: "開普勒行星運動第三定律（Kepler's Third Law）！行星軌道公轉週期的平方與軌道半長軸的立方成正比。計算多層行星齒輪盤的角速度差，即可求解光橋同相重合週期！"
+  },
+  {
+    chapter: 30,
+    title: "十二平均律頻率公式與純律泛音共振",
+    cipher: "f12 = 261.63 * 2^(11/12) = 493.88 Hz (B4 音)",
+    decoded: "三階純律泛音(493.88 / 987.76 / 1481.64 Hz)超聲空化粉碎黑晶",
+    concept: "十二平均律（Twelve-Tone Equal Temperament）與諧波共鳴！相鄰半音頻率比為 2 的 12 次方根（約 1.05946）。疊加三道諧波產生 180 dB 超聲空化微射流，瓦解暗物質晶格！"
+  },
+  {
+    chapter: 31,
+    title: "相對論多普勒效應與反相波完全破壞性干涉",
+    cipher: "f_dyn = 1200 * (297.3 / (297.3 - 20)) = 1,286.6 Hz (相位翻轉 180°)",
+    decoded: "y_total = A*sin(ωt) - A*sin(ωt) = 0（分子鍵共振振幅歸零）",
+    concept: "多普勒效應（Doppler Effect）與波的干涉！高速迎面逼近的波源會使接收頻率升高。發射頻率嚴格吻合且相位反轉 180 度的反相激光，可達成完全破壞性干涉消解目標！"
+  },
+  {
+    chapter: 32,
+    title: "十二平均律引力球面駐波與全球發條閉環",
+    cipher: "Ψ(r, θ, φ, t) = Σ [ A_n * Y_n^m * j_n * cos(2π f_n t) ] ≡ 0 Phase Offset",
+    decoded: "正午十二點整毫秒級雙槌合擊，激發 100,000 kN 升力平流層飛升！",
+    concept: "球面調和函數與引力駐波共振！十二支黃金音叉在天心正交時刻同時激發十二平均律基頻，使地球板塊與天穹引力達到自平衡閉環，逆轉下墜重啟萬米浮空城！"
   }
 ];
 
@@ -249,10 +339,15 @@ const allChapters = files.map((file, idx) => {
 });
 
 const book1Chapters = allChapters.filter(c => c.id <= 10);
-const book2Chapters = allChapters.filter(c => c.id > 10).map((c, idx) => ({
+const book2Chapters = allChapters.filter(c => c.id > 10 && c.id <= 22).map((c, idx) => ({
   ...c,
   volChapterNum: idx + 1,
   title: `第${c.id}章（二卷${idx + 1}）：${c.shortTitle}`
+}));
+const book3Chapters = allChapters.filter(c => c.id > 22).map((c, idx) => ({
+  ...c,
+  volChapterNum: idx + 1,
+  title: `第${c.id}章（三卷${idx + 1}）：${c.shortTitle}`
 }));
 
 const characters = [
@@ -410,6 +505,20 @@ const characters = [
       { name: "初代光學護目鏡", desc: "鏡片上刻滿微雕機械代碼的傳奇原型機。" },
       { name: "黃銅雙齒輪懷錶", desc: "與邱校長同款，見證三十年未變的守護誓約。" }
     ]
+  },
+  {
+    name: "塞西莉亞",
+    enName: "Cecilia (Silver-Wing)",
+    role: "第三卷核心同伴 · 天穹銀翼巡天少女",
+    age: "12 歲",
+    class: "天穹浮空城第七代巡天機械師",
+    avatar: "🪽",
+    badge: "平流層天穹領航員",
+    desc: "金髮碧眼、身穿銀白耐低溫飛行服。背負可折疊超導機械滑翔翼，手持天文星軌儀。守護浮空城與星穹鐘樓，與誠浩並肩敲響第十二個音符。",
+    items: [
+      { name: "超導記憶合金滑翔翼", desc: "翼展兩米，可秒速收折於背甲，具備超音速滑翔與偏流操控能力。" },
+      { name: "古代天文星軌儀", desc: "整合多普勒光學測距與星圖幾何測算的神器。" }
+    ]
   }
 ];
 
@@ -435,14 +544,26 @@ const badges = [
   { id: 19, name: "共焦追光者", icon: "🔦", desc: "閱讀第 19 章：精確校準菲涅耳水晶透鏡，激發直貫地心神聖光束！" },
   { id: 20, name: "地心守護者", icon: "🔥", desc: "閱讀第 20 章：祖孫三十年深海重逢，破譯七芒星模運算阻尼矩陣！" },
   { id: 21, name: "差速平抑宗師", icon: "⚙️", desc: "閱讀第 21 章：洛倫茲超導護盾硬抗電漿，行星差速自平衡拯救地心！" },
-  { id: 22, name: "永恆點燈人", icon: "🌟", desc: "閱讀第 22 章大結局：三神具合體，點亮千島齒輪海的永恆之光！" }
+  { id: 22, name: "永恆點燈人", icon: "🌟", desc: "閱讀第 22 章大結局：三神具合體，點亮千島齒輪海的永恆之光！" },
+  { id: 23, name: "平流層信標", icon: "📡", desc: "閱讀第 23 章：解碼氣壓高度計，捕獲萬米高空下墜求救訊號！" },
+  { id: 24, name: "天穹破空者", icon: "🎈", desc: "閱讀第 24 章：計算理想氣體浮力，駕駛熱氣球飛艦直衝對流層！" },
+  { id: 25, name: "失速獵鷹", icon: "🦅", desc: "閱讀第 25 章：運用伯努利攻角失速，超導音爆瓦解天穹翼龍群！" },
+  { id: 26, name: "雷霆避難所", icon: "⚡", desc: "閱讀第 26 章：黑鐵平底鍋終極接地，法拉第籠抗擊百萬伏特雷擊！" },
+  { id: 27, name: "科氏領航官", icon: "🪽", desc: "閱讀第 27 章：補償旋轉科氏力偏轉，零相對速度登陸天穹浮空城！" },
+  { id: 28, name: "零重力衝浪手", icon: "🚀", desc: "閱讀第 28 章：動量守恆平底鍋噴氣，穿透失控無重力發條走廊！" },
+  { id: 29, name: "天體漫步者", icon: "🪐", desc: "閱讀第 29 章：破譯開普勒第三定律，飛躍千米懸空行星天梯！" },
+  { id: 30, name: "十二律解密人", icon: "🎵", desc: "閱讀第 30 章：三神具共奏純律和弦，超聲空化拯救第十二黃金音叉！" },
+  { id: 31, name: "湮滅審判官", icon: "⚔️", desc: "閱讀第 31 章：多普勒反相干涉激光，徹底消解暗物質黑晶巨獸！" },
+  { id: 32, name: "天穹破曉之神", icon: "🌟", desc: "閱讀第 32 章大結局：雙槌合擊正午十二點，引力反轉重啟天穹之城！" }
 ];
 
 const books = [
   {
     id: "book-1",
     title: "記憶黑客少年：校園地下 404 室",
+    enTitle: "Memory Hacker: Campus Basement 404",
     subtitle: "第一卷 · 全十章完結",
+    enSubtitle: "Volume 1 · Complete (10 Chapters)",
     status: "已完結",
     statusColor: "emerald",
     coverTag: "科幻 × 校園冒險 × 密室解謎",
@@ -456,7 +577,9 @@ const books = [
   {
     id: "book-2",
     title: "千島齒輪海的迷失燈塔",
+    enTitle: "The Lost Lighthouse of the Thousand-Island Gear Sea",
     subtitle: "第二卷 · 全十二章完結",
+    enSubtitle: "Volume 2 · Complete (12 Chapters)",
     status: "已完結",
     statusColor: "emerald",
     coverTag: "海事冒險 × 深海機械 × 家族密鑰",
@@ -470,16 +593,18 @@ const books = [
   {
     id: "book-3",
     title: "星穹鐘樓的第十二個音符",
-    subtitle: "第三卷 · 概念企劃",
-    status: "敬請期待",
-    statusColor: "indigo",
-    coverTag: "太空天文 × 聲學頻率 × 星際時鐘",
+    enTitle: "The Twelfth Note of the Celestial Clock Tower",
+    subtitle: "第三卷 · 全十章完結",
+    enSubtitle: "Volume 3 · Complete (10 Chapters)",
+    status: "已完結",
+    statusColor: "emerald",
+    coverTag: "太空天文 × 天體力學 × 聲學頻率 × 浮空城引力危機",
     author: "鹿陽故事工坊",
     targetAge: "9～13 歲",
-    totalWords: 0,
-    totalChapters: "策劃中",
-    description: "當齒輪鎮的大鐘樓在午夜敲響第十二聲時，天空中出現了由流星編織成的神秘五線譜。來自外太空深處的古代信標正在呼喚地球上的記憶守護者們……",
-    chapters: []
+    totalWords: book3Chapters.reduce((acc, c) => acc + c.wordCount, 0),
+    totalChapters: book3Chapters.length,
+    description: "當鹿陽國小迎回三十年守燈人誠爺爺的當天，皮可的超導天線意外截獲了來自萬米高空平流層的緊急求救信號——直徑五公里的古代奇蹟「天穹浮空城 · 奧秘之翼」遭到暗物質黑晶侵蝕，星穹鐘樓的第十二黃金音叉失調，整座大陸正以每秒八十米的速度向地表墜落！青木齒輪號加裝熱氣球雙層氣囊拔地而起，穿透萬伏特雷暴與翼龍機群，攜手銀翼少女塞西莉亞，敲響跨越陸海空三界的終極永恆和弦！",
+    chapters: book3Chapters
   }
 ];
 
@@ -499,4 +624,4 @@ window.GEAR_NOVELS_DATA = {
 `;
 
 fs.writeFileSync(path.join(__dirname, 'js', 'data', 'books.js'), jsContent, 'utf8');
-console.log(`Successfully generated js/data/books.js! Book 1: ${book1Chapters.length} chs, Book 2: ${book2Chapters.length} chs, Characters: ${characters.length}`);
+console.log(`Successfully generated js/data/books.js! Book 1: ${book1Chapters.length} chs, Book 2: ${book2Chapters.length} chs, Book 3: ${book3Chapters.length} chs, Characters: ${characters.length}`);
