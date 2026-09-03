@@ -452,6 +452,12 @@
     const drawer = document.getElementById('chapter-drawer');
     if (drawer) drawer.classList.add('hidden');
 
+    // 停止首頁輪播計時器（若存在）
+    if (window.heroCarouselTimer) {
+      clearInterval(window.heroCarouselTimer);
+      window.heroCarouselTimer = null;
+    }
+
     if (hash === '#/' || hash === '#/library') {
       renderLibrary();
     } else if (hash.startsWith('#/read/')) {
@@ -470,42 +476,126 @@
     }
   }
 
+  // 首頁輪播切換功能
+  window.heroSlideIndex = 0;
+  window.switchHeroSlide = function(targetIndex) {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+    
+    const count = slides.length;
+    let nextIndex = targetIndex;
+    if (nextIndex < 0) nextIndex = count - 1;
+    if (nextIndex >= count) nextIndex = 0;
+    
+    window.heroSlideIndex = nextIndex;
+    
+    slides.forEach((slide, idx) => {
+      if (idx === nextIndex) {
+        slide.classList.remove('hidden-slide');
+        slide.classList.add('active');
+      } else {
+        slide.classList.add('hidden-slide');
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, idx) => {
+      if (idx === nextIndex) {
+        dot.className = 'hero-dot w-7 h-2.5 rounded-full bg-amber-500 transition-all shadow-sm';
+      } else {
+        dot.className = 'hero-dot w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 hover:bg-amber-400/60 transition-all';
+      }
+    });
+  };
+
   // 頁面渲染器：書庫首頁
   function renderLibrary() {
     const container = document.getElementById('app-main');
-    const lastChapter = state.progress['book-1'] ? state.progress['book-1'].lastChapter : 1;
+    
+    // 取出最新的藏書（最多 10 本，逆序讓最新出版的在最前）
+    const carouselBooks = [...DATA.books].reverse().slice(0, 10);
+    window.heroSlideIndex = 0;
 
     container.innerHTML = `
-      <!-- Hero 橫幅 -->
-      <section class="relative overflow-hidden rounded-3xl mb-12 p-8 md:p-12 border border-amber-500/20 shadow-xl" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(2, 132, 199, 0.08) 100%);">
-        <div class="absolute -right-16 -top-16 opacity-10 pointer-events-none">
+      <!-- Hero 藏書輪播展示區塊 -->
+      <section id="hero-carousel-section" class="hero-carousel-container relative overflow-hidden rounded-3xl mb-12 border border-amber-500/20 shadow-xl" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(2, 132, 199, 0.08) 100%);">
+        
+        <!-- 背景旋轉齒輪裝飾 -->
+        <div class="absolute -right-16 -top-16 opacity-10 pointer-events-none z-0">
           <svg class="w-96 h-96 spin-gear text-amber-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 13.5 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.07 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/></svg>
         </div>
-        
-        <div class="max-w-2xl relative z-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-sm font-semibold mb-4">
-            <span>⚙️ 旗艦首發 · 全卷完結</span>
-            <span class="w-1 h-1 rounded-full bg-amber-500"></span>
-            <span>適讀年齡：9～13歲</span>
-          </div>
-          <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
-            《記憶黑客少年》<br>
-            <span class="text-2xl md:text-4xl text-amber-600">校園地下 404 室</span>
-          </h1>
-          <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
-            失竊的二十四小時，消失的星期三！發明鬼才誠浩 ＋ 邏輯學霸葉旖緁 ＋ 變形機械摺紙犬皮可，一場運用真實密碼學與齒輪機械的校園地底大冒險！
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#/read/book-1/1" class="px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-lg shadow-amber-600/25 flex items-center gap-2 transition-all hover:scale-105">
-              <span>📖 從頭開始閱讀 (第 1 章)</span>
-            </a>
-            ${lastChapter > 1 ? `
-              <a href="#/read/book-1/${lastChapter}" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold shadow-md flex items-center gap-2 transition-all">
-                <span>📖 繼續閱讀 (第 ${lastChapter} 章)</span>
-              </a>
-            ` : ''}
-          </div>
+
+        <!-- 輪播幻燈片群組 -->
+        <div class="relative min-h-[380px] sm:min-h-[340px] flex items-center">
+          ${carouselBooks.map((book, idx) => {
+            const lastCh = state.progress[book.id] ? state.progress[book.id].lastChapter : 1;
+            const isFirstChapterAvail = book.chapters && book.chapters.length > 0;
+            const firstChId = isFirstChapterAvail ? book.chapters[0].id : 1;
+            const isFirstSlide = idx === 0;
+
+            return `
+              <div class="hero-slide ${isFirstSlide ? 'active' : 'hidden-slide'} w-full p-8 md:p-12">
+                <div class="max-w-2xl relative z-10">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-xs sm:text-sm font-semibold mb-4">
+                    <span>⚙️ 精選藏書 ${idx + 1}/${carouselBooks.length}</span>
+                    <span class="w-1 h-1 rounded-full bg-amber-500"></span>
+                    <span>${book.coverTag || book.status}</span>
+                    <span class="w-1 h-1 rounded-full bg-amber-500 hidden sm:inline-block"></span>
+                    <span class="hidden sm:inline-block">${book.targetAge}</span>
+                  </div>
+                  
+                  <h1 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-3 text-slate-900 dark:text-white leading-tight">
+                    ${book.title}
+                  </h1>
+                  <div class="text-base sm:text-xl font-bold text-amber-600 mb-4">
+                    ${book.subtitle}
+                  </div>
+                  
+                  <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-8 line-clamp-3 md:line-clamp-4">
+                    ${book.description}
+                  </p>
+                  
+                  <div class="flex flex-wrap items-center gap-4">
+                    ${isFirstChapterAvail ? `
+                      <a href="#/read/${book.id}/${firstChId}" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-lg shadow-amber-600/25 flex items-center gap-2 transition-all hover:scale-105">
+                        <span>📖 從頭開始閱讀 (第 ${firstChId} 章)</span>
+                      </a>
+                      ${lastCh > firstChId ? `
+                        <a href="#/read/${book.id}/${lastCh}" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold shadow-md flex items-center gap-2 transition-all">
+                          <span>📖 繼續閱讀 (第 ${lastCh} 章)</span>
+                        </a>
+                      ` : ''}
+                    ` : `
+                      <button disabled class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-bold cursor-not-allowed">
+                        即將啟航 · 敬請期待
+                      </button>
+                    `}
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
         </div>
+
+        <!-- 左右切換按鈕 (多於 1 本時顯示) -->
+        ${carouselBooks.length > 1 ? `
+          <div class="absolute right-6 bottom-6 md:bottom-8 z-20 flex items-center gap-2">
+            <button onclick="window.switchHeroSlide(window.heroSlideIndex - 1)" class="w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-amber-500/20 text-slate-700 dark:text-slate-200 hover:bg-amber-500 hover:text-white flex items-center justify-center transition-all shadow-md active:scale-95" title="上一本藏書">
+              ❮
+            </button>
+            <button onclick="window.switchHeroSlide(window.heroSlideIndex + 1)" class="w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-amber-500/20 text-slate-700 dark:text-slate-200 hover:bg-amber-500 hover:text-white flex items-center justify-center transition-all shadow-md active:scale-95" title="下一本藏書">
+              ❯
+            </button>
+          </div>
+
+          <!-- 底部指示圓點 -->
+          <div class="absolute left-8 md:left-12 bottom-6 z-20 flex items-center gap-2">
+            ${carouselBooks.map((_, idx) => `
+              <button onclick="window.switchHeroSlide(${idx})" class="hero-dot ${idx === 0 ? 'w-7 h-2.5 rounded-full bg-amber-500 shadow-sm' : 'w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 hover:bg-amber-400/60'} transition-all" title="第 ${idx + 1} 本：${carouselBooks[idx].title}"></button>
+            `).join('')}
+          </div>
+        ` : ''}
       </section>
 
       <!-- 最近置入的精確書籤快捷卡 -->
@@ -588,6 +678,36 @@
         </div>
       </section>
     `;
+
+    // 啟動首頁藏書自動輪播（若有多本藏書）
+    if (carouselBooks.length > 1) {
+      function startHeroAutoplay() {
+        if (window.heroCarouselTimer) clearInterval(window.heroCarouselTimer);
+        window.heroCarouselTimer = setInterval(() => {
+          window.switchHeroSlide(window.heroSlideIndex + 1);
+        }, 5500);
+      }
+      function stopHeroAutoplay() {
+        if (window.heroCarouselTimer) {
+          clearInterval(window.heroCarouselTimer);
+          window.heroCarouselTimer = null;
+        }
+      }
+
+      startHeroAutoplay();
+
+      // 滑鼠懸停時暫停輪播，移開時繼續
+      const carouselSec = document.getElementById('hero-carousel-section');
+      if (carouselSec) {
+        carouselSec.addEventListener('mouseenter', stopHeroAutoplay);
+        carouselSec.addEventListener('mouseleave', startHeroAutoplay);
+        // 觸控事件友好處理
+        carouselSec.addEventListener('touchstart', stopHeroAutoplay, { passive: true });
+        carouselSec.addEventListener('touchend', () => {
+          setTimeout(startHeroAutoplay, 3000);
+        }, { passive: true });
+      }
+    }
   }
 
   // 取得讀者當前視窗視線焦點所在之段落索引 (data-para-index)
