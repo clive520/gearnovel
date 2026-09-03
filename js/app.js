@@ -473,7 +473,6 @@
   // 頁面渲染器：書庫首頁
   function renderLibrary() {
     const container = document.getElementById('app-main');
-    const book1 = DATA.books[0];
     const lastChapter = state.progress['book-1'] ? state.progress['book-1'].lastChapter : 1;
 
     container.innerHTML = `
@@ -576,7 +575,7 @@
                 </div>
                 ${book.chapters && book.chapters.length > 0 ? `
                   <a href="#/read/${book.id}/${book.chapters[0].id}" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold flex items-center justify-center gap-2 transition-all">
-                    <span>${book.id === 'book-1' ? '開始線上閱讀' : '搶先閱讀第二卷第 1 回'}</span> ➜
+                    <span>開始線上閱讀</span> ➜
                   </a>
                 ` : `
                   <button disabled class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 font-medium cursor-not-allowed">
@@ -586,63 +585,6 @@
               </div>
             </div>
           `).join('')}
-        </div>
-      </section>
-
-      <!-- 第二卷最新連載快速跳轉 -->
-      ${DATA.books[1] && DATA.books[1].chapters.length > 0 ? `
-        <section class="mb-12 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <span class="px-2.5 py-0.5 rounded-full bg-amber-500 text-white text-xs font-bold mr-2">最新連載</span>
-              <h2 class="text-xl font-bold inline-block text-slate-900 dark:text-white">《千島齒輪海的迷失燈塔》（第二卷）</h2>
-            </div>
-            <a href="#/read/book-2/${DATA.books[1].chapters[0].id}" class="text-xs font-bold text-amber-600 hover:underline">搶先閱讀 ➜</a>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            ${DATA.books[1].chapters.map(ch => `
-              <a href="#/read/book-2/${ch.id}" class="p-3.5 rounded-xl border border-amber-500/40 bg-white dark:bg-slate-900 hover:border-amber-600 transition-all flex flex-col justify-between group">
-                <div>
-                  <div class="flex items-center justify-between text-xs mb-1">
-                    <span class="text-amber-600 font-bold">第 11 章（二卷01）</span>
-                    <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 font-semibold">HOT 新上線</span>
-                  </div>
-                  <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-amber-600">${ch.shortTitle}</h4>
-                </div>
-                <div class="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
-                  <span>${ch.wordCount} 字</span>
-                  <span>約 ${ch.readTimeMin} 分鐘</span>
-                </div>
-              </a>
-            `).join('')}
-          </div>
-        </section>
-      ` : ''}
-
-      <!-- 第一本書章節快速跳轉 -->
-      <section class="mb-16">
-        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-          <span>📑 《記憶黑客少年》第一卷全回目錄</span>
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          ${book1.chapters.map((ch, idx) => {
-            const isRead = state.progress['book-1'] && state.progress['book-1'].read.includes(ch.id);
-            return `
-              <a href="#/read/book-1/${ch.id}" class="p-3.5 rounded-xl border ${isRead ? 'border-amber-500/40 bg-amber-500/5' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'} hover:border-amber-500 transition-all flex flex-col justify-between group">
-                <div>
-                  <div class="flex items-center justify-between text-xs mb-1">
-                    <span class="text-slate-400">第 ${idx + 1} 回</span>
-                    ${isRead ? '<span class="text-emerald-500 text-xs">✓ 已讀</span>' : ''}
-                  </div>
-                  <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-amber-600 line-clamp-1">${ch.shortTitle}</h4>
-                </div>
-                <div class="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
-                  <span>${ch.wordCount} 字</span>
-                  <span>約 ${ch.readTimeMin} 分鐘</span>
-                </div>
-              </a>
-            `;
-          }).join('')}
         </div>
       </section>
     `;
