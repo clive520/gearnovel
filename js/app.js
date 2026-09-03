@@ -590,8 +590,51 @@
     `;
   }
 
+  // 取得讀者當前視窗視線焦點所在之段落索引 (data-para-index)
+  function getCurrentlyVisibleParaIndex() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    // 若讀者仍在章節頂部（大標題與導航列），切換語系時維持在頂部
+    if (scrollY < 120) return null;
+
+    const elements = document.querySelectorAll('.reader-content [data-para-index]');
+    if (!elements.length) return null;
+
+    // 閱讀焦點線位於頂部懸浮控制列下方 (約 130px 處)
+    const focusY = 130;
+
+    // 1. 優先判定：當前覆蓋/橫跨焦點線的段落 (頂部在焦點線之上，底部在焦點線之下)
+    for (const el of elements) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= focusY && rect.bottom >= focusY) {
+        return parseInt(el.getAttribute('data-para-index'), 10);
+      }
+    }
+
+    // 2. 次優先判定：焦點線正下方的第一個段落 (100px <= top <= 360px)
+    for (const el of elements) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top >= 100 && rect.top <= 360) {
+        return parseInt(el.getAttribute('data-para-index'), 10);
+      }
+    }
+
+    // 3. 兜底判定：距離焦點線最近的段落
+    let closest = null;
+    let minDiff = Infinity;
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const diff = Math.abs(rect.top - focusY);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = el;
+      }
+    });
+
+    return closest ? parseInt(closest.getAttribute('data-para-index'), 10) : null;
+  }
+
   // 頁面渲染器：沉浸式閱讀器
-  function renderReader(bookId, chapterId) {
+  function renderReader(bookId, chapterId, targetParaIndex = undefined) {
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
     const chapter = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     saveProgress(bookId, chapter.id);
@@ -792,10 +835,12 @@
       btn.onclick = (e) => {
         e.stopPropagation();
         const size = btn.getAttribute('data-size');
+        if (state.fontSize === size) return;
+        const currentParaIndex = getCurrentlyVisibleParaIndex();
         state.fontSize = size;
         localStorage.setItem(STORAGE_KEYS.FONT_SIZE, size);
         document.documentElement.setAttribute('data-font-size', size);
-        renderReader(bookId, chapterId);
+        renderReader(bookId, chapterId, currentParaIndex);
       };
     });
 
@@ -804,10 +849,12 @@
       btn.onclick = (e) => {
         e.stopPropagation();
         const theme = btn.getAttribute('data-theme-btn');
+        if (state.theme === theme) return;
+        const currentParaIndex = getCurrentlyVisibleParaIndex();
         state.theme = theme;
         localStorage.setItem(STORAGE_KEYS.THEME, theme);
         document.documentElement.setAttribute('data-theme', theme);
-        renderReader(bookId, chapterId);
+        renderReader(bookId, chapterId, currentParaIndex);
       };
     });
 
@@ -816,10 +863,13 @@
       btn.onclick = (e) => {
         e.stopPropagation();
         const lang = btn.getAttribute('data-lang-btn');
+        if (state.readingLang === lang) return;
+        // 精準記錄切換前讀者視線所在的段落索引
+        const currentParaIndex = getCurrentlyVisibleParaIndex();
         state.readingLang = lang;
         localStorage.setItem(STORAGE_KEYS.LANG, lang);
         playTone(580, 0.08);
-        renderReader(bookId, chapterId);
+        renderReader(bookId, chapterId, currentParaIndex);
       };
     });
 
@@ -898,6 +948,27 @@
       } catch (e) {
         console.warn(e);
       }
+    }
+
+    // 若傳入目標段落索引（如語系切換、字體調整時保持精確閱讀進度）
+    if (targetParaIndex !== null && targetParaIndex !== undefined) {
+      const lockToPara = () => {
+        const targetEl = document.querySelector(`.reader-content [data-para-index="${targetParaIndex}"]`);
+        if (targetEl) {
+          const targetTop = targetEl.getBoundingClientRect().top + window.scrollY - 110;
+          window.scrollTo({ top: Math.max(0, targetTop), behavior: 'instant' });
+          targetEl.classList.remove('bookmark-focus');
+          void targetEl.offsetWidth;
+          targetEl.classList.add('bookmark-focus');
+        }
+      };
+      requestAnimationFrame(() => {
+        lockToPara();
+        setTimeout(lockToPara, 60);
+        setTimeout(lockToPara, 180);
+      });
+    } else if (targetParaIndex === null && (window.scrollY || 0) < 120) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
     // 快速開啟本章解密卡
