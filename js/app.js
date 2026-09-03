@@ -910,62 +910,154 @@
   }
 
   // 頁面渲染器：人物與裝備圖鑑
+  let activeCharTab = 'all';
+
+  window.switchCharTab = function(tab) {
+    activeCharTab = tab;
+    renderCharacters();
+  };
+
   function renderCharacters() {
     const container = document.getElementById('app-main');
+    const allChars = DATA.characters || [];
+    const filteredChars = allChars.filter(char => {
+      if (activeCharTab === 'all') return true;
+      return char.vol === activeCharTab;
+    });
+
+    const vol3Count = allChars.filter(c => c.vol === 'vol3').length;
+    const vol2Count = allChars.filter(c => c.vol === 'vol2').length;
+    const vol1Count = allChars.filter(c => c.vol === 'vol1').length;
+    const coreCount = allChars.filter(c => c.vol === 'core').length;
+
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
-        <div class="text-center max-w-xl mx-auto mb-12">
+        <div class="text-center max-w-xl mx-auto mb-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>👥 鹿陽檔案庫</span>
+            <span>👥 冒險齒輪 · 全三卷人物檔案誌</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">登場人物與核心機密檔案</h1>
-          <p class="text-sm text-slate-500">深入了解冒險三人組、守護者邱校長與傳奇機械皮可的詳細設定。</p>
+          <p class="text-sm text-slate-500">涵蓋校園地下 404 室、千島齒輪海到萬米天穹浮空城，全三部曲共 ${allChars.length} 位核心冒險家、守護宗師與陣營角色。</p>
+        </div>
+
+        <!-- 卷別切換標籤頁 -->
+        <div class="flex items-center justify-center flex-wrap gap-2.5 mb-10">
+          <button onclick="window.switchCharTab('all')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'all'
+              ? 'bg-amber-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+          }">
+            <span>全部人物</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'all' ? 'bg-amber-700 text-amber-100' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${allChars.length}</span>
+          </button>
+
+          <button onclick="window.switchCharTab('vol3')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'vol3'
+              ? 'bg-sky-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500'
+          }">
+            <span>🪽 第三卷 · 星穹浮空城</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/10 text-sky-600'}">${vol3Count}</span>
+          </button>
+
+          <button onclick="window.switchCharTab('vol2')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'vol2'
+              ? 'bg-emerald-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500'
+          }">
+            <span>⛵ 第二卷 · 千島齒輪海</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol2' ? 'bg-emerald-700 text-emerald-100' : 'bg-emerald-500/10 text-emerald-600'}">${vol2Count}</span>
+          </button>
+
+          <button onclick="window.switchCharTab('core')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'core'
+              ? 'bg-amber-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+          }">
+            <span>🎒 核心冒險主角群</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'core' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${coreCount}</span>
+          </button>
+
+          <button onclick="window.switchCharTab('vol1')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'vol1'
+              ? 'bg-indigo-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500'
+          }">
+            <span>🏫 第一卷 · 鹿陽地下404</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol1' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/10 text-indigo-600'}">${vol1Count}</span>
+          </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          ${DATA.characters.map(char => `
-            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg">
-              <div class="flex items-start gap-4 mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center text-3xl border border-amber-500/20 shadow-inner flex-shrink-0">
-                  ${char.avatar}
-                </div>
+          ${filteredChars.map(char => {
+            let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
+            if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
+
+            return `
+              <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2">
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">${char.name}</h3>
-                    <span class="text-xs text-slate-400 font-mono">(${char.enName})</span>
+                  <div class="flex items-start justify-between gap-3 mb-4">
+                    <div class="flex items-start gap-4">
+                      <div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center text-3xl border border-amber-500/20 shadow-inner flex-shrink-0">
+                        ${char.avatar}
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <h3 class="text-xl font-bold text-slate-900 dark:text-white">${char.name}</h3>
+                          <span class="text-xs text-slate-400 font-mono">(${char.enName})</span>
+                        </div>
+                        <div class="text-xs font-bold text-amber-600 mb-1">${char.role}</div>
+                        <div class="text-[11px] text-slate-400">${char.class} · ${char.age}</div>
+                      </div>
+                    </div>
+                    ${char.volName ? `
+                      <span class="px-2.5 py-1 rounded-full text-[10px] font-bold border whitespace-nowrap ${volBadgeClass}">
+                        ${char.volName}
+                      </span>
+                    ` : ''}
                   </div>
-                  <div class="text-xs font-bold text-amber-600 mb-1">${char.role}</div>
-                  <div class="text-[11px] text-slate-400">${char.class} · ${char.age}</div>
+
+                  ${char.badge ? `
+                    <div class="mb-3 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 text-xs flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
+                      <span class="text-amber-500">🎖️</span>
+                      <span class="font-bold text-amber-600">稱號/徽章：</span>
+                      <span class="font-medium">${char.badge}</span>
+                    </div>
+                  ` : ''}
+
+                  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">${char.desc}</p>
+                </div>
+
+                <div>
+                  ${char.items ? `
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                      <div class="text-xs font-bold text-slate-400">專屬裝備與物件：</div>
+                      ${char.items.map(item => `
+                        <div class="text-xs bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
+                          <span class="font-bold text-amber-600">▪ ${item.name}：</span>
+                          <span class="text-slate-600 dark:text-slate-300">${item.desc}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+
+                  ${char.forms ? `
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                      <div class="text-xs font-bold text-slate-400">皮可的五大超導變形型態：</div>
+                      ${char.forms.map((form, fIdx) => `
+                        <div class="text-xs ${fIdx === 4 ? 'bg-sky-500/10 dark:bg-sky-900/30 border-sky-500/30 text-sky-900 dark:text-sky-200' : 'bg-amber-500/5 dark:bg-slate-800/60 border-amber-500/20'} p-2.5 rounded-xl border">
+                          <span class="font-bold ${fIdx === 4 ? 'text-sky-600 dark:text-sky-400' : 'text-amber-600'}">★ ${form.name}：</span>
+                          <span class="text-slate-600 dark:text-slate-300">${form.desc}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  ` : ''}
                 </div>
               </div>
-
-              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">${char.desc}</p>
-
-              ${char.items ? `
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
-                  <div class="text-xs font-bold text-slate-400">專屬裝備與物件：</div>
-                  ${char.items.map(item => `
-                    <div class="text-xs bg-slate-50 dark:bg-slate-800/60 p-2 rounded-lg">
-                      <span class="font-bold text-amber-600">▪ ${item.name}：</span>
-                      <span class="text-slate-600 dark:text-slate-300">${item.desc}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              ` : ''}
-
-              ${char.forms ? `
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
-                  <div class="text-xs font-bold text-slate-400">皮可的四大變形型態：</div>
-                  ${char.forms.map(form => `
-                    <div class="text-xs bg-amber-500/5 dark:bg-slate-800/60 p-2 rounded-lg border border-amber-500/20">
-                      <span class="font-bold text-amber-600">★ ${form.name}：</span>
-                      <span class="text-slate-600 dark:text-slate-300">${form.desc}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              ` : ''}
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </section>
     `;
