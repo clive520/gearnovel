@@ -79,10 +79,8 @@
     }
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
     
-    // 章節閱讀對應徽章解鎖
-    if (bookId === 'book-1') {
-      unlockBadge(chapterId);
-    }
+    // 章節閱讀對應徽章解鎖（第一卷 1-10，第二卷 11-22）
+    unlockBadge(chapterId);
   }
 
   // 吐司提示 (Toast Notification)
@@ -624,20 +622,285 @@
     `;
   }
 
-  // 頁面渲染器：少年密碼實驗室 (Puzzle Lab)
+  // 輔助函數：多頻率同步和弦播放
+  function playChord(freqList, duration = 1.0) {
+    if (!audioCtx) return;
+    try {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      freqList.forEach(freq => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0005, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      });
+    } catch (e) {
+      console.warn("Chord audio error:", e);
+    }
+  }
+
+  // 輔助函數：取得國際海事信號旗 (ICS) 的 SVG 標籤
+  function getICSFlagSVG(letter) {
+    const ch = (letter || '').toUpperCase();
+    const svgs = {
+      'A': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><path d="M0,0 L120,0 L90,40 L120,80 L0,80 Z" fill="#1e40af"/><rect width="50" height="80" fill="#ffffff"/></svg>`,
+      'B': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><path d="M0,0 L120,0 L90,40 L120,80 L0,80 Z" fill="#dc2626"/></svg>`,
+      'C': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#1e40af"/><rect y="16" width="120" height="48" fill="#ffffff"/><rect y="32" width="120" height="16" fill="#dc2626"/></svg>`,
+      'D': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#facc15"/><rect y="20" width="120" height="40" fill="#1e40af"/></svg>`,
+      'E': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="40" fill="#1e40af"/><rect y="40" width="120" height="40" fill="#dc2626"/></svg>`,
+      'F': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#ffffff"/><polygon points="60,10 110,40 60,70 10,40" fill="#dc2626"/></svg>`,
+      'G': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#facc15"/><rect x="20" width="20" height="80" fill="#1e40af"/><rect x="60" width="20" height="80" fill="#1e40af"/><rect x="100" width="20" height="80" fill="#1e40af"/></svg>`,
+      'H': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="60" height="80" fill="#ffffff"/><rect x="60" width="60" height="80" fill="#dc2626"/></svg>`,
+      'I': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#facc15"/><circle cx="60" cy="40" r="24" fill="#000000"/></svg>`,
+      'J': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#1e40af"/><rect y="26.6" width="120" height="26.6" fill="#ffffff"/></svg>`,
+      'K': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="60" height="80" fill="#facc15"/><rect x="60" width="60" height="80" fill="#1e40af"/></svg>`,
+      'L': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="60" height="40" fill="#facc15"/><rect x="60" width="60" height="40" fill="#000000"/><rect y="40" width="60" height="40" fill="#000000"/><rect x="60" y="40" width="60" height="40" fill="#facc15"/></svg>`,
+      'M': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#1e40af"/><polygon points="0,0 120,80 100,80 0,13.3" fill="#ffffff"/><polygon points="120,0 0,80 20,80 120,13.3" fill="#ffffff"/><polygon points="0,0 20,0 120,66.7 120,80" fill="#ffffff"/><polygon points="120,0 100,0 0,66.7 0,80" fill="#ffffff"/></svg>`,
+      'N': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#ffffff"/><rect x="0" y="0" width="30" height="20" fill="#1e40af"/><rect x="60" y="0" width="30" height="20" fill="#1e40af"/><rect x="30" y="20" width="30" height="20" fill="#1e40af"/><rect x="90" y="20" width="30" height="20" fill="#1e40af"/><rect x="0" y="40" width="30" height="20" fill="#1e40af"/><rect x="60" y="40" width="30" height="20" fill="#1e40af"/><rect x="30" y="60" width="30" height="20" fill="#1e40af"/><rect x="90" y="60" width="30" height="20" fill="#1e40af"/></svg>`,
+      'O': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><polygon points="0,0 120,0 0,80" fill="#facc15"/><polygon points="120,0 120,80 0,80" fill="#dc2626"/></svg>`,
+      'P': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#1e40af"/><rect x="36" y="24" width="48" height="32" fill="#ffffff"/></svg>`,
+      'Q': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#facc15"/></svg>`,
+      'R': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#dc2626"/><rect x="48" width="24" height="80" fill="#facc15"/><rect y="28" width="120" height="24" fill="#facc15"/></svg>`,
+      'S': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#ffffff"/><rect x="36" y="24" width="48" height="32" fill="#1e40af"/></svg>`,
+      'T': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="40" height="80" fill="#dc2626"/><rect x="40" width="40" height="80" fill="#ffffff"/><rect x="80" width="40" height="80" fill="#1e40af"/></svg>`,
+      'U': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="60" height="40" fill="#dc2626"/><rect x="60" width="60" height="40" fill="#ffffff"/><rect y="40" width="60" height="40" fill="#ffffff"/><rect x="60" y="40" width="60" height="40" fill="#dc2626"/></svg>`,
+      'V': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#ffffff"/><polygon points="0,0 120,80 100,80 0,13.3" fill="#dc2626"/><polygon points="120,0 0,80 20,80 120,13.3" fill="#dc2626"/><polygon points="0,0 20,0 120,66.7 120,80" fill="#dc2626"/><polygon points="120,0 100,0 0,66.7 0,80" fill="#dc2626"/></svg>`,
+      'W': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#1e40af"/><rect x="18" y="12" width="84" height="56" fill="#ffffff"/><rect x="36" y="24" width="48" height="32" fill="#dc2626"/></svg>`,
+      'X': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#ffffff"/><rect x="48" width="24" height="80" fill="#1e40af"/><rect y="28" width="120" height="24" fill="#1e40af"/></svg>`,
+      'Y': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><rect width="120" height="80" fill="#dc2626"/><polygon points="0,0 20,0 0,20" fill="#facc15"/><polygon points="40,0 70,0 0,70 0,40" fill="#facc15"/><polygon points="90,0 120,0 0,80" fill="#facc15"/><polygon points="120,20 120,50 40,80 10,80" fill="#facc15"/><polygon points="120,70 120,80 80,80" fill="#facc15"/></svg>`,
+      'Z': `<svg viewBox="0 0 120 80" class="w-14 h-9 rounded shadow-sm inline-block border border-slate-200 dark:border-slate-700"><polygon points="0,0 120,0 60,40" fill="#000000"/><polygon points="0,80 120,80 60,40" fill="#dc2626"/><polygon points="0,0 0,80 60,40" fill="#facc15"/><polygon points="120,0 120,80 60,40" fill="#1e40af"/></svg>`
+    };
+    return svgs[ch] || `<div class="w-14 h-9 rounded border border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-mono text-slate-400 inline-block bg-slate-50 dark:bg-slate-800">SPACE</div>`;
+  }
+
+  // 記錄實驗室當前頁籤狀態
+  let activeLabTab = 'vol2';
+
+  // 頁面渲染器：少年密碼實驗室 (Puzzle Lab - 全卷升級版)
   function renderPuzzleLab() {
     const container = document.getElementById('app-main');
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
-        <div class="text-center max-w-xl mx-auto mb-12">
+        <div class="text-center max-w-xl mx-auto mb-8">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
             <span>🧩 動腦實驗室</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">小偵探密碼破譯工作台</h1>
-          <p class="text-sm text-slate-500">書中出現的真實密碼學與物理邏輯！親自動手試試看，破解神秘代碼。</p>
+          <p class="text-sm text-slate-500">書中出現的真實密碼學、物理光學與流體力學！動手操作，解開科學奧秘。</p>
         </div>
 
-        <div class="space-y-8">
+        <!-- 卷別切換頁籤 -->
+        <div class="flex items-center justify-center gap-3 mb-10">
+          <button id="tab-btn-vol2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabTab === 'vol2' 
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20' 
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+          }">
+            <span>🌊 第二卷：海事與光學流體 (4項)</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'vol2' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/20 text-amber-600'}">NEW!</span>
+          </button>
+          <button id="tab-btn-vol1" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabTab === 'vol1' 
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20' 
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+          }">
+            <span>📘 第一卷：校園與機械電路 (3項)</span>
+          </button>
+        </div>
+
+        <!-- 第二卷實驗室內容 -->
+        <div id="lab-section-vol2" class="${activeLabTab === 'vol2' ? 'space-y-8' : 'hidden'}">
+          <!-- 實驗一：國際海事信號旗語解碼機 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🚩 1. 國際海事信號旗語解碼機（第 14 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 font-bold">海事通訊密碼</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              國際信號旗（ICS）是全球航海通用的視覺密碼系統！輸入任何英文單字或句子，即時升起對應的標準海事旗幟：
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold text-slate-400">快速填入劇中密鑰：</span>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PILOT">PILOT (燈塔水閘密鑰)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="SOS">SOS (緊急呼救)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="GEAR">GEAR (冒險齒輪)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PICO">PICO (機械摺紙犬)</button>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">英文字母輸入（A-Z）：</label>
+                <input id="ics-input" type="text" value="PILOT" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm uppercase tracking-wider" placeholder="輸入英文字母..." />
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+                <div class="text-xs font-bold text-slate-400 mb-3">信號旗幟懸掛陣列：</div>
+                <div id="ics-flags-display" class="flex flex-wrap items-center gap-3 min-h-[50px]">
+                  <!-- SVG 旗幟將即時渲染在此 -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗二：阿基米德浮箱力矩平衡天平 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>⚖️ 2. 阿基米德浮箱力矩平衡天平（第 16 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-bold">流體浮力 × 槓桿力矩</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              深海 100 ATM 水壓猛烈衝擊水門！三組浮箱力臂分別為 <strong>L1 = 1m, L2 = 2m, L3 = 3m</strong>，總排水配重剛好為 <strong>11 格</strong>。調整三組水量，讓三組力矩（τ = V × L）完全平衡關死重壓門！
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>左浮箱 V1 (力臂 1m):</span>
+                  <span id="txt-v1" class="text-amber-600 font-mono text-sm font-bold">6 格</span>
+                </div>
+                <input id="slider-v1" type="range" min="0" max="11" value="6" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v1" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>中浮箱 V2 (力臂 2m):</span>
+                  <span id="txt-v2" class="text-amber-600 font-mono text-sm font-bold">3 格</span>
+                </div>
+                <input id="slider-v2" type="range" min="0" max="11" value="3" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v2" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>右浮箱 V3 (力臂 3m):</span>
+                  <span id="txt-v3" class="text-amber-600 font-mono text-sm font-bold">2 格</span>
+                </div>
+                <input id="slider-v3" type="range" min="0" max="11" value="2" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v3" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+            </div>
+
+            <!-- 力矩狀態面板 -->
+            <div id="archimedes-status-box" class="p-5 rounded-xl border transition-all">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs font-bold text-slate-400">當前注水總量 / 力矩配比：</div>
+                  <div id="archimedes-calc" class="font-mono font-bold text-sm mt-1">總水量：11 / 11 格 ｜ 力矩值：τ1=6, τ2=6, τ3=6</div>
+                </div>
+                <div id="archimedes-badge" class="px-4 py-2 rounded-xl text-xs font-bold"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗三：布魯斯特角偏光透鏡模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🪞 3. 布魯斯特角偏光透鏡模擬器（第 17 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-600 font-bold">大氣逆溫 × 偏振光學</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              大氣逆溫層與全息投影製造出三座一模一樣的島嶼！旋轉護目鏡偏振轉輪至完全偏振角（tan(θB) = 1.00020 / 1.00035 ≈ 45.0°），消除水面反射眩光與全息激光虛像：
+            </p>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 mb-6">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500">護目鏡偏振角度轉輪：</span>
+                <span id="txt-polarizer-angle" class="text-amber-600 font-mono text-lg font-bold">0.0°</span>
+              </div>
+              <input id="slider-polarizer" type="range" min="0" max="90" step="1" value="0" class="w-full" />
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                <span>0° (未偏振)</span>
+                <span class="text-amber-600 font-bold">45° (布魯斯特角)</span>
+                <span>90° (垂直偏振)</span>
+              </div>
+            </div>
+
+            <!-- 三島光學顯像區 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- A 島 -->
+              <div id="island-a" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">A 號島嶼</div>
+                <div id="island-a-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+              <!-- B 島 -->
+              <div id="island-b" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">B 號島嶼</div>
+                <div id="island-b-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+              <!-- C 島 -->
+              <div id="island-c" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">C 號島嶼</div>
+                <div id="island-c-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+            </div>
+
+            <div id="polarizer-verdict" class="mt-4 p-3 rounded-lg text-center text-xs font-bold font-mono"></div>
+          </div>
+
+          <!-- 實驗四：畢達哥拉斯五度相生律管風琴 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🎵 4. 畢達哥拉斯五度相生律風琴諧波器（第 18 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 font-bold">聲學駐波 × 純律和弦</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              四根青銅石柱管長與頻率成反比（f ∝ 1/L）。點擊管柱試聽單音，或點擊「奏響天琴和弦」，產生純五度共振，平息夜光機械水母群並化解聲學懸浮！
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <button id="pipe-1" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">1號柱 (4.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Do (C4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">261.6 Hz · 比值 6</div>
+              </button>
+              <button id="pipe-2" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">2號柱 (3.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Fa (F4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">349.2 Hz · 比值 8</div>
+              </button>
+              <button id="pipe-3" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">3號柱 (2.67m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Sol (G4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">392.0 Hz · 比值 9</div>
+              </button>
+              <button id="pipe-4" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">4號柱 (2.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">High Do (C5)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">523.3 Hz · 比值 12</div>
+              </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <button id="btn-play-chord" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition-all">
+                <span>🎼 同步吹響【天琴純五度和弦】</span>
+              </button>
+              <div id="chord-status" class="text-xs font-mono text-slate-500 flex-1 text-center sm:text-left">
+                點擊上方按鈕聆聽四大音頻疊加產生的相干諧波
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第一卷實驗室內容 -->
+        <div id="lab-section-vol1" class="${activeLabTab === 'vol1' ? 'space-y-8' : 'hidden'}">
           <!-- 工具一：A1Z26 字母代換機 -->
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
@@ -706,10 +969,189 @@
       </section>
     `;
 
+    // 頁籤切換事件
+    const tabVol1 = document.getElementById('tab-btn-vol1');
+    const tabVol2 = document.getElementById('tab-btn-vol2');
+    const secVol1 = document.getElementById('lab-section-vol1');
+    const secVol2 = document.getElementById('lab-section-vol2');
+
+    if (tabVol1 && tabVol2) {
+      tabVol1.onclick = () => {
+        activeLabTab = 'vol1';
+        renderPuzzleLab();
+      };
+      tabVol2.onclick = () => {
+        activeLabTab = 'vol2';
+        renderPuzzleLab();
+      };
+    }
+
+    // ================== 第二卷實驗邏輯 ==================
+    // 實驗一：ICS 旗語
+    const icsInput = document.getElementById('ics-input');
+    const icsDisplay = document.getElementById('ics-flags-display');
+    function updateICSFlags() {
+      if (!icsInput || !icsDisplay) return;
+      const val = (icsInput.value || '').toUpperCase();
+      let html = '';
+      for (let ch of val) {
+        if (ch >= 'A' && ch <= 'Z') {
+          html += `
+            <div class="flex flex-col items-center gap-1">
+              ${getICSFlagSVG(ch)}
+              <span class="text-[11px] font-mono font-bold text-slate-600 dark:text-slate-300">${ch}</span>
+            </div>
+          `;
+        } else if (ch === ' ') {
+          html += `
+            <div class="flex flex-col items-center gap-1 px-1">
+              ${getICSFlagSVG(' ')}
+              <span class="text-[11px] font-mono text-slate-400">_</span>
+            </div>
+          `;
+        }
+      }
+      icsDisplay.innerHTML = html || '<span class="text-xs text-slate-400">請在上方輸入英文字母...</span>';
+    }
+    if (icsInput) {
+      icsInput.oninput = updateICSFlags;
+      updateICSFlags();
+      document.querySelectorAll('.btn-flag-preset').forEach(btn => {
+        btn.onclick = () => {
+          icsInput.value = btn.getAttribute('data-word');
+          playTone(523.25, 0.1);
+          updateICSFlags();
+        };
+      });
+    }
+
+    // 實驗二：阿基米德浮力力矩平衡
+    const sV1 = document.getElementById('slider-v1');
+    const sV2 = document.getElementById('slider-v2');
+    const sV3 = document.getElementById('slider-v3');
+    function updateArchimedes() {
+      if (!sV1 || !sV2 || !sV3) return;
+      const v1 = parseInt(sV1.value, 10);
+      const v2 = parseInt(sV2.value, 10);
+      const v3 = parseInt(sV3.value, 10);
+
+      document.getElementById('txt-v1').innerText = `${v1} 格`;
+      document.getElementById('txt-v2').innerText = `${v2} 格`;
+      document.getElementById('txt-v3').innerText = `${v3} 格`;
+
+      const t1 = v1 * 1;
+      const t2 = v2 * 2;
+      const t3 = v3 * 3;
+      const totalWater = v1 + v2 + v3;
+
+      document.getElementById('tau-v1').innerText = t1;
+      document.getElementById('tau-v2').innerText = t2;
+      document.getElementById('tau-v3').innerText = t3;
+
+      const calcTxt = document.getElementById('archimedes-calc');
+      const badge = document.getElementById('archimedes-badge');
+      const box = document.getElementById('archimedes-status-box');
+
+      const isTorqueBalanced = (t1 === t2 && t2 === t3 && t1 > 0);
+      const isWaterCorrect = (totalWater === 11);
+
+      calcTxt.innerText = `總水量：${totalWater} / 11 格 ｜ 力矩值：τ1=${t1}, τ2=${t2}, τ3=${t3}`;
+
+      if (isTorqueBalanced && isWaterCorrect) {
+        box.className = 'p-5 rounded-xl border border-emerald-500 bg-emerald-500/10 transition-all shadow-md';
+        badge.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow';
+        badge.innerText = '✓ 6:3:2 力矩完美平衡！水門卡死排空！';
+      } else if (isTorqueBalanced && !isWaterCorrect) {
+        box.className = 'p-5 rounded-xl border border-amber-500 bg-amber-500/10 transition-all';
+        badge.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 text-white';
+        badge.innerText = '⚠️ 力矩相等但總水量需剛好11格！';
+      } else {
+        box.className = 'p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 transition-all';
+        badge.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-rose-500/20 text-rose-600 dark:text-rose-400';
+        badge.innerText = '✗ 力矩失衡！水門受壓狂湧！';
+      }
+    }
+    if (sV1 && sV2 && sV3) {
+      sV1.oninput = updateArchimedes;
+      sV2.oninput = updateArchimedes;
+      sV3.oninput = updateArchimedes;
+      updateArchimedes();
+    }
+
+    // 實驗三：布魯斯特角偏光透鏡
+    const sPol = document.getElementById('slider-polarizer');
+    function updatePolarizer() {
+      if (!sPol) return;
+      const deg = parseInt(sPol.value, 10);
+      document.getElementById('txt-polarizer-angle').innerText = `${deg.toFixed(1)}°`;
+
+      const islandA = document.getElementById('island-a');
+      const islandB = document.getElementById('island-b');
+      const islandC = document.getElementById('island-c');
+      const descA = document.getElementById('island-a-desc');
+      const descB = document.getElementById('island-b-desc');
+      const descC = document.getElementById('island-c-desc');
+      const verdict = document.getElementById('polarizer-verdict');
+
+      if (deg >= 43 && deg <= 47) {
+        // 布魯斯特角精確鎖定
+        islandA.className = 'p-4 rounded-xl border-2 border-rose-500 bg-rose-500/10 text-center transition-all duration-300';
+        descA.innerHTML = '<span class="text-rose-600 dark:text-rose-400 font-bold">⚠️ 破譯為黑潮全息陷阱！密布深海漂雷</span>';
+
+        islandB.className = 'p-4 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-center transition-all duration-300';
+        descB.innerHTML = '<span class="text-amber-600 dark:text-amber-400 font-bold">⚠️ 上蜃景虛像倒影！下方為地熱沸泉</span>';
+
+        islandC.className = 'p-4 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-center transition-all duration-300 shadow-md';
+        descC.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400 font-bold">✨ 唯一真實實體！玄武岩天琴礁島！</span>';
+
+        verdict.className = 'mt-4 p-3 rounded-lg text-center text-xs font-bold font-mono bg-emerald-500 text-white shadow';
+        verdict.innerText = '🎉【布魯斯特角 45.0° 鎖定】反射眩光全濾除！真實航向鎖定 C 號島嶼！';
+      } else {
+        islandA.className = 'p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center transition-all duration-300';
+        descA.innerText = '遠景輪廓模糊，水霧瀰漫遮蔽細節';
+
+        islandB.className = 'p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center transition-all duration-300';
+        descB.innerText = '遠景輪廓模糊，水霧瀰漫遮蔽細節';
+
+        islandC.className = 'p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center transition-all duration-300';
+        descC.innerText = '遠景輪廓模糊，水霧瀰漫遮蔽細節';
+
+        verdict.className = 'mt-4 p-3 rounded-lg text-center text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-500';
+        verdict.innerText = '當前視線受水面反射強眩光干擾，請調整轉輪至 45° 布魯斯特角...';
+      }
+    }
+    if (sPol) {
+      sPol.oninput = updatePolarizer;
+      updatePolarizer();
+    }
+
+    // 實驗四：畢達哥拉斯和弦琴
+    const p1 = document.getElementById('pipe-1');
+    const p2 = document.getElementById('pipe-2');
+    const p3 = document.getElementById('pipe-3');
+    const p4 = document.getElementById('pipe-4');
+    const btnChord = document.getElementById('btn-play-chord');
+    const chordStatus = document.getElementById('chord-status');
+
+    if (p1 && p2 && p3 && p4 && btnChord) {
+      p1.onclick = () => { playTone(261.63, 0.4); chordStatus.innerText = '吹響 1號柱：Do (C4, 261.6 Hz) 嵐的滑行艇蒸汽'; };
+      p2.onclick = () => { playTone(349.23, 0.4); chordStatus.innerText = '吹響 2號柱：Fa (F4, 349.2 Hz) 巴克的海盜霧角'; };
+      p3.onclick = () => { playTone(392.00, 0.4); chordStatus.innerText = '吹響 3號柱：Sol (G4, 392.0 Hz) 將江的黑鐵平底鍋'; };
+      p4.onclick = () => { playTone(523.25, 0.4); chordStatus.innerText = '吹響 4號柱：High Do (C5, 523.3 Hz) 皮可的超導渦輪'; };
+
+      btnChord.onclick = () => {
+        playChord([261.63, 349.23, 392.00, 523.25], 1.5);
+        chordStatus.innerHTML = '<span class="text-emerald-500 font-bold">✨【天琴純五度和弦奏響】聲學駐波抵消，紫晶星盤降落！夜光機械水母轉為極光藍！</span>';
+        showToast('🎵 天琴純五度和弦已共振！駐波平息！', 'success');
+      };
+    }
+
+    // ================== 第一卷實驗邏輯 ==================
     // 邏輯實作：A1Z26
     const a1Input = document.getElementById('a1z26-text');
     const a1Output = document.getElementById('a1z26-num');
     function updateA1() {
+      if (!a1Input || !a1Output) return;
       const text = (a1Input.value || '').toUpperCase();
       const nums = [];
       for (let ch of text) {
@@ -742,6 +1184,8 @@
       const evalDiv = document.getElementById('logic-eval');
       const statusDiv = document.getElementById('logic-status');
       const outputBox = document.getElementById('logic-output');
+
+      if (!btnA || !btnB || !btnC) return;
 
       btnA.className = `px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all ${swA ? 'bg-red-500 text-white border-red-600 shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-300 dark:border-slate-700'}`;
       btnA.innerText = `紅閘 A：${swA ? '開 (1)' : '關 (0)'}`;
@@ -782,9 +1226,14 @@
       return b === 0 ? a : gcd(b, a % b);
     }
     function updateGear() {
-      const z1 = parseInt(document.getElementById('slider-z1').value, 10);
-      const z2 = parseInt(document.getElementById('slider-z2').value, 10);
-      const z3 = parseInt(document.getElementById('slider-z3').value, 10);
+      const z1El = document.getElementById('slider-z1');
+      const z2El = document.getElementById('slider-z2');
+      const z3El = document.getElementById('slider-z3');
+      if (!z1El || !z2El || !z3El) return;
+
+      const z1 = parseInt(z1El.value, 10);
+      const z2 = parseInt(z2El.value, 10);
+      const z3 = parseInt(z3El.value, 10);
 
       document.getElementById('val-z1').innerText = z1;
       document.getElementById('val-z2').innerText = z2;
