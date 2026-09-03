@@ -664,10 +664,10 @@
     let displayContentHtml = '';
 
     if (hasEnglish && state.readingLang === 'en') {
-      displayTitle = chapter.enTitle || 'Chapter 1: The Stolen Twenty-Four Hours';
+      displayTitle = chapter.enTitle || chapter.title;
       displayContentHtml = parseMarkdown(chapter.rawContentEn);
     } else if (hasEnglish && state.readingLang === 'bilingual') {
-      displayTitle = `${chapter.title} <span class="block text-base font-serif italic text-amber-600 font-normal mt-1">${chapter.enTitle || 'The Stolen Twenty-Four Hours'}</span>`;
+      displayTitle = `${chapter.title} <span class="block text-base font-serif italic text-amber-600 font-normal mt-1">${chapter.enTitle || ''}</span>`;
       displayContentHtml = renderBilingualContent(chapter.rawContent, chapter.rawContentEn);
     } else {
       displayTitle = chapter.title;
