@@ -1120,7 +1120,7 @@
   }
 
   // 記錄實驗室當前頁籤狀態
-  let activeLabTab = 'vol2';
+  let activeLabTab = 'vol3';
 
   // 頁面渲染器：少年密碼實驗室 (Puzzle Lab - 全卷升級版)
   function renderPuzzleLab() {
@@ -1132,26 +1132,245 @@
             <span>🧩 動腦實驗室</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">小偵探密碼破譯工作台</h1>
-          <p class="text-sm text-slate-500">書中出現的真實密碼學、物理光學與流體力學！動手操作，解開科學奧秘。</p>
+          <p class="text-sm text-slate-500">書中出現的真實密碼學、物理光學、流體力學、天體物理與十二平均律！動手操作，解開科學奧秘。</p>
         </div>
 
         <!-- 卷別切換頁籤 -->
-        <div class="flex items-center justify-center gap-3 mb-10">
+        <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
+          <button id="tab-btn-vol3" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabTab === 'vol3' 
+              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25' 
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500'
+          }">
+            <span>🪽 第三卷：天體音波與平流層 (4項)</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'vol3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/20 text-sky-600'}">NEW!</span>
+          </button>
           <button id="tab-btn-vol2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
             activeLabTab === 'vol2' 
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
           }">
             <span>🌊 第二卷：海事與光學流體 (4項)</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'vol2' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/20 text-amber-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol1" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
             activeLabTab === 'vol1' 
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20' 
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' 
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500'
           }">
             <span>📘 第一卷：校園與機械電路 (3項)</span>
           </button>
+        </div>
+
+        <!-- 第三卷實驗室內容 -->
+        <div id="lab-section-vol3" class="${activeLabTab === 'vol3' ? 'space-y-8' : 'hidden'}">
+          <!-- 實驗一：十二平均律天體音叉共振儀 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
+                <span>🔔 1. 十二平均律天體音叉共振儀（第 30 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-600 font-bold">聲學十二平均律 × 三階純律泛音</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              天穹鐘樓的十二平均律編鐘被暗物質黑晶阻滯！點擊 12 個天體鋼琴音鍵聆聽純正正弦波；開啟 B4 聖物音叉並激發三階超聲純律泛音（493.88 + 987.76 + 1481.64 Hz），觸發 180 dB 超聲空化，粉碎黑晶阻滯！
+            </p>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 mb-4">
+              <div class="text-xs font-bold text-slate-500 mb-3 flex items-center justify-between">
+                <span>十二平均律天體音階鍵盤（點擊試奏單音）：</span>
+                <span id="note-freq-display" class="font-mono text-amber-600 text-xs">點擊按鈕試聽頻率</span>
+              </div>
+              <div id="note-keys-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                <!-- 琴鍵按鈕由 JS 自動渲染 -->
+              </div>
+            </div>
+
+            <!-- 三階泛音激發控制區 -->
+            <div class="p-4 rounded-xl bg-gradient-to-r from-sky-500/10 via-amber-500/5 to-transparent border border-sky-500/30">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-3">
+                <div>
+                  <div class="text-xs font-bold text-slate-700 dark:text-slate-300">聖物音叉超聲共振和弦：</div>
+                  <div class="text-[11px] font-mono text-slate-500 mt-0.5">基頻 B4 (493.88Hz) ＋ 二階泛音 (987.76Hz) ＋ 三階泛音 (1481.64Hz)</div>
+                </div>
+                <button id="btn-play-overtone" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-amber-600 hover:from-sky-500 hover:to-amber-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                  <span>🎼 激發【三階超聲純律泛音和弦】</span>
+                </button>
+              </div>
+
+              <!-- 黑晶共振條 -->
+              <div class="w-full bg-slate-200 dark:bg-slate-700 h-3 rounded-full overflow-hidden mb-2">
+                <div id="crystal-progress-bar" class="h-3 rounded-full bg-amber-500 transition-all duration-700" style="width: 15%;"></div>
+              </div>
+              <div id="crystal-status-text" class="text-xs font-mono text-slate-500 text-center sm:text-left">
+                等待共鳴激發：暗物質黑晶阻滯中...
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗二：都卜勒動態頻移與 180° 反相激光湮滅器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
+                <span>⚡ 2. 都卜勒動態頻移與 180° 反相激光湮滅器（第 31 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 font-bold">相對論都卜勒 × 破壞性相干干涉</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              暗物質巨獸以速度 <strong>vs</strong> 迎面撲撞，其分子振動基頻（1200 Hz）因都卜勒效應動態藍移！由日冕核心發射反相激光（相位精確翻轉 180°），使合成總位移歸零（y_total ≡ 0），巨獸晶格瞬間沙化！
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>巨獸迎面撲撞速度 (vs):</span>
+                  <span id="txt-monster-v" class="text-purple-600 font-mono text-sm font-bold">20.0 m/s</span>
+                </div>
+                <input id="slider-monster-v" type="range" min="0" max="30" step="0.5" value="20" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2 flex justify-between font-mono">
+                  <span>平流層聲速 c ≈ 297.3 m/s</span>
+                  <span>動態接收頻率：<strong id="txt-doppler-freq" class="text-purple-600 font-bold">1286.6 Hz</strong></span>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>日冕激光注入相位 (φ):</span>
+                  <span id="txt-laser-phase" class="text-sky-600 font-mono text-sm font-bold">0°</span>
+                </div>
+                <input id="slider-laser-phase" type="range" min="0" max="360" step="1" value="0" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2 flex justify-between font-mono">
+                  <span>0° (同相疊加)</span>
+                  <span class="text-emerald-500 font-bold">180° (反相相消)</span>
+                  <span>360°</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 示波器圖表 -->
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 mb-2">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span> 巨獸波形 y1 (都卜勒動態)</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span> 注入激光 y2 (相位可調)</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span> 合成干涉總位移 y_total</span>
+              </div>
+              <canvas id="doppler-canvas" class="w-full h-36 rounded-lg bg-slate-900/60 border border-slate-800"></canvas>
+            </div>
+
+            <div id="doppler-verdict" class="mt-2 p-3 rounded-xl text-center text-xs font-mono"></div>
+          </div>
+
+          <!-- 實驗三：平流層氣壓高度與大氣標高計 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
+                <span>🌡️ 3. 平流層氣壓高度與大氣標高計（第 23 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 font-bold">等溫氣壓標高公式 P(h) = P0 · e^(-h/H)</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              氣壓隨海拔升高呈指數型劇烈遞減！拖動高度滑桿，體驗氣壓標高 H ≈ 6438 公尺下的氣壓、溫度與空氣密度變化；點擊快捷按鈕逆推空難黑匣子的求救墜落高度：
+            </p>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 mb-4">
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span>當前飛行高度 (h):</span>
+                <span id="txt-altitude-val" class="text-sky-600 font-mono text-base font-bold">8,650 公尺</span>
+              </div>
+              <input id="slider-altitude" type="range" min="0" max="12000" step="50" value="8650" class="w-full" />
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span class="text-xs font-bold text-slate-400">航行情境快捷鍵：</span>
+                <button class="btn-alt-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-alt="0">0m (海平面基準)</button>
+                <button class="btn-alt-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-alt="8650">8,650m (空難墜落警報)</button>
+                <button class="btn-alt-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-alt="10000">10,000m (平流層飛升)</button>
+              </div>
+            </div>
+
+            <!-- 四大儀表即時顯示 -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+                <div class="text-[11px] text-slate-400 mb-1">大氣壓強 P(h)</div>
+                <div id="txt-pressure-val" class="text-base font-bold font-mono text-sky-600">264.8 hPa</div>
+                <div class="text-[10px] text-slate-400 mt-0.5">海平面 1013.2 hPa</div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+                <div class="text-[11px] text-slate-400 mb-1">環境溫度 T</div>
+                <div id="txt-temp-val" class="text-base font-bold font-mono text-blue-600">-41.2 °C</div>
+                <div class="text-[10px] text-slate-400 mt-0.5">垂直遞減 -6.5°C/km</div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+                <div class="text-[11px] text-slate-400 mb-1">相對空氣密度</div>
+                <div id="txt-density-val" class="text-base font-bold font-mono text-amber-600">26.1%</div>
+                <div class="text-[10px] text-slate-400 mt-0.5">ρ / ρ0 浮力折損率</div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+                <div class="text-[11px] text-slate-400 mb-1">標高常數 H</div>
+                <div class="text-base font-bold font-mono text-emerald-600">6,438 m</div>
+                <div class="text-[10px] text-slate-400 mt-0.5">RT / Mg 等溫特徵</div>
+              </div>
+            </div>
+
+            <div id="altitude-alert-box" class="p-3.5 rounded-xl text-xs font-mono"></div>
+          </div>
+
+          <!-- 實驗四：克卜勒行星軌道共振天梯 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
+                <span>🪐 4. 克卜勒行星軌道共振天梯（第 29 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-bold">天體力學 T^2/a^3 = K ｜ LCM 週期共振</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              千米懸空深淵上，三座行星齒輪天梯各自以克卜勒週期旋轉（內環 T1 = 16s、中環 T2 = 27s、外環 T3 = 48s）。拖曳時間軸尋找它們在天心對齊的最小公倍數共振窗口（LCM = 432 秒），飛躍天梯！
+            </p>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 mb-4">
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span>發條時間流逝 (t):</span>
+                <span id="txt-orbit-time" class="text-sky-600 font-mono text-base font-bold">0 秒</span>
+              </div>
+              <input id="slider-orbit-time" type="range" min="0" max="600" step="1" value="0" class="w-full" />
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span class="text-xs font-bold text-slate-400">時間快速跳轉：</span>
+                <button class="btn-orbit-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-time="0">0s (起始)</button>
+                <button class="btn-orbit-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-time="108">108s (1/4 週期)</button>
+                <button class="btn-orbit-preset px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-sky-500/15 hover:text-sky-600 text-xs font-mono font-bold" data-time="216">216s (半週期)</button>
+                <button class="btn-orbit-preset px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-600 hover:bg-emerald-500/30 text-xs font-mono font-bold" data-time="432">⭐ 432s (天心完全共振)</button>
+              </div>
+            </div>
+
+            <!-- 三天梯角度儀錶盤 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center">
+                <div class="text-xs font-bold text-slate-500 mb-2">內環天梯 (T1 = 16s)</div>
+                <div class="w-16 h-16 rounded-full border-2 border-dashed border-sky-500 flex items-center justify-center relative my-1">
+                  <div id="gear1-dial" class="w-1 h-7 bg-sky-500 absolute top-1 origin-bottom rounded transition-transform"></div>
+                </div>
+                <div class="text-xs font-mono font-bold text-sky-600 mt-1">相位角：<span id="gear1-angle">0°</span></div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center">
+                <div class="text-xs font-bold text-slate-500 mb-2">中環天梯 (T2 = 27s)</div>
+                <div class="w-16 h-16 rounded-full border-2 border-dashed border-amber-500 flex items-center justify-center relative my-1">
+                  <div id="gear2-dial" class="w-1 h-7 bg-amber-500 absolute top-1 origin-bottom rounded transition-transform"></div>
+                </div>
+                <div class="text-xs font-mono font-bold text-amber-600 mt-1">相位角：<span id="gear2-angle">0°</span></div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center">
+                <div class="text-xs font-bold text-slate-500 mb-2">外環天梯 (T3 = 48s)</div>
+                <div class="w-16 h-16 rounded-full border-2 border-dashed border-purple-500 flex items-center justify-center relative my-1">
+                  <div id="gear3-dial" class="w-1 h-7 bg-purple-500 absolute top-1 origin-bottom rounded transition-transform"></div>
+                </div>
+                <div class="text-xs font-mono font-bold text-purple-600 mt-1">相位角：<span id="gear3-angle">0°</span></div>
+              </div>
+            </div>
+
+            <div id="resonance-status-box" class="p-3.5 rounded-xl text-xs font-mono"></div>
+          </div>
         </div>
 
         <!-- 第二卷實驗室內容 -->
@@ -1413,18 +1632,289 @@
     // 頁籤切換事件
     const tabVol1 = document.getElementById('tab-btn-vol1');
     const tabVol2 = document.getElementById('tab-btn-vol2');
-    const secVol1 = document.getElementById('lab-section-vol1');
-    const secVol2 = document.getElementById('lab-section-vol2');
+    const tabVol3 = document.getElementById('tab-btn-vol3');
 
-    if (tabVol1 && tabVol2) {
-      tabVol1.onclick = () => {
-        activeLabTab = 'vol1';
+    if (tabVol3) {
+      tabVol3.onclick = () => {
+        activeLabTab = 'vol3';
         renderPuzzleLab();
       };
+    }
+    if (tabVol2) {
       tabVol2.onclick = () => {
         activeLabTab = 'vol2';
         renderPuzzleLab();
       };
+    }
+    if (tabVol1) {
+      tabVol1.onclick = () => {
+        activeLabTab = 'vol1';
+        renderPuzzleLab();
+      };
+    }
+
+    // ================== 第三卷實驗邏輯 ==================
+    // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
+    const notesData = [
+      { name: 'C4', freq: 261.63 },
+      { name: 'C#4', freq: 277.18 },
+      { name: 'D4', freq: 293.66 },
+      { name: 'D#4', freq: 311.13 },
+      { name: 'E4', freq: 329.63 },
+      { name: 'F4', freq: 349.23 },
+      { name: 'F#4', freq: 369.99 },
+      { name: 'G4', freq: 392.00 },
+      { name: 'G#4', freq: 415.30 },
+      { name: 'A4', freq: 440.00 },
+      { name: 'A#4', freq: 466.16 },
+      { name: 'B4 (聖物)', freq: 493.88, isSacred: true }
+    ];
+
+    const noteKeysContainer = document.getElementById('note-keys-grid');
+    const noteFreqDisplay = document.getElementById('note-freq-display');
+    const btnOvertone = document.getElementById('btn-play-overtone');
+    const crystalBar = document.getElementById('crystal-progress-bar');
+    const crystalStatus = document.getElementById('crystal-status-text');
+
+    if (noteKeysContainer) {
+      noteKeysContainer.innerHTML = notesData.map(n => `
+        <button class="btn-piano-key p-2.5 rounded-xl border text-center transition-all ${
+          n.isSacred 
+            ? 'border-amber-500 bg-amber-500/15 text-amber-600 font-bold hover:bg-amber-500/25 ring-2 ring-amber-500/30' 
+            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-sky-500 text-slate-700 dark:text-slate-300'
+        }" data-freq="${n.freq}" data-name="${n.name}">
+          <div class="text-xs font-bold font-mono">${n.name}</div>
+          <div class="text-[10px] text-slate-400 mt-1">${n.freq} Hz</div>
+        </button>
+      `).join('');
+
+      document.querySelectorAll('.btn-piano-key').forEach(btn => {
+        btn.onclick = () => {
+          const freq = parseFloat(btn.getAttribute('data-freq'));
+          const name = btn.getAttribute('data-name');
+          playTone(freq, 0.4);
+          if (noteFreqDisplay) {
+            noteFreqDisplay.innerHTML = `當前奏響音符：<span class="text-amber-600 font-bold font-mono">${name} (${freq} Hz)</span> ｜ 公式：f = 261.63 × 2^(n/12)`;
+          }
+          if (crystalBar) crystalBar.style.width = '33%';
+          if (crystalStatus) crystalStatus.innerText = '單音試奏中：暗物質黑晶受到輕微擾動 (33%)';
+        };
+      });
+
+      if (btnOvertone) {
+        btnOvertone.onclick = () => {
+          // B4 fundamental (493.88) + 2nd harmonic (987.76) + 3rd harmonic (1481.64)
+          playChord([493.88, 987.76, 1481.64], 1.8);
+          if (crystalBar) {
+            crystalBar.style.width = '100%';
+            crystalBar.className = 'h-3 rounded-full bg-emerald-500 transition-all duration-700';
+          }
+          if (crystalStatus) {
+            crystalStatus.innerHTML = '<span class="text-emerald-500 font-bold">✨【三階純律泛音超聲共振奏響】493.88 Hz + 987.76 Hz + 1481.64 Hz 形成 180 dB 空化效應！黑晶阻滯徹底粉碎！第十二個黃金音叉復甦！</span>';
+          }
+          showToast('🔔 第十二個音符黃金音叉已成功復甦！', 'success');
+        };
+      }
+    }
+
+    // 實驗二：都卜勒動態頻移與 180° 反相激光 (Ch 31)
+    const sliderMonsterV = document.getElementById('slider-monster-v');
+    const sliderLaserPhase = document.getElementById('slider-laser-phase');
+    const canvasDoppler = document.getElementById('doppler-canvas');
+
+    function drawDopplerWave() {
+      if (!sliderMonsterV || !sliderLaserPhase || !canvasDoppler) return;
+      const v = parseFloat(sliderMonsterV.value);
+      const phaseDeg = parseInt(sliderLaserPhase.value, 10);
+      const phaseRad = (phaseDeg * Math.PI) / 180;
+
+      // c = 297.3 m/s, f_source = 1200 Hz
+      const c = 297.3;
+      const f_source = 1200;
+      const f_observed = f_source * (c / (c - v));
+
+      const txtV = document.getElementById('txt-monster-v');
+      const txtFreq = document.getElementById('txt-doppler-freq');
+      const txtPhase = document.getElementById('txt-laser-phase');
+      if (txtV) txtV.innerText = `${v.toFixed(1)} m/s`;
+      if (txtFreq) txtFreq.innerText = `${f_observed.toFixed(1)} Hz`;
+      if (txtPhase) txtPhase.innerText = `${phaseDeg}°`;
+
+      const ctx = canvasDoppler.getContext('2d');
+      const w = canvasDoppler.width = canvasDoppler.parentElement.clientWidth || 600;
+      const h = canvasDoppler.height = 144;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // 基準中心線
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(0, h / 2);
+      ctx.lineTo(w, h / 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 繪製波形
+      const freqScale = 0.045 * (f_observed / 1200);
+      const amp = 26;
+
+      // 巨獸波形 y1 (紫色)
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let x = 0; x < w; x++) {
+        const y = h / 2 + Math.sin(x * freqScale) * amp;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // 注入反相激光波形 y2 (藍色)
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      for (let x = 0; x < w; x++) {
+        const y = h / 2 + Math.sin(x * freqScale + phaseRad) * amp;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 合成干涉波形 y_total = y1 + y2 (綠色/琥珀色)
+      const isAnnihilated = (phaseDeg >= 177 && phaseDeg <= 183);
+      ctx.strokeStyle = isAnnihilated ? '#10b981' : '#f59e0b';
+      ctx.lineWidth = isAnnihilated ? 3 : 2;
+      ctx.beginPath();
+      for (let x = 0; x < w; x++) {
+        const y1 = Math.sin(x * freqScale) * amp;
+        const y2 = Math.sin(x * freqScale + phaseRad) * amp;
+        const yTotal = h / 2 + (y1 + y2);
+        if (x === 0) ctx.moveTo(x, yTotal);
+        else ctx.lineTo(x, yTotal);
+      }
+      ctx.stroke();
+
+      const verdictEl = document.getElementById('doppler-verdict');
+      if (verdictEl) {
+        if (isAnnihilated) {
+          verdictEl.className = 'mt-2 p-3 rounded-xl text-center text-xs font-bold font-mono bg-emerald-500 text-white shadow-md transition-all';
+          verdictEl.innerHTML = '🎉【180° 完全反相相位鎖定】波峰精確抵消波谷！合成總位移 y ≡ 0！暗物質黑晶巨獸分子晶格解離沙化！';
+        } else {
+          const residual = Math.abs(2 * Math.cos(phaseRad / 2) * 50);
+          verdictEl.className = 'mt-2 p-3 rounded-xl text-center text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700';
+          verdictEl.innerHTML = `⚠️ 當前相位差 ${phaseDeg}°：波形未抵消（殘留能量 ${residual.toFixed(0)}%）。請調整滑桿至 180°！`;
+        }
+      }
+    }
+
+    if (sliderMonsterV && sliderLaserPhase) {
+      sliderMonsterV.oninput = drawDopplerWave;
+      sliderLaserPhase.oninput = drawDopplerWave;
+      setTimeout(drawDopplerWave, 60);
+    }
+
+    // 實驗三：平流層大氣標高計 (Ch 23)
+    const sliderAltitude = document.getElementById('slider-altitude');
+    function updateAltitudeSim() {
+      if (!sliderAltitude) return;
+      const h = parseFloat(sliderAltitude.value);
+      // Barometric formula: P(h) = 1013.25 * exp(-h / 6438)
+      const H = 6438;
+      const P0 = 1013.25;
+      const P = P0 * Math.exp(-h / H);
+      const tempC = 15 - 0.0065 * h;
+      const rhoRatio = Math.exp(-h / H);
+
+      const elAlt = document.getElementById('txt-altitude-val');
+      const elPress = document.getElementById('txt-pressure-val');
+      const elTemp = document.getElementById('txt-temp-val');
+      const elDens = document.getElementById('txt-density-val');
+      if (elAlt) elAlt.innerText = `${Math.round(h)} 公尺`;
+      if (elPress) elPress.innerText = `${P.toFixed(1)} hPa`;
+      if (elTemp) elTemp.innerText = `${tempC.toFixed(1)} °C`;
+      if (elDens) elDens.innerText = `${(rhoRatio * 100).toFixed(1)}%`;
+
+      const alertBox = document.getElementById('altitude-alert-box');
+      if (alertBox) {
+        if (h >= 8550 && h <= 8750) {
+          alertBox.className = 'p-3.5 rounded-xl border border-rose-500 bg-rose-500/10 text-rose-700 dark:text-rose-300 font-bold text-xs shadow-md transition-all';
+          alertBox.innerHTML = '🚨【空難信標高度吻合！】氣壓約 260.9 hPa，墜落高度精準鎖定 8,650 公尺！立即啟動雙層氣囊改裝！';
+        } else if (h >= 10000) {
+          alertBox.className = 'p-3.5 rounded-xl border border-sky-500 bg-sky-500/10 text-sky-700 dark:text-sky-300 font-bold text-xs transition-all';
+          alertBox.innerHTML = '🪽 已穿透平流層頂部！氣壓極低（不足海平面 25%），必須依賴超導密封座艙與增壓氧氣！';
+        } else {
+          alertBox.className = 'p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs transition-all';
+          alertBox.innerHTML = '滑動上方滑桿，或點擊情境快捷鍵，觀察氣壓隨海拔指數衰減的大氣物理定律。';
+        }
+      }
+    }
+
+    if (sliderAltitude) {
+      sliderAltitude.oninput = updateAltitudeSim;
+      updateAltitudeSim();
+      document.querySelectorAll('.btn-alt-preset').forEach(btn => {
+        btn.onclick = () => {
+          sliderAltitude.value = btn.getAttribute('data-alt');
+          updateAltitudeSim();
+        };
+      });
+    }
+
+    // 實驗四：克卜勒行星軌道共振天梯 (Ch 29)
+    const sliderTime = document.getElementById('slider-orbit-time');
+    function updateOrbitalResonance() {
+      if (!sliderTime) return;
+      const t = parseInt(sliderTime.value, 10);
+      const elTime = document.getElementById('txt-orbit-time');
+      if (elTime) elTime.innerText = `${t} 秒`;
+
+      // 週期 T1=16s, T2=27s, T3=48s => LCM = 432s
+      const deg1 = Math.round(((t % 16) / 16) * 360);
+      const deg2 = Math.round(((t % 27) / 27) * 360);
+      const deg3 = Math.round(((t % 48) / 48) * 360);
+
+      const elG1 = document.getElementById('gear1-angle');
+      const elG2 = document.getElementById('gear2-angle');
+      const elG3 = document.getElementById('gear3-angle');
+      if (elG1) elG1.innerText = `${deg1}°`;
+      if (elG2) elG2.innerText = `${deg2}°`;
+      if (elG3) elG3.innerText = `${deg3}°`;
+
+      const dial1 = document.getElementById('gear1-dial');
+      const dial2 = document.getElementById('gear2-dial');
+      const dial3 = document.getElementById('gear3-dial');
+      if (dial1) dial1.style.transform = `rotate(${deg1}deg)`;
+      if (dial2) dial2.style.transform = `rotate(${deg2}deg)`;
+      if (dial3) dial3.style.transform = `rotate(${deg3}deg)`;
+
+      const statusBox = document.getElementById('resonance-status-box');
+      const isAligned = (deg1 === 0 && deg2 === 0 && deg3 === 0);
+
+      if (statusBox) {
+        if (isAligned) {
+          statusBox.className = 'p-3.5 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold text-xs shadow-md transition-all';
+          statusBox.innerHTML = '✨【432秒天體共振窗口完全同相！】內環(16s)、中環(27s)、外環(48s)三橋同時指向天心！懸空發條天梯對齊！18秒極速跨越成功！';
+        } else {
+          const diff = Math.abs(t - 432);
+          statusBox.className = 'p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs transition-all';
+          statusBox.innerHTML = `⚠️ 天梯未對齊！距離 LCM(16, 27, 48) = 432 秒共振對齊窗口還差 ${diff} 秒（或點選下方快捷鍵直接跳轉）。`;
+        }
+      }
+    }
+
+    if (sliderTime) {
+      sliderTime.oninput = updateOrbitalResonance;
+      updateOrbitalResonance();
+      document.querySelectorAll('.btn-orbit-preset').forEach(btn => {
+        btn.onclick = () => {
+          sliderTime.value = btn.getAttribute('data-time');
+          updateOrbitalResonance();
+        };
+      });
     }
 
     // ================== 第二卷實驗邏輯 ==================
