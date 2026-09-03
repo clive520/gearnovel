@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="sepia" data-font-size="medium">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冒險齒輪 · 少兒科幻小說庫 | GearNovel Online</title>
+  <meta name="description" content="專為少兒打造的原創科幻解謎小說電子書平台。第一卷《記憶黑客少年：校園地下 404 室》全十章完結在線閱讀。">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            gear: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- 自訂核心樣式表 -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-white">
+
+  <!-- 全站頂部導覽列 -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/80 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- 品牌 Logo -->
+      <a href="#/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl text-amber-600 group-hover:scale-105 transition-transform shadow-inner">
+          ⚙️
+        </div>
+        <div>
+          <div class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span>冒險齒輪</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">少兒小說庫</span>
+          </div>
+          <div class="text-[10px] text-slate-400 font-mono tracking-wider">GEARNOVEL ONLINE</div>
+        </div>
+      </a>
+
+      <!-- 桌面端導覽選單 -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="#/" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          📚 書庫首頁
+        </a>
+        <a href="#/characters" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          👥 人物檔案誌
+        </a>
+        <a href="#/puzzle-lab" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          🧩 密碼實驗室
+        </a>
+        <a href="#/badges" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          🏆 閱讀成就
+        </a>
+      </nav>
+
+      <!-- 快速主題切換按鈕 -->
+      <div class="flex items-center gap-2">
+        <button id="nav-theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:border-amber-500 transition-all text-sm flex items-center gap-1.5" title="切換閱讀主題">
+          <span id="theme-icon">📜</span>
+          <span id="theme-text" class="text-xs font-semibold hidden sm:inline">護眼紙張</span>
+        </button>
+
+        <!-- 行動端漢堡選單按鈕 -->
+        <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 行動端下拉選單 -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-1">
+      <a href="#/" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">📚 書庫首頁</a>
+      <a href="#/characters" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">👥 人物檔案誌</a>
+      <a href="#/puzzle-lab" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">🧩 密碼實驗室</a>
+      <a href="#/badges" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">🏆 閱讀成就</a>
+    </div>
+  </header>
+
+  <!-- 主內容掛載區 -->
+  <main id="app-main" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+    <!-- 內容將由 app.js 動態渲染 -->
+  </main>
+
+  <!-- 全站頁尾 -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-xs text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-4 space-y-3">
+      <div class="flex items-center justify-center gap-2 font-bold text-slate-700 dark:text-slate-300">
+        <span>⚙️ 冒險齒輪 · 少兒科幻小說庫</span>
+        <span>·</span>
+        <span>適合 9～13 歲青少年閱讀</span>
+      </div>
+      <p>專為少年探索者打造的沉浸式解謎小說世界 · 支援全設備自適應與離線閱讀</p>
+      <div class="text-[11px] text-slate-400">
+        旗艦作品：《記憶黑客少年：校園地下 404 室》全十章完結 · Powered by GitHub Pages
+      </div>
+    </div>
+  </footer>
+
+  <!-- 引用資料與應用腳本 -->
+  <script src="./js/data/books.js"></script>
+  <script src="./js/app.js"></script>
+
+  <!-- 主題切換輔助腳本 -->
+  <script>
+    (function() {
+      const themeBtn = document.getElementById('nav-theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        mobileMenu.querySelectorAll('a').forEach(a => a.onclick = () => mobileMenu.classList.add('hidden'));
+      }
+
+      const themes = ['sepia', 'light', 'dark'];
+      const themeConfig = {
+        sepia: { icon: '📜', text: '護眼紙張' },
+        light: { icon: '☀️', text: '清新純白' },
+        dark: { icon: '🌙', text: '深邃星空' }
+      };
+
+      function updateThemeBtn() {
+        const cur = document.documentElement.getAttribute('data-theme') || 'sepia';
+        if (themeConfig[cur]) {
+          themeIcon.innerText = themeConfig[cur].icon;
+          themeText.innerText = themeConfig[cur].text;
+        }
+      }
+
+      if (themeBtn) {
+        themeBtn.onclick = () => {
+          const cur = document.documentElement.getAttribute('data-theme') || 'sepia';
+          const next = themes[(themes.indexOf(cur) + 1) % themes.length];
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('gear_novel_theme', next);
+          updateThemeBtn();
+          window.dispatchEvent(new Event('hashchange'));
+        };
+      }
+      updateThemeBtn();
+    })();
+  </script>
+</body>
+</html>

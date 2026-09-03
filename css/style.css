@@ -1,0 +1,204 @@
+/* 冒險齒輪 · 少兒科幻小說庫 (GearNovel Online) 核心樣式 */
+
+:root {
+  --bg-primary: #f8f9fc;
+  --bg-card: #ffffff;
+  --bg-reader: #fcfbfa;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-reader: #2d3748;
+  --accent-primary: #0284c7;
+  --accent-gear: #d97706;
+  --border-color: #e2e8f0;
+  --reader-font-size: 18px;
+  --reader-line-height: 1.85;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 暖黃護眼模式 (Sepia / Eye-Care) - 預設推薦少兒閱讀 */
+[data-theme="sepia"] {
+  --bg-primary: #f5efe6;
+  --bg-card: #faf6f0;
+  --bg-reader: #fbf7ee;
+  --text-primary: #3d3429;
+  --text-secondary: #796c5d;
+  --text-reader: #382f24;
+  --accent-primary: #b45309;
+  --accent-gear: #d97706;
+  --border-color: #ebdccc;
+  --shadow-sm: 0 2px 8px rgba(90, 70, 50, 0.06);
+  --shadow-md: 0 4px 16px rgba(90, 70, 50, 0.1);
+}
+
+/* 深邃星空夜間模式 (Dark) */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-reader: #151e32;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-reader: #e2e8f0;
+  --accent-primary: #38bdf8;
+  --accent-gear: #f59e0b;
+  --border-color: #334155;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 純白清新模式 (Light) */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-reader: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-reader: #1e293b;
+  --accent-primary: #2563eb;
+  --accent-gear: #d97706;
+  --border-color: #e2e8f0;
+}
+
+/* 字體大小調節 */
+[data-font-size="small"] { --reader-font-size: 16px; }
+[data-font-size="medium"] { --reader-font-size: 18px; }
+[data-font-size="large"] { --reader-font-size: 21px; }
+[data-font-size="xlarge"] { --reader-font-size: 25px; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* 齒輪轉動旋轉動畫 */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.spin-gear {
+  animation: spin-slow 20s linear infinite;
+}
+
+.spin-gear-reverse {
+  animation: spin-reverse 25s linear infinite;
+}
+
+/* 閱讀器樣式 */
+.reader-container {
+  background-color: var(--bg-reader);
+  color: var(--text-reader);
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, font-size 0.2s ease;
+}
+
+.reader-content p {
+  margin-bottom: 1.5em;
+  text-indent: 2em;
+  letter-spacing: 0.03em;
+  text-align: justify;
+}
+
+.reader-content h2 {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid var(--accent-gear);
+  color: var(--accent-gear);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.reader-content blockquote {
+  margin: 1.6em 0;
+  padding: 1em 1.4em;
+  background-color: rgba(217, 119, 6, 0.08);
+  border-left: 4px solid var(--accent-gear);
+  border-radius: 0 8px 8px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.reader-content blockquote p {
+  text-indent: 0;
+  margin-bottom: 0.4em;
+}
+
+.reader-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.reader-content hr {
+  margin: 2.5em 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--border-color), transparent);
+}
+
+.reader-content code {
+  background-color: rgba(14, 165, 233, 0.12);
+  color: var(--accent-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+/* 徽章卡片光芒效果 */
+.badge-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.badge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.2);
+}
+
+.badge-unlocked {
+  border-color: #d97706;
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.08) 0%, rgba(245, 158, 11, 0.02) 100%);
+}
+
+.badge-locked {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+/* 平滑捲動 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自訂捲軸 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gear);
+}
