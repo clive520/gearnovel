@@ -3,7 +3,7 @@ const path = require('path');
 
 const chaptersDir = path.join(__dirname, 'chapters');
 const files = fs.readdirSync(chaptersDir)
-  .filter(f => f.endsWith('.md'))
+  .filter(f => f.endsWith('.md') && !f.endsWith('_en.md'))
   .sort((a, b) => {
     const numA = parseInt(a.split('_')[0], 10);
     const numB = parseInt(b.split('_')[0], 10);
@@ -197,15 +197,28 @@ const allChapters = files.map((file, idx) => {
   const title = chapterTitles[idx] || file;
   const chapNum = idx + 1;
   
+  // 檢測是否存在對應之英文譯本
+  const enFileName = file.replace('.md', '_en.md');
+  const enPath = path.join(chaptersDir, enFileName);
+  let rawContentEn = null;
+  let enTitle = null;
+
+  if (fs.existsSync(enPath)) {
+    rawContentEn = fs.readFileSync(enPath, 'utf8');
+    enTitle = `Chapter ${chapNum}: The Stolen Twenty-Four Hours`;
+  }
+  
   return {
     id: chapNum,
     file: file,
     title: `第${chapNum}章：${title}`,
+    enTitle: enTitle,
     shortTitle: title,
     wordCount: content.replace(/\s+/g, '').length,
     readTimeMin: Math.ceil(content.replace(/\s+/g, '').length / 400),
     puzzle: puzzleData[idx] || null,
-    rawContent: content
+    rawContent: content,
+    rawContentEn: rawContentEn
   };
 });
 

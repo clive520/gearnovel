@@ -18,7 +18,8 @@
     FONT_SIZE: 'gear_novel_font_size',
     PROGRESS: 'gear_novel_progress',
     BADGES: 'gear_novel_badges',
-    BOOKMARKS: 'gear_novel_bookmarks'
+    BOOKMARKS: 'gear_novel_bookmarks',
+    LANG: 'gear_novel_lang'
   };
 
   const state = {
@@ -27,6 +28,7 @@
     unlockedBadges: JSON.parse(localStorage.getItem(STORAGE_KEYS.BADGES) || '[]'),
     progress: JSON.parse(localStorage.getItem(STORAGE_KEYS.PROGRESS) || '{"book-1": {"lastChapter": 1, "read": [1]}}'),
     bookmarks: JSON.parse(localStorage.getItem('gear_novel_bookmarks') || '[]'),
+    readingLang: localStorage.getItem('gear_novel_lang') || 'zh',
     currentRoute: 'home',
     currentBookId: 'book-1',
     currentChapterId: 1
@@ -326,6 +328,85 @@
     return html;
   }
 
+  // 中英雙語對照排版解析器
+  function renderBilingualContent(zhMd, enMd) {
+    if (!zhMd || !enMd) return parseMarkdown(zhMd || enMd);
+
+    const zhBlocks = zhMd.split(/\r?\n\r?\n/).map(b => b.trim()).filter(b => b.length > 0);
+    const enBlocks = enMd.split(/\r?\n\r?\n/).map(b => b.trim()).filter(b => b.length > 0);
+
+    let html = '';
+    const maxLen = Math.max(zhBlocks.length, enBlocks.length);
+
+    for (let i = 0; i < maxLen; i++) {
+      const zh = zhBlocks[i] || '';
+      const en = enBlocks[i] || '';
+
+      // 大標題（第一級在外部另外渲染）
+      if (zh.startsWith('# ')) {
+        continue;
+      }
+
+      // 二級標題
+      if (zh.startsWith('## ')) {
+        const zhTitle = zh.replace(/^##\s*/, '');
+        const enTitle = en.replace(/^##\s*/, '');
+        html += `
+          <h2 class="mt-10 mb-4 pb-2 border-b border-amber-500/20">
+            <span class="text-amber-500">⚙️</span> ${formatInline(zhTitle)}
+            ${en ? `<span class="block text-sm font-serif italic text-amber-700 dark:text-amber-400 font-normal mt-1">${formatInline(enTitle)}</span>` : ''}
+          </h2>
+        `;
+        continue;
+      }
+
+      // 分隔線
+      if (zh === '---' || en === '---') {
+        html += '<hr class="my-8 border-amber-500/20" />';
+        continue;
+      }
+
+      // 引言區塊
+      if (zh.startsWith('>')) {
+        html += `
+          <div class="my-5 p-4 rounded-xl border-l-4 border-amber-500 bg-amber-500/5 space-y-2">
+            <div class="text-sm font-medium text-slate-800 dark:text-slate-200">${formatInline(zh.replace(/^>\s*/gm, ''))}</div>
+            ${en ? `<div class="text-xs font-serif italic text-slate-500 dark:text-slate-400 border-t border-amber-500/20 pt-2">${formatInline(en.replace(/^>\s*/gm, ''))}</div>` : ''}
+          </div>
+        `;
+        continue;
+      }
+
+      // 程式碼區塊
+      if (zh.startsWith('```')) {
+        const codeText = zh.replace(/```/g, '').trim();
+        html += `<div class="my-4 p-4 rounded-xl bg-slate-900 text-amber-300 font-mono text-sm overflow-x-auto shadow-inner border border-amber-500/20"><code>${escapeHtml(codeText)}</code></div>`;
+        continue;
+      }
+
+      // 清單列表
+      if (zh.startsWith('* ') || zh.startsWith('- ')) {
+        html += `
+          <div class="bilingual-pair my-4 pl-2 space-y-2">
+            <div class="text-sm text-slate-800 dark:text-slate-200">${formatInline(zh)}</div>
+            ${en ? `<div class="en-para text-xs">${formatInline(en)}</div>` : ''}
+          </div>
+        `;
+        continue;
+      }
+
+      // 一般段落雙語對照
+      html += `
+        <div class="bilingual-pair mb-6">
+          <p class="zh-para text-slate-800 dark:text-slate-200 leading-relaxed">${formatInline(zh)}</p>
+          ${en ? `<p class="en-para text-slate-500 dark:text-slate-400 font-serif italic text-[15px] leading-relaxed border-l-2 border-amber-500/40 pl-3.5 mt-1">${formatInline(en)}</p>` : ''}
+        </div>
+      `;
+    }
+
+    return html;
+  }
+
   function formatInline(str) {
     if (!str) return '';
     return str
@@ -558,6 +639,22 @@
     const nextChapter = book.chapters.find(c => c.id === chapterId + 1);
 
     const container = document.getElementById('app-main');
+
+    const hasEnglish = !!chapter.rawContentEn;
+    let displayTitle = chapter.title;
+    let displayContentHtml = '';
+
+    if (hasEnglish && state.readingLang === 'en') {
+      displayTitle = chapter.enTitle || 'Chapter 1: The Stolen Twenty-Four Hours';
+      displayContentHtml = parseMarkdown(chapter.rawContentEn);
+    } else if (hasEnglish && state.readingLang === 'bilingual') {
+      displayTitle = `${chapter.title} <span class="block text-base font-serif italic text-amber-600 font-normal mt-1">${chapter.enTitle || 'The Stolen Twenty-Four Hours'}</span>`;
+      displayContentHtml = renderBilingualContent(chapter.rawContent, chapter.rawContentEn);
+    } else {
+      displayTitle = chapter.title;
+      displayContentHtml = parseMarkdown(chapter.rawContent);
+    }
+
     container.innerHTML = `
       <!-- 閱讀器頂部懸浮控制列 -->
       <div class="sticky top-16 z-30 mb-8 py-3 px-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-4">
@@ -573,6 +670,15 @@
         </div>
 
         <div class="flex items-center gap-2">
+          <!-- 語系切換膠囊 (中文 / English / 中英雙語對照) -->
+          ${hasEnglish ? `
+            <div class="flex items-center rounded-xl bg-slate-100 dark:bg-slate-800 p-0.5 text-xs border border-slate-200 dark:border-slate-700/80">
+              <button data-lang-btn="zh" class="px-2.5 py-1 rounded-lg font-bold transition-all ${state.readingLang === 'zh' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'}" title="繁體中文版">中</button>
+              <button data-lang-btn="en" class="px-2.5 py-1 rounded-lg font-bold transition-all ${state.readingLang === 'en' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'}" title="English Edition">EN</button>
+              <button data-lang-btn="bilingual" class="px-2.5 py-1 rounded-lg font-bold transition-all ${state.readingLang === 'bilingual' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'}" title="中英雙語對照版">中英</button>
+            </div>
+          ` : ''}
+
           <!-- 放入書籤按鈕 -->
           <button id="btn-add-bookmark" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95" title="在目前閱讀位置放入書籤">
             <span>🔖</span>
@@ -620,23 +726,24 @@
       <div id="reading-progress-bar" class="fixed top-0 left-0 h-1 bg-amber-500 z-50 transition-all duration-100" style="width: 0%;"></div>
 
       <!-- 正文容器 -->
-      <article class="reader-container max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 md:p-14 mb-12">
+      <article class="reader-container max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 md:p-14 mb-12" data-reading-lang="${state.readingLang}">
         <header class="mb-10 pb-6 border-b border-amber-500/20">
           <div class="text-xs font-semibold uppercase tracking-wider text-amber-600 mb-2">
             《${book.title}》
           </div>
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
-            ${chapter.title}
+            ${displayTitle}
           </h1>
           <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
             <span>📖 約 ${chapter.wordCount} 字</span>
             <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
             <span class="text-amber-600">🔖 支援精準書籤</span>
+            ${hasEnglish ? `<span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 font-bold">🌐 支援中 / 英 / 雙語對照</span>` : ''}
           </div>
         </header>
 
         <div class="reader-content">
-          ${parseMarkdown(chapter.rawContent)}
+          ${displayContentHtml}
         </div>
 
         <!-- 本章密碼卡區塊 -->
@@ -739,6 +846,18 @@
         state.theme = theme;
         localStorage.setItem(STORAGE_KEYS.THEME, theme);
         document.documentElement.setAttribute('data-theme', theme);
+        renderReader(bookId, chapterId);
+      };
+    });
+
+    // 語系切換按鈕事件
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const lang = btn.getAttribute('data-lang-btn');
+        state.readingLang = lang;
+        localStorage.setItem(STORAGE_KEYS.LANG, lang);
+        playTone(580, 0.08);
         renderReader(bookId, chapterId);
       };
     });

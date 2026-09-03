@@ -238,3 +238,30 @@ html {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
+
+/* 中英雙語對照模式樣式 */
+.bilingual-pair {
+  margin-bottom: 1.75rem;
+}
+.bilingual-pair .zh-para {
+  margin-bottom: 0.4rem;
+  line-height: var(--reader-line-height);
+}
+.bilingual-pair .en-para {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 0.92em;
+  line-height: 1.7;
+  font-style: italic;
+  padding-left: 0.9rem;
+  border-left: 2px solid rgba(217, 119, 6, 0.45);
+  color: #64748b;
+}
+[data-theme="sepia"] .bilingual-pair .en-para {
+  color: #796c5d;
+  border-left-color: rgba(180, 83, 9, 0.45);
+}
+[data-theme="dark"] .bilingual-pair .en-para {
+  color: #94a3b8;
+  border-left-color: rgba(245, 158, 11, 0.45);
+}
+
