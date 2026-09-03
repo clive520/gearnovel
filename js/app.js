@@ -17,7 +17,8 @@
     THEME: 'gear_novel_theme',
     FONT_SIZE: 'gear_novel_font_size',
     PROGRESS: 'gear_novel_progress',
-    BADGES: 'gear_novel_badges'
+    BADGES: 'gear_novel_badges',
+    BOOKMARKS: 'gear_novel_bookmarks'
   };
 
   const state = {
@@ -25,6 +26,7 @@
     fontSize: localStorage.getItem(STORAGE_KEYS.FONT_SIZE) || 'medium',
     unlockedBadges: JSON.parse(localStorage.getItem(STORAGE_KEYS.BADGES) || '[]'),
     progress: JSON.parse(localStorage.getItem(STORAGE_KEYS.PROGRESS) || '{"book-1": {"lastChapter": 1, "read": [1]}}'),
+    bookmarks: JSON.parse(localStorage.getItem('gear_novel_bookmarks') || '[]'),
     currentRoute: 'home',
     currentBookId: 'book-1',
     currentChapterId: 1
@@ -82,6 +84,161 @@
     // 章節閱讀對應徽章解鎖（第一卷 1-10，第二卷 11-22）
     unlockBadge(chapterId);
   }
+
+  // ================== 書籤管理系統 ==================
+  function saveBookmarksToStorage() {
+    localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
+    updateNavBookmarkBadge();
+  }
+
+  function updateNavBookmarkBadge() {
+    const count = state.bookmarks.length;
+    const navBadge = document.getElementById('nav-bookmark-count');
+    const mobBadge = document.getElementById('mobile-bookmark-count');
+    const totalSpan = document.getElementById('modal-bookmark-total');
+
+    if (navBadge) {
+      if (count > 0) {
+        navBadge.innerText = count;
+        navBadge.classList.remove('hidden');
+      } else {
+        navBadge.classList.add('hidden');
+      }
+    }
+    if (mobBadge) {
+      if (count > 0) {
+        mobBadge.innerText = count;
+        mobBadge.classList.remove('hidden');
+      } else {
+        mobBadge.classList.add('hidden');
+      }
+    }
+    if (totalSpan) {
+      totalSpan.innerText = `${count} 個書籤`;
+    }
+  }
+
+  function addBookmark(bookId, chapterId, scrollY, percent, snippet) {
+    const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
+    const chapter = book ? book.chapters.find(c => c.id === chapterId) : null;
+    if (!book || !chapter) return;
+
+    const now = new Date();
+    const dateStr = `${now.getMonth() + 1}/${now.getDate()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+    const newBookmark = {
+      id: 'bm_' + Date.now(),
+      bookId,
+      bookTitle: book.title,
+      chapterId,
+      chapterTitle: chapter.title,
+      scrollY: Math.round(scrollY),
+      percent: Math.round(percent),
+      snippet: snippet || chapter.title,
+      timestamp: Date.now(),
+      dateStr
+    };
+
+    state.bookmarks.unshift(newBookmark);
+    if (state.bookmarks.length > 30) state.bookmarks.pop();
+    saveBookmarksToStorage();
+
+    playTone(523.25, 0.1);
+    setTimeout(() => playTone(659.25, 0.15), 80);
+    showToast(`🔖 已在「${chapter.title} (${newBookmark.percent}%)」放入書籤！`, 'success');
+  }
+
+  function removeBookmark(id) {
+    state.bookmarks = state.bookmarks.filter(b => b.id !== id);
+    saveBookmarksToStorage();
+    renderBookmarksModal();
+    showToast('🗑️ 已移除該書籤', 'info');
+  }
+
+  function jumpToBookmark(id) {
+    const bm = state.bookmarks.find(b => b.id === id);
+    if (!bm) return;
+
+    const modal = document.getElementById('bookmarks-modal');
+    if (modal) modal.classList.add('hidden');
+
+    const targetHash = `#/read/${bm.bookId}/${bm.chapterId}`;
+    if (window.location.hash === targetHash) {
+      window.scrollTo({ top: bm.scrollY, behavior: 'smooth' });
+      applyBookmarkHighlight(bm.scrollY);
+    } else {
+      sessionStorage.setItem('target_bookmark_scroll', JSON.stringify({ scrollY: bm.scrollY, id: bm.id }));
+      navigate(targetHash);
+    }
+  }
+
+  function applyBookmarkHighlight(targetY) {
+    setTimeout(() => {
+      const paras = document.querySelectorAll('.reader-content p, .reader-content h2, .reader-content h3');
+      let closest = null;
+      let minDiff = Infinity;
+      paras.forEach(p => {
+        const rect = p.getBoundingClientRect();
+        const absTop = window.scrollY + rect.top;
+        const diff = Math.abs(absTop - targetY);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = p;
+        }
+      });
+      if (closest) {
+        closest.classList.remove('bookmark-focus');
+        void closest.offsetWidth;
+        closest.classList.add('bookmark-focus');
+      }
+    }, 350);
+  }
+
+  function renderBookmarksModal() {
+    const container = document.getElementById('bookmarks-list-container');
+    if (!container) return;
+
+    updateNavBookmarkBadge();
+
+    if (state.bookmarks.length === 0) {
+      container.innerHTML = `
+        <div class="py-12 text-center text-slate-400">
+          <div class="text-4xl mb-3">🔖</div>
+          <div class="font-bold text-sm text-slate-600 dark:text-slate-300 mb-1">目前尚無任何書籤</div>
+          <div class="text-xs text-slate-400 max-w-xs mx-auto">在閱讀任何章節時，點擊頂部工具列的「🔖 放入書籤」按鈕，就能精確記錄當前閱讀位置！</div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = state.bookmarks.map(bm => `
+      <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-amber-500/50 transition-all flex items-start justify-between gap-3 group">
+        <div class="flex-1 cursor-pointer" onclick="window.jumpToBookmark('${bm.id}')">
+          <div class="flex items-center gap-2 mb-1 flex-wrap">
+            <span class="text-xs font-bold text-amber-600 px-2 py-0.5 rounded-md bg-amber-500/10">${bm.bookTitle}</span>
+            <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">${bm.chapterTitle}</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold">${bm.percent}%</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-1 italic">
+            「${bm.snippet}」
+          </p>
+          <div class="text-[10px] text-slate-400 flex items-center gap-3">
+            <span>📅 ${bm.dateStr}</span>
+            <span>📍 像素位置: ${bm.scrollY}px</span>
+            <span class="text-amber-600 font-semibold group-hover:underline flex items-center gap-0.5">點此直接回上次位置 →</span>
+          </div>
+        </div>
+        <button onclick="window.removeBookmark('${bm.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all" title="刪除此書籤">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </button>
+      </div>
+    `).join('');
+  }
+
+  // 掛載至 window 供全域點擊事件呼叫
+  window.jumpToBookmark = jumpToBookmark;
+  window.removeBookmark = removeBookmark;
+  window.renderBookmarksModal = renderBookmarksModal;
 
   // 吐司提示 (Toast Notification)
   function showToast(message, type = 'info') {
@@ -245,12 +402,45 @@
             </a>
             ${lastChapter > 1 ? `
               <a href="#/read/book-1/${lastChapter}" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold shadow-md flex items-center gap-2 transition-all">
-                <span>🔖 繼續閱讀 (第 ${lastChapter} 章)</span>
+                <span>📖 繼續閱讀 (第 ${lastChapter} 章)</span>
               </a>
             ` : ''}
           </div>
         </div>
       </section>
+
+      <!-- 最近置入的精確書籤快捷卡 -->
+      ${state.bookmarks.length > 0 ? `
+        <div class="mb-12 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-transparent border-2 border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md bookmark-ribbon">
+          <div class="flex items-start sm:items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-md flex-shrink-0">
+              🔖
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap mb-1">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-600">上次閱讀書籤</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 font-bold">${state.bookmarks[0].bookTitle}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold">進度 ${state.bookmarks[0].percent}%</span>
+              </div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white">
+                ${state.bookmarks[0].chapterTitle}
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 italic mt-0.5">
+                「${state.bookmarks[0].snippet}」
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <button onclick="window.jumpToBookmark('${state.bookmarks[0].id}')" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-md active:scale-95">
+              <span>回到上次精確位置</span>
+              <span>→</span>
+            </button>
+            <button onclick="document.getElementById('bookmarks-modal').classList.remove('hidden'); window.renderBookmarksModal();" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300" title="檢視所有書籤">
+              全部 (${state.bookmarks.length})
+            </button>
+          </div>
+        </div>
+      ` : ''}
 
       <!-- 書庫總覽 -->
       <section class="mb-16">
@@ -383,6 +573,18 @@
         </div>
 
         <div class="flex items-center gap-2">
+          <!-- 放入書籤按鈕 -->
+          <button id="btn-add-bookmark" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95" title="在目前閱讀位置放入書籤">
+            <span>🔖</span>
+            <span class="hidden sm:inline">放入書籤</span>
+          </button>
+
+          <!-- 查看書籤按鈕 -->
+          <button id="btn-open-bookmarks-reader" class="px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1" title="查看所有書籤">
+            <span>🔖</span>
+            <span id="reader-bookmark-count" class="font-mono text-amber-600 font-bold">${state.bookmarks.filter(b => b.bookId === bookId).length}</span>
+          </button>
+
           <!-- 密碼卡彈窗按鈕 -->
           ${chapter.puzzle ? `
             <button id="btn-open-puzzle" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 text-xs font-bold flex items-center gap-1.5 transition-all">
@@ -426,10 +628,10 @@
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
             ${chapter.title}
           </h1>
-          <div class="flex items-center gap-4 text-xs text-slate-500">
+          <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
             <span>📖 約 ${chapter.wordCount} 字</span>
             <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
-            <span>✨ 智慧書籤已自動保存</span>
+            <span class="text-amber-600">🔖 支援精準書籤</span>
           </div>
         </header>
 
@@ -549,6 +751,66 @@
       btnToggleToc.onclick = () => tocModal.classList.remove('hidden');
       if (btnCloseToc) btnCloseToc.onclick = () => tocModal.classList.add('hidden');
       tocModal.onclick = (e) => { if (e.target === tocModal) tocModal.classList.add('hidden'); };
+    }
+
+    // 放入書籤事件
+    const btnAddBookmark = document.getElementById('btn-add-bookmark');
+    if (btnAddBookmark) {
+      btnAddBookmark.onclick = () => {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const percent = height > 0 ? (scrollY / height) * 100 : 0;
+
+        // 智慧抓取螢幕正中央段落文字摘要
+        let snippet = '';
+        const paras = document.querySelectorAll('.reader-content p');
+        for (let p of paras) {
+          const rect = p.getBoundingClientRect();
+          if (rect.top >= 60 && rect.top <= window.innerHeight * 0.75) {
+            snippet = p.innerText.trim().slice(0, 48);
+            if (p.innerText.length > 48) snippet += '...';
+            break;
+          }
+        }
+        if (!snippet && paras.length > 0) {
+          snippet = paras[0].innerText.trim().slice(0, 48) + '...';
+        }
+
+        addBookmark(bookId, chapterId, scrollY, percent, snippet);
+
+        // 更新閱讀器工具列的書籤計數
+        const countSpan = document.getElementById('reader-bookmark-count');
+        if (countSpan) {
+          countSpan.innerText = state.bookmarks.filter(b => b.bookId === bookId).length;
+        }
+      };
+    }
+
+    // 閱讀器內開啟書籤列表
+    const btnOpenBmReader = document.getElementById('btn-open-bookmarks-reader');
+    if (btnOpenBmReader) {
+      btnOpenBmReader.onclick = () => {
+        const modal = document.getElementById('bookmarks-modal');
+        if (modal) {
+          modal.classList.remove('hidden');
+          renderBookmarksModal();
+        }
+      };
+    }
+
+    // 檢查是否有等待精確捲動的書籤跳轉
+    const pendingBm = sessionStorage.getItem('target_bookmark_scroll');
+    if (pendingBm) {
+      try {
+        const { scrollY } = JSON.parse(pendingBm);
+        sessionStorage.removeItem('target_bookmark_scroll');
+        setTimeout(() => {
+          window.scrollTo({ top: scrollY, behavior: 'smooth' });
+          applyBookmarkHighlight(scrollY);
+        }, 150);
+      } catch (e) {
+        console.warn(e);
+      }
     }
 
     // 快速開啟本章解密卡
@@ -1309,8 +1571,76 @@
     `;
   }
 
-  // 監聽網址 Hash 變動
+  // 全域頂部導覽列與彈窗事件初始化
+  function initGlobalEvents() {
+    updateNavBookmarkBadge();
+
+    // 快速主題切換
+    const themeBtn = document.getElementById('nav-theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const themeCycle = ['sepia', 'light', 'dark'];
+    const themeMeta = {
+      'sepia': { icon: '📜', label: '護眼紙張' },
+      'light': { icon: '☀️', label: '純白模式' },
+      'dark': { icon: '🌙', label: '夜間模式' }
+    };
+
+    function updateThemeUI(t) {
+      if (themeIcon) themeIcon.innerText = themeMeta[t].icon;
+      if (themeText) themeText.innerText = themeMeta[t].label;
+    }
+    updateThemeUI(state.theme);
+
+    if (themeBtn) {
+      themeBtn.onclick = () => {
+        const nextIdx = (themeCycle.indexOf(state.theme) + 1) % themeCycle.length;
+        state.theme = themeCycle[nextIdx];
+        localStorage.setItem(STORAGE_KEYS.THEME, state.theme);
+        document.documentElement.setAttribute('data-theme', state.theme);
+        updateThemeUI(state.theme);
+        playTone(600, 0.05);
+      };
+    }
+
+    // 行動端選單展開切換
+    const mobBtn = document.getElementById('mobile-menu-btn');
+    const mobMenu = document.getElementById('mobile-menu');
+    if (mobBtn && mobMenu) {
+      mobBtn.onclick = () => {
+        mobMenu.classList.toggle('hidden');
+      };
+    }
+
+    // 全域書籤彈窗開啟與關閉
+    const navBmBtn = document.getElementById('nav-bookmarks-btn');
+    const mobBmBtn = document.getElementById('mobile-bookmarks-btn');
+    const bmModal = document.getElementById('bookmarks-modal');
+    const btnCloseBm = document.getElementById('btn-close-bookmarks');
+
+    function openBookmarksModal() {
+      if (bmModal) {
+        bmModal.classList.remove('hidden');
+        renderBookmarksModal();
+        if (mobMenu) mobMenu.classList.add('hidden');
+      }
+    }
+
+    if (navBmBtn) navBmBtn.onclick = openBookmarksModal;
+    if (mobBmBtn) mobBmBtn.onclick = openBookmarksModal;
+    if (btnCloseBm && bmModal) {
+      btnCloseBm.onclick = () => bmModal.classList.add('hidden');
+      bmModal.onclick = (e) => {
+        if (e.target === bmModal) bmModal.classList.add('hidden');
+      };
+    }
+  }
+
+  // 監聽網址 Hash 變動與 DOM 載入
   window.addEventListener('hashchange', handleRoute);
-  window.addEventListener('DOMContentLoaded', handleRoute);
+  window.addEventListener('DOMContentLoaded', () => {
+    initGlobalEvents();
+    handleRoute();
+  });
 
 })();

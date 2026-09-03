@@ -64,6 +64,10 @@
         <a href="#/badges" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
           🏆 閱讀成就
         </a>
+        <button id="nav-bookmarks-btn" class="px-3.5 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all flex items-center gap-1.5" title="開啟我的書籤">
+          <span>🔖 書籤</span>
+          <span id="nav-bookmark-count" class="hidden px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold leading-none">0</span>
+        </button>
       </nav>
 
       <!-- 快速主題切換按鈕 -->
@@ -87,8 +91,29 @@
       <a href="#/characters" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">👥 人物檔案誌</a>
       <a href="#/puzzle-lab" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">🧩 密碼實驗室</a>
       <a href="#/badges" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">🏆 閱讀成就</a>
+      <button id="mobile-bookmarks-btn" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between">
+        <span>🔖 我的書籤</span>
+        <span id="mobile-bookmark-count" class="hidden px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold leading-none">0</span>
+      </button>
     </div>
   </header>
+
+  <!-- 全域書籤管理彈窗 -->
+  <div id="bookmarks-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🔖</span>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white">我的閱讀書籤</h3>
+          <span id="modal-bookmark-total" class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-bold">0 個書籤</span>
+        </div>
+        <button id="btn-close-bookmarks" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold">✕</button>
+      </div>
+      <div id="bookmarks-list-container" class="overflow-y-auto space-y-2.5 flex-1 pr-1">
+        <!-- 動態注入書籤列表 -->
+      </div>
+    </div>
+  </div>
 
   <!-- 主內容掛載區 -->
   <main id="app-main" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">

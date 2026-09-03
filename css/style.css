@@ -202,3 +202,39 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-gear);
 }
+
+/* 書籤跳轉抵達時的段落聚光高亮動畫 */
+@keyframes bookmarkFlash {
+  0% {
+    background-color: rgba(217, 119, 6, 0.35);
+    box-shadow: 0 0 25px rgba(217, 119, 6, 0.4);
+    border-radius: 12px;
+  }
+  50% {
+    background-color: rgba(217, 119, 6, 0.2);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.bookmark-focus {
+  animation: bookmarkFlash 2.5s ease-out forwards;
+}
+
+/* 書籤絲帶裝飾 */
+.bookmark-ribbon {
+  position: relative;
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 16px;
+  width: 14px;
+  height: 24px;
+  background: #d97706;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
