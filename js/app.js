@@ -643,7 +643,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           ${DATA.books.map((book, idx) => `
             <div class="rounded-2xl border ${idx === 0 ? 'border-amber-500/40 shadow-xl bg-gradient-to-b from-amber-500/5 to-transparent' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'} p-6 flex flex-col justify-between transition-all hover:-translate-y-1">
               <div>
@@ -1339,7 +1339,15 @@
 
         <!-- 卷別切換頁籤 -->
         <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
-          <button id="tab-btn-vol3" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+          <button id="tab-btn-series2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabTab === 'series2' 
+              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
+          }">
+            <span>🌸 第二套 · 星願鐘擺 (1項)</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
+          </button>
+          <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
             activeLabTab === 'vol3' 
               ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500'
@@ -1361,6 +1369,90 @@
           }">
             <span>📘 第一卷：校園與機械電路 (3項)</span>
           </button>
+        </div>
+
+        <!-- 第二套實驗室內容 -->
+        <div id="lab-section-series2" class="${activeLabTab === 'series2' ? 'space-y-8' : 'hidden'}">
+          <!-- 實驗一：虎克定律發條熱膨脹與單擺等時週期模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🌸 1. 虎克定律發條熱膨脹與單擺等時性模擬器（第 1 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">F = -kx × T = 2π√(L/g)</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              采婭玆在晨光堂旋緊第七號發條時，因金屬摩擦生熱導致微熱膨脹卡死崩斷！林漪姉則推導出透過單擺遊絲等時性週期進行熱補償的閉環公式。拖動發條旋緊圈數與熱補償開關，觀察能量儲存、溫度阻尼與擒縱輪轉動狀態：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  發條旋緊圈數（儲存彈性位能）：<span id="series2-turns-val" class="text-rose-600 font-mono text-sm">5 圈</span>
+                </label>
+                <input id="series2-turns-slider" type="range" min="1" max="10" value="5" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">林漪姉熱補償等時方程</span>
+                    <span class="text-[10px] text-slate-400">∂T / ∂(ΔT) ≡ 0 抵消微熱膨脹</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-compensation-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>彈簧恢復力矩 F:</span>
+                    <span id="series2-force-val" class="font-bold text-slate-700 dark:text-slate-300">-125 N</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>累積摩擦升溫 ΔT:</span>
+                    <span id="series2-temp-val" class="font-bold text-amber-600">+15.0 °C</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>單擺等時週期 T:</span>
+                    <span id="series2-period-val" class="font-bold text-sky-600">1.000 秒/次</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-status-badge" class="mb-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 系統運行順暢（等時諧振中）
+                </div>
+                <!-- 機械齒輪與擺針視覺化 -->
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                  <div id="series2-gear-visual" class="w-24 h-24 rounded-full border-4 border-dashed border-rose-500 flex items-center justify-center animate-spin" style="animation-duration: 2s;">
+                    <div class="w-12 h-12 rounded-full border-2 border-amber-400 bg-amber-500/20"></div>
+                  </div>
+                  <div id="series2-pendulum-needle" class="absolute top-2 w-1 h-28 bg-sky-400 origin-top transform transition-transform" style="transform: rotate(15deg);"></div>
+                </div>
+                <div id="series2-alert-msg" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  發條形變位能與單擺週期完美閉合，星願儀平穩轉動！
+                </div>
+              </div>
+            </div>
+
+            <!-- A1Z26 代換密碼解密區 -->
+            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                <span>🔐 A1Z26 字母代換解密機（林漪姉的雪花暗號）</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-3">刻在天樞第四副鐘樓銅壁上的密文序列：輸入數字序號（1-26），解碼對應英文字母。</p>
+              <div class="flex items-center gap-2 flex-wrap">
+                <input id="series2-cipher-input" type="text" value="04-01-23-14" class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono w-44 font-bold text-rose-600 focus:outline-none focus:border-rose-500">
+                <button id="series2-cipher-btn" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all">
+                  執行解密
+                </button>
+                <div id="series2-cipher-output" class="px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-mono font-bold">
+                  D - A - W - N  ➜  DAWN（晨曦 / 晨光堂）
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 第三卷實驗室內容 -->
@@ -1848,10 +1940,83 @@
         renderPuzzleLab();
       };
     }
+    const tabSeries2 = document.getElementById('tab-btn-series2');
+    if (tabSeries2) {
+      tabSeries2.onclick = () => {
+        activeLabTab = 'series2';
+        renderPuzzleLab();
+      };
+    }
+
     if (tabVol1) {
       tabVol1.onclick = () => {
         activeLabTab = 'vol1';
         renderPuzzleLab();
+      };
+    }
+
+    // ================== 第二套實驗邏輯 (虎克定律 & A1Z26) ==================
+    const s2TurnsSlider = document.getElementById('series2-turns-slider');
+    const s2CompToggle = document.getElementById('series2-compensation-toggle');
+    const s2TurnsVal = document.getElementById('series2-turns-val');
+    const s2ForceVal = document.getElementById('series2-force-val');
+    const s2TempVal = document.getElementById('series2-temp-val');
+    const s2PeriodVal = document.getElementById('series2-period-val');
+    const s2StatusBadge = document.getElementById('series2-status-badge');
+    const s2GearVisual = document.getElementById('series2-gear-visual');
+    const s2AlertMsg = document.getElementById('series2-alert-msg');
+
+    function updateSeries2Sim() {
+      if (!s2TurnsSlider) return;
+      const turns = parseInt(s2TurnsSlider.value, 10);
+      const isComp = s2CompToggle ? s2CompToggle.checked : false;
+
+      s2TurnsVal.textContent = `${turns} 圈`;
+      const force = -25 * turns;
+      s2ForceVal.textContent = `${force} N`;
+      
+      const tempRise = (turns * 3.0).toFixed(1);
+      s2TempVal.textContent = `+${tempRise} °C`;
+
+      if (!isComp && turns >= 7) {
+        // 過熱卡死
+        s2PeriodVal.textContent = '∞（齒輪卡死）';
+        s2StatusBadge.className = 'mb-3 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+        s2StatusBadge.textContent = '⚠️ 發條過熱卡死！(Spring Seizure)';
+        s2GearVisual.classList.remove('animate-spin');
+        s2AlertMsg.textContent = '高溫導致金屬微膨脹，未啟用熱補償，第七號發條已過載卡死！';
+      } else {
+        const period = (1.000 + (isComp ? 0 : turns * 0.04)).toFixed(3);
+        s2PeriodVal.textContent = `${period} 秒/次`;
+        s2StatusBadge.className = 'mb-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        s2StatusBadge.textContent = isComp ? '✨ 完美等時諧振中 (∂T/∂ΔT ≡ 0)' : '⚙️ 運轉中（有微小溫漂）';
+        s2GearVisual.classList.add('animate-spin');
+        s2GearVisual.style.animationDuration = `${Math.max(0.5, 3 - turns * 0.25)}s`;
+        s2AlertMsg.textContent = isComp ? '林漪姉等時方程完全抵消熱膨脹，旋轉星願儀平穩運轉！' : '目前依靠純手工潤滑運轉，請注意散熱。';
+      }
+    }
+
+    if (s2TurnsSlider) s2TurnsSlider.oninput = updateSeries2Sim;
+    if (s2CompToggle) s2CompToggle.onchange = updateSeries2Sim;
+
+    // A1Z26 解密器事件
+    const s2CipherBtn = document.getElementById('series2-cipher-btn');
+    const s2CipherInput = document.getElementById('series2-cipher-input');
+    const s2CipherOutput = document.getElementById('series2-cipher-output');
+
+    if (s2CipherBtn && s2CipherInput && s2CipherOutput) {
+      s2CipherBtn.onclick = () => {
+        const raw = s2CipherInput.value.trim();
+        const parts = raw.split(/[- ,/]+/).filter(Boolean);
+        const letters = parts.map(p => {
+          const num = parseInt(p, 10);
+          if (!isNaN(num) && num >= 1 && num <= 26) {
+            return String.fromCharCode(64 + num);
+          }
+          return '?';
+        });
+        const word = letters.join('');
+        s2CipherOutput.textContent = `${letters.join(' - ')}  ➜  ${word} ${word === 'DAWN' ? '（晨曦 / 晨光堂）' : ''}`;
       };
     }
 
