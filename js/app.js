@@ -555,6 +555,12 @@
     const hash = window.location.hash || '#/';
     window.scrollTo(0, 0);
 
+    // 切換頁面時停止語音朗讀
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      if (window.storySpeaker) window.storySpeaker.reset();
+    }
+
     // 關閉手機抽屜
     const drawer = document.getElementById('chapter-drawer');
     if (drawer) drawer.classList.add('hidden');
@@ -861,6 +867,292 @@
   }
 
   // 頁面渲染器：沉浸式閱讀器
+    // ================== 兒童有聲朗讀引擎 (StorySpeaker & Karaoke Spotlight) ==================
+  window.storySpeaker = {
+    synth: window.speechSynthesis || null,
+    isPlaying: false,
+    isPaused: false,
+    currentIndex: -1,
+    blocks: [],
+    rates: [0.75, 0.95, 1.2],
+    rateIndex: 1, // 預設 0.95x 溫柔說故事語速
+    voiceZh: null,
+    voiceEn: null,
+    autoScroll: true,
+    currentUtterance: null,
+
+    init() {
+      if (!this.synth) return;
+      this.loadVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = () => this.loadVoices();
+      }
+    },
+
+    loadVoices() {
+      if (!this.synth) return;
+      const voices = this.synth.getVoices();
+      // 臺灣繁體中文優先
+      this.voiceZh = voices.find(v => v.lang === 'zh-TW' || v.lang === 'zh_TW') ||
+                     voices.find(v => v.lang.startsWith('zh')) ||
+                     null;
+      // 英語美式優先
+      this.voiceEn = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US') ||
+                     voices.find(v => v.lang.startsWith('en')) ||
+                     null;
+    },
+
+    setupBlocks(containerEl, langMode) {
+      this.reset();
+      if (!containerEl) return;
+
+      // 篩選出可朗讀的有效節點：段落、標題、雙語組、引言
+      const rawElements = containerEl.querySelectorAll('p, h2, h3, blockquote, .bilingual-pair');
+      this.blocks = [];
+
+      rawElements.forEach((el) => {
+        // 排除密碼小百科、程式碼區塊等技術標註
+        if (el.closest('.code-block') || el.closest('.puzzle-box')) return;
+        if (el.tagName === 'P' && el.closest('.bilingual-pair')) return; // 雙語對照以組為單位朗讀
+
+        let textZh = '';
+        let textEn = '';
+
+        if (el.classList.contains('bilingual-pair')) {
+          const zhP = el.querySelector('.zh-para');
+          const enP = el.querySelector('.en-para');
+          textZh = zhP ? zhP.innerText.trim() : '';
+          textEn = enP ? enP.innerText.trim() : '';
+        } else {
+          const text = el.innerText.trim();
+          if (langMode === 'en') {
+            textEn = text;
+          } else {
+            textZh = text;
+          }
+        }
+
+        // 清理標記與多餘符號
+        const cleanZh = textZh.replace(/[⚙️🧩📖⏱️🔖🌐]/g, '').trim();
+        const cleanEn = textEn.replace(/[⚙️🧩📖⏱️🔖🌐]/g, '').trim();
+
+        if (cleanZh || cleanEn) {
+          const bIdx = this.blocks.length;
+          this.blocks.push({
+            el: el,
+            index: bIdx,
+            textZh: cleanZh,
+            textEn: cleanEn,
+            langMode: langMode
+          });
+
+          // 綁定點讀事件
+          el.classList.add('cursor-pointer');
+          el.setAttribute('data-speech-block', bIdx);
+          el.title = '點擊這一段開始朗讀 🔊';
+          el.onclick = (e) => {
+            // 避免點擊書籤按鈕時觸發點讀
+            if (e.target.closest('.bookmark-btn') || e.target.closest('button')) return;
+            const targetIdx = parseInt(el.getAttribute('data-speech-block'), 10);
+            if (!isNaN(targetIdx)) {
+              window.storySpeaker.playAt(targetIdx);
+            }
+          };
+        }
+      });
+
+      this.updateProgressUI();
+    },
+
+    playAt(index) {
+      if (!this.synth || this.blocks.length === 0) return;
+      if (index < 0) index = 0;
+      if (index >= this.blocks.length) {
+        this.stop();
+        return;
+      }
+
+      this.synth.cancel();
+      this.currentIndex = index;
+      this.isPlaying = true;
+      this.isPaused = false;
+
+      const block = this.blocks[index];
+      this.highlightBlock(block);
+
+      // 決定朗讀文本與語系
+      let speakText = '';
+      let selectedVoice = this.voiceZh;
+      let pitch = 1.0;
+
+      if (block.langMode === 'en') {
+        speakText = block.textEn || block.textZh;
+        selectedVoice = this.voiceEn;
+      } else if (block.langMode === 'bilingual') {
+        // 雙語模式先朗讀中文，再朗讀英文
+        speakText = block.textZh + (block.textEn ? '。 ' + block.textEn : '');
+        selectedVoice = this.voiceZh;
+      } else {
+        speakText = block.textZh;
+        selectedVoice = this.voiceZh;
+      }
+
+      // 若包含角色引號對話「...」，稍微調高音調以增加生動感
+      if (speakText.includes('「') || speakText.includes('“') || speakText.includes('"')) {
+        pitch = 1.06;
+      }
+
+      const utter = new SpeechSynthesisUtterance(speakText);
+      utter.rate = this.rates[this.rateIndex];
+      utter.pitch = pitch;
+      if (selectedVoice) utter.voice = selectedVoice;
+
+      utter.onend = () => {
+        if (!this.isPlaying) return;
+        // 自動順暢播放下一段
+        this.playAt(this.currentIndex + 1);
+      };
+
+      utter.onerror = (err) => {
+        console.warn('Speech error:', err);
+        if (this.isPlaying) {
+          this.playAt(this.currentIndex + 1);
+        }
+      };
+
+      this.currentUtterance = utter;
+      this.synth.speak(utter);
+      this.updatePlayStateUI(true);
+    },
+
+    togglePlay() {
+      if (!this.synth) {
+        alert('您的瀏覽器目前未開啟語音朗讀支援。建議使用 Chrome、Edge 或 Safari。');
+        return;
+      }
+
+      if (this.isPlaying) {
+        if (this.isPaused) {
+          this.synth.resume();
+          this.isPaused = false;
+          this.updatePlayStateUI(true);
+        } else {
+          this.synth.pause();
+          this.isPaused = true;
+          this.updatePlayStateUI(false);
+        }
+      } else {
+        const startIdx = this.currentIndex >= 0 ? this.currentIndex : 0;
+        this.playAt(startIdx);
+      }
+    },
+
+    stop() {
+      if (this.synth) this.synth.cancel();
+      this.isPlaying = false;
+      this.isPaused = false;
+      this.clearHighlight();
+      this.updatePlayStateUI(false);
+      this.updateProgressUI();
+    },
+
+    prev() {
+      if (this.currentIndex > 0) {
+        this.playAt(this.currentIndex - 1);
+      }
+    },
+
+    next() {
+      if (this.currentIndex < this.blocks.length - 1) {
+        this.playAt(this.currentIndex + 1);
+      } else {
+        this.stop();
+      }
+    },
+
+    cycleSpeed() {
+      this.rateIndex = (this.rateIndex + 1) % this.rates.length;
+      const speedIcon = document.getElementById('audio-speed-icon');
+      const speedText = document.getElementById('audio-speed-text');
+      
+      const currentRate = this.rates[this.rateIndex];
+      if (speedText) speedText.textContent = `${currentRate.toFixed(2)}x`;
+      if (speedIcon) {
+        speedIcon.textContent = currentRate < 0.9 ? '🐌' : (currentRate > 1.0 ? '🐇' : '🚶');
+      }
+
+      // 若正在播放，無縫套用新語速重新朗讀當前段落
+      if (this.isPlaying && this.currentIndex >= 0) {
+        this.playAt(this.currentIndex);
+      }
+    },
+
+    highlightBlock(block) {
+      this.clearHighlight();
+      if (!block || !block.el) return;
+
+      const container = document.querySelector('.reader-content');
+      if (container) container.classList.add('is-reading');
+
+      block.el.classList.add('speaking-active');
+
+      // 自動平滑捲動到可視區域中央
+      if (this.autoScroll) {
+        block.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      this.updateProgressUI();
+    },
+
+    clearHighlight() {
+      const container = document.querySelector('.reader-content');
+      if (container) container.classList.remove('is-reading');
+
+      const actives = document.querySelectorAll('.speaking-active');
+      actives.forEach(el => el.classList.remove('speaking-active'));
+    },
+
+    reset() {
+      if (this.synth) this.synth.cancel();
+      this.isPlaying = false;
+      this.isPaused = false;
+      this.currentIndex = -1;
+      this.blocks = [];
+      this.clearHighlight();
+      this.updatePlayStateUI(false);
+      this.updateProgressUI();
+    },
+
+    updatePlayStateUI(playing) {
+      const playIcon = document.getElementById('audio-play-icon');
+      const statusText = document.getElementById('audio-status-text');
+      const headerBtn = document.getElementById('btn-header-listen');
+
+      if (playIcon) playIcon.textContent = playing ? '⏸️' : '▶️';
+      if (statusText) {
+        if (playing) {
+          statusText.textContent = '🔊 正在朗讀...';
+        } else if (this.isPaused) {
+          statusText.textContent = '⏸️ 暫停朗讀';
+        } else {
+          statusText.textContent = '🎧 聽故事';
+        }
+      }
+      if (headerBtn) {
+        headerBtn.innerHTML = playing ? '<span class="text-sm">⏸️</span><span>暫停朗讀</span>' : '<span class="text-sm">🎧</span><span>聽這章故事</span>';
+      }
+    },
+
+    updateProgressUI() {
+      const progressTag = document.getElementById('audio-progress-tag');
+      if (progressTag) {
+        const cur = this.currentIndex >= 0 ? this.currentIndex + 1 : 0;
+        progressTag.textContent = `${cur} / ${this.blocks.length}`;
+      }
+    }
+  };
+  window.storySpeaker.init();
+
   function renderReader(bookId, chapterId, targetParaIndex = undefined) {
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
     const chapter = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
@@ -966,6 +1258,10 @@
             ${displayTitle}
           </h1>
           <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+            <button id="btn-header-listen" class="px-3.5 py-1 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
+              <span class="text-sm">🎧</span>
+              <span>聽這章故事</span>
+            </button>
             <span>📖 約 ${chapter.wordCount} 字</span>
             <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
           </div>
@@ -1013,6 +1309,52 @@
           `}
         </footer>
       </article>
+
+      <!-- 兒童友善語音朗讀懸浮播放面板 (Voice Storyteller Dock) -->
+      <div id="story-audio-dock" class="fixed bottom-5 right-5 z-40 flex items-center gap-2 p-2 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-2xl border border-amber-500/30 transition-all duration-300">
+        <!-- 播放/暫停大按鈕 -->
+        <button id="btn-audio-play-pause" class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white flex items-center justify-center text-xl shadow-lg shadow-amber-500/30 transition-all active:scale-95 cursor-pointer" title="播放 / 暫停朗讀">
+          <span id="audio-play-icon">▶️</span>
+        </button>
+
+        <!-- 播放狀態與控制區域 -->
+        <div class="flex flex-col pr-1 min-w-[130px] sm:min-w-[160px]">
+          <div class="flex items-center justify-between text-[11px] font-bold text-slate-700 dark:text-slate-200 mb-0.5">
+            <span id="audio-status-text" class="truncate max-w-[100px]">🎧 聽故事</span>
+            <span id="audio-progress-tag" class="text-amber-600 font-mono text-[10px]">0 / 0</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <!-- 上一段 -->
+            <button id="btn-audio-prev" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/20 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-center transition-all cursor-pointer" title="上一段 (⏮️)">
+              ⏮️
+            </button>
+            <!-- 停止 -->
+            <button id="btn-audio-stop" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/20 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-center transition-all cursor-pointer" title="停止朗讀 (⏹️)">
+              ⏹️
+            </button>
+            <!-- 下一段 -->
+            <button id="btn-audio-next" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/20 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-center transition-all cursor-pointer" title="下一段 (⏩)">
+              ⏭️
+            </button>
+            <!-- 語速調節 -->
+            <button id="btn-audio-speed" class="px-2 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-mono font-bold text-[11px] flex items-center gap-0.5 transition-all cursor-pointer" title="切換語速：慢速(0.75x) / 正常(0.95x) / 快速(1.2x)">
+              <span id="audio-speed-icon">🚶</span>
+              <span id="audio-speed-text">0.95x</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 關閉/收合按鈕 -->
+        <button id="btn-audio-close" class="w-6 h-6 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 text-xs flex items-center justify-center transition-all cursor-pointer" title="收合播放器">
+          ✕
+        </button>
+      </div>
+
+      <!-- 當收合時的迷你耳機懸浮按鈕 -->
+      <button id="btn-audio-open-pill" class="hidden fixed bottom-6 right-6 z-40 px-3.5 py-2 rounded-full bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-xl shadow-amber-600/30 flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+        <span class="text-base">🎧</span>
+        <span>聽故事</span>
+      </button>
 
       <!-- 章節抽屜 Modal -->
       <div id="toc-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
@@ -1203,6 +1545,42 @@
         navigate('#/puzzle-lab');
       };
     }
+
+    // 初始化語音朗讀系統與點讀控制
+    setTimeout(() => {
+      const readerContainer = document.querySelector('.reader-content');
+      if (window.storySpeaker) {
+        window.storySpeaker.setupBlocks(readerContainer, state.readingLang);
+      }
+
+      const btnPlayPause = document.getElementById('btn-audio-play-pause');
+      const btnHeaderListen = document.getElementById('btn-header-listen');
+      const btnPrev = document.getElementById('btn-audio-prev');
+      const btnStop = document.getElementById('btn-audio-stop');
+      const btnNext = document.getElementById('btn-audio-next');
+      const btnSpeed = document.getElementById('btn-audio-speed');
+      const btnClose = document.getElementById('btn-audio-close');
+      const btnOpenPill = document.getElementById('btn-audio-open-pill');
+      const audioDock = document.getElementById('story-audio-dock');
+
+      if (btnPlayPause) btnPlayPause.onclick = () => window.storySpeaker.togglePlay();
+      if (btnHeaderListen) btnHeaderListen.onclick = () => window.storySpeaker.togglePlay();
+      if (btnPrev) btnPrev.onclick = () => window.storySpeaker.prev();
+      if (btnStop) btnStop.onclick = () => window.storySpeaker.stop();
+      if (btnNext) btnNext.onclick = () => window.storySpeaker.next();
+      if (btnSpeed) btnSpeed.onclick = () => window.storySpeaker.cycleSpeed();
+
+      if (btnClose && audioDock && btnOpenPill) {
+        btnClose.onclick = () => {
+          audioDock.classList.add('hidden');
+          btnOpenPill.classList.remove('hidden');
+        };
+        btnOpenPill.onclick = () => {
+          btnOpenPill.classList.add('hidden');
+          audioDock.classList.remove('hidden');
+        };
+      }
+    }, 150);
   }
 
   // 頁面渲染器：人物與裝備圖鑑
