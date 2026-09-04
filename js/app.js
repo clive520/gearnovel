@@ -1449,7 +1449,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (2項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (3項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -1627,6 +1627,85 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：第 22 位為 V，第 9 位為 I。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
                 22 ➜ V  |  09 ➜ I  |  22 ➜ V  |  09 ➜ I  ==>  【 VIVI 】（林漪姉的英文暱稱，象徵活力與生機）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗三：提摩盛柯雙金屬片熱彎曲與力矩補償模擬器 (第 3 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🔥 3. 提摩盛柯雙金屬片熱彎曲與力矩自穩定模擬器（第 3 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">1/ρ ∝ Δα·ΔT / h × Invar/Brass</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              采婭玆與林漪姉在晨光堂熔爐鍛造出的因瓦/黃銅雙金屬發條，在高溫環境下依提摩盛柯彎曲曲率自發向內收縮，動態抵消摩擦熱膨脹。拖動測試環境溫度與金屬厚度比，檢驗發條輸出扭矩的自平衡閉環：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  環境測試溫度 T：<span id="series2-bimetal-temp-val" class="text-rose-600 font-mono text-sm">25 °C</span>
+                </label>
+                <input id="series2-bimetal-temp-slider" type="range" min="0" max="80" value="25" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">居禮點（230°C）界面退火工藝</span>
+                    <span class="text-[10px] text-slate-400">原子擴散完全咬合，無界面滑移</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-curie-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono mt-2">
+                  <div class="flex justify-between text-slate-500">
+                    <span>提摩盛柯彎曲曲率 1/ρ:</span>
+                    <span id="series2-bimetal-rho-val" class="font-bold text-sky-600">0.000 mm⁻¹</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>發條輸出彈性力矩 τ:</span>
+                    <span id="series2-bimetal-torque-val" class="font-bold text-emerald-600">120.0 N·mm</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>力矩漂移誤差:</span>
+                    <span id="series2-bimetal-drift-val" class="font-bold text-slate-400">±0.00 %</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 雙金屬片熱彎曲動態視覺展示 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-bimetal-status" class="mb-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 雙金屬力矩恆定（時間之心跳動中）
+                </div>
+                <!-- 雙層金屬片彎曲動畫示意 -->
+                <div class="relative w-48 h-28 flex items-center justify-center">
+                  <div class="w-40 h-8 flex flex-col items-center justify-center transition-all duration-300 transform" id="series2-bimetal-strip">
+                    <!-- 黃銅層（高膨脹） -->
+                    <div class="w-full h-3 bg-amber-400 rounded-t border-b border-amber-600 text-[9px] font-mono text-amber-900 font-bold flex items-center justify-center">BRASS (α = 19×10⁻⁶)</div>
+                    <!-- 因瓦層（低膨脹） -->
+                    <div class="w-full h-3 bg-slate-400 rounded-b text-[9px] font-mono text-slate-900 font-bold flex items-center justify-center">INVAR (α = 1.2×10⁻⁶)</div>
+                  </div>
+                </div>
+                <div id="series2-bimetal-desc" class="text-[11px] text-center text-slate-300 mt-1 font-mono">
+                  升溫時黃銅膨脹大於因瓦，雙金屬片自發向內彎曲補償發條張力！
+                </div>
+              </div>
+            </div>
+
+            <!-- HEART 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 3 章核心密文：[ 08 - 05 - 01 - 18 - 20 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：08=H, 05=E, 01=A, 18=R, 20=T。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold">
+                08 ➜ H  |  05 ➜ E  |  01 ➜ A  |  18 ➜ R  |  20 ➜ T  ==>  【 HEART 】（工匠賦予鐘錶的「時間之心」）
               </div>
             </div>
           </div>
@@ -2248,6 +2327,57 @@
 
     if (s2Theta1Slider) s2Theta1Slider.oninput = updateSnellSim;
     if (s2N2Slider) s2N2Slider.oninput = updateSnellSim;
+
+    
+    // 提摩盛柯雙金屬片熱彎曲模擬器事件 (Ch 3)
+    const s2TempSlider = document.getElementById('series2-bimetal-temp-slider');
+    const s2CurieToggle = document.getElementById('series2-curie-toggle');
+    const s2BimetalTempVal = document.getElementById('series2-bimetal-temp-val');
+    const s2RhoVal = document.getElementById('series2-bimetal-rho-val');
+    const s2TorqueVal = document.getElementById('series2-bimetal-torque-val');
+    const s2DriftVal = document.getElementById('series2-bimetal-drift-val');
+    const s2BimetalStatus = document.getElementById('series2-bimetal-status');
+    const s2BimetalStrip = document.getElementById('series2-bimetal-strip');
+    const s2BimetalDesc = document.getElementById('series2-bimetal-desc');
+
+    function updateBimetalSim() {
+      if (!s2TempSlider) return;
+      const temp = parseFloat(s2TempSlider.value);
+      const isCurie = s2CurieToggle ? s2CurieToggle.checked : false;
+      const deltaT = temp - 20.0;
+
+      if (s2BimetalTempVal) s2BimetalTempVal.textContent = `${temp.toFixed(0)} °C`;
+
+      const deltaAlpha = (19.0 - 1.2) * 1e-6; // /K
+      const thickness = 0.5; // mm
+      const curvature = isCurie ? (deltaT * deltaAlpha * 3.0 / thickness) : 0;
+      s2RhoVal.textContent = `${(curvature * 1000).toFixed(3)} × 10⁻³ mm⁻¹`;
+
+      if (!isCurie && temp > 45) {
+        // 未經過居禮點退火，界面滑移
+        const torque = (120.0 - (temp - 20) * 0.95).toFixed(1);
+        s2TorqueVal.textContent = `${torque} N·mm`;
+        s2DriftVal.textContent = `-${(((120.0 - torque) / 120.0) * 100).toFixed(1)} % (熱衰減嚴重)`;
+        s2BimetalStatus.className = 'mb-3 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+        s2BimetalStatus.textContent = '⚠️ 界面滑移！高溫發條力矩暴跌';
+        s2BimetalDesc.textContent = '未在居禮點（230°C）完成分子退火，雙金屬片分層脫落，無法補償熱形變！';
+        if (s2BimetalStrip) s2BimetalStrip.style.transform = 'rotate(0deg)';
+      } else {
+        const torque = (120.0 - (isCurie ? Math.abs(deltaT) * 0.005 : deltaT * 0.4)).toFixed(1);
+        const drift = Math.abs((120.0 - torque) / 120.0 * 100).toFixed(2);
+        s2TorqueVal.textContent = `${torque} N·mm`;
+        s2DriftVal.textContent = `±${drift} %`;
+        s2BimetalStatus.className = 'mb-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        s2BimetalStatus.textContent = '✨ 雙金屬力矩恆定（時間之心跳動中）';
+        s2BimetalDesc.textContent = '居禮點界面咬合完整，升溫時自發向內微彎，發條輸出恆定力矩！';
+
+        const bendAngle = Math.max(-15, Math.min(15, deltaT * 0.35));
+        if (s2BimetalStrip) s2BimetalStrip.style.transform = `rotate(${bendAngle}deg) scale(${1 + deltaT * 0.001})`;
+      }
+    }
+
+    if (s2TempSlider) s2TempSlider.oninput = updateBimetalSim;
+    if (s2CurieToggle) s2CurieToggle.onchange = updateBimetalSim;
 
     // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
