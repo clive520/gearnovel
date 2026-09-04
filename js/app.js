@@ -968,8 +968,6 @@
           <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
             <span>📖 約 ${chapter.wordCount} 字</span>
             <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
-            <span class="text-amber-600">🔖 支援精準書籤</span>
-            ${hasEnglish ? `<span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 font-bold">🌐 支援中 / 英 / 雙語對照</span>` : ''}
           </div>
         </header>
 
