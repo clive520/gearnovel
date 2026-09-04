@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (6項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (7項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2607,6 +2607,84 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗七：全反射臨界角與光纖導光聚焦模擬器 (第 7 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🌈 7. 全反射臨界角與光纖導光聚焦模擬器（第 7 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">sin θ_c = n₂/n₁ ｜ NA = √(n₁²-n₂²) ｜ η = 99.2%</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              星輝浮島複賽考核遭遇高吸收性黑晶微粒迷霧！林漪姉與采婭玆利用星輝石英雙稜鏡構建全反射光波導。當入射角大於臨界角 θ_c 時，折射光徹底消失，光能 100% 無損反射向前傳輸！調校入射角與介質折射率，觀察光線折射洩漏 vs 全反射激光聚焦：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  光線界面入射角 θ₁：<span id="series2-tir-theta-val" class="text-rose-600 font-mono text-sm">52.3° (大於臨界角 · 全反射)</span>
+                </label>
+                <input id="series2-tir-theta-slider" type="range" min="25" max="75" value="52" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  晶體核心折射率 n₁：<span id="series2-tir-n1-val" class="text-sky-600 font-mono text-sm">1.85 (星輝單晶石英)</span>
+                </label>
+                <input id="series2-tir-n1-slider" type="range" min="140" max="210" value="185" class="w-full accent-sky-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">環境介質：黑晶微粒吸收迷霧</span>
+                    <span class="text-[10px] text-slate-400">迷霧折射率 n₂ = 1.35 (關閉則為空氣 n₂ = 1.00)</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-tir-mist-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>全反射臨界角 θ_c:</span>
+                    <span id="series2-tir-crit-val" class="font-bold text-sky-600">46.9° (sin θ_c = n₂/n₁)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>光波導數值孔徑 NA:</span>
+                    <span id="series2-tir-na-val" class="font-bold text-indigo-600">1.265 (大於1 · 超廣角捕獲)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>光能傳輸效率 η:</span>
+                    <span id="series2-tir-eff-val" class="font-bold text-emerald-600">99.2% (100%全反射相干傳輸)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態幾何光路畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-tir-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 100% 全內反射相干聚焦（FOCUS 鎖定）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-tir-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-tir-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  入射角超越 46.9° 臨界角！光線無損連續彈射，激發出撕裂迷霧的金色光刃！
+                </div>
+              </div>
+            </div>
+
+            <!-- FOCUS 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 7 章核心密文：[ 06 - 15 - 03 - 21 - 19 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：06=F, 15=O, 03=C, 21=U, 19=S。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                06 ➜ F  |  15 ➜ O  |  03 ➜ C  |  21 ➜ U  |  19 ➜ S  ==>  【 FOCUS 】（全反射光線聚焦 · 專注之魂）
+              </div>
+            </div>
+          </div>
+
 
 
         </div>
@@ -3892,6 +3970,199 @@
       updateAirfoilSim();
       drawAirfoilCanvas();
     }
+
+    // ================== 第 7 章：全反射臨界角與光纖導光聚焦模擬器 ==================
+    const s2TirThetaSlider = document.getElementById('series2-tir-theta-slider');
+    const s2TirN1Slider = document.getElementById('series2-tir-n1-slider');
+    const s2TirMistToggle = document.getElementById('series2-tir-mist-toggle');
+    const s2TirThetaVal = document.getElementById('series2-tir-theta-val');
+    const s2TirN1Val = document.getElementById('series2-tir-n1-val');
+    const s2TirCritVal = document.getElementById('series2-tir-crit-val');
+    const s2TirNaVal = document.getElementById('series2-tir-na-val');
+    const s2TirEffVal = document.getElementById('series2-tir-eff-val');
+    const s2TirStatus = document.getElementById('series2-tir-status');
+    const s2TirDesc = document.getElementById('series2-tir-desc');
+    const s2TirCanvas = document.getElementById('series2-tir-canvas');
+
+    let s2TirAnimId = null;
+    let s2TirPulseOffset = 0;
+
+    function updateTirSim() {
+      if (!s2TirThetaSlider || !s2TirN1Slider) return;
+      const thetaDeg = parseFloat(s2TirThetaSlider.value); // 25 to 75
+      const n1 = parseFloat(s2TirN1Slider.value) / 100.0; // 1.40 to 2.10
+      const hasMist = s2TirMistToggle ? s2TirMistToggle.checked : true;
+      const n2 = hasMist ? 1.35 : 1.00;
+
+      // 臨界角 sin(theta_c) = n2 / n1
+      const sinCrit = n2 / n1;
+      const isPossible = sinCrit <= 1.0;
+      const critDeg = isPossible ? (Math.asin(sinCrit) * 180.0 / Math.PI) : 90.0;
+
+      const isTir = isPossible && (thetaDeg >= critDeg);
+
+      // 數值孔徑 NA = sqrt(n1^2 - n2^2)
+      const na = Math.sqrt(Math.max(0, n1 * n1 - n2 * n2)).toFixed(3);
+
+      if (s2TirThetaVal) s2TirThetaVal.textContent = `${thetaDeg.toFixed(1)}° (${isTir ? '大於臨界角 · 全反射' : '小於臨界角 · 折射洩漏'})`;
+      if (s2TirN1Val) s2TirN1Val.textContent = `${n1.toFixed(2)} (${n1 >= 1.8 ? '星輝單晶石英' : '常規火石光學晶體'})`;
+      if (s2TirCritVal) s2TirCritVal.textContent = `${critDeg.toFixed(1)}° (sin θ_c = ${n2.toFixed(2)}/${n1.toFixed(2)})`;
+      if (s2TirNaVal) s2TirNaVal.textContent = `${na} (${parseFloat(na) >= 1.0 ? '大於1 · 超廣角捕獲' : '常規數值孔徑'})`;
+
+      if (isTir) {
+        if (s2TirEffVal) {
+          s2TirEffVal.textContent = '99.2% (100%全反射相干傳輸)';
+          s2TirEffVal.className = 'font-bold text-emerald-600';
+        }
+        if (s2TirStatus) {
+          s2TirStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2TirStatus.textContent = '✨ 100% 全內反射相干聚焦（FOCUS 鎖定）';
+        }
+        if (s2TirDesc) s2TirDesc.textContent = `入射角 ${thetaDeg}° 超越 ${critDeg.toFixed(1)}° 臨界角！光線無損連續彈射，激發出撕裂迷霧的金色光刃！`;
+      } else {
+        const lossPercent = Math.min(96, Math.max(70, Math.round((critDeg - thetaDeg) * 3.5 + 60)));
+        const effPercent = (100 - lossPercent).toFixed(1);
+        if (s2TirEffVal) {
+          s2TirEffVal.textContent = `${effPercent}% (折射散射嚴重洩漏)`;
+          s2TirEffVal.className = 'font-bold text-rose-500';
+        }
+        if (s2TirStatus) {
+          s2TirStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2TirStatus.textContent = '⚠️ 臨界角未達成！光線折射洩漏至黑霧中';
+        }
+        if (s2TirDesc) s2TirDesc.textContent = `入射角 ${thetaDeg}° 小於臨界角 ${critDeg.toFixed(1)}°！大量光子穿透界面逃逸，被高折射率黑晶吸收！`;
+      }
+    }
+
+    if (s2TirThetaSlider) s2TirThetaSlider.oninput = updateTirSim;
+    if (s2TirN1Slider) s2TirN1Slider.oninput = updateTirSim;
+    if (s2TirMistToggle) s2TirMistToggle.onchange = updateTirSim;
+
+    // 動畫循環繪製光線追蹤
+    function drawTirCanvas() {
+      if (!s2TirCanvas) return;
+      const ctx = s2TirCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const thetaDeg = s2TirThetaSlider ? parseFloat(s2TirThetaSlider.value) : 52;
+      const n1 = s2TirN1Slider ? parseFloat(s2TirN1Slider.value) / 100.0 : 1.85;
+      const hasMist = s2TirMistToggle ? s2TirMistToggle.checked : true;
+      const n2 = hasMist ? 1.35 : 1.00;
+
+      const sinCrit = n2 / n1;
+      const isPossible = sinCrit <= 1.0;
+      const critDeg = isPossible ? (Math.asin(sinCrit) * 180.0 / Math.PI) : 90.0;
+      const isTir = isPossible && (thetaDeg >= critDeg);
+
+      const w = s2TirCanvas.width;
+      const h = s2TirCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // 上下黑霧區域 (光疏介質)
+      ctx.fillStyle = hasMist ? '#0f172a' : '#1e293b';
+      ctx.fillRect(0, 0, w, 40);
+      ctx.fillRect(0, h - 40, w, 40);
+
+      // 晶體芯層 (光密介質)
+      ctx.fillStyle = '#1e1b4b';
+      ctx.fillRect(0, 40, w, h - 80);
+
+      // 界面分界線
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(0, 40); ctx.lineTo(w, 40);
+      ctx.moveTo(0, h - 40); ctx.lineTo(w, h - 40);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 介質文字標籤
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px monospace';
+      ctx.fillText(hasMist ? '外部黑晶迷霧 (n₂=1.35)' : '外部空氣 (n₂=1.00)', 15, 25);
+      ctx.fillText(`星輝石英晶體核心 (n₁=${n1.toFixed(2)})`, 15, h / 2 - 25);
+
+      // 光脈衝流動
+      s2TirPulseOffset = (s2TirPulseOffset + 3) % 40;
+
+      // 繪製光路反射
+      const startX = 15;
+      const startY = h / 2;
+      const rad = (thetaDeg * Math.PI) / 180.0;
+      const stepX = 55 / Math.tan(rad); // 界面反彈水平跨度
+
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = isTir ? '#fbbf24' : '#f43f5e';
+      ctx.shadowColor = isTir ? '#f59e0b' : '#ef4444';
+      ctx.shadowBlur = isTir ? 12 : 4;
+
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+
+      // 第一個撞擊點 (上界面)
+      const p1X = startX + stepX / 2;
+      const p1Y = 40;
+      ctx.lineTo(p1X, p1Y);
+
+      if (isTir) {
+        // 第二個撞擊點 (下界面)
+        const p2X = p1X + stepX;
+        const p2Y = h - 40;
+        ctx.lineTo(p2X, p2Y);
+
+        // 第三個撞擊點 (上界面)
+        const p3X = p2X + stepX;
+        const p3Y = 40;
+        ctx.lineTo(p3X, p3Y);
+
+        // 出射相干激光光刃
+        const endX = w - 15;
+        const endY = h / 2;
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+
+        // 終端感測靶心爆發星芒
+        ctx.fillStyle = '#10b981';
+        ctx.beginPath();
+        ctx.arc(endX, endY, 6, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // 折射洩漏射出外部
+        ctx.stroke();
+
+        // 繪製折射光線穿透進迷霧 (散失)
+        ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(p1X, p1Y);
+        ctx.lineTo(p1X + 35, 10);
+        ctx.stroke();
+
+        // 殘餘微弱反射光
+        ctx.strokeStyle = 'rgba(244, 63, 94, 0.3)';
+        ctx.beginPath();
+        ctx.moveTo(p1X, p1Y);
+        ctx.lineTo(p1X + stepX * 0.8, h - 40);
+        ctx.stroke();
+      }
+
+      ctx.shadowBlur = 0;
+
+      // 狀態提示標籤
+      ctx.fillStyle = isTir ? '#34d399' : '#f87171';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText(isTir ? '[100% TIR: COHERENT BEAM LOCKED]' : '[REFRACTIVE LEAKAGE: POWER LOSS]', 15, h - 15);
+
+      s2TirAnimId = requestAnimationFrame(drawTirCanvas);
+    }
+
+    if (s2TirCanvas) {
+      if (s2TirAnimId) cancelAnimationFrame(s2TirAnimId);
+      updateTirSim();
+      drawTirCanvas();
+    }
+
 
 
 
