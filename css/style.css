@@ -384,13 +384,25 @@ u.proper-noun:hover {
   box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35) !important;
 }
 
-/* 點讀提示標籤 */
+/* 點讀提示與手勢樣式（僅在主動啟動聽故事模式後生效，預設不干擾一般閱讀） */
+.reader-content.listening-mode-enabled p,
+.reader-content.listening-mode-enabled h2,
+.reader-content.listening-mode-enabled h3,
+.reader-content.listening-mode-enabled blockquote,
+.reader-content.listening-mode-enabled .bilingual-pair {
+  cursor: pointer;
+}
+.reader-content.listening-mode-enabled p:hover,
+.reader-content.listening-mode-enabled .bilingual-pair:hover {
+  background-color: rgba(245, 158, 11, 0.06);
+}
+
 .tap-to-read-hint {
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
 }
-.reader-content p:hover .tap-to-read-hint,
-.reader-content .bilingual-pair:hover .tap-to-read-hint {
+.reader-content.listening-mode-enabled p:hover .tap-to-read-hint,
+.reader-content.listening-mode-enabled .bilingual-pair:hover .tap-to-read-hint {
   opacity: 1;
 }

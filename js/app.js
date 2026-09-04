@@ -870,6 +870,7 @@
     // ================== 兒童有聲朗讀引擎 (StorySpeaker & Karaoke Spotlight) ==================
   window.storySpeaker = {
     synth: window.speechSynthesis || null,
+    isEnabled: false, // 預設關閉語音點讀，必須主動點選「聽故事」才會啟動
     isPlaying: false,
     isPaused: false,
     currentIndex: -1,
@@ -907,7 +908,9 @@
 
     setupBlocks(containerEl, langMode) {
       this.reset();
+      this.isEnabled = false; // 每次進入章節預設關閉語音朗讀
       if (!containerEl) return;
+      containerEl.classList.remove('listening-mode-enabled');
 
       // 篩選出可朗讀的有效節點：段落、標題、雙語組、引言
       const rawElements = containerEl.querySelectorAll('p, h2, h3, blockquote, .bilingual-pair');
@@ -949,12 +952,11 @@
             langMode: langMode
           });
 
-          // 綁定點讀事件
-          el.classList.add('cursor-pointer');
+          // 標記段落序號，但預設不加 cursor-pointer 與 title，防止影響一般閱讀
           el.setAttribute('data-speech-block', bIdx);
-          el.title = '點擊這一段開始朗讀 🔊';
           el.onclick = (e) => {
-            // 避免點擊書籤按鈕時觸發點讀
+            // 核心保護：未主動開啟「聽故事」時，點擊段落完全不觸發朗讀，維護純淨閱讀體驗
+            if (!window.storySpeaker || !window.storySpeaker.isEnabled) return;
             if (e.target.closest('.bookmark-btn') || e.target.closest('button')) return;
             const targetIdx = parseInt(el.getAttribute('data-speech-block'), 10);
             if (!isNaN(targetIdx)) {
@@ -967,11 +969,39 @@
       this.updateProgressUI();
     },
 
+    // 主動開啟「聽故事」模式
+    startListening(startIdx = 0) {
+      this.isEnabled = true;
+      const container = document.querySelector('.reader-content');
+      if (container) container.classList.add('listening-mode-enabled');
+
+      const audioDock = document.getElementById('story-audio-dock');
+      const audioPill = document.getElementById('btn-audio-open-pill');
+      if (audioDock) audioDock.classList.remove('hidden');
+      if (audioPill) audioPill.classList.add('hidden');
+
+      const targetIdx = (typeof startIdx === 'number' && startIdx >= 0) ? startIdx : (this.currentIndex >= 0 ? this.currentIndex : 0);
+      this.playAt(targetIdx);
+    },
+
+    // 主動停止並退出「聽故事」模式，回歸純淨閱讀
+    stopListening() {
+      this.stop();
+      this.isEnabled = false;
+      const container = document.querySelector('.reader-content');
+      if (container) container.classList.remove('listening-mode-enabled');
+
+      const audioDock = document.getElementById('story-audio-dock');
+      const audioPill = document.getElementById('btn-audio-open-pill');
+      if (audioDock) audioDock.classList.add('hidden');
+      if (audioPill) audioPill.classList.remove('hidden');
+    },
+
     playAt(index) {
       if (!this.synth || this.blocks.length === 0) return;
       if (index < 0) index = 0;
       if (index >= this.blocks.length) {
-        this.stop();
+        this.stopListening();
         return;
       }
 
@@ -1022,7 +1052,7 @@
         if (this.currentIndex < this.blocks.length - 1) {
           this.playAt(this.currentIndex + 1);
         } else {
-          this.stop();
+          this.stopListening();
         }
         return;
       }
@@ -1040,16 +1070,13 @@
       }
 
       const utter = new SpeechSynthesisUtterance(speakText);
-      // 關鍵修復：明確指定 lang 屬性，避免 Windows SAPI / 瀏覽器因未指定語言而崩潰報錯
       utter.lang = (useLang === 'en') ? 'en-US' : 'zh-TW';
       utter.rate = this.rates[this.rateIndex];
       utter.pitch = pitch;
       if (selectedVoice) utter.voice = selectedVoice;
 
       utter.onend = () => {
-        // 確保為當前活躍 session 且仍處於播放狀態
         if (mySessionId !== this.sessionId || !this.isPlaying) return;
-        // 提供 180ms 的自然段落呼吸停頓，避免連鎖緊繃
         setTimeout(() => {
           if (mySessionId === this.sessionId && this.isPlaying) {
             this.playAt(this.currentIndex + 1);
@@ -1058,12 +1085,10 @@
       };
 
       utter.onerror = (err) => {
-        // 使用者主動切換段落、暫停或停止時產生的 canceled / interrupted 屬於正常現象，直接忽略
         if (err.error === 'canceled' || err.error === 'interrupted') return;
         if (mySessionId !== this.sessionId) return;
         console.warn('Speech error:', err.error, err);
-        // 遇到未預期錯誤時安全停止，絕不連環快進到最後一段！
-        this.stop();
+        this.stopListening();
       };
 
       this.currentUtterance = utter;
@@ -1076,7 +1101,7 @@
           this.updatePlayStateUI(true);
         } catch (e) {
           console.error('synth.speak failed:', e);
-          this.stop();
+          this.stopListening();
         }
       }, 25);
     },
@@ -1084,6 +1109,11 @@
     togglePlay() {
       if (!this.synth) {
         alert('您的瀏覽器目前未開啟語音朗讀支援。建議使用 Chrome、Edge 或 Safari。');
+        return;
+      }
+
+      if (!this.isEnabled) {
+        this.startListening(this.currentIndex >= 0 ? this.currentIndex : 0);
         return;
       }
 
@@ -1131,7 +1161,7 @@
       if (this.currentIndex < this.blocks.length - 1) {
         this.playAt(this.currentIndex + 1);
       } else {
-        this.stop();
+        this.stopListening();
       }
     },
 
@@ -1146,7 +1176,6 @@
         speedIcon.textContent = currentRate < 0.9 ? '🐌' : (currentRate > 1.0 ? '🐇' : '🚶');
       }
 
-      // 若正在播放，無縫套用新語速重新朗讀當前段落
       if (this.isPlaying && this.currentIndex >= 0) {
         this.playAt(this.currentIndex);
       }
@@ -1161,7 +1190,6 @@
 
       block.el.classList.add('speaking-active');
 
-      // 自動平滑捲動到可視區域中央
       if (this.autoScroll) {
         block.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
@@ -1188,6 +1216,7 @@
         if (this.synth.paused) this.synth.resume();
         this.synth.cancel();
       }
+      this.isEnabled = false;
       this.isPlaying = false;
       this.isPaused = false;
       this.currentIndex = -1;
@@ -1384,7 +1413,7 @@
       </article>
 
       <!-- 兒童友善語音朗讀懸浮播放面板 (Voice Storyteller Dock) -->
-      <div id="story-audio-dock" class="fixed bottom-5 right-5 z-40 flex items-center gap-2 p-2 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-2xl border border-amber-500/30 transition-all duration-300">
+      <div id="story-audio-dock" class="hidden fixed bottom-5 right-5 z-40 flex items-center gap-2 p-2 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-2xl border border-amber-500/30 transition-all duration-300">
         <!-- 播放/暫停大按鈕 -->
         <button id="btn-audio-play-pause" class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white flex items-center justify-center text-xl shadow-lg shadow-amber-500/30 transition-all active:scale-95 cursor-pointer" title="播放 / 暫停朗讀">
           <span id="audio-play-icon">▶️</span>
@@ -1424,7 +1453,7 @@
       </div>
 
       <!-- 當收合時的迷你耳機懸浮按鈕 -->
-      <button id="btn-audio-open-pill" class="hidden fixed bottom-6 right-6 z-40 px-3.5 py-2 rounded-full bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-xl shadow-amber-600/30 flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+      <button id="btn-audio-open-pill" class="fixed bottom-6 right-6 z-40 px-3.5 py-2 rounded-full bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-xl shadow-amber-600/30 flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer">
         <span class="text-base">🎧</span>
         <span>聽故事</span>
       </button>
@@ -1636,23 +1665,27 @@
       const btnOpenPill = document.getElementById('btn-audio-open-pill');
       const audioDock = document.getElementById('story-audio-dock');
 
-      if (btnPlayPause) btnPlayPause.onclick = () => window.storySpeaker.togglePlay();
-      if (btnHeaderListen) btnHeaderListen.onclick = () => window.storySpeaker.togglePlay();
-      if (btnPrev) btnPrev.onclick = () => window.storySpeaker.prev();
-      if (btnStop) btnStop.onclick = () => window.storySpeaker.stop();
-      if (btnNext) btnNext.onclick = () => window.storySpeaker.next();
-      if (btnSpeed) btnSpeed.onclick = () => window.storySpeaker.cycleSpeed();
-
-      if (btnClose && audioDock && btnOpenPill) {
-        btnClose.onclick = () => {
-          audioDock.classList.add('hidden');
-          btnOpenPill.classList.remove('hidden');
-        };
-        btnOpenPill.onclick = () => {
-          btnOpenPill.classList.add('hidden');
-          audioDock.classList.remove('hidden');
+      if (btnHeaderListen) {
+        btnHeaderListen.onclick = () => {
+          if (!window.storySpeaker.isEnabled) {
+            window.storySpeaker.startListening(0);
+          } else {
+            window.storySpeaker.togglePlay();
+          }
         };
       }
+      if (btnOpenPill) {
+        btnOpenPill.onclick = () => {
+          const idx = window.storySpeaker.currentIndex >= 0 ? window.storySpeaker.currentIndex : 0;
+          window.storySpeaker.startListening(idx);
+        };
+      }
+      if (btnPlayPause) btnPlayPause.onclick = () => window.storySpeaker.togglePlay();
+      if (btnPrev) btnPrev.onclick = () => window.storySpeaker.prev();
+      if (btnStop) btnStop.onclick = () => window.storySpeaker.stopListening();
+      if (btnNext) btnNext.onclick = () => window.storySpeaker.next();
+      if (btnSpeed) btnSpeed.onclick = () => window.storySpeaker.cycleSpeed();
+      if (btnClose) btnClose.onclick = () => window.storySpeaker.stopListening();
     }, 150);
   }
 
