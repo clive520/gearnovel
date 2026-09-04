@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (8項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (9項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2761,6 +2761,100 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗九：駐波干涉與傅立葉諧波共振模擬器 (第 9 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第二套 · 第 9 章</span>
+                <span class="text-xs text-slate-500">波的疊加 · 駐波方程 · 傅立葉諧波</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500">y = 2A sin(kx) cos(ωt)</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-2">
+              <span>💎 9. 駐波干涉與傅立葉諧波共振模擬器（第 9 章）</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+              天籟星琴由十二公尺長的水晶晶弦構成。當兩列反向行進波相遇干涉時，唯有將固定夾具安置在<strong>波節（Node，振幅恆為零）</strong>處，並透過<strong>傅立葉級數諧波合成</strong>激發高階純律，方能消除破壞性剪應力，奏響震撼全星港的破曉和弦！
+            </p>
+
+            <!-- 實驗互動控制面板 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">晶弦長度 L (m)</span>
+                    <span id="series2-wave-l-val" class="font-bold text-amber-500">12.0 m (主共振晶弦)</span>
+                  </div>
+                  <input id="series2-wave-l-slider" type="range" min="60" max="240" value="120" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">聲光波速 v (m/s)</span>
+                    <span id="series2-wave-v-val" class="font-bold text-cyan-500">3400 m/s (星輝水晶相速度)</span>
+                  </div>
+                  <input id="series2-wave-v-slider" type="range" min="2000" max="4800" step="100" value="3400" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">諧波模態階數 n</span>
+                    <span id="series2-wave-n-val" class="font-bold text-indigo-500">n = 3 (大三和弦第3諧波)</span>
+                  </div>
+                  <input id="series2-wave-n-slider" type="range" min="1" max="5" value="3" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <span class="text-xs text-slate-600 dark:text-slate-300">傅立葉大三和弦合成 (1st+3rd+5th)</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-wave-fourier-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1 font-mono">
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">諧振頻率 f_n:</span>
+                    <span id="series2-wave-fn-val" class="font-bold text-amber-500">425.0 Hz</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">駐波波長 λ_n:</span>
+                    <span id="series2-wave-lambda-val" class="font-bold text-cyan-500">8.00 m</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 col-span-2">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">波節座標 (振幅恆為零固定點):</span>
+                    <span id="series2-wave-nodes-val" class="font-bold text-emerald-500 text-[11px]">x = 0m, 3.0m, 6.0m, 9.0m, 12.0m</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態駐波干涉視覺化 Canvas -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-wave-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                  ✨ 駐波鎖定：完美大三和弦（CHORD 成功）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-wave-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-wave-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  因瓦滑塊鎖定4處波節（剪切應力0），激發第三諧波 425Hz 金色聲光干涉光輪！
+                </div>
+              </div>
+            </div>
+
+            <!-- CHORD 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 9 章核心密文：[ 03 - 08 - 15 - 18 - 04 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：03=C, 08=H, 15=O, 18=R, 04=D。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
+                03 ➜ C  |  08 ➜ H  |  15 ➜ O  |  18 ➜ R  |  04 ➜ D  ==>  【 CHORD 】（天籟和弦 · 心靈共鳴之弦）
+              </div>
+            </div>
+          </div>
+
 
 
 
@@ -4446,7 +4540,210 @@
 
 
 
-    // ================== 第三卷實驗邏輯 ==================
+    
+    // ================== 第 9 章：駐波干涉與傅立葉諧波共振 ==================
+    const s2WaveLSlider = document.getElementById('series2-wave-l-slider');
+    const s2WaveVSlider = document.getElementById('series2-wave-v-slider');
+    const s2WaveNSlider = document.getElementById('series2-wave-n-slider');
+    const s2WaveFourierToggle = document.getElementById('series2-wave-fourier-toggle');
+
+    const s2WaveLVal = document.getElementById('series2-wave-l-val');
+    const s2WaveVVal = document.getElementById('series2-wave-v-val');
+    const s2WaveNVal = document.getElementById('series2-wave-n-val');
+    const s2WaveFnVal = document.getElementById('series2-wave-fn-val');
+    const s2WaveLambdaVal = document.getElementById('series2-wave-lambda-val');
+    const s2WaveNodesVal = document.getElementById('series2-wave-nodes-val');
+    const s2WaveStatus = document.getElementById('series2-wave-status');
+    const s2WaveDesc = document.getElementById('series2-wave-desc');
+    const s2WaveCanvas = document.getElementById('series2-wave-canvas');
+
+    let s2WaveAnimId = null;
+    let s2WaveTime = 0;
+
+    function updateWaveSim() {
+      if (!s2WaveLSlider || !s2WaveVSlider || !s2WaveNSlider) return;
+      const L = parseFloat(s2WaveLSlider.value) / 10.0; // 6.0 to 24.0 m
+      const v = parseFloat(s2WaveVSlider.value); // 2000 to 4800 m/s
+      const n = parseInt(s2WaveNSlider.value, 10); // 1 to 5
+      const hasFourier = s2WaveFourierToggle ? s2WaveFourierToggle.checked : true;
+
+      const f1 = v / (2.0 * L);
+      const fn = n * f1;
+      const lambdaN = (2.0 * L) / n;
+
+      // 計算波節座標
+      const nodeCoords = [];
+      for (let i = 0; i <= n; i++) {
+        const xNode = (i * lambdaN) / 2.0;
+        nodeCoords.push(`${xNode.toFixed(1)}m`);
+      }
+
+      if (s2WaveLVal) s2WaveLVal.textContent = `${L.toFixed(1)} m (晶弦長度)`;
+      if (s2WaveVVal) s2WaveVVal.textContent = `${v.toFixed(0)} m/s (星輝水晶相速度)`;
+      if (s2WaveNVal) {
+        const modeDesc = n === 1 ? '基頻模式' : n === 3 ? '大三和弦第3諧波' : `第 ${n} 階諧波`;
+        s2WaveNVal.textContent = `n = ${n} (${modeDesc})`;
+      }
+      if (s2WaveFnVal) s2WaveFnVal.textContent = `${fn.toFixed(1)} Hz`;
+      if (s2WaveLambdaVal) s2WaveLambdaVal.textContent = `${lambdaN.toFixed(2)} m`;
+      if (s2WaveNodesVal) s2WaveNodesVal.textContent = `x = ${nodeCoords.join(', ')} (${n + 1} 個零振幅波節)`;
+
+      const isHarmonicChord = hasFourier && (n === 3 || n === 1);
+      if (isHarmonicChord) {
+        if (s2WaveStatus) {
+          s2WaveStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40';
+          s2WaveStatus.textContent = '✨ 駐波鎖定：完美大三和弦（CHORD 成功）';
+        }
+        if (s2WaveDesc) {
+          s2WaveDesc.textContent = `因瓦滑塊鎖定 ${n + 1} 處波節（剪切應力0），激發 ${fn.toFixed(1)}Hz 純律金色聲光干涉光輪！`;
+        }
+      } else {
+        if (s2WaveStatus) {
+          s2WaveStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40';
+          s2WaveStatus.textContent = `🌊 第 ${n} 階諧波駐波振盪中`;
+        }
+        if (s2WaveDesc) {
+          s2WaveDesc.textContent = `單一模態振盪，開啟傅立葉開關以合成大三和弦（CHORD）！`;
+        }
+      }
+    }
+
+    if (s2WaveLSlider) s2WaveLSlider.oninput = updateWaveSim;
+    if (s2WaveVSlider) s2WaveVSlider.oninput = updateWaveSim;
+    if (s2WaveNSlider) s2WaveNSlider.oninput = updateWaveSim;
+    if (s2WaveFourierToggle) s2WaveFourierToggle.onchange = updateWaveSim;
+
+    // 動態繪製駐波與聲光干涉條紋
+    function drawWaveCanvas() {
+      if (!s2WaveCanvas) return;
+      const ctx = s2WaveCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const L = s2WaveLSlider ? parseFloat(s2WaveLSlider.value) / 10.0 : 12.0;
+      const n = s2WaveNSlider ? parseInt(s2WaveNSlider.value, 10) : 3;
+      const hasFourier = s2WaveFourierToggle ? s2WaveFourierToggle.checked : true;
+
+      const w = s2WaveCanvas.width;
+      const h = s2WaveCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2WaveTime += 0.05;
+
+      const paddingX = 25;
+      const centerY = h / 2 + 10;
+      const drawWidth = w - paddingX * 2;
+      const maxAmp = 42;
+
+      // 繪製背景參考格線
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(paddingX, centerY);
+      ctx.lineTo(paddingX + drawWidth, centerY);
+      ctx.stroke();
+
+      // 繪製駐波包絡線 (Envelopes: ±2A sin(kx))
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+
+      // 上包絡
+      ctx.beginPath();
+      for (let px = 0; px <= drawWidth; px++) {
+        const normX = px / drawWidth;
+        const env = maxAmp * Math.sin(n * Math.PI * normX);
+        if (px === 0) ctx.moveTo(paddingX + px, centerY - env);
+        else ctx.lineTo(paddingX + px, centerY - env);
+      }
+      ctx.stroke();
+
+      // 下包絡
+      ctx.beginPath();
+      for (let px = 0; px <= drawWidth; px++) {
+        const normX = px / drawWidth;
+        const env = maxAmp * Math.sin(n * Math.PI * normX);
+        if (px === 0) ctx.moveTo(paddingX + px, centerY + env);
+        else ctx.lineTo(paddingX + px, centerY + env);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]); // 恢復實線
+
+      // 繪製動態波形 y(x, t) = 2A sin(kx) cos(ωt)
+      // 若開啟傅立葉合成，疊加 1st, 3rd, 5th 諧波
+      const osc = Math.cos(s2WaveTime * 4);
+      const osc3 = Math.cos(s2WaveTime * 12);
+      const osc5 = Math.cos(s2WaveTime * 20);
+
+      const grad = ctx.createLinearGradient(paddingX, centerY - maxAmp, paddingX + drawWidth, centerY + maxAmp);
+      grad.addColorStop(0, '#38bdf8');
+      grad.addColorStop(0.5, '#fbbf24');
+      grad.addColorStop(1, '#f59e0b');
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      for (let px = 0; px <= drawWidth; px++) {
+        const normX = px / drawWidth;
+        let yDisp = 0;
+        if (hasFourier) {
+          // 傅立葉諧波合成
+          const y1 = (maxAmp * 0.6) * Math.sin(1 * Math.PI * normX) * osc;
+          const y3 = (maxAmp * 0.35) * Math.sin(3 * Math.PI * normX) * osc3;
+          const y5 = (maxAmp * 0.15) * Math.sin(5 * Math.PI * normX) * osc5;
+          yDisp = y1 + y3 + y5;
+        } else {
+          yDisp = maxAmp * Math.sin(n * Math.PI * normX) * osc;
+        }
+
+        if (px === 0) ctx.moveTo(paddingX + px, centerY - yDisp);
+        else ctx.lineTo(paddingX + px, centerY - yDisp);
+      }
+      ctx.stroke();
+
+      // 標註波節 (Nodes: y=0) - 紅色圓點與鎖定標籤
+      for (let i = 0; i <= n; i++) {
+        const nodeX = paddingX + (i / n) * drawWidth;
+        // 波節點
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(nodeX, centerY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#fca5a5';
+        ctx.font = 'bold 8px monospace';
+        ctx.fillText(`N${i}`, nodeX - 5, centerY + 14);
+      }
+
+      // 標註波腹 (Antinodes: 最大振幅點) - 金色光暈
+      for (let i = 0; i < n; i++) {
+        const antinodeX = paddingX + ((i + 0.5) / n) * drawWidth;
+        const pulse = Math.abs(Math.sin(s2WaveTime * 4));
+        ctx.fillStyle = `rgba(251, 191, 36, ${0.3 + pulse * 0.4})`;
+        ctx.beginPath();
+        ctx.arc(antinodeX, centerY - maxAmp * 0.8 * osc, 6 + pulse * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 頂部聲光干涉光輪文字
+      ctx.fillStyle = hasFourier ? '#fcd34d' : '#38bdf8';
+      ctx.font = 'bold 9px monospace';
+      const bannerText = hasFourier
+        ? '[CHORD LOCKED: FOURIER TRIAD 100%]'
+        : `[STANDING WAVE: MODE n=${n} ACTIVE]`;
+      ctx.fillText(bannerText, 15, 20);
+
+      s2WaveAnimId = requestAnimationFrame(drawWaveCanvas);
+    }
+
+    if (s2WaveCanvas) {
+      if (s2WaveAnimId) cancelAnimationFrame(s2WaveAnimId);
+      updateWaveSim();
+      drawWaveCanvas();
+    }
+
+
+// ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
     const notesData = [
       { name: 'C4', freq: 261.63 },
