@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (4項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (5項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2453,6 +2453,84 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗五：受迫振動與雙質量動態吸振器 (TMD) 共振模擬器 (第 5 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>💓 5. 受迫振動與雙質量動態吸振器（TMD）模擬器（第 5 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">f₀ = 10Hz ｜ A(ω) ∝ 1/|ω₀²-ω²| ｜ TMD Δφ=180°</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              監察處督察官雷諾在地底管網發動 10 Hz 次聲波干擾，企圖引發毀滅性共振震碎晨光堂的參賽機芯！林漪姉與采婭玆研發出「星輝矽晶反相動態吸振器（TMD）」，以 180° 反相干涉主動吸收衝擊動能。拖動外部干擾頻率滑桿，並切換 TMD 吸振開關，觀察共振峰削平與齒輪心跳鎖定：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  外部次聲波激勵頻率 f_ext：<span id="series2-tmd-freq-val" class="text-rose-600 font-mono text-sm">10.0 Hz (臨界共振點)</span>
+                </label>
+                <input id="series2-tmd-freq-slider" type="range" min="50" max="150" value="100" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  機械結構固有阻尼比 ζ：<span id="series2-tmd-damping-val" class="text-sky-600 font-mono text-sm">0.03 (極低阻尼 · 高品質Q)</span>
+                </label>
+                <input id="series2-tmd-damping-slider" type="range" min="1" max="15" value="3" class="w-full accent-sky-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">星輝單晶矽動態吸振器 (TMD)</span>
+                    <span class="text-[10px] text-slate-400">180° 反向相位吸振，削平破壞性共振峰</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-tmd-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>主擒縱叉振幅 A:</span>
+                    <span id="series2-tmd-amp-val" class="font-bold text-emerald-600">0.02 μm (平穩靜止)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>品質因子 Q = 1/(2ζ):</span>
+                    <span id="series2-tmd-q-val" class="font-bold text-indigo-600">98,000 (超高Q值)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>吸振相位差 Δφ:</span>
+                    <span id="series2-tmd-phase-val" class="font-bold text-sky-600">180.0° (完全反相消諧)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態共振曲線與機芯震動畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-tmd-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 動態吸振鎖定（PULSE 心跳平穩）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-tmd-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-tmd-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  星輝矽晶吸振片以 180° 反向相位吸收動能，主擒縱叉穩固如定海神針！
+                </div>
+              </div>
+            </div>
+
+            <!-- PULSE 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 5 章核心密文：[ 16 - 21 - 12 - 19 - 05 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 21=U, 12=L, 19=S, 05=E。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                16 ➜ P  |  21 ➜ U  |  12 ➜ L  |  19 ➜ S  |  05 ➜ E  ==>  【 PULSE 】（齒輪心跳 · 脈搏脈衝）
+              </div>
+            </div>
+          </div>
+
         </div>
 
 
@@ -3353,6 +3431,204 @@
       updateOrbitSim();
       drawOrbitCanvas();
     }
+
+    // ================== 第 5 章：受迫振動與雙質量動態吸振器 (TMD) ==================
+    const s2TmdFreqSlider = document.getElementById('series2-tmd-freq-slider');
+    const s2TmdDampSlider = document.getElementById('series2-tmd-damping-slider');
+    const s2TmdToggle = document.getElementById('series2-tmd-toggle');
+    const s2TmdFreqVal = document.getElementById('series2-tmd-freq-val');
+    const s2TmdDampVal = document.getElementById('series2-tmd-damping-val');
+    const s2TmdAmpVal = document.getElementById('series2-tmd-amp-val');
+    const s2TmdQVal = document.getElementById('series2-tmd-q-val');
+    const s2TmdPhaseVal = document.getElementById('series2-tmd-phase-val');
+    const s2TmdStatus = document.getElementById('series2-tmd-status');
+    const s2TmdDesc = document.getElementById('series2-tmd-desc');
+    const s2TmdCanvas = document.getElementById('series2-tmd-canvas');
+
+    let s2TmdAnimId = null;
+    let s2TmdTime = 0;
+
+    function updateTmdSim() {
+      if (!s2TmdFreqSlider) return;
+      const f = parseFloat(s2TmdFreqSlider.value) / 10.0; // 5.0 to 15.0 Hz
+      const zeta = parseFloat(s2TmdDampSlider ? s2TmdDampSlider.value : 3) / 100.0; // 0.01 to 0.15
+      const hasTmd = s2TmdToggle ? s2TmdToggle.checked : true;
+
+      const f0 = 10.0; // 固有頻率 10 Hz
+
+      if (s2TmdFreqVal) s2TmdFreqVal.textContent = `${f.toFixed(1)} Hz ${Math.abs(f - 10.0) < 0.3 ? '(臨界共振點)' : ''}`;
+      if (s2TmdDampVal) s2TmdDampVal.textContent = `${zeta.toFixed(2)} (品質Q=${Math.round(1 / (2 * zeta))})`;
+      if (s2TmdQVal) s2TmdQVal.textContent = `${Math.round(1 / (2 * zeta) * 1000).toLocaleString()} (星輝高Q)`;
+
+      let amp = 0;
+      if (!hasTmd) {
+        // 單自由度受迫振動振幅: A = 1 / sqrt((1 - r^2)^2 + (2*zeta*r)^2)
+        const r = f / f0;
+        const denom = Math.sqrt(Math.pow(1 - r * r, 2) + Math.pow(2 * zeta * r, 2));
+        amp = (1.0 / (denom || 0.01)) * 0.15; // μm
+        if (s2TmdPhaseVal) s2TmdPhaseVal.textContent = `${(Math.atan2(2 * zeta * r, 1 - r * r) * 180 / Math.PI).toFixed(1)}°`;
+      } else {
+        // 雙自由度 TMD: 在 r=1.0 處振幅大幅陷落 (anti-resonance)
+        const r = f / f0;
+        const tmdDip = Math.abs(1 - r * r); // 0 at r=1
+        const denom = Math.sqrt(Math.pow((1 - r * r) * (1 - r * r) - 0.15, 2) + Math.pow(2 * zeta * r, 2));
+        amp = (tmdDip / (denom || 0.05)) * 0.25;
+        if (s2TmdPhaseVal) s2TmdPhaseVal.textContent = `180.0° (反向完全消諧)`;
+      }
+
+      if (s2TmdAmpVal) {
+        s2TmdAmpVal.textContent = `${amp.toFixed(2)} μm`;
+        s2TmdAmpVal.className = amp > 1.2 ? 'font-bold text-rose-500' : 'font-bold text-emerald-600';
+      }
+
+      if (amp > 1.2) {
+        if (s2TmdStatus) {
+          s2TmdStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2TmdStatus.textContent = '⚠️ 破壞性共振爆裂！游絲劇烈變形';
+        }
+        if (s2TmdDesc) s2TmdDesc.textContent = '外部次聲頻率鎖定 10Hz 固有頻率！無 TMD 吸振，振幅飆升超越金屬彈性極限！';
+      } else {
+        if (s2TmdStatus) {
+          s2TmdStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2TmdStatus.textContent = '✨ 動態吸振鎖定（PULSE 心跳平穩）';
+        }
+        if (s2TmdDesc) s2TmdDesc.textContent = '星輝矽晶吸振片以 180° 反向相位吸收動能，主擒縱叉穩固如定海神針！';
+      }
+    }
+
+    if (s2TmdFreqSlider) s2TmdFreqSlider.oninput = updateTmdSim;
+    if (s2TmdDampSlider) s2TmdDampSlider.oninput = updateTmdSim;
+    if (s2TmdToggle) s2TmdToggle.onchange = updateTmdSim;
+
+    // 動畫循環繪製 TMD 頻響曲線與齒輪
+    function drawTmdCanvas() {
+      if (!s2TmdCanvas) return;
+      const ctx = s2TmdCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const f = s2TmdFreqSlider ? parseFloat(s2TmdFreqSlider.value) / 10.0 : 10.0;
+      const zeta = s2TmdDampSlider ? parseFloat(s2TmdDampSlider.value) / 100.0 : 0.03;
+      const hasTmd = s2TmdToggle ? s2TmdToggle.checked : true;
+      const f0 = 10.0;
+
+      const w = s2TmdCanvas.width;
+      const h = s2TmdCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // 繪製背景網格與坐標軸
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      for (let x = 20; x < w; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 10);
+        ctx.lineTo(x, h - 25);
+        ctx.stroke();
+      }
+      for (let y = 20; y < h - 25; y += 30) {
+        ctx.beginPath();
+        ctx.moveTo(20, y);
+        ctx.lineTo(w - 10, y);
+        ctx.stroke();
+      }
+
+      // 坐標軸標籤
+      ctx.fillStyle = '#64748b';
+      ctx.font = '9px monospace';
+      ctx.fillText('5Hz', 22, h - 12);
+      ctx.fillText('10Hz(f₀)', w / 2 - 18, h - 12);
+      ctx.fillText('15Hz', w - 35, h - 12);
+      ctx.fillText('振幅 A', 22, 18);
+
+      // 繪製頻率響應曲線
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = hasTmd ? '#10b981' : '#f43f5e';
+
+      for (let px = 20; px <= w - 10; px++) {
+        const freqAtX = 5.0 + ((px - 20) / (w - 30)) * 10.0; // 5 to 15 Hz
+        const r = freqAtX / f0;
+        let a = 0;
+        if (!hasTmd) {
+          const denom = Math.sqrt(Math.pow(1 - r * r, 2) + Math.pow(2 * zeta * r, 2));
+          a = Math.min(120, (1.0 / (denom || 0.01)) * 12);
+        } else {
+          const tmdDip = Math.abs(1 - r * r);
+          const denom = Math.sqrt(Math.pow((1 - r * r) * (1 - r * r) - 0.15, 2) + Math.pow(2 * zeta * r, 2));
+          a = Math.min(120, (tmdDip / (denom || 0.05)) * 18);
+        }
+
+        const py = (h - 30) - a;
+        if (px === 20) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      // 當前工作點標記
+      const currentX = 20 + ((f - 5.0) / 10.0) * (w - 30);
+      const curR = f / f0;
+      let curA = 0;
+      if (!hasTmd) {
+        const denom = Math.sqrt(Math.pow(1 - curR * curR, 2) + Math.pow(2 * zeta * curR, 2));
+        curA = Math.min(120, (1.0 / (denom || 0.01)) * 12);
+      } else {
+        const tmdDip = Math.abs(1 - curR * curR);
+        const denom = Math.sqrt(Math.pow((1 - curR * curR) * (1 - curR * curR) - 0.15, 2) + Math.pow(2 * zeta * curR, 2));
+        curA = Math.min(120, (tmdDip / (denom || 0.05)) * 18);
+      }
+      const currentY = (h - 30) - curA;
+
+      // 垂線投影
+      ctx.strokeStyle = '#38bdf8';
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      ctx.moveTo(currentX, currentY);
+      ctx.lineTo(currentX, h - 25);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 工作點光標
+      ctx.fillStyle = curA > 50 ? '#ef4444' : '#10b981';
+      ctx.shadowColor = curA > 50 ? '#ef4444' : '#10b981';
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(currentX, currentY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // 右上角即時微型齒輪心跳動畫
+      s2TmdTime += 0.05;
+      const gearX = w - 45;
+      const gearY = 35;
+      const wobble = curA > 50 ? (Math.random() - 0.5) * 6 : 0;
+
+      ctx.save();
+      ctx.translate(gearX + wobble, gearY + wobble);
+      ctx.rotate(s2TmdTime * 2);
+      ctx.fillStyle = curA > 50 ? '#f43f5e' : '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(0, 0, 14, 0, Math.PI * 2);
+      ctx.fill();
+      // 齒輪齒
+      for (let i = 0; i < 6; i++) {
+        ctx.rotate(Math.PI / 3);
+        ctx.fillRect(-2, -18, 4, 6);
+      }
+      ctx.restore();
+
+      // TMD 狀態文字標籤
+      ctx.fillStyle = hasTmd ? '#34d399' : '#f87171';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText(hasTmd ? '[TMD ACTIVE: 180° ANTI-PHASE]' : '[NO TMD: RESONANCE DANGER!]', 25, h - 35);
+
+      s2TmdAnimId = requestAnimationFrame(drawTmdCanvas);
+    }
+
+    if (s2TmdCanvas) {
+      if (s2TmdAnimId) cancelAnimationFrame(s2TmdAnimId);
+      updateTmdSim();
+      drawTmdCanvas();
+    }
+
 
 
     // ================== 第三卷實驗邏輯 ==================
