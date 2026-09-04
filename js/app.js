@@ -1449,7 +1449,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (1項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (2項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -1559,6 +1559,77 @@
             </div>
           </div>
         </div>
+
+        
+          <!-- 實驗二：司涅爾折射定律與十二面稜鏡色散器 (第 2 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🌈 2. 司涅爾折射定律與旋轉稜鏡色散模擬器（第 2 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">n₁ sin θ₁ = n₂ sin θ₂</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              林漪姉在第四副鐘樓調校的十二面體旋轉稜鏡，利用司涅爾折射定律將過熱紅外光束分離，並折射出七彩光譜。調節入射角 θ₁ 與介質折射率 n₂，即時計算折射角 θ₂ 並觀察光線色散路徑：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  入射光角度 θ₁（空中光線入射）：<span id="series2-theta1-val" class="text-rose-600 font-mono text-sm">45°</span>
+                </label>
+                <input id="series2-theta1-slider" type="range" min="5" max="85" value="45" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  稜鏡晶體折射率 n₂（星輝琉璃介質）：<span id="series2-n2-val" class="text-rose-600 font-mono text-sm">1.52 (重火石琉璃)</span>
+                </label>
+                <input id="series2-n2-slider" type="range" min="120" max="220" value="152" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <div class="space-y-1.5 text-xs font-mono mt-4">
+                  <div class="flex justify-between text-slate-500">
+                    <span>折射角 θ₂ (Snell 计算):</span>
+                    <span id="series2-theta2-val" class="font-bold text-sky-600">27.7°</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>色散紅藍光分離夾角 Δθ:</span>
+                    <span id="series2-dispersion-val" class="font-bold text-amber-600">1.82°</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>全反射臨界角 θ_c:</span>
+                    <span id="series2-critical-val" class="font-bold text-emerald-600">41.1°</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 稜鏡動態折射光束模擬畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-snell-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
+                  🌈 稜鏡正常折射與色散中
+                </div>
+                <div class="relative w-44 h-40 flex items-center justify-center">
+                  <div id="series2-prism-triangle" class="w-0 h-0 border-l-[60px] border-l-transparent border-r-[60px] border-r-transparent border-b-[100px] border-b-cyan-500/30 filter drop-shadow-[0_0_12px_rgba(6,182,212,0.5)]"></div>
+                  <!-- 入射光束線 -->
+                  <div id="series2-ray-in" class="absolute w-20 h-0.5 bg-white origin-right transform" style="top: 65px; left: -10px; transform: rotate(45deg);"></div>
+                  <!-- 出射色散彩虹束 -->
+                  <div id="series2-rainbow-beam" class="absolute w-24 h-6 origin-left transform rounded-r" style="top: 75px; right: -15px; transform: rotate(-25deg); background: linear-gradient(to bottom, #ef4444, #f59e0b, #10b981, #06b6d4, #8b5cf6); opacity: 0.85;"></div>
+                </div>
+                <div id="series2-snell-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  n₁·sin(θ₁) = n₂·sin(θ₂) 達成完美色散，熱光譜被精準分離！
+                </div>
+              </div>
+            </div>
+
+            <!-- VIVI 密碼解碼驗證 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 2 章核心密文：[ 22 - 09 - 22 - 09 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：第 22 位為 V，第 9 位為 I。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                22 ➜ V  |  09 ➜ I  |  22 ➜ V  |  09 ➜ I  ==>  【 VIVI 】（林漪姉的英文暱稱，象徵活力與生機）
+              </div>
+            </div>
+          </div>
 
         <!-- 第三卷實驗室內容 -->
         <div id="lab-section-vol3" class="${activeLabTab === 'vol3' ? 'space-y-8' : 'hidden'}">
@@ -2124,6 +2195,59 @@
         s2CipherOutput.textContent = `${letters.join(' - ')}  ➜  ${word} ${word === 'DAWN' ? '（晨曦 / 晨光堂）' : ''}`;
       };
     }
+
+    
+    // 司涅爾折射定律模擬器事件 (Ch 2)
+    const s2Theta1Slider = document.getElementById('series2-theta1-slider');
+    const s2N2Slider = document.getElementById('series2-n2-slider');
+    const s2Theta1Val = document.getElementById('series2-theta1-val');
+    const s2N2Val = document.getElementById('series2-n2-val');
+    const s2Theta2Val = document.getElementById('series2-theta2-val');
+    const s2DispersionVal = document.getElementById('series2-dispersion-val');
+    const s2CriticalVal = document.getElementById('series2-critical-val');
+    const s2SnellStatus = document.getElementById('series2-snell-status');
+    const s2RayIn = document.getElementById('series2-ray-in');
+    const s2RainbowBeam = document.getElementById('series2-rainbow-beam');
+    const s2SnellDesc = document.getElementById('series2-snell-desc');
+
+    function updateSnellSim() {
+      if (!s2Theta1Slider || !s2N2Slider) return;
+      const theta1 = parseFloat(s2Theta1Slider.value);
+      const n2 = parseFloat(s2N2Slider.value) / 100.0;
+      const n1 = 1.0; // 空氣
+
+      s2Theta1Val.textContent = `${theta1.toFixed(0)}°`;
+      s2N2Val.textContent = `${n2.toFixed(2)} (星輝琉璃)`;
+
+      // Snell: sin(theta2) = (n1 / n2) * sin(theta1)
+      const rad1 = (theta1 * Math.PI) / 180.0;
+      const sinTheta2 = (n1 / n2) * Math.sin(rad1);
+      
+      const criticalRad = Math.asin(Math.min(1.0, 1.0 / n2));
+      const criticalDeg = (criticalRad * 180.0 / Math.PI).toFixed(1);
+      s2CriticalVal.textContent = `${criticalDeg}°`;
+
+      if (sinTheta2 <= 1.0) {
+        const rad2 = Math.asin(sinTheta2);
+        const deg2 = (rad2 * 180.0 / Math.PI).toFixed(1);
+        const dispersion = (deg2 * 0.065).toFixed(2);
+
+        s2Theta2Val.textContent = `${deg2}°`;
+        s2DispersionVal.textContent = `${dispersion}°`;
+        s2SnellStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40';
+        s2SnellStatus.textContent = '🌈 稜鏡正常折射與色散中';
+
+        if (s2RayIn) s2RayIn.style.transform = `rotate(${theta1}deg)`;
+        if (s2RainbowBeam) {
+          s2RainbowBeam.style.opacity = '0.9';
+          s2RainbowBeam.style.transform = `rotate(-${deg2}deg)`;
+        }
+        if (s2SnellDesc) s2SnellDesc.textContent = `入射角 ${theta1}° 產生 ${deg2}° 精確折射，紅外光被有效分離！`;
+      }
+    }
+
+    if (s2Theta1Slider) s2Theta1Slider.oninput = updateSnellSim;
+    if (s2N2Slider) s2N2Slider.oninput = updateSnellSim;
 
     // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
