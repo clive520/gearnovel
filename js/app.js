@@ -74,6 +74,39 @@
     }
   }
 
+  // 智慧同步所有已讀進度的成就徽章（含第一套 1-32 與第二套新書章節）
+  function syncProgressBadges() {
+    if (!state.progress || !DATA.badges) return;
+    let newlyUnlocked = false;
+
+    DATA.badges.forEach(badge => {
+      // 依據 bookId 與 chapterId 精確匹配
+      if (badge.bookId && badge.chapterId !== undefined) {
+        if (state.progress[badge.bookId] && state.progress[badge.bookId].read && state.progress[badge.bookId].read.includes(badge.chapterId)) {
+          if (!state.unlockedBadges.includes(badge.id)) {
+            state.unlockedBadges.push(badge.id);
+            newlyUnlocked = true;
+          }
+        }
+      } else if (badge.id <= 32) {
+        // 第一套歷史相容處理
+        let bId = 'book-1';
+        if (badge.id >= 11 && badge.id <= 22) bId = 'book-2';
+        if (badge.id >= 23 && badge.id <= 32) bId = 'book-3';
+        if (state.progress[bId] && state.progress[bId].read && state.progress[bId].read.includes(badge.id)) {
+          if (!state.unlockedBadges.includes(badge.id)) {
+            state.unlockedBadges.push(badge.id);
+            newlyUnlocked = true;
+          }
+        }
+      }
+    });
+
+    if (newlyUnlocked) {
+      localStorage.setItem(STORAGE_KEYS.BADGES, JSON.stringify(state.unlockedBadges));
+    }
+  }
+
   function saveProgress(bookId, chapterId) {
     if (!state.progress[bookId]) {
       state.progress[bookId] = { lastChapter: chapterId, read: [] };
@@ -84,8 +117,19 @@
     }
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
     
-    // 章節閱讀對應徽章解鎖（第一卷 1-10，第二卷 11-22）
-    unlockBadge(chapterId);
+    // 智慧定位該章節專屬徽章（精確區隔第一套與第二套新書章節）
+    const badge = DATA.badges.find(b => 
+      (b.bookId === bookId && b.chapterId === chapterId) ||
+      (!b.bookId && b.id === chapterId && (
+        (bookId === 'book-1' && chapterId <= 10) ||
+        (bookId === 'book-2' && chapterId >= 11 && chapterId <= 22) ||
+        (bookId === 'book-3' && chapterId >= 23 && chapterId <= 32)
+      ))
+    );
+
+    if (badge) {
+      unlockBadge(badge.id);
+    }
   }
 
   // ================== 書籤管理系統 ==================
@@ -3520,49 +3564,171 @@
     }
   }
 
-  // 頁面渲染器：閱讀成就徽章
+  // 頁面渲染器：閱讀成就徽章（支援套書切換與第二套新書章節徽章）
+  let activeBadgeTab = 'all';
+
+  window.switchBadgeTab = function(tab) {
+    activeBadgeTab = tab;
+    renderBadges();
+  };
+
   function renderBadges() {
+    // 進入榮譽成就頁時自動同步已讀章節成就
+    if (typeof syncProgressBadges === 'function') {
+      syncProgressBadges();
+    }
+
     const container = document.getElementById('app-main');
-    const total = DATA.badges.length;
-    const unlockedCount = state.unlockedBadges.length;
-    const percent = Math.round((unlockedCount / total) * 100);
+    const allBadges = DATA.badges || [];
+    
+    // 第一套與第二套新書徽章分組
+    const series1Badges = allBadges.filter(b => b.series === 'series1' || (!b.series && b.id <= 32));
+    const series2Badges = allBadges.filter(b => b.series === 'series2' || b.id >= 33);
+
+    let displayBadges = allBadges;
+    if (activeBadgeTab === 'series1') {
+      displayBadges = series1Badges;
+    } else if (activeBadgeTab === 'series2') {
+      displayBadges = series2Badges;
+    }
+
+    const total = displayBadges.length;
+    const unlockedCount = displayBadges.filter(b => state.unlockedBadges.includes(b.id)).length;
+    const percent = total > 0 ? Math.round((unlockedCount / total) * 100) : 0;
+
+    const overallTotal = allBadges.length;
+    const overallUnlocked = state.unlockedBadges.length;
+    const overallPercent = overallTotal > 0 ? Math.round((overallUnlocked / overallTotal) * 100) : 0;
 
     container.innerHTML = `
-      <section class="max-w-4xl mx-auto mb-16">
-        <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>🏆 閱讀冒險成就</span>
+      <section class="max-w-5xl mx-auto mb-16">
+        <!-- 頂部榮譽統計看板 -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3 border border-amber-500/20">
+            <span>🏆 少年冒險家榮譽勳章</span>
+            <span class="w-1 h-1 rounded-full bg-amber-500"></span>
+            <span>全書庫成就解鎖榜</span>
           </div>
-          <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">記憶黑客榮譽勳章</h1>
-          <p class="text-sm text-slate-500">隨著閱讀章節推進，一步步解鎖屬於你的小偵探成就勳章！</p>
+          <h1 class="text-3xl sm:text-4xl font-black mb-3 text-slate-900 dark:text-white tracking-tight">
+            閱讀冒險榮譽勳章
+          </h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            伴隨章節閱讀探索，解鎖屬於你的榮譽成就！點擊章節隨時前往閱讀與重溫。
+          </p>
           
-          <div class="mt-6 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-            <div class="flex items-center justify-between text-xs font-bold mb-2">
-              <span>收集進度：${unlockedCount} / ${total} 枚</span>
-              <span class="text-amber-600">${percent}%</span>
+          <div class="mt-6 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-bold mb-2.5">
+              <span class="text-slate-700 dark:text-slate-300">
+                ${activeBadgeTab === 'all' ? '總收集進度' : (activeBadgeTab === 'series1' ? '《失落的二十四小時》收集進度' : '《星願鐘擺與織光少女》收集進度')}：
+                <span class="text-amber-600 font-mono font-black">${unlockedCount} / ${total}</span> 枚
+              </span>
+              <span class="text-amber-600 font-mono font-bold text-sm">${percent}%</span>
             </div>
-            <div class="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-              <div class="h-full bg-amber-500 rounded-full transition-all duration-500" style="width: ${percent}%;"></div>
+            <div class="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden p-0.5">
+              <div class="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500 shadow-sm" style="width: ${percent}%;"></div>
             </div>
+            ${activeBadgeTab !== 'all' ? `
+              <div class="mt-2 text-[11px] text-slate-400 text-right">
+                全書庫總進度：${overallUnlocked} / ${overallTotal} 枚 (${overallPercent}%)
+              </div>
+            ` : ''}
           </div>
         </div>
 
+        <!-- 套書分類切換籤 -->
+        <div class="flex items-center justify-center flex-wrap gap-2.5 mb-8">
+          <button onclick="window.switchBadgeTab('all')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'all'
+              ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50'
+          }">
+            <span>🌟 全部榮譽</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'all' ? 'bg-amber-700 text-amber-100' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${allBadges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series1')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series1'
+              ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50'
+          }">
+            <span>⚙️ 第一套：《失落的二十四小時》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series1' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${series1Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series2')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series2'
+              ? 'bg-rose-600 text-white shadow-md shadow-rose-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500/50'
+          }">
+            <span>🌸 第二套：《星願鐘擺與織光少女》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series2Badges.length}</span>
+          </button>
+        </div>
+
+        <!-- 勳章卡片展示網格 -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          ${DATA.badges.map(badge => {
+          ${displayBadges.map(badge => {
             const isUnlocked = state.unlockedBadges.includes(badge.id);
+            const isSeries2 = badge.series === 'series2' || badge.id >= 33;
+            const targetBookId = badge.bookId || (badge.id <= 10 ? 'book-1' : badge.id <= 22 ? 'book-2' : 'book-3');
+            const targetChapterId = badge.chapterId !== undefined ? badge.chapterId : badge.id;
+
             return `
-              <div class="badge-card p-5 rounded-2xl border ${isUnlocked ? 'badge-unlocked' : 'badge-locked border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50'} flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-inner ${isUnlocked ? 'bg-amber-500/20' : 'bg-slate-200 dark:bg-slate-800'}">
-                  ${badge.icon}
-                </div>
+              <div class="badge-card p-5 rounded-2xl border transition-all ${
+                isUnlocked 
+                  ? (isSeries2 ? 'border-rose-500/40 bg-gradient-to-b from-rose-500/10 to-transparent shadow-md' : 'border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-transparent shadow-md') 
+                  : 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40'
+              } flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2 mb-1">
-                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">${badge.name}</h4>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full ${isUnlocked ? 'bg-emerald-500/10 text-emerald-600 font-bold' : 'bg-slate-200 dark:bg-slate-800 text-slate-400'}">
-                      ${isUnlocked ? '已獲得' : '未解鎖'}
-                    </span>
+                  <!-- 頂部圖示與狀態標籤 -->
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-inner ${
+                      isUnlocked 
+                        ? (isSeries2 ? 'bg-rose-500/20 text-rose-600' : 'bg-amber-500/20 text-amber-600') 
+                        : 'bg-slate-200 dark:bg-slate-800 opacity-60 grayscale'
+                    }">
+                      ${badge.icon}
+                    </div>
+                    <div class="flex flex-col items-end gap-1">
+                      <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                        isUnlocked 
+                          ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' 
+                          : 'bg-slate-200 dark:bg-slate-800 text-slate-400'
+                      }">
+                        ${isUnlocked ? '✨ 已獲得' : (badge.upcoming ? '⏳ 連載中' : '🔒 待解鎖')}
+                      </span>
+                      <span class="text-[10px] text-slate-400 font-medium">
+                        ${badge.volTitle ? badge.volTitle.split('·')[0].trim() : (badge.id <= 32 ? '第一套' : '第二套')}
+                      </span>
+                    </div>
                   </div>
-                  <p class="text-xs text-slate-500 leading-relaxed">${badge.desc}</p>
+
+                  <!-- 勳章名稱與描述 -->
+                  <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
+                    <span>${badge.name}</span>
+                    ${isUnlocked ? '<span class="text-amber-500 text-xs">⭐</span>' : ''}
+                  </h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    ${badge.desc}
+                  </p>
+                </div>
+
+                <!-- 底部章節跳轉動作 -->
+                <div class="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs">
+                  ${!badge.upcoming ? `
+                    <a href="#/read/${targetBookId}/${targetChapterId}" class="inline-flex items-center gap-1 text-[11px] font-bold ${
+                      isUnlocked 
+                        ? (isSeries2 ? 'text-rose-600 dark:text-rose-400 hover:underline' : 'text-amber-600 dark:text-amber-400 hover:underline') 
+                        : 'text-slate-500 hover:text-amber-600 transition-colors'
+                    }">
+                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${targetChapterId} 章)</span>
+                      <span>➜</span>
+                    </a>
+                  ` : `
+                    <span class="text-[11px] text-slate-400 italic">
+                      ⏳ 章節連載中 · 敬請期待
+                    </span>
+                  `}
                 </div>
               </div>
             `;
@@ -3572,7 +3738,8 @@
     `;
   }
 
-  // 全域頂部導覽列與彈窗事件初始化
+
+    // 全域頂部導覽列與彈窗事件初始化
   function initGlobalEvents() {
     updateNavBookmarkBadge();
 

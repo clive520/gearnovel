@@ -1148,193 +1148,428 @@ window.GEAR_NOVELS_DATA = {
     "id": 1,
     "name": "初入鹿陽",
     "icon": "🏫",
-    "desc": "閱讀第 1 章：發現被偷走的星期三"
+    "desc": "閱讀第 1 章：發現被偷走的星期三",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 1,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 2,
     "name": "喚醒皮可",
     "icon": "🐶",
-    "desc": "閱讀第 2 章：解開鉛盒密碼喚醒摺紙犬"
+    "desc": "閱讀第 2 章：解開鉛盒密碼喚醒摺紙犬",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 2,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 3,
     "name": "書庫巡禮者",
     "icon": "📚",
-    "desc": "閱讀第 3 章：破譯圖書館倒懸齒輪機關"
+    "desc": "閱讀第 3 章：破譯圖書館倒懸齒輪機關",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 3,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 4,
     "name": "邏輯破門者",
     "icon": "⚡",
-    "desc": "閱讀第 4 章：利用布林邏輯門癱瘓機器人群"
+    "desc": "閱讀第 4 章：利用布林邏輯門癱瘓機器人群",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 4,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 5,
     "name": "時空旁觀者",
     "icon": "🎞️",
-    "desc": "閱讀第 5 章：重現星期三全息記憶投影"
+    "desc": "閱讀第 5 章：重現星期三全息記憶投影",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 5,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 6,
     "name": "光學領航員",
     "icon": "🔦",
-    "desc": "閱讀第 6 章：穿過幽靈走廊激光迷陣"
+    "desc": "閱讀第 6 章：穿過幽靈走廊激光迷陣",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 6,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 7,
     "name": "鏡像識破者",
     "icon": "🪞",
-    "desc": "閱讀第 7 章：識破虛擬假象，飛躍奇偶橋"
+    "desc": "閱讀第 7 章：識破虛擬假象，飛躍奇偶橋",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 7,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 8,
     "name": "齒輪傳承人",
     "icon": "⚙️",
-    "desc": "閱讀第 8 章：計算傳動比插入第零天密鑰"
+    "desc": "閱讀第 8 章：計算傳動比插入第零天密鑰",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 8,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 9,
     "name": "逆轉雷霆",
     "icon": "⚡",
-    "desc": "閱讀第 9 章：超導並聯接地，逮捕真兇"
+    "desc": "閱讀第 9 章：超導並聯接地，逮捕真兇",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 9,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 10,
     "name": "記憶守護神",
     "icon": "🌟",
-    "desc": "閱讀第 10 章大結局：重啟真實的星期三世界！"
+    "desc": "閱讀第 10 章大結局：重啟真實的星期三世界！",
+    "series": "series1",
+    "bookId": "book-1",
+    "chapterId": 10,
+    "volTitle": "第一卷 · 校園地下 404 室"
   },
   {
     "id": 11,
     "name": "破浪啟航",
     "icon": "⛵",
-    "desc": "閱讀第 11 章：破譯光學浮標，駛入千島齒輪海！"
+    "desc": "閱讀第 11 章：破譯光學浮標，駛入千島齒輪海！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 11,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 12,
     "name": "離心破浪者",
     "icon": "🌪️",
-    "desc": "閱讀第 12 章：破解合力向量，逃出發條大漩渦！"
+    "desc": "閱讀第 12 章：破解合力向量，逃出發條大漩渦！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 12,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 13,
     "name": "水翼獵手",
     "icon": "🏄‍♂️",
-    "desc": "閱讀第 13 章：水翼衝浪極限破浪，擊潰黑潮機械獵鯊群！"
+    "desc": "閱讀第 13 章：水翼衝浪極限破浪，擊潰黑潮機械獵鯊群！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 13,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 14,
     "name": "旗語引航官",
     "icon": "🚩",
-    "desc": "閱讀第 14 章：破譯國際海事旗語，開啟雙霧迷峽深淵之門！"
+    "desc": "閱讀第 14 章：破譯國際海事旗語，開啟雙霧迷峽深淵之門！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 14,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 15,
     "name": "深淵救贖者",
     "icon": "🛟",
-    "desc": "閱讀第 15 章：突破地熱下拽流，水翼極限救回老守燈人！"
+    "desc": "閱讀第 15 章：突破地熱下拽流，水翼極限救回老守燈人！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 15,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 16,
     "name": "發條攀登者",
     "icon": "⚙️",
-    "desc": "閱讀第 16 章：破譯阿基米德浮箱配重比，跨越立體發條迴廊！"
+    "desc": "閱讀第 16 章：破譯阿基米德浮箱配重比，跨越立體發條迴廊！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 16,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 17,
     "name": "幻鏡識破者",
     "icon": "🪞",
-    "desc": "閱讀第 17 章：破解布魯斯特角，撕破上蜃景全息迷陣！"
+    "desc": "閱讀第 17 章：破解布魯斯特角，撕破上蜃景全息迷陣！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 17,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 18,
     "name": "星海樂章",
     "icon": "🎵",
-    "desc": "閱讀第 18 章：奏響天琴純律和弦，引導夜光水母電漿雷霆！"
+    "desc": "閱讀第 18 章：奏響天琴純律和弦，引導夜光水母電漿雷霆！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 18,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 19,
     "name": "共焦追光者",
     "icon": "🔦",
-    "desc": "閱讀第 19 章：精確校準菲涅耳水晶透鏡，激發直貫地心神聖光束！"
+    "desc": "閱讀第 19 章：精確校準菲涅耳水晶透鏡，激發直貫地心神聖光束！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 19,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 20,
     "name": "地心守護者",
     "icon": "🔥",
-    "desc": "閱讀第 20 章：祖孫三十年深海重逢，破譯七芒星模運算阻尼矩陣！"
+    "desc": "閱讀第 20 章：祖孫三十年深海重逢，破譯七芒星模運算阻尼矩陣！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 20,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 21,
     "name": "差速平抑宗師",
     "icon": "⚙️",
-    "desc": "閱讀第 21 章：洛倫茲超導護盾硬抗電漿，行星差速自平衡拯救地心！"
+    "desc": "閱讀第 21 章：洛倫茲超導護盾硬抗電漿，行星差速自平衡拯救地心！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 21,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 22,
     "name": "永恆點燈人",
     "icon": "🌟",
-    "desc": "閱讀第 22 章大結局：三神具合體，點亮千島齒輪海的永恆之光！"
+    "desc": "閱讀第 22 章大結局：三神具合體，點亮千島齒輪海的永恆之光！",
+    "series": "series1",
+    "bookId": "book-2",
+    "chapterId": 22,
+    "volTitle": "第二卷 · 千島齒輪海的迷失燈塔"
   },
   {
     "id": 23,
     "name": "平流層信標",
     "icon": "📡",
-    "desc": "閱讀第 23 章：解碼氣壓高度計，捕獲萬米高空下墜求救訊號！"
+    "desc": "閱讀第 23 章：解碼氣壓高度計，捕獲萬米高空下墜求救訊號！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 23,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 24,
     "name": "天穹破空者",
     "icon": "🎈",
-    "desc": "閱讀第 24 章：計算理想氣體浮力，駕駛熱氣球飛艦直衝對流層！"
+    "desc": "閱讀第 24 章：計算理想氣體浮力，駕駛熱氣球飛艦直衝對流層！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 24,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 25,
     "name": "失速獵鷹",
     "icon": "🦅",
-    "desc": "閱讀第 25 章：運用伯努利攻角失速，超導音爆瓦解天穹翼龍群！"
+    "desc": "閱讀第 25 章：運用伯努利攻角失速，超導音爆瓦解天穹翼龍群！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 25,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 26,
     "name": "雷霆避難所",
     "icon": "⚡",
-    "desc": "閱讀第 26 章：黑鐵平底鍋終極接地，法拉第籠抗擊百萬伏特雷擊！"
+    "desc": "閱讀第 26 章：黑鐵平底鍋終極接地，法拉第籠抗擊百萬伏特雷擊！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 26,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 27,
     "name": "科氏領航官",
     "icon": "🪽",
-    "desc": "閱讀第 27 章：補償旋轉科氏力偏轉，零相對速度登陸天穹浮空城！"
+    "desc": "閱讀第 27 章：補償旋轉科氏力偏轉，零相對速度登陸天穹浮空城！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 27,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 28,
     "name": "零重力衝浪手",
     "icon": "🚀",
-    "desc": "閱讀第 28 章：動量守恆平底鍋噴氣，穿透失控無重力發條走廊！"
+    "desc": "閱讀第 28 章：動量守恆平底鍋噴氣，穿透失控無重力發條走廊！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 28,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 29,
     "name": "天體漫步者",
     "icon": "🪐",
-    "desc": "閱讀第 29 章：破譯開普勒第三定律，飛躍千米懸空行星天梯！"
+    "desc": "閱讀第 29 章：破譯開普勒第三定律，飛躍千米懸空行星天梯！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 29,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 30,
     "name": "十二律解密人",
     "icon": "🎵",
-    "desc": "閱讀第 30 章：三神具共奏純律和弦，超聲空化拯救第十二黃金音叉！"
+    "desc": "閱讀第 30 章：三神具共奏純律和弦，超聲空化拯救第十二黃金音叉！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 30,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 31,
     "name": "湮滅審判官",
     "icon": "⚔️",
-    "desc": "閱讀第 31 章：多普勒反相干涉激光，徹底消解暗物質黑晶巨獸！"
+    "desc": "閱讀第 31 章：多普勒反相干涉激光，徹底消解暗物質黑晶巨獸！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 31,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
   },
   {
     "id": 32,
     "name": "天穹破曉之神",
     "icon": "🌟",
-    "desc": "閱讀第 32 章大結局：雙槌合擊正午十二點，引力反轉重啟天穹之城！"
+    "desc": "閱讀第 32 章大結局：雙槌合擊正午十二點，引力反轉重啟天穹之城！",
+    "series": "series1",
+    "bookId": "book-3",
+    "chapterId": 32,
+    "volTitle": "第三卷 · 星穹鐘樓的第十二個音符"
+  },
+  {
+    "id": 33,
+    "name": "晨光初綻",
+    "icon": "🌸",
+    "desc": "閱讀第 1 章：解開晨光堂發條熱膨脹與單擺等時週期之謎！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 1,
+    "volTitle": "第二套 · 追光星盤的修復師"
+  },
+  {
+    "id": 34,
+    "name": "冰霜之約",
+    "icon": "❄️",
+    "desc": "閱讀第 2 章：以薰衣草油與司涅爾稜鏡折射，喚醒冰霜少女的心扉！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 2,
+    "volTitle": "第二套 · 追光星盤的修復師"
+  },
+  {
+    "id": 35,
+    "name": "時間之心",
+    "icon": "🔥",
+    "desc": "閱讀第 3 章：在 230°C 居禮點熔鑄因瓦合金雙金屬發條，鍛造恆定力矩！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 3,
+    "volTitle": "第二套 · 追光星盤的修復師"
+  },
+  {
+    "id": 36,
+    "name": "雙星軌道",
+    "icon": "🔭",
+    "desc": "第 4 章：破譯天體星盤角動量守恆，校準旋轉雙星軌道！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 4,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 37,
+    "name": "齒輪心跳",
+    "icon": "⚙️",
+    "desc": "第 5 章：傾聽擒縱輪頻率心跳，突破材料共振極限！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 5,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 38,
+    "name": "雲海引航",
+    "icon": "🪁",
+    "desc": "第 6 章：迎風張開翼帆，罧貁銁引領穿透深邃亂流！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 6,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 39,
+    "name": "光學稜鏡",
+    "icon": "🌈",
+    "desc": "第 7 章：全反射臨界角聚焦，撕裂監察處光學迷霧！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 7,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 40,
+    "name": "巨像對決",
+    "icon": "🛡️",
+    "desc": "第 8 章：以力矩平衡與微積分軌跡瓦解重型蒸汽巨像！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 8,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 41,
+    "name": "星芒共振",
+    "icon": "💎",
+    "desc": "第 9 章：星耀機械大賽決賽，三位少年攜手敲響星願儀！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 9,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
+  },
+  {
+    "id": 42,
+    "name": "首席星軌師",
+    "icon": "👑",
+    "desc": "第 10 章大結局：采婭玆與林漪姉並肩登頂，加冕星港首位女首席！",
+    "series": "series2",
+    "bookId": "book-4",
+    "chapterId": 10,
+    "volTitle": "第二套 · 追光星盤的修復師",
+    "upcoming": true
   }
 ]
 };
