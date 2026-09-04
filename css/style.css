@@ -294,3 +294,45 @@ html {
 }
 
 
+
+/* 中文專名號 (Proper Noun Mark / Underline for Character Names) */
+.proper-noun, u.proper-noun {
+  text-decoration: underline !important;
+  text-decoration-style: solid !important;
+  text-underline-offset: 3.5px !important;
+  text-decoration-thickness: 1.5px !important;
+  text-decoration-skip-ink: none !important;
+  text-decoration-color: currentColor !important;
+  transition: background-color 0.2s ease, text-decoration-color 0.2s ease;
+  cursor: help;
+}
+
+.proper-noun:hover, u.proper-noun:hover {
+  text-decoration-color: var(--accent-gear) !important;
+  background-color: rgba(217, 119, 6, 0.12);
+  border-radius: 2px;
+}
+
+[data-theme="sepia"] .proper-noun, [data-theme="sepia"] u.proper-noun {
+  text-decoration-color: #5c4b37 !important;
+}
+[data-theme="sepia"] .proper-noun:hover, [data-theme="sepia"] u.proper-noun:hover {
+  text-decoration-color: #b45309 !important;
+  background-color: rgba(180, 83, 9, 0.12);
+}
+
+[data-theme="dark"] .proper-noun, [data-theme="dark"] u.proper-noun {
+  text-decoration-color: #cbd5e1 !important;
+}
+[data-theme="dark"] .proper-noun:hover, [data-theme="dark"] u.proper-noun:hover {
+  text-decoration-color: #fbbf24 !important;
+  background-color: rgba(245, 158, 11, 0.18);
+}
+
+/* 關閉專名號時的隱藏樣式 */
+.hide-proper-nouns .proper-noun,
+.hide-proper-nouns u.proper-noun {
+  text-decoration: none !important;
+  cursor: inherit !important;
+  background: transparent !important;
+}

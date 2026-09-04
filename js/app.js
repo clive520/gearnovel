@@ -19,7 +19,8 @@
     PROGRESS: 'gear_novel_progress',
     BADGES: 'gear_novel_badges',
     BOOKMARKS: 'gear_novel_bookmarks',
-    LANG: 'gear_novel_lang'
+    LANG: 'gear_novel_lang',
+    PROPER_NOUN: 'gear_novel_proper_noun'
   };
 
   const state = {
@@ -288,7 +289,7 @@
   }
 
   // 簡易 Markdown 轉 HTML 解析器（支援語意段落索引 data-para-index）
-  function parseMarkdown(md) {
+  function parseMarkdown(md, isEnglish = false) {
     if (!md) return '';
     const blocks = md.split(/\r?\n\r?\n/).map(b => b.trim()).filter(b => b.length > 0);
     let html = '';
@@ -302,14 +303,14 @@
       // 二級標題
       if (b.startsWith('## ')) {
         const titleText = b.replace(/^##\s*/, '');
-        html += `<h2 data-para-index="${idx}"><span class="text-amber-500">⚙️</span> ${formatInline(titleText)}</h2>`;
+        html += `<h2 data-para-index="${idx}"><span class="text-amber-500">⚙️</span> ${formatInline(titleText, isEnglish)}</h2>`;
         continue;
       }
 
       // 三級標題
       if (b.startsWith('### ')) {
         const titleText = b.replace(/^###\s*/, '');
-        html += `<h3 data-para-index="${idx}" class="text-xl font-bold text-amber-600 mt-6 mb-3">${formatInline(titleText)}</h3>`;
+        html += `<h3 data-para-index="${idx}" class="text-xl font-bold text-amber-600 mt-6 mb-3">${formatInline(titleText, isEnglish)}</h3>`;
         continue;
       }
 
@@ -329,7 +330,7 @@
       // 引言區塊
       if (b.startsWith('>')) {
         const lines = b.split('\n').map(l => l.replace(/^>\s*/, '').trim()).filter(l => l.length > 0);
-        html += `<blockquote data-para-index="${idx}">` + lines.map(l => `<p>${formatInline(l)}</p>`).join('') + `</blockquote>`;
+        html += `<blockquote data-para-index="${idx}">` + lines.map(l => `<p>${formatInline(l, isEnglish)}</p>`).join('') + `</blockquote>`;
         continue;
       }
 
@@ -341,7 +342,7 @@
       }
 
       // 一般段落
-      html += `<p data-para-index="${idx}">${formatInline(b)}</p>`;
+      html += `<p data-para-index="${idx}">${formatInline(b, isEnglish)}</p>`;
     }
 
     return html;
@@ -372,8 +373,8 @@
         const enTitle = en.replace(/^##\s*/, '');
         html += `
           <h2 data-para-index="${i}" class="mt-10 mb-4 pb-2 border-b border-amber-500/20">
-            <span class="text-amber-500">⚙️</span> ${formatInline(zhTitle)}
-            ${en ? `<span class="block text-sm font-serif italic text-amber-700 dark:text-amber-400 font-normal mt-1">${formatInline(enTitle)}</span>` : ''}
+            <span class="text-amber-500">⚙️</span> ${formatInline(zhTitle, false)}
+            ${en ? `<span class="block text-sm font-serif italic text-amber-700 dark:text-amber-400 font-normal mt-1">${formatInline(enTitle, true)}</span>` : ''}
           </h2>
         `;
         continue;
@@ -407,8 +408,8 @@
       if (zh.startsWith('* ') || zh.startsWith('- ')) {
         html += `
           <div data-para-index="${i}" class="bilingual-pair my-4 pl-2 space-y-2">
-            <div class="text-sm text-slate-800 dark:text-slate-200">${formatInline(zh)}</div>
-            ${en ? `<div class="en-para text-xs">${formatInline(en)}</div>` : ''}
+            <div class="text-sm text-slate-800 dark:text-slate-200">${formatInline(zh, false)}</div>
+            ${en ? `<div class="en-para text-xs">${formatInline(en, true)}</div>` : ''}
           </div>
         `;
         continue;
@@ -417,8 +418,8 @@
       // 一般段落雙語對照
       html += `
         <div data-para-index="${i}" class="bilingual-pair mb-6">
-          <p class="zh-para text-slate-800 dark:text-slate-200 leading-relaxed">${formatInline(zh)}</p>
-          ${en ? `<p class="en-para text-slate-500 dark:text-slate-400 font-serif italic text-[15px] leading-relaxed border-l-2 border-amber-500/40 pl-3.5 mt-1">${formatInline(en)}</p>` : ''}
+          <p class="zh-para text-slate-800 dark:text-slate-200 leading-relaxed">${formatInline(zh, false)}</p>
+          ${en ? `<p class="en-para text-slate-500 dark:text-slate-400 font-serif italic text-[15px] leading-relaxed border-l-2 border-amber-500/40 pl-3.5 mt-1">${formatInline(en, true)}</p>` : ''}
         </div>
       `;
     }
@@ -426,13 +427,119 @@
     return html;
   }
 
-  function formatInline(str) {
+  // ================== 專名號自動標注引擎 (Proper Noun Annotator) ==================
+  const PROPER_NAMES_ZH = [
+    { name: '塞西莉亞', role: '天穹領航員與星穹聲學少女' },
+    { name: '雷格艦長', role: '天穹浮空艦隊總司令' },
+    { name: '雷格', role: '天穹浮空艦隊總司令' },
+    { name: '巴克船長', role: '鐵錨幫改邪歸正老船長' },
+    { name: '巴克', role: '鐵錨幫改邪歸正老船長' },
+    { name: '老莫里斯', role: '千島海老守燈人' },
+    { name: '莫里斯', role: '千島海老守燈人' },
+    { name: '莫老', role: '千島海老守燈人' },
+    { name: '誠遠山', role: '誠浩的爺爺 · 退休老校長' },
+    { name: '邱校長', role: '鹿陽國小現任校長' },
+    { name: '高老師', role: '自然科學實驗老師' },
+    { name: '采修誠', role: '晨光堂老掌門 · 采婭玆的爺爺' },
+    { name: '林嚴院長', role: '天樞科學院院長 · 林漪姉的父親' },
+    { name: '林嚴', role: '天樞科學院院長 · 林漪姉的父親' },
+    { name: '采婭玆', role: '女主角 · 晨光堂鐘錶學徒' },
+    { name: '林漪姉', role: '女主角 · 天樞科學院天才少女' },
+    { name: '罧貁銁', role: '男主角 · 雲海引航少年' },
+    { name: '露露', role: '折耳機械萌狐' },
+    { name: '雷諾', role: '天樞科學院傲慢學員' },
+    { name: '誠浩', role: '男主角 · 齒輪解謎少年' },
+    { name: '葉旖緁', role: '女主角 · 數據與光學少女' },
+    { name: '將江', role: '男主角 · 機械動力大師' },
+    { name: '皮可', role: '智慧機械貓頭鷹' },
+    { name: '沈天成', role: '前機械導師' },
+    { name: '嵐', role: '海風島暴風少女' }
+  ];
+  PROPER_NAMES_ZH.sort((a, b) => b.name.length - a.name.length);
+  const ZH_NAME_MAP = Object.fromEntries(PROPER_NAMES_ZH.map(n => [n.name, n.role]));
+  const ZH_NAME_REGEX = new RegExp('(' + PROPER_NAMES_ZH.map(n => n.name.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|') + ')', 'g');
+
+  const PROPER_NAMES_EN = [
+    { name: 'Cheng Hao', role: 'Protagonist' },
+    { name: 'Ye Yijie', role: 'Protagonist' },
+    { name: 'Jiang Jiang', role: 'Protagonist' },
+    { name: 'Pico', role: 'Mechanical Owl' },
+    { name: 'Cecilia', role: 'Sky Navigator' },
+    { name: 'Captain Reg', role: 'Fleet Commander' },
+    { name: 'Captain Buck', role: 'Airship Captain' },
+    { name: 'Old Morris', role: 'Lighthouse Keeper' },
+    { name: 'Morris', role: 'Lighthouse Keeper' },
+    { name: 'Grandpa Cheng', role: 'Cheng\'s Grandpa' },
+    { name: 'Cheng Yuan-Shan', role: 'Cheng\'s Grandpa' },
+    { name: 'Principal Qiu', role: 'Principal' },
+    { name: 'Teacher Gao', role: 'Science Teacher' },
+    { name: 'Shen Tiancheng', role: 'Former Mentor' },
+    { name: 'Lan', role: 'Storm Girl' },
+    { name: 'Cai-Ya-Zi', role: 'Clockmaker Apprentice' },
+    { name: 'Dawn', role: 'Clockmaker Apprentice (Cai-Ya-Zi)' },
+    { name: 'Lin-Yi-Jie', role: 'Academy Prodigy' },
+    { name: 'Vivi', role: 'Academy Prodigy (Lin-Yi-Jie)' },
+    { name: 'Shen-You-Jun', role: 'Navigator Boy' },
+    { name: 'Zephyr', role: 'Navigator Boy (Shen-You-Jun)' },
+    { name: 'Lulu', role: 'Mechanical Fox' },
+    { name: 'Renault', role: 'Academy Student' },
+    { name: 'Master Cai', role: 'Dawn Hall Master' },
+    { name: 'Director Lin', role: 'Academy Director' },
+    { name: 'Lin Yan', role: 'Academy Director' }
+  ];
+  PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
+  const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
+  const EN_NAME_REGEX = new RegExp('\\b(' + PROPER_NAMES_EN.map(n => n.name.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|') + ')\\b', 'g');
+
+  function applyProperNouns(htmlStr, isEnglish = false) {
+    if (!htmlStr) return '';
+    const tokens = htmlStr.split(/(<[^>]+>)/);
+    let inCode = false;
+    let inExistingU = false;
+
+    const res = [];
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+      if (!token) continue;
+
+      if (token.startsWith('<')) {
+        const lower = token.toLowerCase();
+        if (lower.startsWith('<code') || lower.startsWith('<pre')) inCode = true;
+        else if (lower.startsWith('</code') || lower.startsWith('</pre')) inCode = false;
+        else if (lower.startsWith('<u')) inExistingU = true;
+        else if (lower.startsWith('</u')) inExistingU = false;
+        res.push(token);
+      } else {
+        if (inCode || inExistingU) {
+          res.push(token);
+        } else {
+          let text = token;
+          if (!isEnglish) {
+            text = text.replace(ZH_NAME_REGEX, (m) => {
+              const role = ZH_NAME_MAP[m] || '人物';
+              return `<u class="proper-noun" title="${m}（${role}）">${m}</u>`;
+            });
+          } else {
+            text = text.replace(EN_NAME_REGEX, (m) => {
+              const role = EN_NAME_MAP[m] || 'Character';
+              return `<u class="proper-noun" title="${m} (${role})">${m}</u>`;
+            });
+          }
+          res.push(text);
+        }
+      }
+    }
+    return res.join('');
+  }
+
+  function formatInline(str, isEnglish = false) {
     if (!str) return '';
-    return str
+    const inlined = str
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/➡️/g, '<span class="text-amber-500 font-bold mx-1">➜</span>');
+    return applyProperNouns(inlined, isEnglish);
   }
 
   function escapeHtml(text) {
@@ -770,13 +877,13 @@
 
     if (hasEnglish && state.readingLang === 'en') {
       displayTitle = chapter.enTitle || chapter.title;
-      displayContentHtml = parseMarkdown(chapter.rawContentEn);
+      displayContentHtml = parseMarkdown(chapter.rawContentEn, true);
     } else if (hasEnglish && state.readingLang === 'bilingual') {
       displayTitle = `${chapter.title} <span class="block text-base font-serif italic text-amber-600 font-normal mt-1">${chapter.enTitle || ''}</span>`;
       displayContentHtml = renderBilingualContent(chapter.rawContent, chapter.rawContentEn);
     } else {
       displayTitle = chapter.title;
-      displayContentHtml = parseMarkdown(chapter.rawContent);
+      displayContentHtml = parseMarkdown(chapter.rawContent, false);
     }
 
     container.innerHTML = `
@@ -823,6 +930,16 @@
           ` : ''}
 
           <!-- 字級調整選單 -->
+          <!-- 專名號標注切換按鈕 -->
+          <button id="btn-toggle-proper-noun" title="切換人名專名號（底線）顯示" class="px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1 ${
+            state.showProperNoun 
+              ? 'border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold' 
+              : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }">
+            <span class="underline underline-offset-2 decoration-1.5">名</span>
+            <span class="hidden sm:inline">專名號</span>
+          </button>
+
           <div class="relative">
             <button id="btn-font-menu" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800">
               字體 Aa
@@ -866,7 +983,7 @@
           </div>
         </header>
 
-        <div class="reader-content">
+        <div class="reader-content ${state.showProperNoun ? '' : 'hide-proper-nouns'}">
           ${displayContentHtml}
         </div>
 
