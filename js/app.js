@@ -622,206 +622,330 @@
     });
   };
 
-  // 頁面渲染器：書庫首頁
+  // 頁面渲染器：書庫首頁（精簡雙套書專題架構）
   function renderLibrary() {
     const container = document.getElementById('app-main');
-    
-    // 取出最新的藏書（最多 10 本，逆序讓最新出版的在最前）
-    const carouselBooks = [...DATA.books].reverse().slice(0, 10);
-    window.heroSlideIndex = 0;
+    const seriesList = window.GEAR_SERIES || [];
+
+    // 若有書籤紀錄，取出最新一筆作為續讀膠囊
+    const latestBookmark = (state.bookmarks && state.bookmarks.length > 0) ? state.bookmarks[0] : null;
 
     container.innerHTML = `
-      <!-- Hero 藏書輪播展示區塊 -->
-      <section id="hero-carousel-section" class="hero-carousel-container relative overflow-hidden rounded-3xl mb-12 border border-amber-500/20 shadow-xl" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(2, 132, 199, 0.08) 100%);">
-        
-        <!-- 背景旋轉齒輪裝飾 -->
-        <div class="absolute -right-16 -top-16 opacity-10 pointer-events-none z-0">
-          <svg class="w-96 h-96 spin-gear text-amber-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 13.5 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.07 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/></svg>
-        </div>
-
-        <!-- 輪播幻燈片群組 -->
-        <div class="relative min-h-[380px] sm:min-h-[340px] flex items-center">
-          ${carouselBooks.map((book, idx) => {
-            const lastCh = state.progress[book.id] ? state.progress[book.id].lastChapter : 1;
-            const isFirstChapterAvail = book.chapters && book.chapters.length > 0;
-            const firstChId = isFirstChapterAvail ? book.chapters[0].id : 1;
-            const isFirstSlide = idx === 0;
-
-            return `
-              <div class="hero-slide ${isFirstSlide ? 'active' : 'hidden-slide'} w-full p-8 md:p-12">
-                <div class="max-w-2xl relative z-10">
-                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-xs sm:text-sm font-semibold mb-4">
-                    <span>⚙️ 精選藏書 ${idx + 1}/${carouselBooks.length}</span>
-                    <span class="w-1 h-1 rounded-full bg-amber-500"></span>
-                    <span>${book.coverTag || book.status}</span>
-                    <span class="w-1 h-1 rounded-full bg-amber-500 hidden sm:inline-block"></span>
-                    <span class="hidden sm:inline-block">${book.targetAge}</span>
-                  </div>
-                  
-                  <h1 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-3 text-slate-900 dark:text-white leading-tight">
-                    ${book.title}
-                  </h1>
-                  <div class="text-base sm:text-xl font-bold text-amber-600 mb-4">
-                    ${book.subtitle}
-                  </div>
-                  
-                  <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-8 line-clamp-3 md:line-clamp-4">
-                    ${book.description}
-                  </p>
-                  
-                  <div class="flex flex-wrap items-center gap-4">
-                    ${isFirstChapterAvail ? `
-                      <a href="#/read/${book.id}/${firstChId}" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-lg shadow-amber-600/25 flex items-center gap-2 transition-all hover:scale-105">
-                        <span>📖 從頭開始閱讀 (第 ${firstChId} 章)</span>
-                      </a>
-                      ${lastCh > firstChId ? `
-                        <a href="#/read/${book.id}/${lastCh}" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold shadow-md flex items-center gap-2 transition-all">
-                          <span>📖 繼續閱讀 (第 ${lastCh} 章)</span>
-                        </a>
-                      ` : ''}
-                    ` : `
-                      <button disabled class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-bold cursor-not-allowed">
-                        即將啟航 · 敬請期待
-                      </button>
-                    `}
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-
-        <!-- 左右切換按鈕 (多於 1 本時顯示) -->
-        ${carouselBooks.length > 1 ? `
-          <div class="absolute right-6 bottom-6 md:bottom-8 z-20 flex items-center gap-2">
-            <button onclick="window.switchHeroSlide(window.heroSlideIndex - 1)" class="w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-amber-500/20 text-slate-700 dark:text-slate-200 hover:bg-amber-500 hover:text-white flex items-center justify-center transition-all shadow-md active:scale-95" title="上一本藏書">
-              ❮
-            </button>
-            <button onclick="window.switchHeroSlide(window.heroSlideIndex + 1)" class="w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-amber-500/20 text-slate-700 dark:text-slate-200 hover:bg-amber-500 hover:text-white flex items-center justify-center transition-all shadow-md active:scale-95" title="下一本藏書">
-              ❯
-            </button>
-          </div>
-
-          <!-- 底部指示圓點 -->
-          <div class="absolute left-8 md:left-12 bottom-6 z-20 flex items-center gap-2">
-            ${carouselBooks.map((_, idx) => `
-              <button onclick="window.switchHeroSlide(${idx})" class="hero-dot ${idx === 0 ? 'w-7 h-2.5 rounded-full bg-amber-500 shadow-sm' : 'w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 hover:bg-amber-400/60'} transition-all" title="第 ${idx + 1} 本：${carouselBooks[idx].title}"></button>
-            `).join('')}
-          </div>
-        ` : ''}
-      </section>
-
-      <!-- 最近置入的精確書籤快捷卡 -->
-      ${state.bookmarks.length > 0 ? `
-        <div class="mb-12 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-transparent border-2 border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md bookmark-ribbon">
-          <div class="flex items-start sm:items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-md flex-shrink-0">
-              🔖
-            </div>
+      <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
+      ${latestBookmark ? `
+        <div class="mb-8 p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-transparent border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-md flex-shrink-0">🔖</span>
             <div>
-              <div class="flex items-center gap-2 flex-wrap mb-1">
-                <span class="text-xs font-bold uppercase tracking-wider text-amber-600">上次閱讀書籤</span>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 font-bold">${state.bookmarks[0].bookTitle}</span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold">進度 ${state.bookmarks[0].percent}%</span>
+              <div class="flex items-center gap-2 flex-wrap text-xs">
+                <span class="font-bold text-amber-600 uppercase">繼續閱讀進度</span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">${latestBookmark.bookTitle}</span>
+                <span class="font-mono text-slate-500 dark:text-slate-400 font-semibold">${latestBookmark.percent}%</span>
               </div>
-              <h4 class="text-base font-bold text-slate-900 dark:text-white">
-                ${state.bookmarks[0].chapterTitle}
-              </h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 italic mt-0.5">
-                「${state.bookmarks[0].snippet}」
-              </p>
+              <div class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+                ${latestBookmark.chapterTitle}
+              </div>
             </div>
           </div>
           <div class="flex items-center gap-2.5 w-full sm:w-auto">
-            <button onclick="window.jumpToBookmark('${state.bookmarks[0].id}')" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-md active:scale-95">
-              <span>回到上次精確位置</span>
-              <span>→</span>
+            <button onclick="window.jumpToBookmark('${latestBookmark.id}')" class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95">
+              <span>回到上次位置</span> ➜
             </button>
-            <button onclick="document.getElementById('bookmarks-modal').classList.remove('hidden'); window.renderBookmarksModal();" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300" title="檢視所有書籤">
-              全部 (${state.bookmarks.length})
+            <button onclick="document.getElementById('bookmarks-modal').classList.remove('hidden'); window.renderBookmarksModal();" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300">
+              全部書籤 (${state.bookmarks.length})
             </button>
           </div>
         </div>
       ` : ''}
 
-      <!-- 書庫總覽 -->
-      <section class="mb-16">
-        <div class="flex items-center justify-between mb-8">
+      <!-- 精簡題頭 -->
+      <div class="mb-10 text-center max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
+          <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
+          <span class="w-1 h-1 rounded-full bg-amber-500"></span>
+          <span>兩大長篇旗艦系列</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+          冒險齒輪 · 少兒科幻小說庫
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+          專為 9～14 歲孩子打造的原創長篇科幻。融合硬核 STEM 物理數學謎題、精準專名號與有聲伴讀體驗。
+        </p>
+      </div>
+
+      <!-- 兩大旗艦套書專題展示區 (Series Showcase) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        
+        <!-- 【套書一】冒險齒輪：失落的二十四小時（三部曲完結篇） -->
+        <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50">
           <div>
-            <h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
-              <span>📚 藏書展示架</span>
-              <span class="text-sm font-normal px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400">共 ${DATA.books.length} 本</span>
+            <!-- 標籤與受眾 -->
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                🏆 第一套 · 全三卷完結旗艦套書
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲少兒 · STEM 密碼解謎</span>
+            </div>
+
+            <!-- 標題與引言 -->
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+              《冒險齒輪：失落的二十四小時》
             </h2>
-            <p class="text-sm text-slate-500 mt-1">專為少兒打造的中長篇科幻解謎小說系列，持續擴充中</p>
+            <p class="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mb-4">
+              當整個世界的星期三被神秘抹去，四位少年的記憶逆流大冒險！
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              鹿陽國小的發明少年誠浩戴上爺爺留下的黃銅護目鏡，攜手邏輯學霸葉旖緁、死黨將江與機械柴犬皮可，從校園地下404室殺向萬米高空的星穹浮空城！融合摩斯密碼、二進位、白努利定理與十二平均律音波的硬核科學冒險！
+            </p>
+
+            <!-- 收錄全三卷列表 -->
+            <div class="space-y-2.5 mb-6">
+              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>📚 收錄全三卷三部曲（共 32 章已完結）</span>
+                <span class="text-amber-600 font-mono">14.4 萬字</span>
+              </div>
+
+              <!-- 卷一 -->
+              <a href="#/read/book-1/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                      《校園地下 404 室》
+                    </div>
+                    <div class="text-[11px] text-slate-500">第 1～10 章 · 43.7k 字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
+                  </div>
+                </div>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
+
+              <!-- 卷二 -->
+              <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                      《千島齒輪海的迷失燈塔》
+                    </div>
+                    <div class="text-[11px] text-slate-500">第 11～22 章 · 52.1k 字 · 大航海 × 聲納共振 × 全息折射</div>
+                  </div>
+                </div>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
+
+              <!-- 卷三 -->
+              <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                      《星穹鐘樓的第十二個音符》
+                    </div>
+                    <div class="text-[11px] text-slate-500">第 23～32 章 · 48.5k 字 · 平流層天梯 × 天體音波 × 反重力科技</div>
+                  </div>
+                </div>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 底部亮點與行動按鈕 -->
+          <div>
+            <div class="pt-4 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                <span>✨ 32 章中英雙語對照</span>
+                <span>·</span>
+                <span>🧩 32 道 STEM 實驗</span>
+              </div>
+              <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                <a href="#/read/book-1/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>📖 從頭開始閱讀</span>
+                </a>
+                <button onclick="window.openSeriesModal('series-1')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+                  📑 全 32 回目錄
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          ${DATA.books.map((book, idx) => `
-            <div class="rounded-2xl border ${idx === 0 ? 'border-amber-500/40 shadow-xl bg-gradient-to-b from-amber-500/5 to-transparent' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'} p-6 flex flex-col justify-between transition-all hover:-translate-y-1">
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <span class="px-2.5 py-1 rounded-md text-xs font-bold ${
-                    book.status === '已完結' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/30' : 'bg-amber-500/10 text-amber-600 border border-amber-500/30'
-                  }">${book.status}</span>
-                  <span class="text-xs text-slate-400">${book.targetAge}</span>
-                </div>
-                <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">${book.title}</h3>
-                <p class="text-xs font-medium text-amber-600 mb-3">${book.subtitle}</p>
-                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-4 mb-4 leading-relaxed">${book.description}</p>
+        <!-- 【套書二】星願鐘擺與織光少女（預計全三卷 · 女生專屬） -->
+        <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50">
+          <div>
+            <!-- 標籤與受眾 -->
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
+                🌸 第二套 · 女生專屬 · 熱烈連載中
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲女孩專屬 · 鐘錶物理 × 成長心動</span>
+            </div>
+
+            <!-- 標題與引言 -->
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+              《星願鐘擺與織光少女》
+            </h2>
+            <p class="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 mb-4">
+              聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              十三歲鐘錶學徒采婭玆，立志成為星港首位女首席星軌修復師。在晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，熔鑄因瓦合金雙金屬發條，迎戰監察處重型蒸汽巨像！
+            </p>
+
+            <!-- 收錄全三卷列表 -->
+            <div class="space-y-2.5 mb-6">
+              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>📚 規劃全三卷三部曲（第一卷連載中）</span>
+                <span class="text-rose-600 font-mono">已發布 1.4 萬字</span>
               </div>
 
-              <div>
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 mb-4">
-                  <span>章節：${book.totalChapters}</span>
-                  <span>字數：${book.totalWords ? (book.totalWords / 1000).toFixed(1) + 'k' : '連載中'}</span>
+              <!-- 卷一 -->
+              <a href="#/read/book-4/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-rose-500/30 flex items-center justify-between hover:border-rose-500 hover:bg-rose-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition-colors flex items-center gap-2">
+                      <span>《追光星盤的修復師》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold">連載中</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500">第 1～3 章已上線 · 虎克定律 × 司涅爾折射 × 居禮點熔爐</div>
+                  </div>
                 </div>
-                ${book.chapters && book.chapters.length > 0 ? `
-                  <a href="#/read/${book.id}/${book.chapters[0].id}" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold flex items-center justify-center gap-2 transition-all">
-                    <span>開始線上閱讀</span> ➜
-                  </a>
-                ` : `
-                  <button disabled class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 font-medium cursor-not-allowed">
-                    即將啟航 · 敬請期待
-                  </button>
-                `}
+                <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
+
+              <!-- 卷二 (籌備中) -->
+              <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between opacity-85">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-700 dark:text-slate-300">
+                      《旋轉稜鏡的雙星軌道》
+                    </div>
+                    <div class="text-[11px] text-slate-400">預計 10 章 · 星耀機械大賽與雙星共振</div>
+                  </div>
+                </div>
+                <span class="text-[11px] px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 font-semibold flex-shrink-0 ml-2">構思籌備中</span>
+              </div>
+
+              <!-- 卷三 (即將登場) -->
+              <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between opacity-85">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-700 dark:text-slate-300">
+                      《天穹之心的永恆鐘鳴》
+                    </div>
+                    <div class="text-[11px] text-slate-400">預計 10 章 · 首席星軌修復師終章大結局</div>
+                  </div>
+                </div>
+                <span class="text-[11px] px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 font-semibold flex-shrink-0 ml-2">即將登場</span>
               </div>
             </div>
-          `).join('')}
+          </div>
+
+          <!-- 底部亮點與行動按鈕 -->
+          <div>
+            <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                <span>🌸 精密鐘錶力學 × 居禮點合金</span>
+                <span>·</span>
+                <span>👭 雙女主成長故事</span>
+              </div>
+              <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                <a href="#/read/book-4/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>🌸 開始閱讀第一卷</span>
+                </a>
+                <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+                  📑 查看章節目錄
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+
+      </div>
+
+      <!-- 全域套書章節目錄彈窗 (Series Catalog Modal) -->
+      <div id="series-catalog-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[85vh] flex flex-col">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
+            <div>
+              <div id="series-modal-badge" class="text-xs font-bold text-amber-600 mb-0.5">套書全章節目錄</div>
+              <h3 id="series-modal-title" class="font-extrabold text-xl text-slate-900 dark:text-white"></h3>
+            </div>
+            <button onclick="document.getElementById('series-catalog-modal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold p-1">✕</button>
+          </div>
+          <div id="series-modal-content" class="overflow-y-auto space-y-6 flex-1 pr-1">
+            <!-- 動態注入該套書的三卷章節清單 -->
+          </div>
+        </div>
+      </div>
     `;
-
-    // 啟動首頁藏書自動輪播（若有多本藏書）
-    if (carouselBooks.length > 1) {
-      function startHeroAutoplay() {
-        if (window.heroCarouselTimer) clearInterval(window.heroCarouselTimer);
-        window.heroCarouselTimer = setInterval(() => {
-          window.switchHeroSlide(window.heroSlideIndex + 1);
-        }, 5500);
-      }
-      function stopHeroAutoplay() {
-        if (window.heroCarouselTimer) {
-          clearInterval(window.heroCarouselTimer);
-          window.heroCarouselTimer = null;
-        }
-      }
-
-      startHeroAutoplay();
-
-      // 滑鼠懸停時暫停輪播，移開時繼續
-      const carouselSec = document.getElementById('hero-carousel-section');
-      if (carouselSec) {
-        carouselSec.addEventListener('mouseenter', stopHeroAutoplay);
-        carouselSec.addEventListener('mouseleave', startHeroAutoplay);
-        // 觸控事件友好處理
-        carouselSec.addEventListener('touchstart', stopHeroAutoplay, { passive: true });
-        carouselSec.addEventListener('touchend', () => {
-          setTimeout(startHeroAutoplay, 3000);
-        }, { passive: true });
-      }
-    }
   }
+
+  // 開啟特定套書的章節目錄 Modal
+  window.openSeriesModal = function(seriesId) {
+    const seriesList = window.GEAR_SERIES || [];
+    const series = seriesList.find(s => s.id === seriesId);
+    if (!series) return;
+
+    const modal = document.getElementById('series-catalog-modal');
+    const titleEl = document.getElementById('series-modal-title');
+    const badgeEl = document.getElementById('series-modal-badge');
+    const contentEl = document.getElementById('series-modal-content');
+
+    if (titleEl) titleEl.textContent = series.title;
+    if (badgeEl) badgeEl.textContent = `${series.badge} · ${series.stats.statusText}`;
+
+    if (contentEl) {
+      contentEl.innerHTML = series.volumes.map(vol => {
+        const book = vol.bookId ? DATA.books.find(b => b.id === vol.bookId) : null;
+        const isReleased = book && book.chapters && book.chapters.length > 0;
+
+        return `
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50/50 dark:bg-slate-800/30">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg ${series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : 'bg-amber-500/15 text-amber-600'} font-bold text-xs">
+                  ${vol.volNum}
+                </span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">
+                  ${vol.title}
+                </h4>
+              </div>
+              <span class="text-xs font-medium text-slate-500">
+                ${vol.wordCount}
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">
+              主題聚焦：${vol.theme}
+            </p>
+
+            ${isReleased ? `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                ${book.chapters.map(ch => `
+                  <a href="#/read/${book.id}/${ch.id}" onclick="document.getElementById('series-catalog-modal').classList.add('hidden')" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all flex items-center justify-between text-xs group">
+                    <span class="font-bold text-slate-700 dark:text-slate-200 group-hover:text-amber-600 truncate mr-2">
+                      ${ch.title}
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-mono flex-shrink-0">${ch.wordCount}字</span>
+                  </a>
+                `).join('')}
+              </div>
+            ` : `
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 text-slate-400 text-xs text-center font-medium">
+                ⏳ 正在全力編撰中 · 敬請期待後續精彩情節
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (modal) modal.classList.remove('hidden');
+  };
+
 
   // 取得讀者當前視窗視線焦點所在之段落索引 (data-para-index)
   function getCurrentlyVisibleParaIndex() {
