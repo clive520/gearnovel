@@ -1116,6 +1116,7 @@
       return char.vol === activeCharTab;
     });
 
+    const series2Count = allChars.filter(c => c.vol === 'series2').length;
     const vol3Count = allChars.filter(c => c.vol === 'vol3').length;
     const vol2Count = allChars.filter(c => c.vol === 'vol2').length;
     const vol1Count = allChars.filter(c => c.vol === 'vol1').length;
@@ -1125,10 +1126,10 @@
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>👥 冒險齒輪 · 全三卷人物檔案誌</span>
+            <span>👥 冒險齒輪 · 人物檔案誌</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">登場人物與核心機密檔案</h1>
-          <p class="text-sm text-slate-500">涵蓋校園地下 404 室、千島齒輪海到萬米天穹浮空城，全三部曲共 ${allChars.length} 位核心冒險家、守護宗師與陣營角色。</p>
+          <p class="text-sm text-slate-500">涵蓋第一套冒險三部曲與第二套《星願鐘擺與織光少女》，全系列共 ${allChars.length} 位核心主角、夥伴與導師檔案。</p>
         </div>
 
         <!-- 卷別切換標籤頁 -->
@@ -1140,6 +1141,15 @@
           }">
             <span>全部人物</span>
             <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'all' ? 'bg-amber-700 text-amber-100' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${allChars.length}</span>
+          </button>
+
+          <button onclick="window.switchCharTab('series2')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            activeCharTab === 'series2'
+              ? 'bg-rose-600 text-white shadow-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
+          }">
+            <span>🌸 第二套 · 星願鐘擺</span>
+            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series2Count}</span>
           </button>
 
           <button onclick="window.switchCharTab('vol3')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
@@ -1165,7 +1175,7 @@
               ? 'bg-amber-600 text-white shadow-md'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
           }">
-            <span>🎒 核心冒險主角群</span>
+            <span>🎒 第一套核心群</span>
             <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'core' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${coreCount}</span>
           </button>
 
@@ -1182,6 +1192,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
+            if (char.vol === 'series2') volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
