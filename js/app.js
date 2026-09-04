@@ -880,6 +880,7 @@
     voiceEn: null,
     autoScroll: true,
     currentUtterance: null,
+    sessionId: 0,
 
     init() {
       if (!this.synth) return;
@@ -892,8 +893,10 @@
     loadVoices() {
       if (!this.synth) return;
       const voices = this.synth.getVoices();
+      if (!voices || voices.length === 0) return;
       // 臺灣繁體中文優先
       this.voiceZh = voices.find(v => v.lang === 'zh-TW' || v.lang === 'zh_TW') ||
+                     voices.find(v => v.lang.toLowerCase().includes('tw')) ||
                      voices.find(v => v.lang.startsWith('zh')) ||
                      null;
       // 英語美式優先
@@ -972,7 +975,23 @@
         return;
       }
 
+      // 1. 生成新的 session 識別碼，讓舊段落的非同步事件徹底失效
+      this.sessionId = (this.sessionId || 0) + 1;
+      const mySessionId = this.sessionId;
+
+      // 2. 徹底解除舊 utterance 的回呼，防止 cancel 觸發錯誤連鎖快進
+      if (this.currentUtterance) {
+        this.currentUtterance.onend = null;
+        this.currentUtterance.onerror = null;
+        this.currentUtterance = null;
+      }
+
+      // 3. 重設並取消當前發音隊列
+      if (this.synth.paused) {
+        this.synth.resume();
+      }
       this.synth.cancel();
+
       this.currentIndex = index;
       this.isPlaying = true;
       this.isPaused = false;
@@ -980,49 +999,86 @@
       const block = this.blocks[index];
       this.highlightBlock(block);
 
-      // 決定朗讀文本與語系
+      // 4. 決定朗讀文本與語系
       let speakText = '';
-      let selectedVoice = this.voiceZh;
-      let pitch = 1.0;
+      let useLang = 'zh';
 
       if (block.langMode === 'en') {
         speakText = block.textEn || block.textZh;
-        selectedVoice = this.voiceEn;
+        useLang = 'en';
       } else if (block.langMode === 'bilingual') {
-        // 雙語模式先朗讀中文，再朗讀英文
         speakText = block.textZh + (block.textEn ? '。 ' + block.textEn : '');
-        selectedVoice = this.voiceZh;
+        useLang = 'zh';
       } else {
         speakText = block.textZh;
-        selectedVoice = this.voiceZh;
+        useLang = 'zh';
       }
 
+      // 清理殘留標籤與多餘符號
+      speakText = speakText.replace(/<\/?[^>]+(>|$)/g, '');
+      speakText = speakText.replace(/[_~*`#]/g, '').trim();
+
+      if (!speakText) {
+        if (this.currentIndex < this.blocks.length - 1) {
+          this.playAt(this.currentIndex + 1);
+        } else {
+          this.stop();
+        }
+        return;
+      }
+
+      // 若語音庫尚未載入，再次嘗試加載
+      if (!this.voiceZh || !this.voiceEn) {
+        this.loadVoices();
+      }
+      let selectedVoice = (useLang === 'en') ? this.voiceEn : this.voiceZh;
+
+      let pitch = 1.0;
       // 若包含角色引號對話「...」，稍微調高音調以增加生動感
       if (speakText.includes('「') || speakText.includes('“') || speakText.includes('"')) {
         pitch = 1.06;
       }
 
       const utter = new SpeechSynthesisUtterance(speakText);
+      // 關鍵修復：明確指定 lang 屬性，避免 Windows SAPI / 瀏覽器因未指定語言而崩潰報錯
+      utter.lang = (useLang === 'en') ? 'en-US' : 'zh-TW';
       utter.rate = this.rates[this.rateIndex];
       utter.pitch = pitch;
       if (selectedVoice) utter.voice = selectedVoice;
 
       utter.onend = () => {
-        if (!this.isPlaying) return;
-        // 自動順暢播放下一段
-        this.playAt(this.currentIndex + 1);
+        // 確保為當前活躍 session 且仍處於播放狀態
+        if (mySessionId !== this.sessionId || !this.isPlaying) return;
+        // 提供 180ms 的自然段落呼吸停頓，避免連鎖緊繃
+        setTimeout(() => {
+          if (mySessionId === this.sessionId && this.isPlaying) {
+            this.playAt(this.currentIndex + 1);
+          }
+        }, 180);
       };
 
       utter.onerror = (err) => {
-        console.warn('Speech error:', err);
-        if (this.isPlaying) {
-          this.playAt(this.currentIndex + 1);
-        }
+        // 使用者主動切換段落、暫停或停止時產生的 canceled / interrupted 屬於正常現象，直接忽略
+        if (err.error === 'canceled' || err.error === 'interrupted') return;
+        if (mySessionId !== this.sessionId) return;
+        console.warn('Speech error:', err.error, err);
+        // 遇到未預期錯誤時安全停止，絕不連環快進到最後一段！
+        this.stop();
       };
 
       this.currentUtterance = utter;
-      this.synth.speak(utter);
-      this.updatePlayStateUI(true);
+
+      // 5. 稍微延遲 25ms 呼叫 speak，防止 Chromium cancel 與 speak 處於同一個微任務時的音訊管線衝突
+      setTimeout(() => {
+        if (mySessionId !== this.sessionId || !this.isPlaying) return;
+        try {
+          this.synth.speak(utter);
+          this.updatePlayStateUI(true);
+        } catch (e) {
+          console.error('synth.speak failed:', e);
+          this.stop();
+        }
+      }, 25);
     },
 
     togglePlay() {
@@ -1048,7 +1104,16 @@
     },
 
     stop() {
-      if (this.synth) this.synth.cancel();
+      this.sessionId = (this.sessionId || 0) + 1;
+      if (this.currentUtterance) {
+        this.currentUtterance.onend = null;
+        this.currentUtterance.onerror = null;
+        this.currentUtterance = null;
+      }
+      if (this.synth) {
+        if (this.synth.paused) this.synth.resume();
+        this.synth.cancel();
+      }
       this.isPlaying = false;
       this.isPaused = false;
       this.clearHighlight();
@@ -1113,14 +1178,22 @@
     },
 
     reset() {
-      if (this.synth) this.synth.cancel();
+      this.sessionId = (this.sessionId || 0) + 1;
+      if (this.currentUtterance) {
+        this.currentUtterance.onend = null;
+        this.currentUtterance.onerror = null;
+        this.currentUtterance = null;
+      }
+      if (this.synth) {
+        if (this.synth.paused) this.synth.resume();
+        this.synth.cancel();
+      }
       this.isPlaying = false;
       this.isPaused = false;
       this.currentIndex = -1;
       this.blocks = [];
       this.clearHighlight();
       this.updatePlayStateUI(false);
-      this.updateProgressUI();
     },
 
     updatePlayStateUI(playing) {
