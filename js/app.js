@@ -662,14 +662,12 @@
       <div class="mb-10 text-center max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
           <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
-          <span class="w-1 h-1 rounded-full bg-amber-500"></span>
-          <span>兩大長篇旗艦系列</span>
         </div>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           冒險齒輪 · 少兒科幻小說庫
         </h1>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
-          專為 9～14 歲孩子打造的原創長篇科幻。融合硬核 STEM 物理數學謎題、精準專名號與有聲伴讀體驗。
+          專為 9～14 歲孩子打造的原創長篇科幻。融合 STEM 物理數學謎題、有聲伴讀體驗。
         </p>
       </div>
 
@@ -769,15 +767,15 @@
           </div>
         </div>
 
-        <!-- 【套書二】星願鐘擺與織光少女（預計全三卷 · 女生專屬） -->
+        <!-- 【套書二】星願鐘擺與織光少女（預計全三卷） -->
         <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50">
           <div>
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🌸 第二套 · 女生專屬 · 熱烈連載中
+                🌸 第二套 · 熱烈連載中
               </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲女孩專屬 · 鐘錶物理 × 成長心動</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 成長心動</span>
             </div>
 
             <!-- 標題與引言 -->

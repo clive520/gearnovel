@@ -1,7 +1,7 @@
 /**
  * 冒險齒輪 · 少兒科幻小說庫 (GearNovel Online)
  * 套書體系資料庫 (Series Master Database)
- * 前三卷整合為第一套完結套書，第二套規劃為全三卷女生成長套書
+ * 前三卷整合為第一套完結套書，第二套規劃為全三卷長篇套書
  */
 window.GEAR_SERIES = [
   {
@@ -69,10 +69,10 @@ window.GEAR_SERIES = [
     id: "series-2",
     title: "星願鐘擺與織光少女",
     enTitle: "Star-Wish Pendulum and the Weaver of Light",
-    subtitle: "女生專屬 · 鐘錶物理與唯美成長冒險（預計全三卷）",
+    subtitle: "鐘錶物理與唯美成長冒險（預計全三卷）",
     badge: "🌸 熱烈連載中",
     badgeColor: "rose",
-    targetAudience: "9～14 歲女孩專屬 · 鐘錶物理 × 微甜初戀",
+    targetAudience: "9～14 歲適讀 · 鐘錶物理 × 微甜初戀",
     tagline: "聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！",
     description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港首位女首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
     stats: {
@@ -122,7 +122,7 @@ window.GEAR_SERIES = [
       }
     ],
     highlights: [
-      "專為女孩打造的細膩筆觸與微甜心動情誼",
+      "細膩筆觸與微甜心動情誼",
       "硬核鐘錶力學、材料學與微積分光學對話",
       "采婭玆、林漪姉、罧貁銁並肩追光旅程"
     ],
