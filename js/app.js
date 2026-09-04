@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (7項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (8項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2684,6 +2684,84 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗八：槓桿原理與力矩平衡 (Torque Equilibrium) 巨像對決模擬器 (第 8 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🛡️ 8. 槓桿原理與力矩平衡巨像對決模擬器（第 8 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">Στ = 0 ｜ F₁·d₁ = F₂·d₂ ｜ MA = d₁/d₂ = 15</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              重達 350 公斤的蒸汽巨像歌利亞號以兩萬牛頓鐵拳砸下！林漪姉與采婭玆運用阿基米德複式槓桿與微積分質心切線，以 15 倍機械利益將微小拉力放大為 1,800 N·m 逆向力矩。拖動牽引力臂與拉力滑桿，觀察支點受力矩平衡與巨像癱瘓翻倒：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  牽引長力臂長度 d₁：<span id="series2-lever-d1-val" class="text-rose-600 font-mono text-sm">6.0 m (15倍機械利益)</span>
+                </label>
+                <input id="series2-lever-d1-slider" type="range" min="20" max="80" value="60" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  少女施加牽引力 F₁：<span id="series2-lever-f1-val" class="text-sky-600 font-mono text-sm">120 N (小女孩單手提水之力)</span>
+                </label>
+                <input id="series2-lever-f1-slider" type="range" min="40" max="250" value="120" class="w-full accent-sky-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">四聯滑輪組機械倍率 (Pulley Gain)</span>
+                    <span class="text-[10px] text-slate-400">額外提供 2.5 倍複合機械利益放大</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-pulley-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>綜合機械利益 MA:</span>
+                    <span id="series2-lever-ma-val" class="font-bold text-sky-600">37.5 倍 (阿基米德力學奇蹟)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>支點輸出反向扭矩 τ_out:</span>
+                    <span id="series2-lever-tau-val" class="font-bold text-emerald-600">1,800 N·m (超越1,500 N·m斷裂閾值)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>液壓缸剪應力比:</span>
+                    <span id="series2-lever-stress-val" class="font-bold text-indigo-600">120% (主活塞過載崩斷)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態槓桿與巨像受力畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-lever-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 支點力矩超載瓦解（PIVOT 成功）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-lever-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-lever-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  15倍槓桿力臂引發 1800 N·m 逆向力矩，巨像左膝主液壓缸過載爆裂癱瘓！
+                </div>
+              </div>
+            </div>
+
+            <!-- PIVOT 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 8 章核心密文：[ 16 - 09 - 22 - 15 - 20 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 09=I, 22=V, 15=O, 20=T。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                16 ➜ P  |  09 ➜ I  |  22 ➜ V  |  15 ➜ O  |  20 ➜ T  ==>  【 PIVOT 】（阿基米德支點 · 力矩樞紐）
+              </div>
+            </div>
+          </div>
+
 
 
 
@@ -4162,6 +4240,207 @@
       updateTirSim();
       drawTirCanvas();
     }
+
+    // ================== 第 8 章：槓桿原理與力矩平衡巨像對決 ==================
+    const s2LeverD1Slider = document.getElementById('series2-lever-d1-slider');
+    const s2LeverF1Slider = document.getElementById('series2-lever-f1-slider');
+    const s2PulleyToggle = document.getElementById('series2-pulley-toggle');
+    const s2LeverD1Val = document.getElementById('series2-lever-d1-val');
+    const s2LeverF1Val = document.getElementById('series2-lever-f1-val');
+    const s2LeverMaVal = document.getElementById('series2-lever-ma-val');
+    const s2LeverTauVal = document.getElementById('series2-lever-tau-val');
+    const s2LeverStressVal = document.getElementById('series2-lever-stress-val');
+    const s2LeverStatus = document.getElementById('series2-lever-status');
+    const s2LeverDesc = document.getElementById('series2-lever-desc');
+    const s2LeverCanvas = document.getElementById('series2-lever-canvas');
+
+    let s2LeverAnimId = null;
+    let s2ColossusTilt = 0;
+
+    function updateLeverSim() {
+      if (!s2LeverD1Slider || !s2LeverF1Slider) return;
+      const d1 = parseFloat(s2LeverD1Slider.value) / 10.0; // 2.0 to 8.0 m
+      const f1 = parseFloat(s2LeverF1Slider.value); // 40 to 250 N
+      const hasPulley = s2PulleyToggle ? s2PulleyToggle.checked : true;
+      const pulleyGain = hasPulley ? 2.5 : 1.0;
+
+      const d2 = 0.4; // 巨像阻力力臂 0.4 m
+      const ma = (d1 / d2) * pulleyGain;
+      const tauOut = Math.round(f1 * d1 * pulleyGain);
+      const stressPercent = Math.round((tauOut / 1500.0) * 100);
+      const isToppled = tauOut >= 1500;
+
+      if (s2LeverD1Val) s2LeverD1Val.textContent = `${d1.toFixed(1)} m (${(d1 / d2).toFixed(1)}倍幾何力臂)`;
+      if (s2LeverF1Val) s2LeverF1Val.textContent = `${f1.toFixed(0)} N (微小牽引巧力)`;
+      if (s2LeverMaVal) s2LeverMaVal.textContent = `${ma.toFixed(1)} 倍 (複合機械利益)`;
+      if (s2LeverTauVal) {
+        s2LeverTauVal.textContent = `${tauOut.toLocaleString()} N·m (${isToppled ? '超越1500 N·m破壞極限' : '未達瓦解閾值'})`;
+        s2LeverTauVal.className = isToppled ? 'font-bold text-emerald-600' : 'font-bold text-rose-500';
+      }
+      if (s2LeverStressVal) s2LeverStressVal.textContent = `${stressPercent}% (${isToppled ? '液壓主柱崩斷' : '活塞正常承載'})`;
+
+      if (isToppled) {
+        if (s2LeverStatus) {
+          s2LeverStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2LeverStatus.textContent = '✨ 支點力矩超載瓦解（PIVOT 成功）';
+        }
+        if (s2LeverDesc) s2LeverDesc.textContent = `${ma.toFixed(1)}倍複合槓桿引發 ${tauOut} N·m 逆向力矩，巨像左膝主液壓缸過載爆裂癱瘓！`;
+      } else {
+        if (s2LeverStatus) {
+          s2LeverStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2LeverStatus.textContent = '⚠️ 力矩不足！巨像兩萬牛頓鐵拳逼近';
+        }
+        if (s2LeverDesc) s2LeverDesc.textContent = `當前輸出力矩 ${tauOut} N·m 低於 1500 N·m 臨界破壞閥！請拉長力臂或加強拉力！`;
+      }
+    }
+
+    if (s2LeverD1Slider) s2LeverD1Slider.oninput = updateLeverSim;
+    if (s2LeverF1Slider) s2LeverF1Slider.oninput = updateLeverSim;
+    if (s2PulleyToggle) s2PulleyToggle.onchange = updateLeverSim;
+
+    // 動畫循環繪製槓桿與巨像
+    function drawLeverCanvas() {
+      if (!s2LeverCanvas) return;
+      const ctx = s2LeverCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const d1 = s2LeverD1Slider ? parseFloat(s2LeverD1Slider.value) / 10.0 : 6.0;
+      const f1 = s2LeverF1Slider ? parseFloat(s2LeverF1Slider.value) : 120;
+      const hasPulley = s2PulleyToggle ? s2PulleyToggle.checked : true;
+      const pulleyGain = hasPulley ? 2.5 : 1.0;
+      const tauOut = f1 * d1 * pulleyGain;
+      const isToppled = tauOut >= 1500;
+
+      const w = s2LeverCanvas.width;
+      const h = s2LeverCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // 地面
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(10, h - 30);
+      ctx.lineTo(w - 10, h - 30);
+      ctx.stroke();
+
+      // 支點位置 (Fulcrum PIVOT)
+      const fulcrumX = 130;
+      const fulcrumY = h - 30;
+
+      // 支點三角形
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.moveTo(fulcrumX, fulcrumY - 22);
+      ctx.lineTo(fulcrumX - 14, fulcrumY);
+      ctx.lineTo(fulcrumX + 14, fulcrumY);
+      ctx.closePath();
+      ctx.fill();
+
+      // 支點圓球
+      ctx.fillStyle = '#fcd34d';
+      ctx.beginPath();
+      ctx.arc(fulcrumX, fulcrumY - 22, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 槓桿旋轉角
+      const targetTilt = isToppled ? -0.22 : 0.05;
+      s2ColossusTilt += (targetTilt - s2ColossusTilt) * 0.1;
+
+      // 繪製槓桿橫樑
+      ctx.save();
+      ctx.translate(fulcrumX, fulcrumY - 22);
+      ctx.rotate(s2ColossusTilt);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 3;
+      // 槓桿桿體
+      ctx.beginPath();
+      ctx.moveTo(-105, -3);
+      ctx.lineTo(65, -3);
+      ctx.lineTo(65, 3);
+      ctx.lineTo(-105, 3);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // 左側拉力繩與少女拉力標記
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(-100, 0);
+      ctx.lineTo(-100, 25);
+      ctx.stroke();
+      // 向下拉力箭頭
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.moveTo(-100, 28);
+      ctx.lineTo(-104, 20);
+      ctx.lineTo(-96, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '8px monospace';
+      ctx.fillText(`F₁=${f1.toFixed(0)}N`, -120, 38);
+
+      ctx.restore();
+
+      // 右側鋼鐵巨像腿部與身軀
+      const colossusX = fulcrumX + 85;
+      const colossusY = h - 30;
+      const colossusAngle = isToppled ? 0.35 : -0.05;
+
+      ctx.save();
+      ctx.translate(colossusX, colossusY);
+      ctx.rotate(colossusAngle);
+
+      // 巨像腿部
+      ctx.fillStyle = isToppled ? '#ef4444' : '#475569';
+      ctx.fillRect(-15, -60, 24, 60);
+
+      // 巨像胸甲
+      ctx.fillStyle = isToppled ? '#f43f5e' : '#334155';
+      ctx.fillRect(-22, -115, 42, 55);
+
+      // 巨像眼睛紅光
+      ctx.fillStyle = isToppled ? '#64748b' : '#ef4444';
+      ctx.beginPath();
+      ctx.arc(0, -95, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 若瓦解，繪製噴出的黑色液壓油與蒸汽
+      if (isToppled) {
+        ctx.fillStyle = 'rgba(244, 63, 94, 0.7)';
+        ctx.beginPath();
+        ctx.arc(-8, -45, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.beginPath();
+        ctx.arc(-12, -55, 18, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      // 支點文字標註
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText('▲ PIVOT (支點)', fulcrumX - 35, fulcrumY + 14);
+
+      // 狀態文字
+      ctx.fillStyle = isToppled ? '#34d399' : '#f87171';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText(isToppled ? '[PIVOT OVERLOAD: COLOSSUS TOPPLED]' : '[INSUFFICIENT TORQUE: DANGER!]', 15, 20);
+
+      s2LeverAnimId = requestAnimationFrame(drawLeverCanvas);
+    }
+
+    if (s2LeverCanvas) {
+      if (s2LeverAnimId) cancelAnimationFrame(s2LeverAnimId);
+      updateLeverSim();
+      drawLeverCanvas();
+    }
+
 
 
 
