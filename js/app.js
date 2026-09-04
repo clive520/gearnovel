@@ -930,16 +930,6 @@
           ` : ''}
 
           <!-- 字級調整選單 -->
-          <!-- 專名號標注切換按鈕 -->
-          <button id="btn-toggle-proper-noun" title="切換人名專名號（底線）顯示" class="px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1 ${
-            state.showProperNoun 
-              ? 'border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold' 
-              : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-          }">
-            <span class="underline underline-offset-2 decoration-1.5">名</span>
-            <span class="hidden sm:inline">專名號</span>
-          </button>
-
           <div class="relative">
             <button id="btn-font-menu" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800">
               字體 Aa
@@ -983,7 +973,7 @@
           </div>
         </header>
 
-        <div class="reader-content ${state.showProperNoun ? '' : 'hide-proper-nouns'}">
+        <div class="reader-content">
           ${displayContentHtml}
         </div>
 
