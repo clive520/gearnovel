@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (9項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (10項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2854,6 +2854,92 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗十：陀螺進動與天體星盤角動量模擬器 (第 10 章大結局) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第二套 · 第 10 章大結局</span>
+                <span class="text-xs text-slate-500">角動量守恆 · 陀螺進動 · 天頂閉環</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500">τ = dL/dt = Ω_p × L</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-2">
+              <span>👑 10. 陀螺進動與天體星盤角動量模擬器（第 10 章大結局）</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+              追光星盤定盤陀螺重達 8,500 kg·m²。當外部地磁暴施加傾覆力矩時，高速自轉的陀螺儀產生正交進動（Ω_p = τ/(I·ω)）。唯有插入母親留下的十二星座琉璃星盤，施加精確的反向補償力矩，方能使進動歸零，鎖定天頂真北極，破曉加冕！
+            </p>
+
+            <!-- 實驗互動控制面板 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">陀螺自轉轉速 RPM</span>
+                    <span id="series2-gyro-rpm-val" class="font-bold text-amber-500">12,000 RPM (高速自轉)</span>
+                  </div>
+                  <input id="series2-gyro-rpm-slider" type="range" min="3000" max="15000" step="500" value="12000" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">磁暴外力矩 τ_ext (kN·m)</span>
+                    <span id="series2-gyro-tau-val" class="font-bold text-rose-500">560 kN·m (極端風暴)</span>
+                  </div>
+                  <input id="series2-gyro-tau-slider" type="range" min="0" max="800" step="20" value="560" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <span class="text-xs text-slate-600 dark:text-slate-300">植入十二星座琉璃星盤（正交反向補償力矩）</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-gyro-astrolabe-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1 font-mono">
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">固有角動量 L:</span>
+                    <span id="series2-gyro-l-val" class="font-bold text-amber-500">1.07 × 10⁷ J·s</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">進動角速度 Ω_p:</span>
+                    <span id="series2-gyro-omega-p-val" class="font-bold text-emerald-500">0.00 °/s (歸零鎖定)</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 col-span-2">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">天頂對準精度 / 姿態穩定度:</span>
+                    <span id="series2-gyro-stability-val" class="font-bold text-emerald-500 text-[11px]">100% (真北極點完美鎖定 · ZENITH 破曉)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態陀螺儀進動視覺化 Canvas -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-gyro-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 天頂鎖定：進動歸零（ZENITH 成功）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-gyro-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-gyro-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  正交補償力矩抵消磁暴擾動，陀螺儀直指天頂，星港全城反重力光輝永恆復甦！
+                </div>
+              </div>
+            </div>
+
+            <!-- ZENITH 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+              <div class="text-xs font-bold text-emerald-800 dark:text-emerald-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 10 章大結局終極密文：[ 26 - 05 - 14 - 09 - 20 - 08 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：26=Z, 05=E, 14=N, 09=I, 20=T, 08=H。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
+                26 ➜ Z  |  05 ➜ E  |  14 ➜ N  |  09 ➜ I  |  20 ➜ T  |  08 ➜ H  ==>  【 ZENITH 】（天頂破曉 · 巔峰之耀）
+              </div>
+            </div>
+          </div>
+
 
 
 
@@ -4740,6 +4826,216 @@
       if (s2WaveAnimId) cancelAnimationFrame(s2WaveAnimId);
       updateWaveSim();
       drawWaveCanvas();
+    }
+
+
+
+    // ================== 第 10 章大結局：陀螺進動與天體星盤角動量 ==================
+    const s2GyroRpmSlider = document.getElementById('series2-gyro-rpm-slider');
+    const s2GyroTauSlider = document.getElementById('series2-gyro-tau-slider');
+    const s2GyroToggle = document.getElementById('series2-gyro-astrolabe-toggle');
+
+    const s2GyroRpmVal = document.getElementById('series2-gyro-rpm-val');
+    const s2GyroTauVal = document.getElementById('series2-gyro-tau-val');
+    const s2GyroLVal = document.getElementById('series2-gyro-l-val');
+    const s2GyroOmegaPVal = document.getElementById('series2-gyro-omega-p-val');
+    const s2GyroStabilityVal = document.getElementById('series2-gyro-stability-val');
+    const s2GyroStatus = document.getElementById('series2-gyro-status');
+    const s2GyroDesc = document.getElementById('series2-gyro-desc');
+    const s2GyroCanvas = document.getElementById('series2-gyro-canvas');
+
+    let s2GyroAnimId = null;
+    let s2GyroSpinAngle = 0;
+    let s2GyroPrecessionAngle = 0;
+
+    function updateGyroSim() {
+      if (!s2GyroRpmSlider || !s2GyroTauSlider) return;
+      const rpm = parseFloat(s2GyroRpmSlider.value); // 3000 to 15000
+      const tauKn = parseFloat(s2GyroTauSlider.value); // 0 to 800 kN·m
+      const hasAstrolabe = s2GyroToggle ? s2GyroToggle.checked : true;
+
+      const I = 8500.0; // kg·m²
+      const omega = (rpm * 2.0 * Math.PI) / 60.0; // rad/s
+      const L = I * omega; // J·s
+
+      // 外部擾動力矩 (N·m)
+      const tauNet = hasAstrolabe ? 0.0 : tauKn * 1000.0;
+      const omegaP_rad = tauNet / L; // rad/s
+      const omegaP_deg = (omegaP_rad * 180.0) / Math.PI;
+
+      const isLocked = hasAstrolabe || tauKn === 0;
+
+      if (s2GyroRpmVal) s2GyroRpmVal.textContent = `${rpm.toLocaleString()} RPM (${omega.toFixed(0)} rad/s)`;
+      if (s2GyroTauVal) s2GyroTauVal.textContent = `${tauKn} kN·m (${hasAstrolabe ? '已由星盤反向力矩抵消' : '外部失衡力矩'})`;
+      if (s2GyroLVal) s2GyroLVal.textContent = `${(L / 1e7).toFixed(2)} × 10⁷ J·s`;
+      if (s2GyroOmegaPVal) {
+        s2GyroOmegaPVal.textContent = `${omegaP_deg.toFixed(2)} °/s (${isLocked ? '進動歸零' : '劇烈搖晃'})`;
+        s2GyroOmegaPVal.className = isLocked ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2GyroStabilityVal) {
+        s2GyroStabilityVal.textContent = isLocked ? '100% (真北極點完美鎖定 · ZENITH 破曉)' : `${Math.max(10, Math.round(100 - omegaP_deg * 2.5))}% (失控進動，反重力面臨崩潰！)`;
+        s2GyroStabilityVal.className = isLocked ? 'font-bold text-emerald-500 text-[11px]' : 'font-bold text-rose-500 text-[11px]';
+      }
+
+      if (isLocked) {
+        if (s2GyroStatus) {
+          s2GyroStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2GyroStatus.textContent = '✨ 天頂鎖定：進動歸零（ZENITH 成功）';
+        }
+        if (s2GyroDesc) {
+          s2GyroDesc.textContent = '正交補償力矩抵消磁暴擾動，陀螺儀直指天頂，星港全城反重力光輝永恆復甦！';
+        }
+      } else {
+        if (s2GyroStatus) {
+          s2GyroStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2GyroStatus.textContent = '⚠️ 陀螺儀失衡進動！反重力矩陣解體警報';
+        }
+        if (s2GyroDesc) {
+          s2GyroDesc.textContent = `進動角速度高達 ${omegaP_deg.toFixed(1)}°/s！請立即開啟「植入十二星座琉璃星盤」以施加反向力矩！`;
+        }
+      }
+    }
+
+    if (s2GyroRpmSlider) s2GyroRpmSlider.oninput = updateGyroSim;
+    if (s2GyroTauSlider) s2GyroTauSlider.oninput = updateGyroSim;
+    if (s2GyroToggle) s2GyroToggle.onchange = updateGyroSim;
+
+    // 動態繪製 3D 陀螺自轉與進動
+    function drawGyroCanvas() {
+      if (!s2GyroCanvas) return;
+      const ctx = s2GyroCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const hasAstrolabe = s2GyroToggle ? s2GyroToggle.checked : true;
+      const tauKn = s2GyroTauSlider ? parseFloat(s2GyroTauSlider.value) : 560;
+      const isLocked = hasAstrolabe || tauKn === 0;
+
+      const w = s2GyroCanvas.width;
+      const h = s2GyroCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2GyroSpinAngle += 0.25;
+      if (!isLocked) {
+        s2GyroPrecessionAngle += 0.035;
+      }
+
+      const centerX = w / 2;
+      const centerY = h / 2 + 20;
+
+      // 繪製背景星空微光
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, h);
+
+      // 基座平台 (Gimbal Base)
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY + 45, 75, 20, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 計算自轉軸傾角
+      const tiltMag = isLocked ? 0.0 : 0.38;
+      const tiltX = Math.sin(s2GyroPrecessionAngle) * tiltMag;
+      const tiltY = Math.cos(s2GyroPrecessionAngle) * tiltMag * 0.5;
+
+      const topX = centerX + Math.sin(s2GyroPrecessionAngle) * (tiltMag * 80);
+      const topY = centerY - 65 + tiltY * 20;
+
+      // 如果未鎖定，繪製進動圓錐 (Precession Cone)
+      if (!isLocked) {
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([2, 3]);
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY - 65, tiltMag * 80, tiltMag * 30, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // 自轉主軸 (Spin Axis Vector L)
+      ctx.strokeStyle = isLocked ? '#10b981' : '#f59e0b';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY + 30);
+      ctx.lineTo(topX, topY);
+      ctx.stroke();
+
+      // 陀螺轉子圓盤 (Rotor Disc)
+      const midX = (centerX + topX) / 2;
+      const midY = (centerY + 30 + topY) / 2;
+
+      ctx.save();
+      ctx.translate(midX, midY);
+      const angleAxis = Math.atan2(topX - centerX, (centerY + 30) - topY);
+      ctx.rotate(angleAxis);
+
+      // 轉子立體感
+      const discGrad = ctx.createLinearGradient(-50, 0, 50, 0);
+      discGrad.addColorStop(0, '#0284c7');
+      discGrad.addColorStop(0.5, '#38bdf8');
+      discGrad.addColorStop(1, '#0369a1');
+
+      ctx.fillStyle = discGrad;
+      ctx.strokeStyle = '#e0f2fe';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 52, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // 十二星座榫卯與金光紋路
+      const spokeAngle = s2GyroSpinAngle;
+      ctx.strokeStyle = '#fef08a';
+      ctx.lineWidth = 1.5;
+      for (let s = 0; s < 6; s++) {
+        const theta = spokeAngle + (s * Math.PI) / 3;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(Math.cos(theta) * 48, Math.sin(theta) * 14);
+        ctx.stroke();
+      }
+
+      // 中心琉璃星盤核心
+      ctx.fillStyle = isLocked ? '#34d399' : '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(0, 0, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+
+      // 頂部箭頭標記
+      ctx.fillStyle = isLocked ? '#34d399' : '#fbbf24';
+      ctx.beginPath();
+      ctx.arc(topX, topY, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 天頂光柱特效 (當鎖定成功時)
+      if (isLocked) {
+        ctx.fillStyle = 'rgba(52, 211, 153, 0.15)';
+        ctx.beginPath();
+        ctx.moveTo(centerX - 12, centerY + 30);
+        ctx.lineTo(centerX + 12, centerY + 30);
+        ctx.lineTo(centerX + 30, 0);
+        ctx.lineTo(centerX - 30, 0);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // 頂部狀態標題
+      ctx.fillStyle = isLocked ? '#34d399' : '#f87171';
+      ctx.font = 'bold 9px monospace';
+      const bannerText = isLocked
+        ? '[ZENITH LOCKED: TRUE NORTH ALIGNED 100%]'
+        : `[RUNAWAY PRECESSION: Ω_p=${(tauKn / 100).toFixed(1)} rad/s]`;
+      ctx.fillText(bannerText, 15, 20);
+
+      s2GyroAnimId = requestAnimationFrame(drawGyroCanvas);
+    }
+
+    if (s2GyroCanvas) {
+      if (s2GyroAnimId) cancelAnimationFrame(s2GyroAnimId);
+      updateGyroSim();
+      drawGyroCanvas();
     }
 
 
