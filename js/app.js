@@ -837,7 +837,7 @@
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
                 <span>📚 規劃全三卷三部曲（第一卷連載中）</span>
-                <span class="text-rose-600 font-mono">已發布 1.4 萬字</span>
+                <span class="text-rose-600 font-mono">已發布 1.9 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -849,7 +849,7 @@
                       <span>《追光星盤的修復師》</span>
                       <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold">連載中</span>
                     </div>
-                    <div class="text-[11px] text-slate-500">第 1～3 章已上線 · 虎克定律 × 司涅爾折射 × 居禮點熔爐</div>
+                    <div class="text-[11px] text-slate-500">第 1～4 章已上線 · 虎克定律 × 司涅爾折射 × 居禮點熔爐 × 角動量雙星</div>
                   </div>
                 </div>
                 <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (3項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (4項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2208,9 +2208,7 @@
               </div>
             </div>
           </div>
-        </div>
 
-        
           <!-- 實驗二：司涅爾折射定律與十二面稜鏡色散器 (第 2 章) -->
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
@@ -2359,6 +2357,104 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗四：角動量守恆與雙星質心配重模擬器 (第 4 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>💫 4. 角動量守恆與雙星質心配重平衡模擬器（第 4 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">L = Iω = 常數 ｜ m₁r₁ = m₂r₂</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              采婭玆與林漪姉在第七副鐘樓校準失衡的「雙星旋轉星盤」！主星（天樞）與伴星（搖光）繞公共質心高速旋轉。若質量與半徑乘積不相等（m₁r₁ ≠ m₂r₂），偏心距將引發劇烈高頻共振與軸承磨損。拖動滑塊手動配重，或點擊「自動質心對齊」，觀察角動量守恆下的自轉加速與光環鎖定：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      主星天樞質量 m₁：<span id="series2-m1-val" class="text-amber-600 font-mono text-xs">60 g</span>
+                    </label>
+                    <input id="series2-m1-slider" type="range" min="40" max="80" value="60" class="w-full accent-amber-500 cursor-pointer">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      伴星搖光質量 m₂：<span id="series2-m2-val" class="text-sky-600 font-mono text-xs">20 g</span>
+                    </label>
+                    <input id="series2-m2-slider" type="range" min="10" max="40" value="20" class="w-full accent-sky-500 cursor-pointer">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      伴星半徑 r₂：<span id="series2-r2-val" class="text-sky-600 font-mono text-xs">60 mm</span>
+                    </label>
+                    <input id="series2-r2-slider" type="range" min="30" max="90" value="60" class="w-full accent-sky-500 cursor-pointer">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      主星配重半徑 r₁：<span id="series2-r1-val" class="text-rose-600 font-mono text-xs">20 mm</span>
+                    </label>
+                    <input id="series2-r1-slider" type="range" min="5" max="45" value="20" class="w-full accent-rose-600 cursor-pointer">
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">質心平衡點 (m₁r₁ = m₂r₂)</span>
+                    <span class="text-[10px] text-slate-400">理論平衡半徑 r₁ = <span id="series2-r1-ideal-val" class="text-rose-600 font-bold font-mono">20.0 mm</span></span>
+                  </div>
+                  <button id="series2-btn-autobalance" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white text-xs font-bold transition-all shadow-sm">
+                    ✨ 自動質心對齊
+                  </button>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>質心偏心漂移距 Δe:</span>
+                    <span id="series2-eccentricity-val" class="font-bold text-emerald-600">0.00 mm (零偏心)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>系統總轉動慣量 I = Σmr²:</span>
+                    <span id="series2-inertia-val" class="font-bold text-indigo-600">96.0 g·cm²</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>旋轉角速度 ω (L守恆):</span>
+                    <span id="series2-omega-val" class="font-bold text-sky-600">3.14 rad/s (平穩定常)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態雙星模擬畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-orbit-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 雙星零偏心軌道鎖定（ORBIT 達成）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-orbit-canvas" width="280" height="200" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-orbit-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  質心與中央轉軸完全重合！角動量守恆帶動星盤平穩旋轉，光環完美合攏。
+                </div>
+              </div>
+            </div>
+
+            <!-- ORBIT 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 4 章核心密文：[ 15 - 18 - 02 - 09 - 20 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：15=O, 18=R, 02=B, 09=I, 20=T。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                15 ➜ O  |  18 ➜ R  |  02 ➜ B  |  09 ➜ I  |  20 ➜ T  ==>  【 ORBIT 】（雙星穩定旋轉之「軌道」）
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- 第三卷實驗室內容 -->
         <div id="lab-section-vol3" class="${activeLabTab === 'vol3' ? 'space-y-8' : 'hidden'}">
@@ -3028,6 +3124,236 @@
 
     if (s2TempSlider) s2TempSlider.oninput = updateBimetalSim;
     if (s2CurieToggle) s2CurieToggle.onchange = updateBimetalSim;
+
+    // ================== 第 4 章：角動量守恆與雙星質心配重模擬器 ==================
+    const s2M1Slider = document.getElementById('series2-m1-slider');
+    const s2M2Slider = document.getElementById('series2-m2-slider');
+    const s2R2Slider = document.getElementById('series2-r2-slider');
+    const s2R1Slider = document.getElementById('series2-r1-slider');
+    const s2BtnAuto = document.getElementById('series2-btn-autobalance');
+    const s2M1Val = document.getElementById('series2-m1-val');
+    const s2M2Val = document.getElementById('series2-m2-val');
+    const s2R2Val = document.getElementById('series2-r2-val');
+    const s2R1Val = document.getElementById('series2-r1-val');
+    const s2R1IdealVal = document.getElementById('series2-r1-ideal-val');
+    const s2EccentricityVal = document.getElementById('series2-eccentricity-val');
+    const s2InertiaVal = document.getElementById('series2-inertia-val');
+    const s2OmegaVal = document.getElementById('series2-omega-val');
+    const s2OrbitStatus = document.getElementById('series2-orbit-status');
+    const s2OrbitDesc = document.getElementById('series2-orbit-desc');
+    const s2OrbitCanvas = document.getElementById('series2-orbit-canvas');
+
+    let s2OrbitAngle = 0;
+    let s2OrbitAnimId = null;
+
+    function updateOrbitSim() {
+      if (!s2M1Slider || !s2M2Slider || !s2R2Slider || !s2R1Slider) return;
+      const m1 = parseFloat(s2M1Slider.value);
+      const m2 = parseFloat(s2M2Slider.value);
+      const r2 = parseFloat(s2R2Slider.value);
+      const r1 = parseFloat(s2R1Slider.value);
+
+      if (s2M1Val) s2M1Val.textContent = `${m1.toFixed(0)} g`;
+      if (s2M2Val) s2M2Val.textContent = `${m2.toFixed(0)} g`;
+      if (s2R2Val) s2R2Val.textContent = `${r2.toFixed(0)} mm`;
+      if (s2R1Val) s2R1Val.textContent = `${r1.toFixed(0)} mm`;
+
+      const idealR1 = (r2 * m2 / m1);
+      if (s2R1IdealVal) s2R1IdealVal.textContent = `${idealR1.toFixed(1)} mm`;
+
+      // 偏心漂移距 e = |m1*r1 - m2*r2| / (m1 + m2)
+      const eccentricity = Math.abs(m1 * r1 - m2 * r2) / (m1 + m2);
+      // 轉動慣量 I = m1*r1^2 + m2*r2^2 (g*mm^2 / 100 => g*cm^2)
+      const inertiaGcm2 = (m1 * r1 * r1 + m2 * r2 * r2) / 100.0;
+      // 基線角動量 L = 300
+      const omega = (300.0 / (inertiaGcm2 || 1)).toFixed(2);
+
+      if (s2InertiaVal) s2InertiaVal.textContent = `${inertiaGcm2.toFixed(1)} g·cm²`;
+      if (s2OmegaVal) s2OmegaVal.textContent = `${omega} rad/s`;
+
+      if (eccentricity < 0.6) {
+        if (s2EccentricityVal) s2EccentricityVal.textContent = `${eccentricity.toFixed(2)} mm (零偏心)`;
+        if (s2EccentricityVal) s2EccentricityVal.className = 'font-bold text-emerald-600';
+        if (s2OrbitStatus) {
+          s2OrbitStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2OrbitStatus.textContent = '✨ 雙星零偏心軌道鎖定（ORBIT 達成）';
+        }
+        if (s2OrbitDesc) s2OrbitDesc.textContent = '質心與中央轉軸完全重合！角動量守恆帶動星盤平穩旋轉，光環完美合攏。';
+      } else {
+        if (s2EccentricityVal) s2EccentricityVal.textContent = `+${eccentricity.toFixed(2)} mm (偏心失衡)`;
+        if (s2EccentricityVal) s2EccentricityVal.className = 'font-bold text-rose-500';
+        if (s2OrbitStatus) {
+          s2OrbitStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2OrbitStatus.textContent = `⚠️ 質心偏離軸心 ${eccentricity.toFixed(1)} mm！星盤劇烈震顫`;
+        }
+        if (s2OrbitDesc) s2OrbitDesc.textContent = `質心偏離旋轉中心！請調校 r₁ 至 ${idealR1.toFixed(1)} mm，以抵消搖光的力矩偏載。`;
+      }
+    }
+
+    if (s2BtnAuto) {
+      s2BtnAuto.onclick = () => {
+        if (!s2M1Slider || !s2M2Slider || !s2R2Slider || !s2R1Slider) return;
+        const m1 = parseFloat(s2M1Slider.value);
+        const m2 = parseFloat(s2M2Slider.value);
+        const r2 = parseFloat(s2R2Slider.value);
+        const idealR1 = Math.min(45, Math.max(5, Math.round(r2 * m2 / m1)));
+        s2R1Slider.value = idealR1;
+        updateOrbitSim();
+      };
+    }
+
+    if (s2M1Slider) s2M1Slider.oninput = updateOrbitSim;
+    if (s2M2Slider) s2M2Slider.oninput = updateOrbitSim;
+    if (s2R2Slider) s2R2Slider.oninput = updateOrbitSim;
+    if (s2R1Slider) s2R1Slider.oninput = updateOrbitSim;
+
+    // 動畫循環繪製 Canvas
+    function drawOrbitCanvas() {
+      if (!s2OrbitCanvas) return;
+      const ctx = s2OrbitCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const m1 = s2M1Slider ? parseFloat(s2M1Slider.value) : 60;
+      const m2 = s2M2Slider ? parseFloat(s2M2Slider.value) : 20;
+      const r2 = s2R2Slider ? parseFloat(s2R2Slider.value) : 60;
+      const r1 = s2R1Slider ? parseFloat(s2R1Slider.value) : 20;
+
+      const eccentricity = Math.abs(m1 * r1 - m2 * r2) / (m1 + m2);
+      const isBalanced = eccentricity < 0.6;
+
+      const w = s2OrbitCanvas.width;
+      const h = s2OrbitCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // 背景微光格線
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 90, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 旋轉角速度
+      const inertiaGcm2 = (m1 * r1 * r1 + m2 * r2 * r2) / 100.0;
+      const speed = 0.04 * (120.0 / (inertiaGcm2 || 120));
+      s2OrbitAngle += speed;
+
+      // 晃動震顫偏移（失衡時中央抖動）
+      let wobbleX = 0, wobbleY = 0;
+      if (!isBalanced) {
+        const wobbleAmp = Math.min(6, eccentricity * 0.8);
+        wobbleX = (Math.random() - 0.5) * wobbleAmp;
+        wobbleY = (Math.random() - 0.5) * wobbleAmp;
+      }
+
+      const drawCx = cx + wobbleX;
+      const drawCy = cy + wobbleY;
+
+      // 雙星位置計算
+      // 像素縮放比例：1 mm ~ 1.0 px
+      const scale = 1.0;
+      const cosA = Math.cos(s2OrbitAngle);
+      const sinA = Math.sin(s2OrbitAngle);
+
+      // 主星 m1 (位於 -cos, -sin 方向)
+      const x1 = drawCx - r1 * scale * cosA;
+      const y1 = drawCy - r1 * scale * sinA;
+
+      // 伴星 m2 (位於 +cos, +sin 方向)
+      const x2 = drawCx + r2 * scale * cosA;
+      const y2 = drawCy + r2 * scale * sinA;
+
+      // 公共質心 CM 位置
+      const cmX = (m1 * x1 + m2 * x2) / (m1 + m2);
+      const cmY = (m1 * y1 + m2 * y2) / (m1 + m2);
+
+      // 旋轉軌道光環
+      ctx.strokeStyle = isBalanced ? 'rgba(244, 63, 94, 0.4)' : 'rgba(239, 68, 68, 0.2)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(drawCx, drawCy, r1 * scale, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.strokeStyle = isBalanced ? 'rgba(56, 189, 248, 0.4)' : 'rgba(239, 68, 68, 0.2)';
+      ctx.beginPath();
+      ctx.arc(drawCx, drawCy, r2 * scale, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 雙星連桿臂
+      ctx.strokeStyle = isBalanced ? 'rgba(226, 232, 240, 0.6)' : 'rgba(239, 68, 68, 0.7)';
+      ctx.lineWidth = isBalanced ? 2 : 2.5;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      // 中央固定軸心
+      ctx.fillStyle = '#64748b';
+      ctx.beginPath();
+      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 公共質心 CM 標記（紅點）
+      ctx.fillStyle = isBalanced ? '#10b981' : '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(cmX, cmY, isBalanced ? 3 : 4, 0, Math.PI * 2);
+      ctx.fill();
+      if (!isBalanced) {
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(cmX, cmY, 7, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // 主星天樞 (金色)
+      const radius1 = Math.max(6, Math.min(14, Math.sqrt(m1) * 1.3));
+      ctx.fillStyle = '#f59e0b';
+      ctx.shadowColor = '#f59e0b';
+      ctx.shadowBlur = isBalanced ? 12 : 4;
+      ctx.beginPath();
+      ctx.arc(x1, y1, radius1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // 伴星搖光 (青藍色)
+      const radius2 = Math.max(4, Math.min(10, Math.sqrt(m2) * 1.2));
+      ctx.fillStyle = '#38bdf8';
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = isBalanced ? 10 : 3;
+      ctx.beginPath();
+      ctx.arc(x2, y2, radius2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // 文字標籤
+      ctx.fillStyle = '#f1f5f9';
+      ctx.font = '9px monospace';
+      ctx.fillText(`天樞(m₁)`, x1 - 18, y1 - radius1 - 3);
+      ctx.fillText(`搖光(m₂)`, x2 - 18, y2 - radius2 - 3);
+
+      if (isBalanced) {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText(`[ORBIT LOCKED]`, cx - 36, cy + 85);
+      } else {
+        ctx.fillStyle = '#f87171';
+        ctx.fillText(`[WOBBLE: Δe=${eccentricity.toFixed(1)}mm]`, cx - 55, cy + 85);
+      }
+
+      s2OrbitAnimId = requestAnimationFrame(drawOrbitCanvas);
+    }
+
+    if (s2OrbitCanvas) {
+      if (s2OrbitAnimId) cancelAnimationFrame(s2OrbitAnimId);
+      updateOrbitSim();
+      drawOrbitCanvas();
+    }
+
 
     // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
