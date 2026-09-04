@@ -2099,7 +2099,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (5項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (6項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2530,6 +2530,84 @@
               </div>
             </div>
           </div>
+
+          <!-- 實驗六：白努利翼帆升力與臨界失速攻角模擬器 (第 6 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>🪁 6. 白努利翼帆升力與臨界失速攻角模擬器（第 6 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-600 font-bold">P + ½ρv² = 常數 ｜ L = ½ C_L ρ v² S ｜ α_crit = 16°</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              引航少年罧貁銁駕駛追光者號，帶領采婭玆與林漪姉冒險穿越黑峽大裂谷！翼帆上表面凸起加速氣流，依白努利定律產生向上巨大吸力。但攻角超過 16° 時邊界層氣流將剝離失速！開啟可變彎度前緣縫翼，觀察紊流消散與 GLIDE 滑翔鎖定：
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-xl border border-slate-200/60 dark:border-slate-800 mb-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  翼帆幾何攻角 α (Angle of Attack)：<span id="series2-aoa-val" class="text-rose-600 font-mono text-sm">11.5° (最優滑翔角)</span>
+                </label>
+                <input id="series2-aoa-slider" type="range" min="0" max="24" value="11" class="w-full accent-rose-600 mb-4 cursor-pointer">
+
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  相對迎風風速 v：<span id="series2-airspeed-val" class="text-sky-600 font-mono text-sm">20 m/s (72 km/h 裂谷強風)</span>
+                </label>
+                <input id="series2-airspeed-slider" type="range" min="8" max="35" value="20" class="w-full accent-sky-600 mb-4 cursor-pointer">
+
+                <div class="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3">
+                  <div>
+                    <span class="text-xs font-bold block text-slate-800 dark:text-slate-200">可變彎度前緣縫翼 (Variable Camber Slat)</span>
+                    <span class="text-[10px] text-slate-400">注入高動能氣流，延遲邊界層剝離至 24°</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-slat-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                  </label>
+                </div>
+
+                <div class="space-y-1.5 text-xs font-mono">
+                  <div class="flex justify-between text-slate-500">
+                    <span>白努利壓強差 ΔP:</span>
+                    <span id="series2-pressure-val" class="font-bold text-sky-600">182.4 Pa (上翼面吸力)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>總氣動升力 L = ½ C_L ρ v² S:</span>
+                    <span id="series2-lift-val" class="font-bold text-emerald-600">3,648 N (完全平衡艇身重力)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>當前昇阻比 L/D:</span>
+                    <span id="series2-lod-val" class="font-bold text-indigo-600">14.2 (高效破風滑翔)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態翼型流線與飛舟畫布 -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-flight-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ✨ 完美氣流附著（GLIDE 破空滑翔）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-airfoil-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-flight-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  流線緊密貼合上翼面，白努利低壓吸力托舉追光者號直衝萬米平流層！
+                </div>
+              </div>
+            </div>
+
+            <!-- GLIDE 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 6 章核心密文：[ 07 - 12 - 09 - 04 - 05 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：07=G, 12=L, 09=I, 04=D, 05=E。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                07 ➜ G  |  12 ➜ L  |  09 ➜ I  |  04 ➜ D  |  05 ➜ E  ==>  【 GLIDE 】（迎風展翼 · 破空滑翔）
+              </div>
+            </div>
+          </div>
+
 
         </div>
 
@@ -3628,6 +3706,193 @@
       updateTmdSim();
       drawTmdCanvas();
     }
+
+    // ================== 第 6 章：白努利翼帆升力與失速模擬器 ==================
+    const s2AoaSlider = document.getElementById('series2-aoa-slider');
+    const s2AirspeedSlider = document.getElementById('series2-airspeed-slider');
+    const s2SlatToggle = document.getElementById('series2-slat-toggle');
+    const s2AoaVal = document.getElementById('series2-aoa-val');
+    const s2AirspeedVal = document.getElementById('series2-airspeed-val');
+    const s2PressureVal = document.getElementById('series2-pressure-val');
+    const s2LiftVal = document.getElementById('series2-lift-val');
+    const s2LodVal = document.getElementById('series2-lod-val');
+    const s2FlightStatus = document.getElementById('series2-flight-status');
+    const s2FlightDesc = document.getElementById('series2-flight-desc');
+    const s2AirfoilCanvas = document.getElementById('series2-airfoil-canvas');
+
+    let s2AirfoilAnimId = null;
+    let s2FlowOffset = 0;
+
+    function updateAirfoilSim() {
+      if (!s2AoaSlider || !s2AirspeedSlider) return;
+      const alpha = parseFloat(s2AoaSlider.value); // 0 to 24 deg
+      const v = parseFloat(s2AirspeedSlider.value); // 8 to 35 m/s
+      const hasSlat = s2SlatToggle ? s2SlatToggle.checked : true;
+
+      const stallThreshold = hasSlat ? 23.0 : 15.5;
+      const isStalled = alpha > stallThreshold;
+
+      if (s2AoaVal) s2AoaVal.textContent = `${alpha.toFixed(1)}° ${alpha === 11 || alpha === 12 ? '(最優滑翔角)' : ''}`;
+      if (s2AirspeedVal) s2AirspeedVal.textContent = `${v.toFixed(0)} m/s (${(v * 3.6).toFixed(0)} km/h)`;
+
+      // 大氣密度 rho = 1.0 kg/m^3, 翼面積 S = 12 m^2
+      const rho = 1.0;
+      const S = 12.0;
+
+      let CL = 0;
+      let CD = 0;
+      let deltaP = 0;
+
+      if (!isStalled) {
+        // 升力係數 CL = 2*pi*alpha_rad * camber_factor
+        CL = Math.min(2.2, 0.25 + (alpha * Math.PI / 180) * 5.2 * (hasSlat ? 1.25 : 1.0));
+        CD = 0.04 + (alpha * alpha * 0.003);
+        deltaP = 0.5 * rho * v * v * (CL / 1.4);
+      } else {
+        // 失速後升力驟降，阻力暴增
+        CL = Math.max(0.15, 0.4 - (alpha - stallThreshold) * 0.08);
+        CD = 0.6 + (alpha - stallThreshold) * 0.05;
+        deltaP = 0.5 * rho * v * v * 0.15;
+      }
+
+      const totalLift = Math.round(0.5 * CL * rho * v * v * S);
+      const lod = (CL / (CD || 0.01)).toFixed(1);
+
+      if (s2PressureVal) s2PressureVal.textContent = `${deltaP.toFixed(1)} Pa (${isStalled ? '氣流剝離失壓' : '上翼面真空吸力'})`;
+      if (s2LiftVal) s2LiftVal.textContent = `${totalLift.toLocaleString()} N (${isStalled ? '升力驟降墜落中' : '穩穩克服重力'})`;
+      if (s2LodVal) s2LodVal.textContent = `${lod} (${isStalled ? '阻力暴增' : '高效破風'})`;
+
+      if (isStalled) {
+        if (s2FlightStatus) {
+          s2FlightStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2FlightStatus.textContent = '⚠️ 氣流邊界層剝離！翼帆嚴重失速';
+        }
+        if (s2FlightDesc) s2FlightDesc.textContent = `攻角 ${alpha}° 超越 ${stallThreshold}° 臨界極限！紊流渦旋摧毀升力，小艇向深淵墜落！`;
+      } else {
+        if (s2FlightStatus) {
+          s2FlightStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2FlightStatus.textContent = '✨ 完美氣流附著（GLIDE 破空滑翔）';
+        }
+        if (s2FlightDesc) s2FlightDesc.textContent = '流線緊密貼合上翼面，白努利低壓吸力托舉追光者號直衝萬米平流層！';
+      }
+    }
+
+    if (s2AoaSlider) s2AoaSlider.oninput = updateAirfoilSim;
+    if (s2AirspeedSlider) s2AirspeedSlider.oninput = updateAirfoilSim;
+    if (s2SlatToggle) s2SlatToggle.onchange = updateAirfoilSim;
+
+    // 動畫循環繪製空氣動力學流線與翼型
+    function drawAirfoilCanvas() {
+      if (!s2AirfoilCanvas) return;
+      const ctx = s2AirfoilCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const alpha = s2AoaSlider ? parseFloat(s2AoaSlider.value) : 11.5;
+      const v = s2AirspeedSlider ? parseFloat(s2AirspeedSlider.value) : 20;
+      const hasSlat = s2SlatToggle ? s2SlatToggle.checked : true;
+      const stallThreshold = hasSlat ? 23.0 : 15.5;
+      const isStalled = alpha > stallThreshold;
+
+      const w = s2AirfoilCanvas.width;
+      const h = s2AirfoilCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2FlowOffset += (v * 0.15);
+
+      // 翼型中心點
+      const cx = w / 2 - 10;
+      const cy = h / 2 + 10;
+      const chord = 110;
+      const radAlpha = (-alpha * Math.PI) / 180.0;
+
+      // 繪製背景流動粒子線
+      const numLines = 7;
+      ctx.lineWidth = 1.2;
+      for (let i = 0; i < numLines; i++) {
+        const yBase = 25 + i * 22;
+        ctx.beginPath();
+        ctx.strokeStyle = isStalled && i < 3 ? 'rgba(239, 68, 68, 0.4)' : 'rgba(56, 189, 248, 0.35)';
+
+        for (let x = 10; x < w - 10; x += 6) {
+          let y = yBase;
+          // 受到翼型影響的流線微擾
+          const dx = x - cx;
+          if (Math.abs(dx) < 60) {
+            const influence = Math.exp(-Math.pow(dx / 35, 2));
+            if (i <= 3) {
+              // 上翼面加速膨脹
+              y -= (isStalled && dx > 0 ? (Math.sin(s2FlowOffset + x * 0.1) * 12) : influence * 22);
+            } else {
+              // 下翼面壓縮
+              y += influence * 8;
+            }
+          }
+          if (x === 10) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      // 繪製翼型截面 (Airfoil Profile)
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(radAlpha);
+
+      // 主翼型
+      ctx.beginPath();
+      ctx.fillStyle = isStalled ? '#f43f5e' : '#38bdf8';
+      ctx.strokeStyle = '#f8fafc';
+      ctx.lineWidth = 1.5;
+
+      // 繪製非對稱上凸下平弧線
+      ctx.moveTo(-chord / 2, 0);
+      ctx.bezierCurveTo(-chord / 4, -26, chord / 4, -20, chord / 2, 0);
+      ctx.bezierCurveTo(chord / 4, -4, -chord / 4, 4, -chord / 2, 0);
+      ctx.fill();
+      ctx.stroke();
+
+      // 若開啟縫翼，繪製前緣微型引流片
+      if (hasSlat) {
+        ctx.beginPath();
+        ctx.fillStyle = '#f59e0b';
+        ctx.strokeStyle = '#f8fafc';
+        ctx.lineWidth = 1;
+        ctx.arc(-chord / 2 - 6, -8, 6, -Math.PI / 2, Math.PI / 3);
+        ctx.stroke();
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      // 繪製升力向量箭頭
+      const liftArrowLen = isStalled ? 12 : Math.min(65, 20 + (alpha * 2.2) * (v / 18));
+      ctx.strokeStyle = isStalled ? '#ef4444' : '#10b981';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - 15);
+      ctx.lineTo(cx, cy - 15 - liftArrowLen);
+      ctx.stroke();
+      // 箭頭頂
+      ctx.beginPath();
+      ctx.moveTo(cx - 5, cy - 10 - liftArrowLen);
+      ctx.lineTo(cx, cy - 15 - liftArrowLen);
+      ctx.lineTo(cx + 5, cy - 10 - liftArrowLen);
+      ctx.stroke();
+
+      // 標籤提示
+      ctx.fillStyle = isStalled ? '#f87171' : '#34d399';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText(isStalled ? '[STALL: VORTEX COLLAPSE]' : '[GLIDE: LIFT VECTORS STABLE]', 20, 20);
+
+      s2AirfoilAnimId = requestAnimationFrame(drawAirfoilCanvas);
+    }
+
+    if (s2AirfoilCanvas) {
+      if (s2AirfoilAnimId) cancelAnimationFrame(s2AirfoilAnimId);
+      updateAirfoilSim();
+      drawAirfoilCanvas();
+    }
+
 
 
 

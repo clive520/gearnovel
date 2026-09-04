@@ -79,8 +79,8 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 1,
       totalChapters: 30,
-      currentChaptersReleased: 5,
-      totalWords: "連載中（已達 2.5 萬字）",
+      currentChaptersReleased: 6,
+      totalWords: "連載中（已達 2.9 萬字）",
       statusText: "第一卷連載中 · 預計全三卷"
     },
     volumes: [
@@ -90,9 +90,9 @@ window.GEAR_SERIES = [
         title: "追光星盤的修復師",
         subtitle: "晨光堂發條與冰霜少女之約",
         chaptersCount: 10,
-        releasedChapters: 5,
-        wordCount: "連載中（第 1～5 章已上線 · 2.5 萬字）",
-        status: "第 1～5 章已上線",
+        releasedChapters: 6,
+        wordCount: "連載中（第 1～6 章已上線 · 2.9 萬字）",
+        status: "第 1～6 章已上線",
         theme: "虎克定律 × 司涅爾折射 × 居禮點熔爐 × 角動量雙星",
         firstChapterId: 1
       },
