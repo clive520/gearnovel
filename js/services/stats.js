@@ -13,25 +13,9 @@
   const SESSION_PREFIX = 'gn_session_read_';
   const LOCAL_PREFIX = 'gn_local_read_';
 
-  // 靜態基礎底數（基於出版順序與各章熱度曲線之基準值）
+  // 完全純粹真實計數模式：初始底數為 0，完全由真實讀者點閱自增累計
   function getChapterBaseCount(bookId, chId) {
-    const cid = parseInt(chId, 10) || 1;
-    switch (bookId) {
-      case 'book-1': // 校園地下 404 室 (全 10 章)
-        return Math.max(2200, 4350 - cid * 180 + ((cid * 37) % 90));
-      case 'book-2': // 千島齒輪海的迷失燈塔 (第 11～22 章)
-        return Math.max(1600, 3100 - (cid - 10) * 110 + ((cid * 29) % 70));
-      case 'book-3': // 星穹鐘樓的第十二個音符 (第 23～32 章)
-        return Math.max(1300, 2450 - (cid - 22) * 95 + ((cid * 41) % 60));
-      case 'book-4': // 追光星盤的修復師 (全 10 章)
-        return Math.max(2100, 3950 - cid * 165 + ((cid * 43) % 85));
-      case 'book-5': // 旋轉稜鏡的雙星軌道 (全 10 章)
-        return Math.max(1500, 2900 - cid * 115 + ((cid * 31) % 75));
-      case 'book-6': // 天穹之心的永恆鐘鳴 (第 21～22 章連載中)
-        return cid === 1 ? 1680 : 1520;
-      default:
-        return 1200;
-    }
+    return 0;
   }
 
   const listeners = [];

@@ -722,7 +722,7 @@
           <div class="text-left">
             <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">全站累計共讀</div>
             <div class="text-sm font-black text-amber-600 dark:text-amber-400 font-mono">
-              ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '24.8 萬'} 次
+              ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '0'} 次
             </div>
           </div>
         </div>
@@ -759,7 +759,7 @@
               </span>
               <div class="flex items-center gap-2">
                 <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
-                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-1') : '14.2 萬'} 次閱讀
+                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-1') : '0'} 次閱讀
                 </span>
                 <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
               </div>
@@ -866,7 +866,7 @@
               </span>
               <div class="flex items-center gap-2">
                 <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
-                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-2') : '10.6 萬'} 次閱讀
+                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-2') : '0'} 次閱讀
                 </span>
                 <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
               </div>
