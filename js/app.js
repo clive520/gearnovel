@@ -732,13 +732,558 @@
     });
   };
 
-  // 頁面渲染器：書庫首頁（精簡雙套書專題架構）
+  // 記錄首頁套書展區展示狀態
+  let homeViewMode = 'carousel'; // 'carousel' | 'grid'
+  let homeSlideIndex = 0;
+
+  window.setHomeViewMode = function(mode) {
+    homeViewMode = mode;
+    renderLibrary();
+  };
+
+  window.goToHomeSlide = function(idx) {
+    homeSlideIndex = idx;
+    updateHomeSlider();
+  };
+
+  window.nextHomeSlide = function() {
+    const isDesktop = window.innerWidth >= 1024;
+    const maxIdx = isDesktop ? 2 : 3;
+    homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
+    updateHomeSlider();
+  };
+
+  window.prevHomeSlide = function() {
+    const isDesktop = window.innerWidth >= 1024;
+    const maxIdx = isDesktop ? 2 : 3;
+    homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
+    updateHomeSlider();
+  };
+
+  function updateHomeSlider() {
+    const track = document.getElementById('home-slider-track');
+    if (!track) return;
+    const isDesktop = window.innerWidth >= 1024;
+
+    const stepPercent = isDesktop ? 50 : 100;
+    const maxIndex = isDesktop ? 2 : 3;
+    const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
+
+    track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
+
+    // 更新 Tab pills 高亮
+    for (let i = 0; i < 4; i++) {
+      const tab = document.getElementById(`home-slide-tab-${i}`);
+      if (tab) {
+        const isActive = (effectiveIdx === i);
+        if (isActive) {
+          tab.className = "px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-amber-600 text-white ring-2 ring-amber-400/30 whitespace-nowrap";
+        } else {
+          tab.className = "px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap";
+        }
+      }
+    }
+
+    // 更新頁碼指示
+    const indicator = document.getElementById('home-slide-indicator');
+    if (indicator) {
+      indicator.textContent = `${effectiveIdx + 1} / ${maxIndex + 1}`;
+    }
+
+    // 更新圓點指示
+    for (let d = 0; d <= 3; d++) {
+      const dot = document.getElementById(`home-slide-dot-${d}`);
+      if (dot) {
+        if (d > maxIndex) {
+          dot.classList.add('hidden');
+        } else {
+          dot.classList.remove('hidden');
+          if (d === effectiveIdx) {
+            dot.className = "w-6 h-2 rounded-full bg-amber-600 transition-all";
+          } else {
+            dot.className = "w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400";
+          }
+        }
+      }
+    }
+  }
+
+  function initHomeSliderTouch() {
+    const sliderContainer = document.getElementById('home-slider-container');
+    if (!sliderContainer || sliderContainer.dataset.touchBound) return;
+    sliderContainer.dataset.touchBound = 'true';
+    let touchStartX = 0;
+    let touchEndX = 0;
+    sliderContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    sliderContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 45) {
+        window.nextHomeSlide();
+      } else if (touchEndX - touchStartX > 45) {
+        window.prevHomeSlide();
+      }
+    }, { passive: true });
+  }
+
+  window.addEventListener('resize', () => {
+    if (homeViewMode === 'carousel') {
+      updateHomeSlider();
+    }
+  });
+
+  // 卡片產生函數：第一套《冒險齒輪：失落的二十四小時》
+  function getSeries1CardHtml() {
+    return `
+      <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              🏆 第一套 · 全三卷完結旗艦套書
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-1') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《冒險齒輪：失落的二十四小時》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mb-3">
+            當整個世界的星期三被神秘抹去，四位少年的記憶逆流大冒險！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小的發明少年誠浩戴上爺爺留下的黃銅護目鏡，攜手邏輯學霸葉旖緁、死黨將江與機械柴犬皮可，從校園地下404室殺向萬米高空的星穹浮空城！融合摩斯密碼、二進位、白努利定理與十二平均律音波的硬核科學冒險！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 收錄全三卷三部曲（共 32 章已完結）</span>
+              <span class="text-amber-600 font-mono font-bold">14.4 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-1/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
+                    《校園地下 404 室》
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～10 章 · 43.7k 字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-1') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
+                    《千島齒輪海的迷失燈塔》
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 11～22 章 · 52.1k 字 · 大航海 × 聲納共振 × 全息折射</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
+                    《星穹鐘樓的第十二個音符》
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 23～32 章 · 48.5k 字 · 平流層天梯 × 天體音波 × 反重力科技</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-3') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部亮點與行動按鈕 -->
+        <div class="pt-4 border-t border-amber-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+            <span>✨ 32 章中英雙語</span>
+            <span>·</span>
+            <span>🧩 32 道 STEM 實驗</span>
+          </div>
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <a href="#/read/book-1/1" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+              <span>📖 從頭開始閱讀</span>
+            </a>
+            <button onclick="window.openSeriesModal('series-1')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+              📑 全 32 回目錄
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 卡片產生函數：第二套《星願鐘擺與織光少女》
+  function getSeries2CardHtml() {
+    return `
+      <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
+              ✨ 全三卷完結
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-2') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《星願鐘擺與織光少女》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 mb-3">
+            聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            十三歲鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，熔鑄因瓦合金雙金屬發條，迎戰監察處重型蒸汽巨像！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+              <span class="text-rose-600 font-mono font-bold">17.5 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-4/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-rose-500/30 flex items-center justify-between hover:border-rose-500 hover:bg-rose-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《追光星盤的修復師》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-4') : ''}</span>
+                <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-5/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《旋轉稜鏡的雙星軌道》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 雙星共鳴</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-5') : ''}</span>
+                <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-6/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-500 hover:bg-purple-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《天穹之心的永恆鐘鳴》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 6.8 萬字 · 光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-6') : ''}</span>
+                <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部亮點與行動按鈕 -->
+        <div class="pt-4 border-t border-rose-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+            <span>⚙️ 鐘錶力學 × 30道實驗</span>
+            <span>·</span>
+            <span>🤝 少年夥伴共鳴</span>
+          </div>
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <a href="#/read/book-6/10" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+              <span>✨ 閱讀第 30 章大結局</span>
+            </a>
+            <button onclick="window.openSeriesModal('series-2')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+              📑 全 30 回目錄
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 卡片產生函數：第三套《我的老師不是人》
+  function getSeries3CardHtml() {
+    return `
+      <div class="rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-500/10 via-cyan-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-sky-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
+              🤖 第三套 · 全三卷完結旗艦套書
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded-full border border-sky-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-3') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《我的老師不是人》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mb-3">
+            看似嚴肅死板的機器人導師，卻擁有比誰都溫暖的超導心臟！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小六年一班迎來史上最神秘的班導師高峙舷——一位具備超導量子核心、透視雷射眼與高壓液壓關節的頂尖仿生人！頑童阿釁、黑客少女晴晴與老巫從密謀拆穿他的機械身份，到聯手對抗外部科技財團的掠奪，展開最感人至深的師生守護大作戰！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+              <span class="text-sky-600 font-mono font-bold">15.6 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-7/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-sky-500/30 flex items-center justify-between hover:border-sky-500 hover:bg-sky-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《講台上的機械心跳》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～8 章 · 4.8 萬字 · 校園常規 × 邏輯閘電路 × 仿生骨骼</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-7') : ''}</span>
+                <span class="text-xs text-sky-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-8/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《校園地底的鋼鐵防線》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 9～16 章 · 5.4 萬字 · 地下兵工廠 × 無人機蜂群 × 晶片降溫</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-8') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-9/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《畢業鐘聲與守護協議》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 17～24 章 · 5.4 萬字 · 守護協議 × 畢業致詞 × 感情程式昇華</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-9') : ''}</span>
+                <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部亮點與行動按鈕 -->
+        <div class="pt-4 border-t border-sky-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+            <span>🤖 量子仿生 × 24道STEM</span>
+            <span>·</span>
+            <span>🎓 守護協議動人告白</span>
+          </div>
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <a href="#/read/book-9/8" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+              <span>✨ 閱讀第 24 章大結局</span>
+            </a>
+            <button onclick="window.openSeriesModal('series-3')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+              📑 全 24 回目錄
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 卡片產生函數：第四張《少兒科幻宇宙探索中心》
+  function getExploreCenterCardHtml() {
+    return `
+      <div class="rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-indigo-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30">
+              🧭 互動探索 · 全宇宙總覽
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20 font-mono">
+                31 位角色 · 32 個實驗
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《少兒科幻宇宙探索中心》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-3">
+            不只閱讀冒險，更能動手實踐科學與探索人物密檔！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            貫穿《冒險齒輪》、《星願鐘擺》與《我的老師不是人》三大長篇宇宙！你可以親自操作聲納共振儀、解開 Boolean 邏輯閘電路、探索 31 位核心登場主角與陣營的機密檔案，解鎖屬於你的小偵探專屬成就！
+          </p>
+
+          <!-- 三大核心入口模組 (對齊三卷卡片結構) -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>🔬 核心互動單元快速直達</span>
+              <span class="text-indigo-600 font-mono font-bold">即刻體驗</span>
+            </div>
+
+            <!-- 人物檔案誌 -->
+            <a href="#/characters" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">👥</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors truncate">
+                    人物檔案誌 (三套共 31 位角色)
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">高峙舷 × 誠浩 × 采婭玆 × 晴晴等角色全收錄</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">探索 ➜</span>
+              </div>
+            </a>
+
+            <!-- 密碼實驗室 -->
+            <a href="#/puzzle-lab" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">🧩</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
+                    小偵探密碼與 STEM 實驗室
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">32 項互動科學模擬器 · 雙星光學 × 邏輯閘 × 聲納</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">操作 ➜</span>
+              </div>
+            </a>
+
+            <!-- 閱讀成就 -->
+            <a href="#/badges" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">🏆</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors truncate">
+                    小讀者閱讀成就與書籤
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全套書解謎勳章庫 · 跨載具雲端書籤無縫同步</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">前往 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部亮點與行動按鈕 -->
+        <div class="pt-4 border-t border-indigo-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+            <span>🌟 探索 31位人物檔案</span>
+            <span>·</span>
+            <span>🧪 32項互動科學</span>
+          </div>
+          <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <a href="#/characters" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+              <span>👥 進入人物誌</span>
+            </a>
+            <a href="#/puzzle-lab" class="flex-1 sm:flex-initial px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center transition-all">
+              🧩 前往實驗室
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 頁面渲染器：書庫首頁（自適應雙書/單書旗艦展區）
   function renderLibrary() {
     const container = document.getElementById('app-main');
     const seriesList = window.GEAR_SERIES || [];
 
     // 若有書籤紀錄，取出最新一筆作為續讀膠囊
     const latestBookmark = (state.bookmarks && state.bookmarks.length > 0) ? state.bookmarks[0] : null;
+
+    const card1 = getSeries1CardHtml();
+    const card2 = getSeries2CardHtml();
+    const card3 = getSeries3CardHtml();
+    const card4 = getExploreCenterCardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -769,7 +1314,7 @@
       ` : ''}
 
       <!-- 精簡題頭 -->
-      <div class="mb-12 text-center max-w-2xl mx-auto">
+      <div class="mb-10 text-center max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
           <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
           <span class="text-amber-300 dark:text-amber-700 font-normal">·</span>
@@ -783,337 +1328,91 @@
         </p>
       </div>
 
-      <!-- 三大旗艦套書專題展示區 (Series Showcase) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-        
-        <!-- 【套書一】冒險齒輪：失落的二十四小時（三部曲完結篇） -->
-        <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50">
-          <div>
-            <!-- 標籤與受眾 -->
-            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
-                🏆 第一套 · 全三卷完結旗艦套書
-              </span>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
-                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-1') : '0'} 次閱讀
-                </span>
-                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
-              </div>
-            </div>
-
-            <!-- 標題與引言 -->
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
-              《冒險齒輪：失落的二十四小時》
-            </h2>
-            <p class="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mb-4">
-              當整個世界的星期三被神秘抹去，四位少年的記憶逆流大冒險！
-            </p>
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              鹿陽國小的發明少年誠浩戴上爺爺留下的黃銅護目鏡，攜手邏輯學霸葉旖緁、死黨將江與機械柴犬皮可，從校園地下404室殺向萬米高空的星穹浮空城！融合摩斯密碼、二進位、白努利定理與十二平均律音波的硬核科學冒險！
-            </p>
-
-            <!-- 收錄全三卷列表 -->
-            <div class="space-y-2.5 mb-6">
-              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 收錄全三卷三部曲（共 32 章已完結）</span>
-                <span class="text-amber-600 font-mono">14.4 萬字</span>
-              </div>
-
-              <!-- 卷一 -->
-              <a href="#/read/book-1/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
-                      《校園地下 404 室》
-                    </div>
-                    <div class="text-[11px] text-slate-500">第 1～10 章 · 43.7k 字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-1') : ''}</span>
-                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷二 -->
-              <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
-                      《千島齒輪海的迷失燈塔》
-                    </div>
-                    <div class="text-[11px] text-slate-500">第 11～22 章 · 52.1k 字 · 大航海 × 聲納共振 × 全息折射</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
-                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷三 -->
-              <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
-                      《星穹鐘樓的第十二個音符》
-                    </div>
-                    <div class="text-[11px] text-slate-500">第 23～32 章 · 48.5k 字 · 平流層天梯 × 天體音波 × 反重力科技</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-3') : ''}</span>
-                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- 底部亮點與行動按鈕 -->
-          <div>
-            <div class="pt-4 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>✨ 32 章中英雙語對照</span>
-                <span>·</span>
-                <span>🧩 32 道 STEM 實驗</span>
-              </div>
-              <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-1/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>📖 從頭開始閱讀</span>
-                </a>
-                <button onclick="window.openSeriesModal('series-1')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 全 32 回目錄
-                </button>
-              </div>
-            </div>
-          </div>
+      <!-- 旗艦套書專題展示區 (Series Showcase Header & Mode Switcher) -->
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📚 旗艦套書選讀</span>
+            <span class="text-xs font-normal text-slate-500 dark:text-slate-400 hidden sm:inline">（寬螢幕雙書並列 · 手機單書沉浸）</span>
+          </h2>
         </div>
-
-        <!-- 【套書二】星願鐘擺與織光少女（全三卷完結） -->
-        <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50">
-          <div>
-            <!-- 標籤與受眾 -->
-            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                ✨ 全三卷完結
-              </span>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
-                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-2') : '0'} 次閱讀
-                </span>
-                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
-              </div>
-            </div>
-
-            <!-- 標題與引言 -->
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
-              《星願鐘擺與織光少女》
-            </h2>
-            <p class="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 mb-4">
-              聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！
-            </p>
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              十三歲鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，熔鑄因瓦合金雙金屬發條，迎戰監察處重型蒸汽巨像！
-            </p>
-
-            <!-- 收錄全三卷列表 -->
-            <div class="space-y-2.5 mb-6">
-              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
-                <span class="text-rose-600 font-mono">全 30 章完結 · 17.5 萬字</span>
-              </div>
-
-              <!-- 卷一 -->
-              <a href="#/read/book-4/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-rose-500/30 flex items-center justify-between hover:border-rose-500 hover:bg-rose-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition-colors flex items-center gap-2">
-                      <span>《追光星盤的修復師》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全10章完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力 × 駐波和弦 × 陀螺進動</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-4') : ''}</span>
-                  <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷二 (全卷完結) -->
-              <a href="#/read/book-5/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors flex items-center gap-2">
-                      <span>《旋轉稜鏡的雙星軌道》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全卷完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 光學頻率梳 × 雙星共鳴</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-5') : ''}</span>
-                  <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷三 (全卷完結) -->
-              <a href="#/read/book-6/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-500 hover:bg-purple-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-2">
-                      <span>《天穹之心的永恆鐘鳴》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全卷完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 6.8 萬字 · 光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環 × 潘羅斯躍遷 × 永恆鐘鳴</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-6') : ''}</span>
-                  <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- 底部亮點與行動按鈕 -->
-          <div>
-            <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 30道 STEM 實驗</span>
-                <span>·</span>
-                <span>🤝 少年夥伴並肩共鳴</span>
-              </div>
-              <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-6/10" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀第三卷第 30 章（大結局）</span>
-                </a>
-                <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 30 章目錄
-                </button>
-              </div>
-            </div>
-          </div>
+        <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
+          <button onclick="window.setHomeViewMode('carousel')" id="btn-view-carousel" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'carousel' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+            🎠 輪播展示
+          </button>
+          <button onclick="window.setHomeViewMode('grid')" id="btn-view-grid" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'grid' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+            📑 平鋪雙欄
+          </button>
         </div>
-
-        <!-- 【套書三】我的老師不是人（全三卷完結） -->
-        <div class="rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-500/10 via-cyan-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-sky-500/50 lg:col-span-2 xl:col-span-1">
-          <div>
-            <!-- 標籤與受眾 -->
-            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
-                🤖 第三套 · 全三卷完結旗艦套書
-              </span>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded-full border border-sky-500/20 font-mono">
-                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-3') : '0'} 次閱讀
-                </span>
-                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
-              </div>
-            </div>
-
-            <!-- 標題與引言 -->
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
-              《我的老師不是人》
-            </h2>
-            <p class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mb-4">
-              看似嚴肅死板的機器人導師，卻擁有比誰都溫暖的超導心臟！
-            </p>
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              鹿陽國小六年一班迎來史上最神秘的班導師高峙舷——一位具備超導量子核心、透視雷射眼與高壓液壓關節的頂尖仿生人！頑童阿釁、黑客少女晴晴與老巫從密謀拆穿他的機械身份，到聯手對抗外部科技財團的掠奪，展開最感人至深的師生守護大作戰！
-            </p>
-
-            <!-- 收錄全三卷列表 -->
-            <div class="space-y-2.5 mb-6">
-              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
-                <span class="text-sky-600 font-mono">全 24 章完結 · 15.6 萬字</span>
-              </div>
-
-              <!-- 卷一 -->
-              <a href="#/read/book-7/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-sky-500/30 flex items-center justify-between hover:border-sky-500 hover:bg-sky-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition-colors flex items-center gap-2">
-                      <span>《講台上的機械心跳》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 1～8 章 · 4.8 萬字 · 校園常規 × 邏輯閘電路 × 晶片降溫 × 仿生骨骼</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-7') : ''}</span>
-                  <span class="text-xs text-sky-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷二 -->
-              <a href="#/read/book-8/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-2">
-                      <span>《校園地底的鋼鐵防線》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 9～16 章 · 5.4 萬字 · 地下兵工廠 × 無人機蜂群 × 記憶晶片 × 師生突圍</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-8') : ''}</span>
-                  <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-
-              <!-- 卷三 -->
-              <a href="#/read/book-9/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
-                <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
-                  <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-2">
-                      <span>《畢業鐘聲與守護協議》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 17～24 章 · 5.4 萬字 · 守護協議 × 畢業致詞 × 感情程式昇華 × 永恆守候</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-9') : ''}</span>
-                  <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- 底部亮點與行動按鈕 -->
-          <div>
-            <div class="pt-4 border-t border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>🤖 超導量子仿生 × 24道 STEM 實證</span>
-                <span>·</span>
-                <span>🎓 守護協議動人告白</span>
-              </div>
-              <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-9/8" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀第三卷第 24 章（大結局）</span>
-                </a>
-                <button onclick="window.openSeriesModal('series-3')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 24 章目錄
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      ${homeViewMode === 'carousel' ? `
+        <!-- 輪播展示模式 (Carousel Mode) -->
+        <div class="relative mb-16">
+          <!-- 頂部套書切換標籤與翻頁按鈕 -->
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+              <button onclick="window.goToHomeSlide(0)" id="home-slide-tab-0" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-amber-600 text-white ring-2 ring-amber-400/30 whitespace-nowrap">
+                📘 《冒險齒輪》
+              </button>
+              <button onclick="window.goToHomeSlide(1)" id="home-slide-tab-1" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+                🌸 《星願鐘擺》
+              </button>
+              <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+                🤖 《我的老師不是人》
+              </button>
+              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+                🧭 宇宙探索中心
+              </button>
+            </div>
+
+            <!-- 翻頁與指示器 -->
+            <div class="flex items-center gap-2">
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 3</span>
+              <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button onclick="window.nextHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="下一本">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 輪播軌道容器 -->
+          <div id="home-slider-container" class="overflow-hidden rounded-3xl -mx-2 sm:-mx-3">
+            <div id="home-slider-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card1}
+              </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card2}
+              </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card3}
+              </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card4}
+              </div>
+            </div>
+          </div>
+
+          <!-- 底部圓點指示器 -->
+          <div class="flex items-center justify-center gap-2 mt-6">
+            <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-amber-600 transition-all"></button>
+            <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400 hidden"></button>
+          </div>
+        </div>
+      ` : `
+        <!-- 平鋪雙欄展示模式 (Tiled Grid Mode: 寬螢幕雙欄 · 手機單欄) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <div>${card1}</div>
+          <div>${card2}</div>
+          <div>${card3}</div>
+          <div>${card4}</div>
+        </div>
+      `}
 
       <!-- 全域套書章節目錄彈窗 (Series Catalog Modal) -->
       <div id="series-catalog-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
@@ -1131,6 +1430,13 @@
         </div>
       </div>
     `;
+
+    if (homeViewMode === 'carousel') {
+      setTimeout(() => {
+        updateHomeSlider();
+        initHomeSliderTouch();
+      }, 50);
+    }
   }
 
   // 開啟特定套書的章節目錄 Modal
