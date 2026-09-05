@@ -879,7 +879,7 @@
                       <span>《天穹之心的永恆鐘鳴》</span>
                       <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">連載中</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">最新第 21 章上線 · 0.7 萬字 · 引力時間膨脹 × 光晶格鐘 × 魔術波長</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">最新第 22 章上線 · 1.4 萬字 · 相干光纖鏈路 × 主動相噪消除 × 相對論大地測量</div>
                   </div>
                 </div>
                 <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
@@ -891,16 +891,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 21道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 22道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-6/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>🔥 閱讀第三卷開篇第 21 章</span>
+                <a href="#/read/book-6/2" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>🔥 閱讀第三卷第 22 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 21 章目錄
+                  📑 查看全 22 章目錄
                 </button>
               </div>
             </div>
@@ -2127,7 +2127,7 @@
               ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }">
-            全部模擬器 (21項)
+            全部模擬器 (22項)
           </button>
           <button id="s2-vol-btn-vol1" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
             activeLabVolume === 'vol1'
@@ -2148,7 +2148,7 @@
               ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }">
-            第三卷：天穹之心 (1項 · 連載中)
+            第三卷：天穹之心 (2項 · 連載中)
           </button>
         </div>
 
@@ -4047,6 +4047,98 @@
                 <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：03=C, 08=H, 18=R, 15=O, 14=N, 15=O, 19=S。</p>
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
                   03 ➜ C  |  08 ➜ H  |  18 ➜ R  |  15 ➜ O  |  14 ➜ N  |  15 ➜ O  |  19 ➜ S  ==>  【 CHRONOS 】（時間之神 · 永恆基準）
+                </div>
+              </div>
+            </div>
+
+            <!-- 實驗 22 卡片 -->
+            <div class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 shadow-sm space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono text-xs font-bold">LAB 22</span>
+                  <h4 class="font-bold text-slate-900 dark:text-white">相干光纖相位噪聲消除與相對論大地測量模擬器</h4>
+                </div>
+                <span class="text-xs text-slate-600 dark:text-slate-400">對應第 22 章（長距離超穩光頻傳遞）</span>
+              </div>
+
+              <!-- 實驗控制與畫布佈局 -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- 左側控制面板 -->
+                <div class="space-y-4">
+                  <!-- 主動相位噪聲消除 (PNC) 開關 -->
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">主動相位噪聲消除（Active PNC 迴路）：</label>
+                    <select id="s2GeodesyPncSelect" class="w-full text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 font-medium">
+                      <option value="pnc_on" selected>PNC 閉環鎖相開（AOM 反向半頻補償 · Δf_AOM = -½ Δf）</option>
+                      <option value="pnc_off">PNC 開環關閉（雪峰狂風溫差 · 劇烈熱聲學相噪失鎖）</option>
+                    </select>
+                  </div>
+
+                  <!-- 光纖傳輸距離 Slider -->
+                  <div>
+                    <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      <span>光纖鏈路總長度 L：</span>
+                      <span id="s2GeodesyLenVal" class="text-indigo-600 dark:text-indigo-400 font-mono">320 km</span>
+                    </div>
+                    <input id="s2GeodesyLenSlider" type="range" min="50" max="500" step="10" value="320" class="w-full accent-indigo-500 cursor-pointer">
+                    <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                      <span>50 km (城郊中繼)</span>
+                      <span>500 km (跨天脈雪峰長龍)</span>
+                    </div>
+                  </div>
+
+                  <!-- 地底質量異常 (溶洞暗河) Slider -->
+                  <div>
+                    <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      <span>雪峰地底質量異常 δh（等效高程偏微）：</span>
+                      <span id="s2GeodesyAnomalyVal" class="text-indigo-600 dark:text-indigo-400 font-mono">0.0 cm (無異常)</span>
+                    </div>
+                    <input id="s2GeodesyAnomalySlider" type="range" min="-5.0" max="5.0" step="0.5" value="0.0" class="w-full accent-indigo-500 cursor-pointer">
+                    <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                      <span>-5.0 cm (深層空洞暗河)</span>
+                      <span>+5.0 cm (超高密緻密礦脈)</span>
+                    </div>
+                  </div>
+
+                  <!-- 即時遙測數據盒 -->
+                  <div id="s2GeodesyStatusBox" class="p-3 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+                    <div class="font-bold text-indigo-800 dark:text-indigo-300 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+                      光纖相噪與相對論大地測量指標
+                    </div>
+                    <div class="font-mono text-[11px] space-y-1">
+                      <div>殘餘相位噪聲 PSD：<span id="s2GeodesyPsdVal" class="font-bold text-emerald-500">&lt; 10⁻⁷ rad²/Hz (超穩)</span></div>
+                      <div>阿蘭方差 σ_y(1000s)：<span id="s2GeodesyAllanVal" class="font-bold text-sky-500">1.2 × 10⁻¹⁹ (極致傳遞)</span></div>
+                      <div>綜合重力位差 ΔΦ：<span id="s2GeodesyPhiVal" class="font-bold text-indigo-500">3.91 × 10⁴ m²/s²</span></div>
+                      <div>物理大地水準面高 Δh：<span id="s2GeodesyHeightVal" class="font-bold text-amber-500">3,984.62 m (精度 ±0.8cm)</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 右側動態 Canvas 畫布 -->
+                <div class="lg:col-span-2 flex flex-col items-center">
+                  <canvas id="s2GeodesyCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                  <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                    <span id="s2GeodesyCanvasStatus" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      PNC 相噪相消閉環 · 相對論大地水準面公分級鎖定
+                    </span>
+                    <span class="text-slate-600 dark:text-slate-400">左: 雙程光纖回波與 AOM 補償 | 右: 大地水準面與地底暗河剖面</span>
+                  </div>
+                  <p id="s2GeodesyCanvasDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                    雪峰高低溫與風震引發光纖熱聲相噪。透過雙程回波（ϕ_rt = 2ϕ_fiber）與聲光調製器（AOM）反向補償，抑制 60 dB 相噪，將頻率傳遞精度提升至 10⁻¹⁹，實現公分級相對論大地測量！
+                  </p>
+                </div>
+              </div>
+
+              <!-- 核心密文卡片 -->
+              <div class="mt-4 p-3.5 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
+                <div class="text-xs font-bold text-indigo-800 dark:text-indigo-400 mb-1 flex items-center gap-2">
+                  <span>🔐 第 22 章核心破譯密鑰：[ 07 - 05 - 15 - 04 - 05 - 19 - 25 ]</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：07=G, 05=E, 15=O, 04=D, 05=E, 19=S, 25=Y。</p>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono text-xs font-bold">
+                  07 ➜ G  |  05 ➜ E  |  15 ➜ O  |  04 ➜ D  |  05 ➜ E  |  19 ➜ S  |  25 ➜ Y  ==>  【 GEODESY 】（大地測量學 · 重力等勢面之真理）
                 </div>
               </div>
             </div>
@@ -9501,6 +9593,351 @@
       updateChronosSimUI();
       drawChronosCanvas();
     }
+
+
+    // ================== 實驗 22：相干光纖相位噪聲消除與相對論大地測量模擬器 (Ch 54 / Book 6 Ch 2) ==================
+    const s2GeodesyCanvas = document.getElementById('s2GeodesyCanvas');
+    const s2GeodesyPncSelect = document.getElementById('s2GeodesyPncSelect');
+    const s2GeodesyLenSlider = document.getElementById('s2GeodesyLenSlider');
+    const s2GeodesyAnomalySlider = document.getElementById('s2GeodesyAnomalySlider');
+    const s2GeodesyLenVal = document.getElementById('s2GeodesyLenVal');
+    const s2GeodesyAnomalyVal = document.getElementById('s2GeodesyAnomalyVal');
+    const s2GeodesyPsdVal = document.getElementById('s2GeodesyPsdVal');
+    const s2GeodesyAllanVal = document.getElementById('s2GeodesyAllanVal');
+    const s2GeodesyPhiVal = document.getElementById('s2GeodesyPhiVal');
+    const s2GeodesyHeightVal = document.getElementById('s2GeodesyHeightVal');
+    const s2GeodesyCanvasStatus = document.getElementById('s2GeodesyCanvasStatus');
+    const s2GeodesyCanvasDesc = document.getElementById('s2GeodesyCanvasDesc');
+
+    let s2GeodesyAnimId = null;
+    let s2GeodesyTime = 0;
+
+    function updateGeodesySimUI() {
+      if (!s2GeodesyPncSelect || !s2GeodesyLenSlider || !s2GeodesyAnomalySlider) return;
+      const isPncOn = s2GeodesyPncSelect.value === 'pnc_on';
+      const fiberLen = parseFloat(s2GeodesyLenSlider.value);
+      const anomalyCm = parseFloat(s2GeodesyAnomalySlider.value);
+
+      if (s2GeodesyLenVal) {
+        s2GeodesyLenVal.textContent = `${fiberLen} km`;
+      }
+
+      if (s2GeodesyAnomalyVal) {
+        let note = '';
+        if (anomalyCm === 0.0) note = ' (均質花崗岩地殼)';
+        else if (anomalyCm < 0) note = ` (暗河空洞質量缺失 ${Math.abs(anomalyCm).toFixed(1)}cm)`;
+        else note = ` (緻密重力正異常 +${anomalyCm.toFixed(1)}cm)`;
+        s2GeodesyAnomalyVal.textContent = `${anomalyCm > 0 ? '+' : ''}${anomalyCm.toFixed(1)} cm${note}`;
+      }
+
+      if (s2GeodesyPsdVal) {
+        if (isPncOn) {
+          s2GeodesyPsdVal.className = 'font-bold text-emerald-500';
+          s2GeodesyPsdVal.textContent = '< 10⁻⁷ rad²/Hz (超穩抑制 60dB)';
+        } else {
+          s2GeodesyPsdVal.className = 'font-bold text-rose-500';
+          s2GeodesyPsdVal.textContent = '~ 4.8 × 10² rad²/Hz (熱聲學發散)';
+        }
+      }
+
+      if (s2GeodesyAllanVal) {
+        if (isPncOn) {
+          s2GeodesyAllanVal.className = 'font-bold text-sky-500';
+          const allanVal = (1.2 * Math.sqrt(fiberLen / 320)).toFixed(1);
+          s2GeodesyAllanVal.textContent = `${allanVal} × 10⁻¹⁹ (PNC 相位鎖定)`;
+        } else {
+          s2GeodesyAllanVal.className = 'font-bold text-rose-500';
+          const allanVal = (2.5 * (fiberLen / 320)).toFixed(1);
+          s2GeodesyAllanVal.textContent = `${allanVal} × 10⁻¹³ (失鎖嚴重劣化)`;
+        }
+      }
+
+      // Geopotential difference ΔΦ = g · Δh_base + δΦ_anomaly
+      const baseHeight = 3984.62;
+      const effectiveHeight = baseHeight + (anomalyCm / 100.0);
+      const g = 9.80665;
+      const deltaPhi = g * effectiveHeight;
+
+      if (s2GeodesyPhiVal) {
+        s2GeodesyPhiVal.textContent = `${(deltaPhi / 10000).toFixed(4)} × 10⁴ m²/s²`;
+      }
+
+      if (s2GeodesyHeightVal) {
+        if (isPncOn) {
+          s2GeodesyHeightVal.className = 'font-bold text-amber-500';
+          s2GeodesyHeightVal.textContent = `${effectiveHeight.toFixed(3)} m (精度 ±0.8cm)`;
+        } else {
+          s2GeodesyHeightVal.className = 'font-bold text-slate-400';
+          s2GeodesyHeightVal.textContent = `~ ${(effectiveHeight + (Math.sin(s2GeodesyTime) * 1.5)).toFixed(1)} m (±1.8m 噪聲漂移)`;
+        }
+      }
+
+      if (s2GeodesyCanvasStatus) {
+        if (isPncOn) {
+          s2GeodesyCanvasStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2GeodesyCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> PNC 閉環相消鎖定 · 大地水準面公分級解析';
+        } else {
+          s2GeodesyCanvasStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2GeodesyCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> PNC 開環未補償 · 光纖熱聲學相噪劇烈擾動';
+        }
+      }
+    }
+
+    function drawGeodesyCanvas() {
+      if (!s2GeodesyCanvas) return;
+      const ctx = s2GeodesyCanvas.getContext('2d');
+      const w = s2GeodesyCanvas.width;
+      const h = s2GeodesyCanvas.height;
+
+      s2GeodesyTime += 0.035;
+      const isPncOn = s2GeodesyPncSelect ? (s2GeodesyPncSelect.value === 'pnc_on') : true;
+      const fiberLen = parseFloat(s2GeodesyLenSlider ? s2GeodesyLenSlider.value : 320);
+      const anomalyCm = parseFloat(s2GeodesyAnomalySlider ? s2GeodesyAnomalySlider.value : 0.0);
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Background grid
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 25) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 25) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // ================= 左半部：雙程相干光纖鏈路與 AOM 相噪相消 (x: 0 ~ 275) =================
+      const splitX = 275;
+      ctx.fillStyle = '#6366f1';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('相干光纖雙程傳遞與 AOM 補償 (Round-Trip PNC)', 14, 20);
+
+      // Fiber Core Channel
+      const fiberY = 65;
+      ctx.fillStyle = '#1e1b4b';
+      ctx.fillRect(15, fiberY - 14, 245, 28);
+      ctx.strokeStyle = '#312e81';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(15, fiberY - 14, 245, 28);
+
+      // Fiber cladding & core label
+      ctx.fillStyle = '#818cf8';
+      ctx.font = '9px monospace';
+      ctx.fillText('二氧化矽單模纖芯 (L = ' + fiberLen + 'km)', 20, fiberY - 18);
+
+      // Draw forward laser pulse wave in fiber
+      ctx.beginPath();
+      for (let px = 20; px <= 255; px++) {
+        const noiseJitter = isPncOn ? 0 : Math.sin(px * 0.15 + s2GeodesyTime * 4) * 5;
+        const wave = Math.sin((px * 0.2) - s2GeodesyTime * 5) * 6 + noiseJitter;
+        const py = fiberY + wave;
+        if (px === 20) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = isPncOn ? '#38bdf8' : '#f43f5e';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Return pulse wave (dashed)
+      ctx.save();
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      for (let px = 255; px >= 20; px--) {
+        const noiseJitter = isPncOn ? 0 : Math.sin(px * 0.15 - s2GeodesyTime * 3) * 5;
+        const wave = Math.sin((px * 0.2) + s2GeodesyTime * 5) * 4 + noiseJitter;
+        const py = fiberY + wave;
+        if (px === 255) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+
+      // AOM Crystal Block at the input (x: 20 ~ 65, y: 115 ~ 155)
+      const aomX = 20;
+      const aomY = 115;
+      ctx.fillStyle = '#312e81';
+      ctx.fillRect(aomX, aomY, 55, 35);
+      ctx.strokeStyle = '#818cf8';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(aomX, aomY, 55, 35);
+
+      ctx.fillStyle = '#c7d2fe';
+      ctx.font = 'bold 9px sans-serif';
+      ctx.fillText('AOM 晶體', aomX + 8, aomY + 16);
+      ctx.font = '8px monospace';
+      ctx.fillText('TeO₂ 聲光', aomX + 6, aomY + 28);
+
+      // Acoustic wave inside AOM
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1;
+      for (let ax = aomX + 10; ax <= aomX + 45; ax += 7) {
+        ctx.beginPath();
+        ctx.moveTo(ax, aomY + 5);
+        ctx.lineTo(ax, aomY + 30);
+        ctx.stroke();
+      }
+
+      // Arrows & PID loop text
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px monospace';
+      ctx.fillText('雙程拍頻: ϕ_rt(t) = 2 ϕ_fiber(t)', 85, 126);
+      ctx.fillText('AOM 補償: Δf_AOM = -½ Δf_fiber', 85, 142);
+
+      // Noise cancellation status block
+      ctx.font = 'bold 10px sans-serif';
+      if (isPncOn) {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('✔ 聲光閉環消除: 相位噪聲抑制 > 60 dB', 15, 185);
+        ctx.fillText('✔ 傳遞穩定度: σ_y(1000s) = 1.2 × 10⁻¹⁹', 15, 202);
+      } else {
+        ctx.fillStyle = '#f87171';
+        ctx.fillText('✘ 未啟動 PNC: 雪峰暴風溫差導致相噪發散', 15, 185);
+        ctx.fillText('✘ 傳遞穩定度: σ_y(1000s) > 10⁻¹³ 嚴重失鎖', 15, 202);
+      }
+
+      // Bottom Decryption Key Banner on left
+      ctx.font = 'bold 11px sans-serif';
+      if (isPncOn && Math.abs(anomalyCm) < 0.1) {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('★ 密鑰認證：GEODESY (大地測量學 · 鎖定) ★', 15, 245);
+      } else if (isPncOn) {
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('✔ 大地水準面鎖定 (重力異常透視探測中)', 15, 245);
+      } else {
+        ctx.fillStyle = '#fbbf24';
+        ctx.fillText('⚠ 請開啟 PNC 閉環鎖相以進行相對論大地測量', 15, 245);
+      }
+
+      // Divider line
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(splitX, 10);
+      ctx.lineTo(splitX, h - 10);
+      ctx.stroke();
+
+      // ================= 右半部：相對論大地水準面與雪峰地底暗河剖面 (x: 285 ~ 550) =================
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('相對論重力等勢面與雪峰剖面 (Geoid Profile)', splitX + 15, 20);
+
+      // Mountain Contour
+      const mtnBaseX = splitX + 25;
+      const mtnBaseY = 160;
+      const mtnPeakX = splitX + 175;
+      const mtnPeakY = 55;
+
+      ctx.beginPath();
+      ctx.moveTo(mtnBaseX, mtnBaseY);
+      ctx.bezierCurveTo(mtnBaseX + 60, mtnBaseY - 20, mtnPeakX - 50, mtnPeakY + 30, mtnPeakX, mtnPeakY);
+      ctx.bezierCurveTo(mtnPeakX + 40, mtnPeakY + 40, splitX + 245, mtnBaseY - 15, splitX + 255, mtnBaseY);
+      ctx.lineTo(splitX + 255, mtnBaseY + 60);
+      ctx.lineTo(mtnBaseX, mtnBaseY + 60);
+      ctx.closePath();
+      ctx.fillStyle = '#1e1b4b';
+      ctx.fill();
+      ctx.strokeStyle = '#4338ca';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Heart of the Sky Spire on top
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillRect(mtnPeakX - 4, mtnPeakY - 22, 8, 22);
+      ctx.beginPath();
+      ctx.moveTo(mtnPeakX - 8, mtnPeakY - 22);
+      ctx.lineTo(mtnPeakX, mtnPeakY - 32);
+      ctx.lineTo(mtnPeakX + 8, mtnPeakY - 22);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = '#fef08a';
+      ctx.font = 'bold 9px sans-serif';
+      ctx.fillText('天穹之心 (4000m)', mtnPeakX - 35, mtnPeakY - 36);
+
+      // Subterranean Cavern & Aquifer (under mountain peak, y: 110 ~ 140)
+      const cavX = mtnPeakX - 35;
+      const cavY = 115;
+      const cavW = 70;
+      const cavH = 32;
+
+      ctx.beginPath();
+      ctx.ellipse(mtnPeakX, cavY + cavH / 2, cavW / 2, cavH / 2, 0, 0, Math.PI * 2);
+      ctx.fillStyle = anomalyCm < 0 ? 'rgba(56, 189, 248, 0.4)' : '#0f172a';
+      ctx.fill();
+      ctx.strokeStyle = anomalyCm < 0 ? '#38bdf8' : '#334155';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Water waves inside cavern
+      if (anomalyCm < 0) {
+        ctx.beginPath();
+        for (let wx = cavX + 5; wx <= cavX + cavW - 5; wx += 4) {
+          const wy = cavY + cavH / 2 + Math.sin(wx * 0.4 + s2GeodesyTime * 6) * 4;
+          if (wx === cavX + 5) ctx.moveTo(wx, wy);
+          else ctx.lineTo(wx, wy);
+        }
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '9px sans-serif';
+        ctx.fillText('🌊 地下高壓水力暗河', cavX + 2, cavY + cavH + 12);
+      } else {
+        ctx.fillStyle = '#64748b';
+        ctx.font = '9px sans-serif';
+        ctx.fillText('均質花崗岩層', cavX + 12, cavY + cavH + 12);
+      }
+
+      // Geoid Equipotential curve (dashed neon green line across summit)
+      const geoidY = mtnPeakY + 6 + (anomalyCm * 3);
+      ctx.save();
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(splitX + 15, geoidY);
+      ctx.bezierCurveTo(splitX + 100, geoidY - 2, mtnPeakX - 30, geoidY + (anomalyCm * 2), mtnPeakX, geoidY);
+      ctx.bezierCurveTo(mtnPeakX + 30, geoidY - (anomalyCm * 2), splitX + 220, geoidY + 2, splitX + 255, geoidY);
+      ctx.strokeStyle = isPncOn ? '#34d399' : '#94a3b8';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.fillStyle = isPncOn ? '#34d399' : '#94a3b8';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText('大地水準面 W = const (Geoid)', splitX + 15, geoidY - 6);
+
+      // Bottom stats on right
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '10px monospace';
+      ctx.fillText('相對論等勢高度: Δh = ' + (3984.62 + anomalyCm / 100).toFixed(3) + ' m', splitX + 15, 228);
+      ctx.fillText('地底重力勢異常: δΦ = ' + (anomalyCm * 0.0981).toFixed(3) + ' m²/s²', splitX + 15, 245);
+
+      s2GeodesyAnimId = requestAnimationFrame(drawGeodesyCanvas);
+    }
+
+    if (s2GeodesyCanvas) {
+      if (s2GeodesyAnimId) cancelAnimationFrame(s2GeodesyAnimId);
+      if (s2GeodesyPncSelect) {
+        s2GeodesyPncSelect.addEventListener('change', () => {
+          updateGeodesySimUI();
+        });
+      }
+      if (s2GeodesyLenSlider) {
+        s2GeodesyLenSlider.addEventListener('input', () => {
+          updateGeodesySimUI();
+        });
+      }
+      if (s2GeodesyAnomalySlider) {
+        s2GeodesyAnomalySlider.addEventListener('input', () => {
+          updateGeodesySimUI();
+        });
+      }
+      updateGeodesySimUI();
+      drawGeodesyCanvas();
+    }
+
 
 
 
