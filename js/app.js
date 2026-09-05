@@ -837,7 +837,7 @@
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
                 <span>📚 規劃全三卷三部曲（第二卷火熱連載中）</span>
-                <span class="text-rose-600 font-mono">已更新至第 12 章 · 5.8 萬字</span>
+                <span class="text-rose-600 font-mono">已更新至第 13 章 · 6.5 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -862,9 +862,9 @@
                   <div>
                     <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
                       <span>《旋轉稜鏡的雙星軌道》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第12章已上線</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第13章已上線</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 1.2 萬字 · 司涅爾全反射 × 數值孔徑 × 馬呂斯偏振定律</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 1.8 萬字 · 開普勒第二定律 × 面速度守恆 × 橢圓非圓齒輪</div>
                   </div>
                 </div>
                 <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
@@ -890,16 +890,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 12道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 13道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/2" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 12 章</span>
+                <a href="#/read/book-5/3" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 13 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 12 章目錄
+                  📑 查看全 13 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (12項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (13項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3117,6 +3117,92 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：06=F, 09=I, 02=B, 05=E, 18=R。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
                 06 ➜ F  |  09 ➜ I  |  02 ➜ B  |  05 ➜ E  |  18 ➜ R  ==>  【 FIBER 】（光導纖維／琉璃光纜）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗十三：開普勒第二定律與非圓齒輪面速度守恆模擬器 (第 13 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 13 章全新連載</span>
+                <span class="text-xs text-slate-500">開普勒第二定律 · 角動量守恆 · 橢圓非圓齒輪</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500">dA/dt = 1/2 r² ω = L/(2μ) = const</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-2">
+              <span>💫 13. 開普勒第二定律與非圓齒輪面速度守恆模擬器（第 13 章）</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+              天極雙星繞共同質心沿偏心率 e=0.35 橢圓互繞。均速圓形齒輪無法消化近星點 4.3 倍角速度暴增而劇烈卡頓！換裝晨光堂因瓦雙橢圓共軛非圓齒輪（i(θ) 隨真近點角動態變比），實體重現相等時間掃過相等面積（dA/dt 恆定），解鎖軌道密鑰 ORBIT！
+            </p>
+
+            <!-- 實驗互動控制面板 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">雙星軌道偏心率 e</span>
+                    <span id="series2-kepler-ecc-val" class="font-bold text-rose-500">0.35 (橢圓雙星軌道)</span>
+                  </div>
+                  <input id="series2-kepler-ecc-slider" type="range" min="0" max="60" step="5" value="35" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">雙星質量比 m₁ / m₂</span>
+                    <span id="series2-kepler-mass-val" class="font-bold text-sky-500">1.62 : 1 (藍巨星與伴星)</span>
+                  </div>
+                  <input id="series2-kepler-mass-slider" type="range" min="100" max="300" step="10" value="162" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <span class="text-xs text-slate-600 dark:text-slate-300">因瓦雙橢圓共軛非圓齒輪（動態傳動比）</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-kepler-gear-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1 font-mono">
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">近遠星點速度比:</span>
+                    <span id="series2-kepler-vratio-val" class="font-bold text-emerald-500">2.08 倍 (ω比 4.31倍)</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">面速度恆定度:</span>
+                    <span id="series2-kepler-areal-val" class="font-bold text-emerald-500">100% 恆定 (dA/dt 守恆)</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 col-span-2">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">齒輪衝擊力矩 / 同步狀態:</span>
+                    <span id="series2-kepler-torque-val" class="font-bold text-emerald-500 text-[11px]">0.0 N·m (純滾動嚙合 · ORBIT 完美同步)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態開普勒雙星與非圓齒輪 Canvas -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-kepler-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  💫 面速度守恆：相等時間掃過相等面積（ORBIT 鎖定）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-kepler-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-kepler-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  雙橢圓共軛非圓齒輪順滑嚙合，近星點四倍加速度完美消化，雙星翩然起舞！
+                </div>
+              </div>
+            </div>
+
+            <!-- ORBIT 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 13 章全新啟航密文：[ 15 - 18 - 02 - 09 - 20 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：15=O, 18=R, 02=B, 09=I, 20=T。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                15 ➜ O  |  18 ➜ R  |  02 ➜ B  |  09 ➜ I  |  20 ➜ T  ==>  【 ORBIT 】（天體軌道／天球星軌）
               </div>
             </div>
           </div>
@@ -5775,6 +5861,277 @@
       if (s2FiberAnimId) cancelAnimationFrame(s2FiberAnimId);
       updateFiberSim();
       drawFiberCanvas();
+    }
+
+
+
+    // ================== 第 13 章全新連載：開普勒第二定律與非圓齒輪 ==================
+    const s2KeplerEccSlider = document.getElementById('series2-kepler-ecc-slider');
+    const s2KeplerMassSlider = document.getElementById('series2-kepler-mass-slider');
+    const s2KeplerGearToggle = document.getElementById('series2-kepler-gear-toggle');
+
+    const s2KeplerEccVal = document.getElementById('series2-kepler-ecc-val');
+    const s2KeplerMassVal = document.getElementById('series2-kepler-mass-val');
+    const s2KeplerVratioVal = document.getElementById('series2-kepler-vratio-val');
+    const s2KeplerArealVal = document.getElementById('series2-kepler-areal-val');
+    const s2KeplerTorqueVal = document.getElementById('series2-kepler-torque-val');
+    const s2KeplerStatus = document.getElementById('series2-kepler-status');
+    const s2KeplerDesc = document.getElementById('series2-kepler-desc');
+    const s2KeplerCanvas = document.getElementById('series2-kepler-canvas');
+
+    let s2KeplerAnimId = null;
+    let s2KeplerTrueAnomaly = 0; // 真近點角 rad
+
+    function updateKeplerSim() {
+      if (!s2KeplerEccSlider || !s2KeplerMassSlider) return;
+      const ecc = parseFloat(s2KeplerEccSlider.value) / 100.0; // 0.00 to 0.60
+      const massRatio = parseFloat(s2KeplerMassSlider.value) / 100.0; // 1.00 to 3.00
+      const hasEllipticGear = s2KeplerGearToggle ? s2KeplerGearToggle.checked : true;
+
+      // 速度比 vp / va = (1 + e) / (1 - e)
+      const vRatio = (1.0 + ecc) / (1.0 - ecc);
+      const omegaRatio = Math.pow(vRatio, 2);
+
+      const isSynchronized = hasEllipticGear || ecc <= 0.05;
+
+      if (s2KeplerEccVal) s2KeplerEccVal.textContent = `${ecc.toFixed(2)} (${ecc === 0 ? '正圓軌道' : '橢圓偏心軌道'})`;
+      if (s2KeplerMassVal) s2KeplerMassVal.textContent = `${massRatio.toFixed(2)} : 1 (主星與伴星)`;
+      if (s2KeplerVratioVal) s2KeplerVratioVal.textContent = `${vRatio.toFixed(2)} 倍 (ω比 ${omegaRatio.toFixed(2)}倍)`;
+
+      if (s2KeplerArealVal) {
+        s2KeplerArealVal.textContent = isSynchronized ? '100% 恆定 (dA/dt 守恆)' : `${Math.max(20, Math.round(100 - ecc * 140))}% (均速齒輪嚴重滯後)`;
+        s2KeplerArealVal.className = isSynchronized ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2KeplerTorqueVal) {
+        s2KeplerTorqueVal.textContent = isSynchronized ? '0.0 N·m (純滾動嚙合 · ORBIT 完美同步)' : `${(ecc * 850).toFixed(0)} N·m (剛性齒面猛烈衝擊卡死！)`;
+        s2KeplerTorqueVal.className = isSynchronized ? 'font-bold text-emerald-500 text-[11px]' : 'font-bold text-rose-500 text-[11px]';
+      }
+
+      if (isSynchronized) {
+        if (s2KeplerStatus) {
+          s2KeplerStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2KeplerStatus.textContent = '💫 面速度守恆：相等時間掃過相等面積（ORBIT 鎖定）';
+        }
+        if (s2KeplerDesc) {
+          s2KeplerDesc.textContent = hasEllipticGear
+            ? '雙橢圓共軛非圓齒輪順滑嚙合，近星點四倍加速度完美消化，雙星翩然起舞！'
+            : '正圓形軌道角速度恆定，均速齒輪尚可勉強維持同步。';
+        }
+      } else {
+        if (s2KeplerStatus) {
+          s2KeplerStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2KeplerStatus.textContent = '⚠️ 近星點角速度突變！均速齒輪衝擊卡死警報';
+        }
+        if (s2KeplerDesc) {
+          s2KeplerDesc.textContent = `偏心率 e=${ecc.toFixed(2)} 致近星點速度暴增 ${vRatio.toFixed(2)} 倍！請開啟「非圓齒輪」以實現動態面速度守恆！`;
+        }
+      }
+    }
+
+    if (s2KeplerEccSlider) s2KeplerEccSlider.oninput = updateKeplerSim;
+    if (s2KeplerMassSlider) s2KeplerMassSlider.oninput = updateKeplerSim;
+    if (s2KeplerGearToggle) s2KeplerGearToggle.onchange = updateKeplerSim;
+
+    // 動態繪製開普勒雙星軌道與非圓齒輪 Canvas
+    function drawKeplerCanvas() {
+      if (!s2KeplerCanvas) return;
+      const ctx = s2KeplerCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const ecc = s2KeplerEccSlider ? parseFloat(s2KeplerEccSlider.value) / 100.0 : 0.35;
+      const massRatio = s2KeplerMassSlider ? parseFloat(s2KeplerMassSlider.value) / 100.0 : 1.62;
+      const hasEllipticGear = s2KeplerGearToggle ? s2KeplerGearToggle.checked : true;
+      const isSynchronized = hasEllipticGear || ecc <= 0.05;
+
+      const w = s2KeplerCanvas.width;
+      const h = s2KeplerCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // 開普勒軌道角速度微積分更新：dθ/dt ∝ (1 + e·cos θ)²
+      const baseSpeed = 0.018;
+      const instantaneousSpeed = hasEllipticGear ? baseSpeed * Math.pow(1 + ecc * Math.cos(s2KeplerTrueAnomaly), 2) : baseSpeed;
+      s2KeplerTrueAnomaly = (s2KeplerTrueAnomaly + instantaneousSpeed) % (Math.PI * 2);
+
+      // 深空背景
+      ctx.fillStyle = '#080c16';
+      ctx.fillRect(0, 0, w, h);
+
+      // 質心座標 (Barycenter) 位於左半部焦點
+      const bx = 100;
+      const by = 95;
+
+      // 軌道參數
+      const a = 62; // 主星軌道半長軸
+      const c = a * ecc; // 焦點偏心距
+      const b = Math.sqrt(Math.max(10, a * a - c * c)); // 半短軸
+
+      // 伴星依據質量比分配軌道半長軸 (a2 = a1 * massRatio)
+      const a2 = a * 0.55;
+      const c2 = a2 * ecc;
+      const b2 = Math.sqrt(Math.max(8, a2 * a2 - c2 * c2));
+
+      // 1. 繪製相等時間掃過之扇形面積 (Areal Velocity Sector Demo)
+      // 近星點扇形 (Periastron Sector - 寬而短)
+      const sectorAngle = 0.45;
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.18)';
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      for (let th = -sectorAngle / 2; th <= sectorAngle / 2; th += 0.05) {
+        const r = (a * (1 - ecc * ecc)) / (1 + ecc * Math.cos(th));
+        ctx.lineTo(bx + r * Math.cos(th), by + r * Math.sin(th));
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // 遠星點扇形 (Apastron Sector - 窄而長)
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.18)';
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      for (let th = Math.PI - sectorAngle * 1.8 / 2; th <= Math.PI + sectorAngle * 1.8 / 2; th += 0.05) {
+        const r = (a * (1 - ecc * ecc)) / (1 + ecc * Math.cos(th));
+        ctx.lineTo(bx + r * Math.cos(th), by + r * Math.sin(th));
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // 標註扇形面積相等 (dA₁ = dA₂)
+      ctx.font = '8px monospace';
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillText('dA₁', bx + 22, by + 12);
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillText('dA₂', bx - 55, by - 8);
+
+      // 2. 繪製主星軌道橢圓 (軌道中心在 bx - c, by)
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.ellipse(bx - c, by, a, b, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 伴星軌道橢圓
+      ctx.strokeStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.ellipse(bx + c2, by, a2, b2, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 質心 (Barycenter 標記)
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(bx, by, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#fda4af';
+      ctx.fillText('質心⊕', bx - 14, by - 6);
+
+      // 3. 計算並繪製雙星實體位置
+      // 主星 A
+      const r1 = (a * (1 - ecc * ecc)) / (1 + ecc * Math.cos(s2KeplerTrueAnomaly));
+      const s1x = bx + r1 * Math.cos(s2KeplerTrueAnomaly);
+      const s1y = by + r1 * Math.sin(s2KeplerTrueAnomaly);
+
+      // 伴星 B (與主星對稱繞質心互繞)
+      const r2 = (a2 * (1 - ecc * ecc)) / (1 + ecc * Math.cos(s2KeplerTrueAnomaly));
+      const s2x = bx - r2 * Math.cos(s2KeplerTrueAnomaly);
+      const s2y = by - r2 * Math.sin(s2KeplerTrueAnomaly);
+
+      // 質心連線
+      ctx.strokeStyle = isSynchronized ? 'rgba(56, 189, 248, 0.4)' : 'rgba(244, 63, 94, 0.4)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(s1x, s1y);
+      ctx.lineTo(s2x, s2y);
+      ctx.stroke();
+
+      // 主星 (天極藍星 A)
+      const gradA = ctx.createRadialGradient(s1x, s1y, 1, s1x, s1y, 10);
+      gradA.addColorStop(0, '#67e8f9');
+      gradA.addColorStop(1, 'rgba(6, 182, 212, 0)');
+      ctx.fillStyle = gradA;
+      ctx.beginPath();
+      ctx.arc(s1x, s1y, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#e0f2fe';
+      ctx.beginPath();
+      ctx.arc(s1x, s1y, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 伴星 (天極金星 B)
+      const gradB = ctx.createRadialGradient(s2x, s2y, 1, s2x, s2y, 7);
+      gradB.addColorStop(0, '#fde047');
+      gradB.addColorStop(1, 'rgba(234, 179, 8, 0)');
+      ctx.fillStyle = gradB;
+      ctx.beginPath();
+      ctx.arc(s2x, s2y, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#fef08a';
+      ctx.beginPath();
+      ctx.arc(s2x, s2y, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 4. 右半部：非圓橢圓齒輪動態嚙合示意 (Non-circular Gear Train)
+      const gx = 220;
+      const gy1 = 65;
+      const gy2 = 125;
+
+      ctx.save();
+      // 主動輪 1 (中心在 gx, gy1)
+      ctx.translate(gx, gy1);
+      ctx.rotate(s2KeplerTrueAnomaly);
+      ctx.strokeStyle = hasEllipticGear ? '#38bdf8' : '#94a3b8';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      if (hasEllipticGear) {
+        ctx.ellipse(0, 0, 24, 17, 0, 0, Math.PI * 2);
+      } else {
+        ctx.arc(0, 0, 20, 0, Math.PI * 2);
+      }
+      ctx.stroke();
+      ctx.fillStyle = '#0284c7';
+      ctx.beginPath();
+      ctx.arc(0, 0, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // 從動輪 2 (中心在 gx, gy2)
+      ctx.save();
+      ctx.translate(gx, gy2);
+      ctx.rotate(-s2KeplerTrueAnomaly * 1.2);
+      ctx.strokeStyle = hasEllipticGear ? '#f59e0b' : '#94a3b8';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      if (hasEllipticGear) {
+        ctx.ellipse(0, 0, 24, 17, Math.PI / 2, 0, Math.PI * 2);
+      } else {
+        ctx.arc(0, 0, 20, 0, Math.PI * 2);
+      }
+      ctx.stroke();
+      ctx.fillStyle = '#d97706';
+      ctx.beginPath();
+      ctx.arc(0, 0, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // 齒輪傳動標籤
+      ctx.fillStyle = hasEllipticGear ? '#34d399' : '#f87171';
+      ctx.font = '8px monospace';
+      ctx.fillText(hasEllipticGear ? '橢圓非圓齒輪' : '均速圓齒輪(卡頓)', gx - 28, gy2 + 35);
+
+      // 頂部狀態標題
+      ctx.fillStyle = isSynchronized ? '#34d399' : '#fb7185';
+      ctx.font = 'bold 9px monospace';
+      const bannerText = isSynchronized
+        ? `[KEPLER LAW II: dA/dt=CONST | e=${ecc.toFixed(2)} | ORBIT LOCKED]`
+        : `[GEAR JAM ALERT: IMPACT TORQUE ${(ecc * 850).toFixed(0)} N·m AT PERIASTRON]`;
+      ctx.fillText(bannerText, 15, 20);
+
+      s2KeplerAnimId = requestAnimationFrame(drawKeplerCanvas);
+    }
+
+    if (s2KeplerCanvas) {
+      if (s2KeplerAnimId) cancelAnimationFrame(s2KeplerAnimId);
+      updateKeplerSim();
+      drawKeplerCanvas();
     }
 
 
