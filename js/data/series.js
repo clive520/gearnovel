@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 11,
-      totalWords: "第二卷連載中（已發布 11 章 · 5.1 萬字）",
-      statusText: "第二卷火熱連載中（第 11 章已上線）"
+      currentChaptersReleased: 12,
+      totalWords: "第二卷連載中（已發布 12 章 · 5.8 萬字）",
+      statusText: "第二卷火熱連載中（第 12 章已上線）"
     },
     volumes: [
       {
@@ -100,12 +100,12 @@ window.GEAR_SERIES = [
         bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "雙星天象台與偏振光譜",
+        subtitle: "全反射光導與雙星都卜勒",
         chaptersCount: 10,
-        releasedChapters: 1,
-        wordCount: "連載中（已達 0.5 萬字）",
-        status: "第 11 章已上線",
-        theme: "馬呂斯偏振定律 × 方解石雙折射 × 雙星都卜勒頻移",
+        releasedChapters: 2,
+        wordCount: "連載中（已達 1.2 萬字）",
+        status: "第 12 章已上線",
+        theme: "司涅爾全反射 × 數值孔徑 NA × 馬呂斯偏振定律 × 雙星都卜勒",
         firstChapterId: 1
       },
       {

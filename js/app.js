@@ -837,7 +837,7 @@
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
                 <span>📚 規劃全三卷三部曲（第二卷火熱連載中）</span>
-                <span class="text-rose-600 font-mono">已更新至第 11 章 · 5.1 萬字</span>
+                <span class="text-rose-600 font-mono">已更新至第 12 章 · 5.8 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -862,9 +862,9 @@
                   <div>
                     <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
                       <span>《旋轉稜鏡的雙星軌道》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第11章已上線</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第12章已上線</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 0.5 萬字 · 馬呂斯偏振定律 × 方解石雙折射 × 雙星都卜勒頻移</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 1.2 萬字 · 司涅爾全反射 × 數值孔徑 × 馬呂斯偏振定律</div>
                   </div>
                 </div>
                 <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
@@ -890,16 +890,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 11道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 12道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 11 章</span>
+                <a href="#/read/book-5/2" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 12 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 11 章目錄
+                  📑 查看全 12 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (11項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (12項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3031,6 +3031,92 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 15=O, 12=L, 01=A, 18=R。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
                 16 ➜ P  |  15 ➜ O  |  12 ➜ L  |  01 ➜ A  |  18 ➜ R  ==>  【 POLAR 】（偏振光／極化之光）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗十二：司涅爾定律與全反射光導纖維模擬器 (第 12 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 12 章全新連載</span>
+                <span class="text-xs text-slate-500">司涅爾全反射 · 臨界角 · 數值孔徑 NA</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500">n₁ sin θ₁ = n₂ sin θ₂ | θ_c = arcsin(n₂/n₁)</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-2">
+              <span>💎 12. 司涅爾定律與全反射光導纖維模擬器（第 12 章）</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+              三千米古代琉璃石英光纜遭遇深谷地熱烘烤，外層包層折射率 n₂ 漂移，入射角小於臨界角 θ_c 時光子洩漏入霧海！調節入射角 θ₁、開啟熱虹吸融水冷卻套壓制 n₂、調諧動態張力維持曲率半徑 R ≥ 2.0 m，達成 100% 全反射，解鎖通訊密鑰 FIBER！
+            </p>
+
+            <!-- 實驗互動控制面板 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">光束入射角 θ₁</span>
+                    <span id="series2-fiber-theta-val" class="font-bold text-rose-500">72.0° (全反射區域)</span>
+                  </div>
+                  <input id="series2-fiber-theta-slider" type="range" min="50" max="88" step="1" value="72" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">光纜彎曲曲率半徑 R</span>
+                    <span id="series2-fiber-radius-val" class="font-bold text-sky-500">3.5 m (阻尼浮標安全平衡)</span>
+                  </div>
+                  <input id="series2-fiber-radius-slider" type="range" min="0.5" max="5.0" step="0.1" value="3.5" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <span class="text-xs text-slate-600 dark:text-slate-300">熱虹吸冰川融水冷卻套 (包層 n₂=1.48)</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-fiber-cooling-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1 font-mono">
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">臨界角 θ_c:</span>
+                    <span id="series2-fiber-thetac-val" class="font-bold text-emerald-500">65.99°</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">數值孔徑 NA:</span>
+                    <span id="series2-fiber-na-val" class="font-bold text-emerald-500">0.658</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 col-span-2">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">全反射傳輸效率 / 傳輸衰減:</span>
+                    <span id="series2-fiber-eff-val" class="font-bold text-emerald-500 text-[11px]">100.0% (衰減 0.18 dB/km · 完美導光)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態光纖全反射波導視覺化 Canvas -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-fiber-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  💎 全反射導通：光能 100% 鎖在纖芯（FIBER 傳輸成功）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-fiber-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-fiber-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  θ₁ ≥ θ_c 且 R ≥ 2.0m，星光在石英晶格中無損彈跳，80TB 數據穿透深淵！
+                </div>
+              </div>
+            </div>
+
+            <!-- FIBER 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 12 章全新啟航密文：[ 06 - 09 - 02 - 05 - 18 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：06=F, 09=I, 02=B, 05=E, 18=R。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                06 ➜ F  |  09 ➜ I  |  02 ➜ B  |  05 ➜ E  |  18 ➜ R  ==>  【 FIBER 】（光導纖維／琉璃光纜）
               </div>
             </div>
           </div>
@@ -4317,17 +4403,17 @@
     }
 
     // ================== 第 7 章：全反射臨界角與光纖導光聚焦模擬器 ==================
-    const s2TirThetaSlider = document.getElementById('series2-tir-theta-slider');
-    const s2TirN1Slider = document.getElementById('series2-tir-n1-slider');
-    const s2TirMistToggle = document.getElementById('series2-tir-mist-toggle');
-    const s2TirThetaVal = document.getElementById('series2-tir-theta-val');
-    const s2TirN1Val = document.getElementById('series2-tir-n1-val');
-    const s2TirCritVal = document.getElementById('series2-tir-crit-val');
-    const s2TirNaVal = document.getElementById('series2-tir-na-val');
-    const s2TirEffVal = document.getElementById('series2-tir-eff-val');
-    const s2TirStatus = document.getElementById('series2-tir-status');
-    const s2TirDesc = document.getElementById('series2-tir-desc');
-    const s2TirCanvas = document.getElementById('series2-tir-canvas');
+    const s2TirThetaSlider = document.getElementById('series2-fiber-theta-slider');
+    const s2TirN1Slider = document.getElementById('series2-fiber-n1-slider');
+    const s2TirMistToggle = document.getElementById('series2-fiber-mist-toggle');
+    const s2TirThetaVal = document.getElementById('series2-fiber-theta-val');
+    const s2TirN1Val = document.getElementById('series2-fiber-n1-val');
+    const s2TirCritVal = document.getElementById('series2-fiber-crit-val');
+    const s2TirNaVal = document.getElementById('series2-fiber-na-val');
+    const s2TirEffVal = document.getElementById('series2-fiber-eff-val');
+    const s2TirStatus = document.getElementById('series2-fiber-status');
+    const s2TirDesc = document.getElementById('series2-fiber-desc');
+    const s2TirCanvas = document.getElementById('series2-fiber-canvas');
 
     let s2TirAnimId = null;
     let s2TirPulseOffset = 0;
@@ -5435,6 +5521,260 @@
       if (s2PolarAnimId) cancelAnimationFrame(s2PolarAnimId);
       updatePolarSim();
       drawPolarCanvas();
+    }
+
+
+
+    // ================== 第 12 章全新連載：司涅爾全反射與光導纖維 ==================
+    const s2FiberThetaSlider = document.getElementById('series2-fiber-theta-slider');
+    const s2FiberRadiusSlider = document.getElementById('series2-fiber-radius-slider');
+    const s2FiberCoolingToggle = document.getElementById('series2-fiber-cooling-toggle');
+
+    const s2FiberThetaVal = document.getElementById('series2-fiber-theta-val');
+    const s2FiberRadiusVal = document.getElementById('series2-fiber-radius-val');
+    const s2FiberThetacVal = document.getElementById('series2-fiber-thetac-val');
+    const s2FiberNaVal = document.getElementById('series2-fiber-na-val');
+    const s2FiberEffVal = document.getElementById('series2-fiber-eff-val');
+    const s2FiberStatus = document.getElementById('series2-fiber-status');
+    const s2FiberDesc = document.getElementById('series2-fiber-desc');
+    const s2FiberCanvas = document.getElementById('series2-fiber-canvas');
+
+    let s2FiberAnimId = null;
+    let s2FiberPhotonOffset = 0;
+
+    function updateFiberSim() {
+      if (!s2FiberThetaSlider || !s2FiberRadiusSlider) return;
+      const theta1 = parseFloat(s2FiberThetaSlider.value); // 50 to 88 deg
+      const radius = parseFloat(s2FiberRadiusSlider.value); // 0.5 to 5.0 m
+      const isCooled = s2FiberCoolingToggle ? s2FiberCoolingToggle.checked : true;
+
+      const n1 = 1.620; // 石英纖芯折射率
+      const n2 = isCooled ? 1.480 : 1.580; // 冷卻後 1.48，未冷卻 1.58
+
+      // 臨界角 θ_c = arcsin(n2 / n1)
+      const thetaC_rad = Math.asin(n2 / n1);
+      const thetaC_deg = (thetaC_rad * 180.0) / Math.PI;
+
+      // 數值孔徑 NA = sqrt(n1^2 - n2^2)
+      const na = Math.sqrt(Math.max(0, n1 * n1 - n2 * n2));
+
+      // 全反射成立條件：theta1 >= thetaC_deg 且 radius >= 1.8 m (避免宏觀彎曲洩漏)
+      const isAngleOk = theta1 >= thetaC_deg;
+      const isRadiusOk = radius >= 1.8;
+      const isTirLocked = isAngleOk && isRadiusOk;
+
+      // 傳輸效率與衰減計算
+      let eff = 100.0;
+      let lossDb = 0.18;
+      if (!isAngleOk) {
+        const diff = thetaC_deg - theta1;
+        eff = Math.max(0.0, 100.0 - diff * 12.0);
+        lossDb = 15.0 + diff * 6.5;
+      }
+      if (!isRadiusOk) {
+        const rDiff = 1.8 - radius;
+        eff = Math.max(0.0, eff - rDiff * 45.0);
+        lossDb += rDiff * 28.0;
+      }
+
+      if (s2FiberThetaVal) {
+        s2FiberThetaVal.textContent = `${theta1.toFixed(1)}° (${isAngleOk ? '≥ θ_c 全反射' : '< θ_c 臨界洩漏'})`;
+        s2FiberThetaVal.className = isAngleOk ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2FiberRadiusVal) {
+        s2FiberRadiusVal.textContent = `${radius.toFixed(1)} m (${isRadiusOk ? '安全曲率' : '彎曲過度損耗'})`;
+        s2FiberRadiusVal.className = isRadiusOk ? 'font-bold text-sky-500' : 'font-bold text-rose-500';
+      }
+      if (s2FiberThetacVal) {
+        s2FiberThetacVal.textContent = `${thetaC_deg.toFixed(2)}° (${isCooled ? '冷卻鎖定' : '高溫漂移'})`;
+        s2FiberThetacVal.className = isCooled ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2FiberNaVal) {
+        s2FiberNaVal.textContent = na.toFixed(3);
+      }
+      if (s2FiberEffVal) {
+        s2FiberEffVal.textContent = `${eff.toFixed(1)}% (衰減 ${lossDb.toFixed(2)} dB/km · ${isTirLocked ? '完美導光' : '嚴重洩漏'})`;
+        s2FiberEffVal.className = isTirLocked ? 'font-bold text-emerald-500 text-[11px]' : 'font-bold text-rose-500 text-[11px]';
+      }
+
+      if (isTirLocked) {
+        if (s2FiberStatus) {
+          s2FiberStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2FiberStatus.textContent = '💎 全反射導通：光能 100% 鎖在纖芯（FIBER 傳輸成功）';
+        }
+        if (s2FiberDesc) {
+          s2FiberDesc.textContent = 'θ₁ ≥ θ_c 且 R ≥ 2.0m，星光在石英晶格中無損彈跳，80TB 數據穿透深淵！';
+        }
+      } else {
+        if (s2FiberStatus) {
+          s2FiberStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40';
+          s2FiberStatus.textContent = '⚠️ 全反射失諧：光脈衝在管壁折射洩漏！';
+        }
+        if (s2FiberDesc) {
+          s2FiberDesc.textContent = !isCooled
+            ? '高溫致包層 n₂ 漂移！請開啟冷卻套，並將 θ₁ 調大以滿足全反射條件！'
+            : (!isAngleOk ? `入射角 ${theta1.toFixed(1)}° 小於臨界角 ${thetaC_deg.toFixed(1)}°！請加大入射角！` : '曲率半徑過小引發宏觀彎曲輻射損耗！請調大半徑 R！');
+        }
+      }
+    }
+
+    if (s2FiberThetaSlider) s2FiberThetaSlider.oninput = updateFiberSim;
+    if (s2FiberRadiusSlider) s2FiberRadiusSlider.oninput = updateFiberSim;
+    if (s2FiberCoolingToggle) s2FiberCoolingToggle.onchange = updateFiberSim;
+
+    // 動態繪製光纖全反射波導 Canvas
+    function drawFiberCanvas() {
+      if (!s2FiberCanvas) return;
+      const ctx = s2FiberCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const theta1 = s2FiberThetaSlider ? parseFloat(s2FiberThetaSlider.value) : 72;
+      const radius = s2FiberRadiusSlider ? parseFloat(s2FiberRadiusSlider.value) : 3.5;
+      const isCooled = s2FiberCoolingToggle ? s2FiberCoolingToggle.checked : true;
+
+      const n1 = 1.620;
+      const n2 = isCooled ? 1.480 : 1.580;
+      const thetaC_rad = Math.asin(n2 / n1);
+      const thetaC_deg = (thetaC_rad * 180.0) / Math.PI;
+      const isAngleOk = theta1 >= thetaC_deg;
+      const isRadiusOk = radius >= 1.8;
+      const isTirLocked = isAngleOk && isRadiusOk;
+
+      const w = s2FiberCanvas.width;
+      const h = s2FiberCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2FiberPhotonOffset = (s2FiberPhotonOffset + 2) % 40;
+
+      // 深邃峽谷迷霧背景
+      ctx.fillStyle = '#0a0e17';
+      ctx.fillRect(0, 0, w, h);
+
+      // 繪製背景微弱的黃綠色硫磺濃霧光暈
+      const fogGrad = ctx.createLinearGradient(0, 0, w, h);
+      fogGrad.addColorStop(0, 'rgba(30, 41, 59, 0.4)');
+      fogGrad.addColorStop(0.5, isTirLocked ? 'rgba(15, 23, 42, 0.8)' : 'rgba(180, 83, 9, 0.15)');
+      fogGrad.addColorStop(1, 'rgba(15, 23, 42, 0.9)');
+      ctx.fillStyle = fogGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // 光纖幾何參數
+      const coreY1 = 60;
+      const coreY2 = 130;
+      const coreH = coreY2 - coreY1;
+
+      // 1. 繪製包層 (Cladding)
+      ctx.fillStyle = isCooled ? 'rgba(56, 189, 248, 0.08)' : 'rgba(244, 63, 94, 0.12)';
+      ctx.fillRect(10, 35, w - 20, 25);
+      ctx.fillRect(10, coreY2, w - 20, 25);
+
+      // 包層邊界線
+      ctx.strokeStyle = isCooled ? '#0284c7' : '#e11d48';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(10, 35, w - 20, 25);
+      ctx.strokeRect(10, coreY2, w - 20, 25);
+
+      // 2. 繪製纖芯 (Core)
+      const coreGrad = ctx.createLinearGradient(0, coreY1, 0, coreY2);
+      coreGrad.addColorStop(0, 'rgba(14, 165, 233, 0.25)');
+      coreGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.12)');
+      coreGrad.addColorStop(1, 'rgba(14, 165, 233, 0.25)');
+      ctx.fillStyle = coreGrad;
+      ctx.fillRect(10, coreY1, w - 20, coreH);
+
+      // 纖芯界面 (Core-Cladding Boundary)
+      ctx.strokeStyle = isTirLocked ? '#38bdf8' : '#f43f5e';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(10, coreY1);
+      ctx.lineTo(w - 10, coreY1);
+      ctx.moveTo(10, coreY2);
+      ctx.lineTo(w - 10, coreY2);
+      ctx.stroke();
+
+      // 標註介質折射率
+      ctx.font = '8px monospace';
+      ctx.fillStyle = isCooled ? '#38bdf8' : '#fb7185';
+      ctx.fillText(`包層 n₂=${n2.toFixed(2)} (低折射率)`, 20, 52);
+      ctx.fillText(`包層 n₂=${n2.toFixed(2)}`, 20, coreY2 + 18);
+      ctx.fillStyle = '#bae6fd';
+      ctx.fillText('石英纖芯 n₁=1.620 (光密介質)', 20, (coreY1 + coreY2) / 2 - 18);
+
+      // 3. 繪製全反射光路鋸齒折線 (Zig-zag TIR beam)
+      const stepX = 42;
+      const pts = [];
+      let curX = 15;
+      let curY = (coreY1 + coreY2) / 2;
+      pts.push({ x: curX, y: curY });
+
+      // 入射光
+      curX = 40;
+      curY = coreY1;
+      pts.push({ x: curX, y: curY });
+
+      let top = true;
+      while (curX < w - 25) {
+        curX += stepX;
+        curY = top ? coreY2 : coreY1;
+        top = !top;
+        pts.push({ x: Math.min(w - 15, curX), y: curY });
+      }
+
+      // 繪製主光束線
+      ctx.strokeStyle = isTirLocked ? '#38bdf8' : '#fbbf24';
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = isTirLocked ? '#38bdf8' : '#f59e0b';
+      ctx.shadowBlur = isTirLocked ? 10 : 4;
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x, pts[i].y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // 繪製動態光子光點
+      ctx.fillStyle = '#ffffff';
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const t = (s2FiberPhotonOffset / 40.0 + i * 0.25) % 1.0;
+        const px = p1.x + (p2.x - p1.x) * t;
+        const py = p1.y + (p2.y - p1.y) * t;
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 4. 若洩漏，繪製折射逸散光線 (Refraction Leakage)
+      if (!isTirLocked) {
+        ctx.strokeStyle = 'rgba(244, 63, 94, 0.7)';
+        ctx.lineWidth = 1.5;
+        for (let i = 1; i < pts.length - 1; i++) {
+          const pt = pts[i];
+          const isTopHit = pt.y === coreY1;
+          ctx.beginPath();
+          ctx.moveTo(pt.x, pt.y);
+          ctx.lineTo(pt.x + 22, isTopHit ? pt.y - 28 : pt.y + 28);
+          ctx.stroke();
+        }
+      }
+
+      // 頂部狀態資訊
+      ctx.fillStyle = isTirLocked ? '#34d399' : '#fb7185';
+      ctx.font = 'bold 9px monospace';
+      const bannerText = isTirLocked
+        ? `[TIR LOCKED: θ₁=${theta1.toFixed(0)}° ≥ θ_c=${thetaC_deg.toFixed(1)}° | FIBER LOSS: 0.18 dB/km]`
+        : `[LEAKAGE WARNING: θ₁ < θ_c (${thetaC_deg.toFixed(1)}°) | LIGHT LOST IN MIST]`;
+      ctx.fillText(bannerText, 15, 20);
+
+      s2FiberAnimId = requestAnimationFrame(drawFiberCanvas);
+    }
+
+    if (s2FiberCanvas) {
+      if (s2FiberAnimId) cancelAnimationFrame(s2FiberAnimId);
+      updateFiberSim();
+      drawFiberCanvas();
     }
 
 
