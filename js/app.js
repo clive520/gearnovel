@@ -895,11 +895,11 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/4" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 14 章</span>
+                <a href="#/read/book-5/5" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 15 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 14 章目錄
+                  📑 查看全 15 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (14項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (15項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3292,6 +3292,93 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 18=R, 09=I, 19=S, 13=M。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
                 16 ➜ P  |  18 ➜ R  |  09 ➜ I  |  19 ➜ S  |  13 ➜ M  ==>  【 PRISM 】（色散稜鏡／光譜之門）
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗 15：邁克生干涉儀與雙星星震動態模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
+                <span>🔬 15. 邁克生干涉儀與恆星星震模擬器（第 15 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
+                波動光學 × 恆星干涉儀
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              天極伴星金矮星 B 的角直徑超越常規望遠鏡繞射極限。利用邁克生恆星干涉儀外展二十四公尺基準線，捕捉干涉條紋第一零點消光，鎖定 5.68 毫角秒真徑；並透過壓電動鏡亞奈米級條紋吞吐，即時觀測伴星表面 3.3 微米星震脈動！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">外展干涉基準線長度 D</span>
+                    <span id="series2-interfero-base-val" class="font-bold text-cyan-500">24.36 m (理論消光極限)</span>
+                  </div>
+                  <input id="series2-interfero-base-slider" type="range" min="4" max="30" step="0.2" value="24.36" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>4 m (條紋清晰)</span>
+                    <span class="text-cyan-600 font-bold">24.36 m (消光點)</span>
+                    <span>30 m</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">動鏡 PZT 奈米級位移 Δd</span>
+                    <span id="series2-interfero-disp-val" class="font-bold text-indigo-500">1650 nm (條紋吞吐 6 環)</span>
+                  </div>
+                  <input id="series2-interfero-disp-slider" type="range" min="0" max="3300" step="50" value="1650" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 space-y-2">
+                  <label class="flex items-center justify-between text-xs font-medium cursor-pointer">
+                    <span class="text-slate-700 dark:text-slate-200 font-semibold">色散補償板 G₂（消除基底色散差）</span>
+                    <input id="series2-interfero-comp-toggle" type="checkbox" checked class="w-4 h-4 rounded text-cyan-600 accent-cyan-500 cursor-pointer">
+                  </label>
+                  <label class="flex items-center justify-between text-xs font-medium cursor-pointer">
+                    <span class="text-slate-700 dark:text-slate-200 font-semibold">伴星微震脈動動態模擬（週期 4.2s）</span>
+                    <input id="series2-interfero-seismic-toggle" type="checkbox" checked class="w-4 h-4 rounded text-cyan-600 accent-cyan-500 cursor-pointer">
+                  </label>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>中心光程差 Δ：<span id="series2-interfero-opd-val" class="font-mono font-bold text-indigo-500">3300 nm</span></div>
+                    <div>條紋吞吐級數 N：<span id="series2-interfero-order-val" class="font-mono font-bold text-cyan-500">12.0 環</span></div>
+                    <div>條紋對比度 Visibility：<span id="series2-interfero-vis-val" class="font-mono font-bold text-rose-500">0.00 (完全消光)</span></div>
+                    <div>推算伴星角直徑 θ：<span id="series2-interfero-diam-val" class="font-mono font-bold text-emerald-500">5.68 毫角秒</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="series2-interfero-canvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="series2-interfero-status" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    消光條件達成：角直徑 5.68 毫角秒鎖定，星震微米位移即時解析中
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">邁克生分振幅干涉模型</span>
+                </div>
+                <p id="series2-interfero-desc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  外展基準線拉伸至 24.36 公尺，干涉條紋進入第一零點消光，突破瑞利繞射極限；補償板消除色散，動鏡隨星震奈米級吞吐！
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+              <div class="text-xs font-bold text-cyan-800 dark:text-cyan-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 15 章全新啟航密文：[ 06 - 18 - 09 - 14 - 07 - 05 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：06=F, 18=R, 09=I, 14=N, 07=G, 05=E。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
+                06 ➜ F  |  18 ➜ R  |  09 ➜ I  |  14 ➜ N  |  07 ➜ G  |  05 ➜ E  ==>  【 FRINGE 】（干涉條紋／光波環紋）
               </div>
             </div>
           </div>
@@ -6490,6 +6577,310 @@
       if (s2PrismAnimId) cancelAnimationFrame(s2PrismAnimId);
       updatePrismSim();
       drawPrismCanvas();
+    }
+
+
+        // 實驗 15：邁克生干涉儀與恆星星震動態模擬器 (Ch 47 / Book 5 Ch 5)
+    const s2InterferoBaseSlider = document.getElementById('series2-interfero-base-slider');
+    const s2InterferoDispSlider = document.getElementById('series2-interfero-disp-slider');
+    const s2InterferoCompToggle = document.getElementById('series2-interfero-comp-toggle');
+    const s2InterferoSeismicToggle = document.getElementById('series2-interfero-seismic-toggle');
+
+    const s2InterferoBaseVal = document.getElementById('series2-interfero-base-val');
+    const s2InterferoDispVal = document.getElementById('series2-interfero-disp-val');
+    const s2InterferoOpdVal = document.getElementById('series2-interfero-opd-val');
+    const s2InterferoOrderVal = document.getElementById('series2-interfero-order-val');
+    const s2InterferoVisVal = document.getElementById('series2-interfero-vis-val');
+    const s2InterferoDiamVal = document.getElementById('series2-interfero-diam-val');
+    const s2InterferoStatus = document.getElementById('series2-interfero-status');
+    const s2InterferoDesc = document.getElementById('series2-interfero-desc');
+    const s2InterferoCanvas = document.getElementById('series2-interfero-canvas');
+
+    let s2InterferoAnimId = null;
+    let s2InterferoSeismicPhase = 0;
+
+    function updateInterferoSim() {
+      if (!s2InterferoBaseSlider || !s2InterferoDispSlider) return;
+
+      const baseD = parseFloat(s2InterferoBaseSlider.value);
+      const dispD = parseFloat(s2InterferoDispSlider.value); // nm
+      const hasComp = s2InterferoCompToggle ? s2InterferoCompToggle.checked : true;
+      const hasSeismic = s2InterferoSeismicToggle ? s2InterferoSeismicToggle.checked : true;
+
+      // 伴星星震動態微擾位移振幅 (0 ~ 3.3 μm = 3300 nm)
+      const seismicAmp = hasSeismic ? 1650 * Math.sin(s2InterferoSeismicPhase) : 0;
+      const effectiveDisp = dispD + seismicAmp;
+
+      // 光程差 Δ = 2Δd (nm)
+      const opd = 2 * effectiveDisp;
+      const lambda = 550; // nm
+      const order = opd / lambda;
+
+      // 條紋對比度 Visibility 隨基準線 D 的貝索函數衰減：在 D0 = 24.36 m 處首次為 0
+      const x = (baseD / 24.36) * 3.8317;
+      // 貝索第一類函數 J1(x) 簡化擬合：sin(x)/x 在 x=π 時接近零
+      let vis = Math.abs(Math.cos(x * 0.41));
+      if (Math.abs(baseD - 24.36) < 0.8) {
+        vis = Math.max(0, Math.abs(baseD - 24.36) / 0.8 * 0.12);
+      }
+      if (!hasComp) vis *= 0.25; // 無補償板時對比度嚴重劣化
+
+      // 推算角直徑 θ = 1.22 * λ / D0
+      const thetaMilliarcsec = 5.68;
+
+      if (s2InterferoBaseVal) s2InterferoBaseVal.textContent = `${baseD.toFixed(2)} m ${Math.abs(baseD - 24.36) < 0.4 ? '(消光零點)' : ''}`;
+      if (s2InterferoDispVal) s2InterferoDispVal.textContent = `${Math.round(effectiveDisp)} nm (條紋吞吐 ${(effectiveDisp / 275).toFixed(1)} 環)`;
+      if (s2InterferoOpdVal) s2InterferoOpdVal.textContent = `${Math.round(opd)} nm`;
+      if (s2InterferoOrderVal) s2InterferoOrderVal.textContent = `${order.toFixed(1)} 環`;
+      if (s2InterferoVisVal) s2InterferoVisVal.textContent = `${vis.toFixed(2)} ${vis < 0.05 ? '(消光達成)' : ''}`;
+      if (s2InterferoDiamVal) s2InterferoDiamVal.textContent = `${thetaMilliarcsec} 毫角秒 (62.8 萬公里)`;
+
+      if (s2InterferoStatus && s2InterferoDesc) {
+        if (!hasComp) {
+          s2InterferoStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> 色散失諧：缺少補償板，白光干涉條紋嚴重模糊退化！';
+          s2InterferoStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2InterferoDesc.textContent = '分束鏡基底玻璃引入非對稱色散，兩臂光程差隨波長劇烈色散漂移，條紋對比度嚴重破壞，請開啟色散補償板 G₂！';
+        } else if (Math.abs(baseD - 24.36) < 0.5) {
+          s2InterferoStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 消光條件達成：角直徑 5.68 毫角秒鎖定，星震微米位移即時解析中';
+          s2InterferoStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2InterferoDesc.textContent = '外展基準線精確抵達 24.36 公尺，干涉條紋進入第一零點消光，突破兩公尺物鏡繞射極限，伴星真實幾何輪廓與星震位移徹底鎖定！';
+        } else {
+          s2InterferoStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-cyan-500"></span> 等傾干涉同心環觀測中：隨動鏡與星震優雅吞吐';
+          s2InterferoStatus.className = 'font-semibold text-cyan-500 flex items-center gap-1.5';
+          s2InterferoDesc.textContent = '邁克生分束鏡與補償板將光程差嚴格平衡，屏幕中心黑白相干光環隨微米位移向外湧出或向內縮入，可精確測量星震振幅。';
+        }
+      }
+    }
+
+    if (s2InterferoBaseSlider) s2InterferoBaseSlider.oninput = updateInterferoSim;
+    if (s2InterferoDispSlider) s2InterferoDispSlider.oninput = updateInterferoSim;
+    if (s2InterferoCompToggle) s2InterferoCompToggle.onchange = updateInterferoSim;
+    if (s2InterferoSeismicToggle) s2InterferoSeismicToggle.onchange = updateInterferoSim;
+
+    function drawInterferoCanvas() {
+      if (!s2InterferoCanvas) return;
+      const ctx = s2InterferoCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const baseD = parseFloat(s2InterferoBaseSlider ? s2InterferoBaseSlider.value : '24.36');
+      const dispD = parseFloat(s2InterferoDispSlider ? s2InterferoDispSlider.value : '1650');
+      const hasComp = s2InterferoCompToggle ? s2InterferoCompToggle.checked : true;
+      const hasSeismic = s2InterferoSeismicToggle ? s2InterferoSeismicToggle.checked : true;
+
+      const w = s2InterferoCanvas.width;
+      const h = s2InterferoCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      if (hasSeismic) {
+        s2InterferoSeismicPhase = (s2InterferoSeismicPhase + 0.04) % (Math.PI * 2);
+      }
+
+      // 深空暗夜背景
+      ctx.fillStyle = '#050713';
+      ctx.fillRect(0, 0, w, h);
+
+      // 分割畫布：左側光路示意圖 (w: 250)，右側等傾干涉環投影 (w: 310)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(250, 0);
+      ctx.lineTo(250, h);
+      ctx.stroke();
+
+      // ================= 左側：邁克生十字光路 =================
+      const cx = 110;
+      const cy = 135;
+
+      // 1. 分束鏡 G1 (中心傾斜 45 度)
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(-Math.PI / 4);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.fillRect(-22, -3, 44, 6);
+      ctx.strokeRect(-22, -3, 44, 6);
+      ctx.restore();
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.9)';
+      ctx.font = '10px monospace';
+      ctx.fillText('G₁分束鏡', cx - 24, cy - 18);
+
+      // 2. 色散補償板 G2 (水平光臂右側，同樣傾斜 45 度)
+      if (hasComp) {
+        ctx.save();
+        ctx.translate(cx + 45, cy);
+        ctx.rotate(-Math.PI / 4);
+        ctx.fillStyle = 'rgba(34, 197, 94, 0.25)';
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = 2;
+        ctx.fillRect(-18, -3, 36, 6);
+        ctx.strokeRect(-18, -3, 36, 6);
+        ctx.restore();
+        ctx.fillStyle = '#22c55e';
+        ctx.font = '9px monospace';
+        ctx.fillText('G₂補償板', cx + 28, cy - 18);
+      } else {
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
+        ctx.font = '9px monospace';
+        ctx.fillText('無補償板(色散)', cx + 24, cy - 16);
+      }
+
+      // 3. 上方動鏡 M1 (PZT 微移台驅動)
+      const m1Y = 35 + (dispD / 3300) * 8;
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.4)';
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 3;
+      ctx.fillRect(cx - 20, m1Y, 40, 6);
+      ctx.strokeRect(cx - 20, m1Y, 40, 6);
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = '10px monospace';
+      ctx.fillText('動鏡 M₁(PZT)', cx - 28, m1Y - 6);
+
+      // 4. 右方定鏡 M2
+      const m2X = 215;
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.4)';
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 3;
+      ctx.fillRect(m2X, cy - 20, 6, 40);
+      ctx.strokeRect(m2X, cy - 20, 6, 40);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px monospace';
+      ctx.fillText('定鏡 M₂', m2X - 16, cy + 32);
+
+      // 5. 光束走線
+      // 入射光束 (左側進入)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(15, cy);
+      ctx.lineTo(cx, cy);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.font = '9px sans-serif';
+      ctx.fillText('伴星星光 ➔', 18, cy - 6);
+
+      // 向上反射光束至 M1
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx, m1Y + 6);
+      ctx.stroke();
+
+      // 向右透射光束至 M2
+      ctx.strokeStyle = hasComp ? 'rgba(34, 197, 94, 0.75)' : 'rgba(239, 68, 68, 0.75)';
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(m2X, cy);
+      ctx.stroke();
+
+      // 向下合成干涉光束
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.85)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx, h - 25);
+      ctx.stroke();
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 9px sans-serif';
+      ctx.fillText('相干疊加光束 ⬇', cx - 32, h - 10);
+
+      // ================= 右側：等傾干涉同心圓環 =================
+      const ringCx = 405;
+      const ringCy = 135;
+      const ringMaxR = 105;
+
+      // 背景投影屏幕外框
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(275, 15, 260, 240);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+      ctx.fillRect(275, 15, 260, 240);
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('焦平面等傾干涉環投影 (Haidinger Rings)', ringCx, 32);
+
+      // 計算可見度與相位
+      const seismicAmp = hasSeismic ? 1650 * Math.sin(s2InterferoSeismicPhase) : 0;
+      const effectiveDisp = dispD + seismicAmp;
+      const phaseOffset = (effectiveDisp / 275) % 1; // 隨條紋移動環動態偏移
+
+      let vis = Math.abs(Math.cos((baseD / 24.36) * 3.8317 * 0.41));
+      if (Math.abs(baseD - 24.36) < 0.8) {
+        vis = Math.max(0, Math.abs(baseD - 24.36) / 0.8 * 0.12);
+      }
+      if (!hasComp) vis *= 0.25;
+
+      if (!hasComp) {
+        // 無補償板：色散造成模糊彩斑
+        for (let r = 8; r < ringMaxR; r += 9) {
+          ctx.beginPath();
+          ctx.arc(ringCx, ringCy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = `hsla(${(r * 12) % 360}, 80%, 55%, 0.25)`;
+          ctx.lineWidth = 5;
+          ctx.stroke();
+        }
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('色散失諧 · 條紋混亂', ringCx, ringCy + 4);
+      } else if (vis < 0.05) {
+        // 條紋完全消光 (第一零點 Extinction)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(ringCx, ringCy, 85, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 13px sans-serif';
+        ctx.fillText('第一零點消光達成！', ringCx, ringCy - 10);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '11px monospace';
+        ctx.fillText('對比度 V = 0.00  |  θ = 5.68 毫角秒', ringCx, ringCy + 12);
+      } else {
+        // 正常清晰等傾干涉環（黑白高對比度同心圓）
+        const numRings = 10;
+        for (let i = numRings; i >= 1; i--) {
+          const r = Math.sqrt(i - phaseOffset) * (ringMaxR / Math.sqrt(numRings));
+          if (isNaN(r) || r < 0) continue;
+
+          // 亮環
+          ctx.beginPath();
+          ctx.arc(ringCx, ringCy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${Math.min(1, vis * 0.9)})`;
+          ctx.lineWidth = 5.5;
+          ctx.stroke();
+
+          // 暗環刻痕
+          ctx.beginPath();
+          ctx.arc(ringCx, ringCy, Math.max(0, r - 3), 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(5, 7, 19, 0.95)';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+        }
+
+        // 中心十字準星
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(ringCx - 15, ringCy);
+        ctx.lineTo(ringCx + 15, ringCy);
+        ctx.moveTo(ringCx, ringCy - 15);
+        ctx.lineTo(ringCx, ringCy + 15);
+        ctx.stroke();
+
+        ctx.fillStyle = hasSeismic ? '#38bdf8' : 'rgba(255, 255, 255, 0.7)';
+        ctx.font = '10px monospace';
+        ctx.fillText(hasSeismic ? `星震呼吸中 (Δd: ${(effectiveDisp).toFixed(0)} nm)` : '動鏡靜態鎖定', ringCx, ringCy + 85);
+      }
+
+      s2InterferoAnimId = requestAnimationFrame(drawInterferoCanvas);
+    }
+
+    if (s2InterferoCanvas) {
+      if (s2InterferoAnimId) cancelAnimationFrame(s2InterferoAnimId);
+      updateInterferoSim();
+      drawInterferoCanvas();
     }
 
 

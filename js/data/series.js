@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 14,
-      totalWords: "第二卷連載中（已發布 14 章 · 7.2 萬字）",
-      statusText: "第二卷火熱連載中（第 14 章已上線）"
+      currentChaptersReleased: 15,
+      totalWords: "第二卷連載中（已發布 15 章 · 7.8 萬字）",
+      statusText: "第二卷火熱連載中（第 15 章已上線）"
     },
     volumes: [
       {
@@ -100,12 +100,12 @@ window.GEAR_SERIES = [
         bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "色散稜鏡陣列與柯西公式",
+        subtitle: "邁克生干涉儀與雙星測徑",
         chaptersCount: 10,
-        releasedChapters: 4,
-        wordCount: "連載中（已達 2.5 萬字）",
-        status: "第 14 章已上線",
-        theme: "柯西色散公式 × 最小偏向角 × 消色差稜鏡 × 微分螺旋角規",
+        releasedChapters: 5,
+        wordCount: "連載中（已達 3.2 萬字）",
+        status: "第 15 章已上線",
+        theme: "邁克生干涉儀 × 補償板 × 等傾條紋吞吐 × 恆星干涉測徑",
         firstChapterId: 1
       },
       {
