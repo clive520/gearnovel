@@ -703,9 +703,11 @@
       ` : ''}
 
       <!-- 精簡題頭 -->
-      <div class="mb-8 text-center max-w-2xl mx-auto">
+      <div class="mb-12 text-center max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
           <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
+          <span class="text-amber-300 dark:text-amber-700 font-normal">·</span>
+          <span class="font-medium font-mono text-[11px] opacity-90">📖 全站共讀 ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '0'} 次</span>
         </div>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           冒險齒輪 · 少兒科幻小說庫
@@ -713,37 +715,6 @@
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
           專為 9～14 歲孩子打造的原創長篇科幻。融合 STEM 物理數學謎題、有聲伴讀體驗。
         </p>
-      </div>
-
-      <!-- 全站即時雲端統計看板 -->
-      <div class="mb-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
-          <span class="text-xl">📖</span>
-          <div class="text-left">
-            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">全站累計共讀</div>
-            <div class="text-sm font-black text-amber-600 dark:text-amber-400 font-mono">
-              ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '0'} 次
-            </div>
-          </div>
-        </div>
-        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
-          <span class="text-xl">🔥</span>
-          <div class="text-left">
-            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">已解鎖章節</div>
-            <div class="text-sm font-black text-emerald-600 dark:text-emerald-400 font-mono">
-              全 54 回正篇
-            </div>
-          </div>
-        </div>
-        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
-          <span class="text-xl">🧪</span>
-          <div class="text-left">
-            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">STEM 互動實驗</div>
-            <div class="text-sm font-black text-purple-600 dark:text-purple-400 font-mono">
-              54 道破譯謎題
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- 兩大旗艦套書專題展示區 (Series Showcase) -->
