@@ -188,8 +188,11 @@
     };
 
     state.bookmarks.unshift(newBookmark);
-    if (state.bookmarks.length > 30) state.bookmarks.pop();
+    if (state.bookmarks.length > 50) state.bookmarks.pop();
     saveBookmarksToStorage();
+    if (window.AuthService) {
+      window.AuthService.syncBookmarksToCloud(state.bookmarks);
+    }
 
     playTone(523.25, 0.1);
     setTimeout(() => playTone(659.25, 0.15), 80);
@@ -199,6 +202,9 @@
   function removeBookmark(id) {
     state.bookmarks = state.bookmarks.filter(b => b.id !== id);
     saveBookmarksToStorage();
+    if (window.AuthService) {
+      window.AuthService.syncBookmarksToCloud(state.bookmarks);
+    }
     renderBookmarksModal();
     showToast('🗑️ 已移除該書籤', 'info');
   }
@@ -273,8 +279,33 @@
 
     updateNavBookmarkBadge();
 
+    const user = window.AuthService ? window.AuthService.getUser() : null;
+    const googleIcon = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>`;
+
+    const syncHeaderHtml = user ? `
+      <div class="mb-3 px-3.5 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs flex items-center justify-between">
+        <div class="flex items-center gap-2 text-emerald-800 dark:text-emerald-300">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>雲端書籤同步中（<strong>${user.displayName || user.email}</strong>）</span>
+        </div>
+        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">跨載具即時保存</span>
+      </div>
+    ` : `
+      <div class="mb-3 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <span>☁️</span>
+          <span>登入 Google 可跨手機、平板、電腦同步書籤</span>
+        </div>
+        <button onclick="window.triggerGoogleSignIn()" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 hover:border-amber-500 text-slate-700 dark:text-slate-200 font-medium flex items-center gap-1.5 shadow-sm text-xs whitespace-nowrap transition-all">
+          ${googleIcon}
+          <span>立即登入</span>
+        </button>
+      </div>
+    `;
+
     if (state.bookmarks.length === 0) {
       container.innerHTML = `
+        ${syncHeaderHtml}
         <div class="py-12 text-center text-slate-400">
           <div class="text-4xl mb-3">🔖</div>
           <div class="font-bold text-sm text-slate-600 dark:text-slate-300 mb-1">目前尚無任何書籤</div>
@@ -284,7 +315,7 @@
       return;
     }
 
-    container.innerHTML = state.bookmarks.map(bm => `
+    container.innerHTML = syncHeaderHtml + state.bookmarks.map(bm => `
       <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-amber-500/50 transition-all flex items-start justify-between gap-3 group">
         <div class="flex-1 cursor-pointer" onclick="window.jumpToBookmark('${bm.id}')">
           <div class="flex items-center gap-2 mb-1 flex-wrap">
@@ -10768,6 +10799,150 @@
       bmModal.onclick = (e) => {
         if (e.target === bmModal) bmModal.classList.add('hidden');
       };
+    }
+
+    // ================== 使用者登入與跨載具書籤同步 ==================
+    const googleIconSvg = `<svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>`;
+
+    function renderUserAuthUI(user) {
+      const desktopContainer = document.getElementById('user-auth-desktop');
+      const mobileContainer = document.getElementById('user-auth-mobile');
+
+      if (user) {
+        const avatarUrl = user.photoURL || 'https://www.gravatar.com/avatar/?d=mp';
+        const displayName = user.displayName || (user.email ? user.email.split('@')[0] : '探索者');
+
+        if (desktopContainer) {
+          desktopContainer.innerHTML = `
+            <div class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+              <img src="${avatarUrl}" alt="${displayName}" class="w-8 h-8 rounded-full border border-amber-500/50 object-cover shadow-sm" referrerpolicy="no-referrer" />
+              <div class="hidden lg:flex flex-col text-left max-w-[110px]">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">${displayName}</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">雲端已同步</span>
+              </div>
+              <button onclick="window.triggerSignOut()" title="登出帳號" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-xs">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+              </button>
+            </div>
+          `;
+        }
+
+        if (mobileContainer) {
+          mobileContainer.innerHTML = `
+            <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <img src="${avatarUrl}" alt="${displayName}" class="w-7 h-7 rounded-full border border-amber-500/50 object-cover flex-shrink-0" referrerpolicy="no-referrer" />
+                <div class="flex flex-col min-w-0">
+                  <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">${displayName}</span>
+                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">雲端書籤同步中</span>
+                </div>
+              </div>
+              <button onclick="window.triggerSignOut()" class="px-2.5 py-1 rounded-lg text-xs text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 font-medium transition-all flex-shrink-0">
+                登出
+              </button>
+            </div>
+          `;
+        }
+      } else {
+        if (desktopContainer) {
+          desktopContainer.innerHTML = `
+            <div class="pl-2 border-l border-slate-200 dark:border-slate-800">
+              <button onclick="window.triggerGoogleSignIn()" title="登入 Google 跨載具同步閱讀進度與書籤" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 transition-all text-xs font-medium flex items-center gap-1.5 shadow-sm">
+                ${googleIconSvg}
+                <span>Google 登入</span>
+              </button>
+            </div>
+          `;
+        }
+
+        if (mobileContainer) {
+          mobileContainer.innerHTML = `
+            <button onclick="window.triggerGoogleSignIn()" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 font-medium text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+              ${googleIconSvg}
+              <span>登入 Google 跨載具同步書籤</span>
+            </button>
+          `;
+        }
+      }
+    }
+
+    window.triggerGoogleSignIn = async function () {
+      if (!window.AuthService) return;
+      try {
+        await window.AuthService.signInWithGoogle();
+      } catch (err) {
+        console.error('[App] 登入失敗:', err);
+      }
+    };
+
+    window.triggerSignOut = async function () {
+      if (!window.AuthService) return;
+      try {
+        await window.AuthService.signOut();
+        showToast('👋 已安全登出', 'info');
+      } catch (err) {
+        console.error('[App] 登出失敗:', err);
+      }
+    };
+
+    if (window.AuthService) {
+      window.AuthService.onUserChange(async (user) => {
+        renderUserAuthUI(user);
+
+        if (user) {
+          // 登入時抓取雲端書籤並智慧合併
+          const cloudBms = await window.AuthService.fetchCloudBookmarks();
+          if (cloudBms && Array.isArray(cloudBms)) {
+            const merged = window.AuthService.mergeBookmarks(state.bookmarks, cloudBms);
+            state.bookmarks = merged;
+            saveBookmarksToStorage();
+            await window.AuthService.syncBookmarksToCloud(state.bookmarks);
+          } else if (state.bookmarks.length > 0) {
+            await window.AuthService.syncBookmarksToCloud(state.bookmarks);
+          }
+          updateNavBookmarkBadge();
+
+          const curHash = window.location.hash || '';
+          if (curHash === '' || curHash === '#/' || curHash === '#/library') {
+            renderLibrary();
+          }
+          const bmModal = document.getElementById('bookmarks-modal');
+          if (bmModal && !bmModal.classList.contains('hidden')) {
+            renderBookmarksModal();
+          }
+          showToast(`👋 歡迎回來，${user.displayName || '探索者'}！已同步雲端書籤`, 'success');
+        } else {
+          updateNavBookmarkBadge();
+          const bmModal = document.getElementById('bookmarks-modal');
+          if (bmModal && !bmModal.classList.contains('hidden')) {
+            renderBookmarksModal();
+          }
+        }
+      });
+
+      // 監聽雲端即時書籤推送更新
+      window.addEventListener('gear_cloud_bookmarks_updated', (e) => {
+        if (!window.AuthService.isLoggedIn()) return;
+        const incoming = e.detail;
+        if (Array.isArray(incoming)) {
+          const merged = window.AuthService.mergeBookmarks(state.bookmarks, incoming);
+          if (JSON.stringify(merged) !== JSON.stringify(state.bookmarks)) {
+            state.bookmarks = merged;
+            saveBookmarksToStorage();
+            updateNavBookmarkBadge();
+            const bmModal = document.getElementById('bookmarks-modal');
+            if (bmModal && !bmModal.classList.contains('hidden')) {
+              renderBookmarksModal();
+            }
+            const curHash = window.location.hash || '';
+            if (curHash === '' || curHash === '#/' || curHash === '#/library') {
+              renderLibrary();
+            }
+          }
+        }
+      });
+    } else {
+      renderUserAuthUI(null);
     }
   }
 
