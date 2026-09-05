@@ -70,8 +70,8 @@ window.GEAR_SERIES = [
     title: "星願鐘擺與織光少女",
     enTitle: "Star-Wish Pendulum and the Weaver of Light",
     subtitle: "鐘錶物理與唯美成長冒險（預計全三卷）",
-    badge: "🌸 第二卷連載中",
-    badgeColor: "rose",
+    badge: "✨ 第二卷完結",
+    badgeColor: "emerald",
     targetAudience: "9～14 歲適讀 · 鐘錶物理 × 少年成長",
     tagline: "聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！",
     description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 19,
-      totalWords: "第二卷連載中（已發布 19 章 · 10.2 萬字）",
-      statusText: "第二卷火熱連載中（第 19 章已上線）"
+      currentChaptersReleased: 20,
+      totalWords: "第二卷完結（已發布 20 章 · 10.8 萬字）",
+      statusText: "第二卷圓滿完結！第 20 章大結局已上線"
     },
     volumes: [
       {
@@ -100,12 +100,12 @@ window.GEAR_SERIES = [
         bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "偏振全息術與星冕抑制干涉儀",
+        subtitle: "雙星軌道完全校準與永恆共鳴",
         chaptersCount: 10,
-        releasedChapters: 9,
-        wordCount: "連載中（已達 5.6 萬字）",
-        status: "第 19 章已上線",
-        theme: "斯托克斯向量 × 塞曼效應 × 星冕零相干消光 × 偏振全息術",
+        releasedChapters: 10,
+        wordCount: "第二卷完結（全 10 章 · 5.9 萬字）",
+        status: "全卷完結（共 10 章）",
+        theme: "潮汐共振阻尼 × 引力波四極輻射 × 光學頻率梳 × 雙星大合唱",
         firstChapterId: 1
       },
       {

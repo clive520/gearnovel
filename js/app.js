@@ -856,13 +856,13 @@
               </a>
 
               <!-- 卷二 (連載中) -->
-              <a href="#/read/book-5/9" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <a href="#/read/book-5/10" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                   <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors flex items-center gap-2">
                       <span>《旋轉稜鏡的雙星軌道》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第13章已上線</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全卷完結</span>
                     </div>
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 1.8 萬字 · 開普勒第二定律 × 面速度守恆 × 橢圓非圓齒輪</div>
                   </div>
@@ -895,8 +895,8 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/8" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 19 章</span>
+                <a href="#/read/book-5/10" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀第 20 章大結局</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
                   📑 查看全 19 章目錄
@@ -3768,6 +3768,105 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：19=S, 20=T, 15=O, 11=K, 05=E, 19=S。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-500/10 text-violet-600 dark:text-violet-400 font-mono text-xs font-bold">
                 19 ➜ S  |  20 ➜ T  |  15 ➜ O  |  11 ➜ K  |  05 ➜ E  |  19 ➜ S  ==>  【 STOKES 】（斯托克斯參量 · 偏振光學之魂）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗 20：光學頻率梳與雙星軌道完全共振模擬器 (第 20 章大結局) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                第 20 章終章專屬 · 實驗 20
+              </span>
+              <span class="text-xs text-slate-600 dark:text-slate-400">第二套第二卷大結局 · 十全陣列大圓滿</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+              <span>🌈 光學頻率梳與雙星軌道完全共振模擬器</span>
+              <span class="text-xs font-normal px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">HARMONY</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+              結合天體力學潮汐耗散方程與愛因斯坦引力波四極輻射功率公式，透過光學頻率梳協同九大光學發明完成全陣列相干鎖相。調節軌道偏心率與頻梳模式，觀測雙星軌道向完美正圓收斂（e → 0）並達成 1:1 自轉-公轉潮汐自鎖！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60">
+                <!-- 光學頻率梳鎖相狀態 -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    光學頻率梳鎖相狀態 (Frequency Comb Lock)
+                  </label>
+                  <select id="s2HarmonyCombSelect" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg p-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-emerald-500">
+                    <option value="on" selected>開啟十全鎖相光梳 (f_n = f_ceo + n·f_rep · 飛秒極限相干)</option>
+                    <option value="off">關閉光梳引導 (開環無反饋 · 橢圓軌道引力共振失穩)</option>
+                  </select>
+                </div>
+
+                <!-- 初始偏心率 Slider -->
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    <span>軌道偏心率 e (Eccentricity)：</span>
+                    <span id="s2HarmonyEccVal" class="text-emerald-600 dark:text-emerald-400 font-mono">0.000 (正圓)</span>
+                  </div>
+                  <input id="s2HarmonyEccSlider" type="range" min="0.000" max="0.285" step="0.005" value="0.000" class="w-full accent-emerald-600 cursor-pointer">
+                  <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                    <span>0.000 (完美圓軌道)</span>
+                    <span>0.285 (近星點潮汐衝擊)</span>
+                  </div>
+                </div>
+
+                <!-- 潮汐耗散耦合強度 Slider -->
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    <span>潮汐耗散強度 k₂/Q (Tidal Quality)：</span>
+                    <span id="s2HarmonyTidalVal" class="text-emerald-600 dark:text-emerald-400 font-mono">0.85</span>
+                  </div>
+                  <input id="s2HarmonyTidalSlider" type="range" min="0.05" max="1.00" step="0.05" value="0.85" class="w-full accent-emerald-600 cursor-pointer">
+                  <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                    <span>0.05 (弱耗散)</span>
+                    <span>1.00 (超強主動阻尼)</span>
+                  </div>
+                </div>
+
+                <!-- 即時遙測數據盒 -->
+                <div id="s2HarmonyStatusBox" class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+                  <div class="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    雙星系統遙測遙控指標
+                  </div>
+                  <div class="font-mono text-[11px] space-y-1">
+                    <div>引力波四極輻射功率 P_GW：<span id="s2HarmonyPgwVal" class="font-bold text-emerald-500">1.00 P₀ (靜態基底)</span></div>
+                    <div>自轉-公轉共振鎖定比：<span id="s2HarmonyResonanceVal" class="font-bold text-teal-500">1 : 1.00000 (完全自鎖)</span></div>
+                    <div>全陣列波前殘差 RMS：<span id="s2HarmonyRmsVal" class="font-bold text-sky-500">&lt; 0.005 λ (繞射極限)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="s2HarmonyCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="s2HarmonyCanvasStatus" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    雙星軌道完全校準達成 · 永恆共鳴大合唱
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">左: 雙星正圓軌道模擬 | 右: 光學頻率梳與引力波譜</span>
+                </div>
+                <p id="s2HarmonyCanvasDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  光學頻率梳發射相干光尺錨定引力波四極頻率，潮汐阻尼將軌道拉扯為完美正圓（e → 0），伴星 1:1 自轉鎖定，古老超導樞紐迎來永恆平衡。
+                </p>
+              </div>
+            </div>
+
+            <!-- 終極密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+              <div class="text-xs font-bold text-emerald-800 dark:text-emerald-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 20 章終章大結局核心密文：[ 08 - 01 - 18 - 13 - 15 - 14 - 25 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：08=H, 01=A, 18=R, 13=M, 15=O, 14=N, 25=Y。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
+                08 ➜ H  |  01 ➜ A  |  18 ➜ R  |  13 ➜ M  |  15 ➜ O  |  14 ➜ N  |  25 ➜ Y  ==>  【 HARMONY 】（雙星軌道永恆和諧大共鳴）
               </div>
             </div>
           </div>
@@ -8521,6 +8620,304 @@
       }
       updateHoloSimUI();
       drawHoloCanvas();
+    }
+
+
+    
+    // ================== 實驗 20：光學頻率梳與雙星軌道完全共振模擬器 (Ch 52 / Book 5 Ch 10 大結局) ==================
+    const s2HarmonyCanvas = document.getElementById('s2HarmonyCanvas');
+    const s2HarmonyCombSelect = document.getElementById('s2HarmonyCombSelect');
+    const s2HarmonyEccSlider = document.getElementById('s2HarmonyEccSlider');
+    const s2HarmonyTidalSlider = document.getElementById('s2HarmonyTidalSlider');
+    const s2HarmonyEccVal = document.getElementById('s2HarmonyEccVal');
+    const s2HarmonyTidalVal = document.getElementById('s2HarmonyTidalVal');
+    const s2HarmonyPgwVal = document.getElementById('s2HarmonyPgwVal');
+    const s2HarmonyResonanceVal = document.getElementById('s2HarmonyResonanceVal');
+    const s2HarmonyRmsVal = document.getElementById('s2HarmonyRmsVal');
+    const s2HarmonyStatusBox = document.getElementById('s2HarmonyStatusBox');
+    const s2HarmonyCanvasStatus = document.getElementById('s2HarmonyCanvasStatus');
+    const s2HarmonyCanvasDesc = document.getElementById('s2HarmonyCanvasDesc');
+
+    let s2HarmonyAnimId = null;
+    let s2HarmonyTime = 0;
+
+    function updateHarmonySimUI() {
+      if (!s2HarmonyCombSelect || !s2HarmonyEccSlider || !s2HarmonyTidalSlider) return;
+      const isCombLocked = s2HarmonyCombSelect.value === 'on';
+      const ecc = parseFloat(s2HarmonyEccSlider.value);
+      const tidalK = parseFloat(s2HarmonyTidalSlider.value);
+
+      if (s2HarmonyEccVal) {
+        let note = '';
+        if (ecc < 0.005) note = ' (絕對正圓軌道 · 大圓滿)';
+        else if (ecc < 0.08) note = ' (微弱殘餘偏心率)';
+        else if (ecc < 0.2) note = ' (顯著橢圓攝動)';
+        else note = ' (近星點極限潮汐撕扯)';
+        s2HarmonyEccVal.textContent = `${ecc.toFixed(3)}${note}`;
+      }
+
+      if (s2HarmonyTidalVal) {
+        s2HarmonyTidalVal.textContent = `${tidalK.toFixed(2)}`;
+      }
+
+      // Einstein quadrupole factor f(e) = (1 + 73/24 e^2 + 37/96 e^4) / (1 - e^2)^3.5
+      const e2 = ecc * ecc;
+      const e4 = e2 * e2;
+      const denom = Math.pow(Math.max(0.01, 1 - e2), 3.5);
+      const fe = (1 + (73 / 24) * e2 + (37 / 96) * e4) / denom;
+
+      if (s2HarmonyPgwVal) {
+        s2HarmonyPgwVal.textContent = `${fe.toFixed(2)} P₀ (輻射阻尼)`;
+      }
+
+      if (s2HarmonyResonanceVal) {
+        const syncRatio = isCombLocked ? (1 - ecc * 0.05) : (0.88 + Math.sin(s2HarmonyTime) * 0.12);
+        s2HarmonyResonanceVal.textContent = `1 : ${syncRatio.toFixed(5)} ${isCombLocked && ecc < 0.01 ? '(潮汐自鎖)' : '(相位抖動)'}`;
+      }
+
+      if (s2HarmonyRmsVal) {
+        const rms = isCombLocked ? (0.003 + ecc * 0.015) : (0.125 + ecc * 0.25);
+        s2HarmonyRmsVal.textContent = `< ${rms.toFixed(3)} λ ${isCombLocked ? '(繞射極限突破)' : '(色散嚴重失諧)'}`;
+      }
+
+      if (s2HarmonyCanvasStatus) {
+        if (isCombLocked && ecc < 0.01) {
+          s2HarmonyCanvasStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2HarmonyCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 雙星軌道完全正圓校準 · 永恆共鳴達成';
+        } else if (isCombLocked) {
+          s2HarmonyCanvasStatus.className = 'font-semibold text-teal-500 flex items-center gap-1.5';
+          s2HarmonyCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span> 光梳鎖相啟動中 · 偏心率阻尼收斂';
+        } else {
+          s2HarmonyCanvasStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2HarmonyCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> 頻梳開環失鎖 · 橢圓軌道引力波劇烈擾動';
+        }
+      }
+    }
+
+    function drawHarmonyCanvas() {
+      if (!s2HarmonyCanvas) return;
+      const ctx = s2HarmonyCanvas.getContext('2d');
+      const w = s2HarmonyCanvas.width;
+      const h = s2HarmonyCanvas.height;
+
+      s2HarmonyTime += 0.03;
+      const isCombLocked = s2HarmonyCombSelect ? (s2HarmonyCombSelect.value === 'on') : true;
+      let ecc = parseFloat(s2HarmonyEccSlider ? s2HarmonyEccSlider.value : 0.0);
+
+      // Auto damping towards 0 if comb is locked and slider is not actively manipulated
+      if (isCombLocked && ecc > 0.001) {
+        ecc = Math.max(0, ecc - 0.0015);
+        if (s2HarmonyEccSlider) s2HarmonyEccSlider.value = ecc.toFixed(3);
+        updateHarmonySimUI();
+      }
+
+      ctx.fillStyle = '#060913';
+      ctx.fillRect(0, 0, w, h);
+
+      // ================= 左側：雙星軌道力學模擬 (x: 10 ~ 290) =================
+      const orbitCenterX = 150;
+      const orbitCenterY = 135;
+      const a = 95; // semi-major axis
+      const b = a * Math.sqrt(Math.max(0.01, 1 - ecc * ecc)); // semi-minor axis
+      const focusDist = a * ecc; // focal distance
+
+      // Draw orbit path
+      ctx.save();
+      ctx.beginPath();
+      ctx.ellipse(orbitCenterX, orbitCenterY, a, b, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = ecc < 0.01 ? 'rgba(16, 185, 129, 0.7)' : 'rgba(245, 158, 11, 0.5)';
+      ctx.lineWidth = ecc < 0.01 ? 2.5 : 1.5;
+      if (ecc >= 0.01) ctx.setLineDash([4, 4]);
+      ctx.stroke();
+      ctx.restore();
+
+      // Gravitational Wave ripples if e > 0
+      if (ecc > 0.02) {
+        ctx.save();
+        for (let r = 20; r < 120; r += 25) {
+          const ripplePhase = (s2HarmonyTime * 2 + r * 0.1) % (Math.PI * 2);
+          const alpha = (0.25 * ecc * (1 + Math.sin(ripplePhase))).toFixed(2);
+          ctx.beginPath();
+          ctx.ellipse(orbitCenterX, orbitCenterY, r + focusDist * 0.5, r * (b / a), 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      // Primary Star A (Blue Giant, at primary focus)
+      const starAX = orbitCenterX - focusDist;
+      const starAY = orbitCenterY;
+      const gradA = ctx.createRadialGradient(starAX, starAY, 2, starAX, starAY, 20);
+      gradA.addColorStop(0, '#ffffff');
+      gradA.addColorStop(0.3, '#38bdf8');
+      gradA.addColorStop(0.7, '#0284c7');
+      gradA.addColorStop(1, 'rgba(2, 132, 199, 0)');
+      ctx.beginPath();
+      ctx.arc(starAX, starAY, 20, 0, Math.PI * 2);
+      ctx.fillStyle = gradA;
+      ctx.fill();
+
+      // Companion Star B position (orbital movement)
+      const trueAnomaly = s2HarmonyTime * (1.2 + (1 - ecc) * 0.5);
+      const r_orbit = (a * (1 - ecc * ecc)) / (1 + ecc * Math.cos(trueAnomaly));
+      const starBX = starAX + r_orbit * Math.cos(trueAnomaly);
+      const starBY = starAY + r_orbit * Math.sin(trueAnomaly);
+
+      // Coherent Laser frequency comb guide beams from base (bottom left)
+      if (isCombLocked) {
+        ctx.save();
+        const numBeams = 9;
+        for (let i = 0; i < numBeams; i++) {
+          const beamOffset = (i - 4) * 2;
+          ctx.beginPath();
+          ctx.moveTo(25, 255);
+          ctx.lineTo(starBX + beamOffset, starBY);
+          ctx.strokeStyle = `rgba(52, 211, 153, ${0.15 + 0.1 * Math.sin(s2HarmonyTime * 3 + i)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      // Draw Companion B
+      const gradB = ctx.createRadialGradient(starBX, starBY, 1, starBX, starBY, 14);
+      gradB.addColorStop(0, '#fffbeb');
+      gradB.addColorStop(0.4, '#f59e0b');
+      gradB.addColorStop(0.8, '#b45309');
+      gradB.addColorStop(1, 'rgba(180, 83, 9, 0)');
+      ctx.beginPath();
+      ctx.arc(starBX, starBY, 14, 0, Math.PI * 2);
+      ctx.fillStyle = gradB;
+      ctx.fill();
+
+      // Labels on orbit simulation
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px monospace';
+      ctx.fillText('主星 (藍巨星 A)', starAX - 32, starAY - 24);
+      ctx.fillText('伴星 B (超導樞紐)', starBX - 34, starBY + 24);
+      if (ecc < 0.01) {
+        ctx.fillStyle = '#34d399';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText('✨ 1:1 潮汐鎖定 · 正圓閉合', orbitCenterX - 55, 30);
+      }
+
+      // ================= 右側：光學頻率梳與引力波四極譜 (x: 310 ~ 550) =================
+      const splitX = 300;
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(splitX, 10);
+      ctx.lineTo(splitX, h - 10);
+      ctx.stroke();
+
+      // Top Right: Optical Frequency Comb lines f_n = f_ceo + n * f_rep
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('光學頻率梳微波光子梳齒 (Optical Frequency Comb)', splitX + 15, 24);
+
+      const combY = 75;
+      const combW = 230;
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(splitX + 15, combY);
+      ctx.lineTo(splitX + 15 + combW, combY);
+      ctx.stroke();
+
+      // Draw comb teeth
+      const teethCount = 28;
+      for (let i = 0; i < teethCount; i++) {
+        const tx = splitX + 18 + i * 8;
+        const toothH = 15 + Math.sin(i * 0.4 + s2HarmonyTime) * 12 + (isCombLocked ? 10 : 0);
+        ctx.beginPath();
+        ctx.moveTo(tx, combY);
+        ctx.lineTo(tx, combY - toothH);
+        ctx.strokeStyle = isCombLocked ? (i % 3 === 0 ? '#34d399' : '#38bdf8') : '#f43f5e';
+        ctx.lineWidth = isCombLocked ? 1.5 : 1;
+        ctx.stroke();
+
+        if (isCombLocked && i % 7 === 0) {
+          ctx.fillStyle = '#6ee7b7';
+          ctx.beginPath();
+          ctx.arc(tx, combY - toothH, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.fillStyle = '#64748b';
+      ctx.font = '9px monospace';
+      ctx.fillText('f_ceo', splitX + 15, combY + 12);
+      ctx.fillText('f_n = f_ceo + n · f_rep', splitX + 120, combY + 12);
+
+      // Bottom Right: Gravitational Wave Quadrupole Power & Harmonic Resonance Meter
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('引力波四極波阻尼與共鳴譜 (GW Quadrupole Power)', splitX + 15, 115);
+
+      // Bar 1: Eccentricity Meter
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px monospace';
+      ctx.fillText('偏心率 e: ' + ecc.toFixed(3), splitX + 15, 138);
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(splitX + 15, 143, 220, 10);
+      const eccBarW = Math.min(220, (ecc / 0.285) * 220);
+      ctx.fillStyle = ecc < 0.01 ? '#10b981' : (ecc < 0.1 ? '#f59e0b' : '#ef4444');
+      ctx.fillRect(splitX + 15, 143, eccBarW, 10);
+
+      // Bar 2: Quadrupole Damping Power P_GW
+      const e2_c = ecc * ecc;
+      const fe_val = (1 + (73 / 24) * e2_c + (37 / 96) * e2_c * e2_c) / Math.pow(Math.max(0.01, 1 - e2_c), 3.5);
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('P_GW 功率增強因數: ' + fe_val.toFixed(2) + 'x', splitX + 15, 175);
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(splitX + 15, 180, 220, 10);
+      const pgwBarW = Math.min(220, (fe_val / 2.5) * 220);
+      ctx.fillStyle = '#8b5cf6';
+      ctx.fillRect(splitX + 15, 180, pgwBarW, 10);
+
+      // Bar 3: Resonance Degree
+      const resDeg = isCombLocked ? Math.max(0, 100 - ecc * 300) : 15;
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('雙星大合唱共振度: ' + resDeg.toFixed(1) + '%', splitX + 15, 212);
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(splitX + 15, 217, 220, 12);
+      const resBarW = (resDeg / 100) * 220;
+      ctx.fillStyle = isCombLocked && ecc < 0.01 ? '#10b981' : '#0ea5e9';
+      ctx.fillRect(splitX + 15, 217, resBarW, 12);
+
+      // Bottom Status badge
+      ctx.font = 'bold 11px sans-serif';
+      if (isCombLocked && ecc < 0.01) {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('★ 終章認證：HARMONY 和諧大圓滿 ★', splitX + 22, 252);
+      } else {
+        ctx.fillStyle = '#fbbf24';
+        ctx.fillText('⚙ 潮汐阻尼運轉中：向正圓漸進收斂...', splitX + 22, 252);
+      }
+
+      s2HarmonyAnimId = requestAnimationFrame(drawHarmonyCanvas);
+    }
+
+    if (s2HarmonyCanvas) {
+      if (s2HarmonyAnimId) cancelAnimationFrame(s2HarmonyAnimId);
+      if (s2HarmonyCombSelect) {
+        s2HarmonyCombSelect.addEventListener('change', () => {
+          updateHarmonySimUI();
+        });
+      }
+      if (s2HarmonyEccSlider) {
+        s2HarmonyEccSlider.addEventListener('input', () => {
+          updateHarmonySimUI();
+        });
+      }
+      if (s2HarmonyTidalSlider) {
+        s2HarmonyTidalSlider.addEventListener('input', () => {
+          updateHarmonySimUI();
+        });
+      }
+      updateHarmonySimUI();
+      drawHarmonyCanvas();
     }
 
 
