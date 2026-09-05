@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 17,
-      totalWords: "第二卷連載中（已發布 17 章 · 9.0 萬字）",
-      statusText: "第二卷火熱連載中（第 17 章已上線）"
+      currentChaptersReleased: 18,
+      totalWords: "第二卷連載中（已發布 18 章 · 9.6 萬字）",
+      statusText: "第二卷火熱連載中（第 18 章已上線）"
     },
     volumes: [
       {
@@ -100,12 +100,12 @@ window.GEAR_SERIES = [
         bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "自適應光學與波前重構",
+        subtitle: "夫朗和斐吸收光譜與恆星元素豐度",
         chaptersCount: 10,
-        releasedChapters: 7,
-        wordCount: "連載中（已達 4.4 萬字）",
-        status: "第 17 章已上線",
-        theme: "自適應光學 × 夏克-哈特曼感測器 × 澤尼克多項式 × 壓電可變形反射鏡",
+        releasedChapters: 8,
+        wordCount: "連載中（已達 5.0 萬字）",
+        status: "第 18 章已上線",
+        theme: "基爾霍夫定律 × 巴耳末線系 × 分光雙星都卜勒徑向速度 × 薩哈電離方程",
         firstChapterId: 1
       },
       {

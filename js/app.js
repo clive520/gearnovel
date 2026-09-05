@@ -895,11 +895,11 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/7" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 17 章</span>
+                <a href="#/read/book-5/8" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 18 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 17 章目錄
+                  📑 查看全 18 章目錄
                 </button>
               </div>
             </div>
@@ -3567,6 +3567,108 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：15=O, 16=P, 20=T, 09=I, 03=C, 19=S。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
                 15 ➜ O  |  16 ➜ P  |  20 ➜ T  |  09 ➜ I  |  03 ➜ C  |  19 ➜ S  ==>  【 OPTICS 】（光學 · 波前重構之術）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗 18：階梯光柵攝譜儀與恆星吸收光譜模擬器 (第 18 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+                <span>📊 18. 階梯光柵攝譜儀與恆星吸收光譜模擬器（第 18 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800">
+                夫朗和斐吸收線 × 都卜勒徑向速度 × 薩哈電離反演
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              模擬高解析度階梯光柵攝譜儀（Echelle Spectrograph）對雙線分光雙星（SB2）光譜的色散剖析。拖動軌道公轉相位角，觀察主星與伴星因視向速度差異產生的週期性都卜勒紅移與藍移；調整恆星表面有效溫度與深層金屬豐度，實測巴耳末線系（H_α, H_β, H_γ）、鈉雙線（D₁/D₂）、電離鈣與超金屬鐵（Fe I/II）吸收帶等效寬度 W_λ 的劇烈拓寬！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">雙星公轉軌道相位角 (Orbital Phase φ)</span>
+                    <span id="s2SpectraPhaseVal" class="font-bold text-rose-500">90° (最大視向速度差)</span>
+                  </div>
+                  <input id="s2SpectraPhaseSlider" type="range" min="0" max="360" step="5" value="90" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>0° (正對視線)</span>
+                    <span class="text-rose-500 font-bold">90° (正交最大分離)</span>
+                    <span>180° / 270°</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">伴星光球層有效溫度 (Photosphere Temp T)</span>
+                    <span id="s2SpectraTempVal" class="font-bold text-amber-500">5,260 K (晚期黃矮星)</span>
+                  </div>
+                  <input id="s2SpectraTempSlider" type="range" min="3200" max="9500" step="100" value="5260" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>3200 K (M型紅矮)</span>
+                    <span class="text-amber-500 font-bold">5260 K (伴星實測)</span>
+                    <span>9500 K (A型白星)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">深層金屬豐度異常倍率 (Fe Metallicity)</span>
+                    <span id="s2SpectraMetalVal" class="font-bold text-indigo-500">1× (標準恆星豐度)</span>
+                  </div>
+                  <input id="s2SpectraMetalSlider" type="range" min="1" max="5000" step="50" value="1" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>1× (自然演化)</span>
+                    <span>500× (明顯超標)</span>
+                    <span class="text-indigo-500 font-bold">5000× (人造核心)</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 space-y-2">
+                  <div id="s2SpectraStatusBox" class="p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                    雙線分光雙星（SB2）：都卜勒譜線分離率 100%
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>主星視向速度 v_r,1：<span id="s2SpectraVr1Val" class="font-mono font-bold text-rose-500">+8.23 km/s (紅移)</span></div>
+                    <div>伴星視向速度 v_r,2：<span id="s2SpectraVr2Val" class="font-mono font-bold text-sky-500">-24.68 km/s (藍移)</span></div>
+                    <div>質量比 M₁/M₂：<span class="font-mono font-bold text-amber-500">3.00 (主星為伴星 3 倍質量)</span></div>
+                    <div>鐵線等效寬度 W_λ(Fe)：<span id="s2SpectraEwVal" class="font-mono font-bold text-indigo-500">0.015 nm (標準)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="s2SpectraCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="s2SpectraCanvasStatus" class="font-semibold text-rose-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                    夫朗和斐吸收線鎖定 · 薩哈電離反演運算中
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">上: 2D 階梯光柵彩虹譜帶 | 下: 吸收強度輪廓 I_λ/I_c</span>
+                </div>
+                <p id="s2SpectraCanvasDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  階梯光柵將 380~700nm 連續光譜劇烈色散；紅色 H_α、青色 H_β 與金色鈉雙線 D₁/D₂ 伴隨公轉週期呈共軛反向都卜勒位移。
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 18 章核心密文：[ 19 - 16 - 05 - 03 - 20 - 18 - 01 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：19=S, 16=P, 05=E, 03=C, 20=T, 18=R, 01=A。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                19 ➜ S  |  16 ➜ P  |  05 ➜ E  |  03 ➜ C  |  20 ➜ T  |  18 ➜ R  |  01 ➜ A  ==>  【 SPECTRA 】（光譜 · 恆星元素之語）
               </div>
             </div>
           </div>
@@ -7687,6 +7789,318 @@
     }
 
 
+
+
+    
+    // ================== 實驗 18：階梯光柵攝譜儀與恆星吸收光譜模擬器 (Ch 50 / Book 5 Ch 8) ==================
+    const s2SpectraCanvas = document.getElementById('s2SpectraCanvas');
+    const s2SpectraPhaseSlider = document.getElementById('s2SpectraPhaseSlider');
+    const s2SpectraTempSlider = document.getElementById('s2SpectraTempSlider');
+    const s2SpectraMetalSlider = document.getElementById('s2SpectraMetalSlider');
+    const s2SpectraPhaseVal = document.getElementById('s2SpectraPhaseVal');
+    const s2SpectraTempVal = document.getElementById('s2SpectraTempVal');
+    const s2SpectraMetalVal = document.getElementById('s2SpectraMetalVal');
+    const s2SpectraVr1Val = document.getElementById('s2SpectraVr1Val');
+    const s2SpectraVr2Val = document.getElementById('s2SpectraVr2Val');
+    const s2SpectraEwVal = document.getElementById('s2SpectraEwVal');
+    const s2SpectraStatusBox = document.getElementById('s2SpectraStatusBox');
+    const s2SpectraCanvasStatus = document.getElementById('s2SpectraCanvasStatus');
+
+    let s2SpectraAnimId = null;
+    let s2SpectraTime = 0;
+
+    function updateSpectraSimUI() {
+      if (!s2SpectraPhaseSlider || !s2SpectraTempSlider || !s2SpectraMetalSlider) return;
+      const phaseDeg = parseFloat(s2SpectraPhaseSlider.value);
+      const tempK = parseFloat(s2SpectraTempSlider.value);
+      const metalScale = parseFloat(s2SpectraMetalSlider.value);
+
+      const rad = phaseDeg * Math.PI / 180;
+      const sinP = Math.sin(rad);
+
+      // 視向速度計算 (km/s)
+      const vr1 = 8.23 * sinP;
+      const vr2 = -24.68 * sinP;
+
+      if (s2SpectraPhaseVal) {
+        let note = '';
+        if (Math.abs(phaseDeg - 90) < 5 || Math.abs(phaseDeg - 270) < 5) note = ' (正交最大視向速度差)';
+        else if (phaseDeg < 5 || Math.abs(phaseDeg - 180) < 5 || phaseDeg > 355) note = ' (視線方向交疊重合)';
+        s2SpectraPhaseVal.textContent = `${phaseDeg.toFixed(0)}°${note}`;
+      }
+
+      if (s2SpectraTempVal) {
+        let tempLabel = '黃矮星 (G型)';
+        if (tempK < 4000) tempLabel = '紅矮星 (M型)';
+        else if (tempK < 5000) tempLabel = '橙矮星 (K型)';
+        else if (tempK > 7500) tempLabel = '白矮/早型星 (A型)';
+        s2SpectraTempVal.textContent = `${tempK.toFixed(0)} K (${tempLabel})`;
+      }
+
+      if (s2SpectraMetalVal) {
+        let metalLabel = '自然演化豐度';
+        if (metalScale > 2000) metalLabel = '⚠ 上古超金屬人造核心！';
+        else if (metalScale > 200) metalLabel = '強烈異常過量金屬';
+        s2SpectraMetalVal.textContent = `${metalScale.toFixed(0)}× (${metalLabel})`;
+      }
+
+      if (s2SpectraVr1Val) {
+        const sign1 = vr1 >= 0 ? '+' : '';
+        const mode1 = vr1 >= 0.1 ? '(紅移)' : (vr1 <= -0.1 ? '(藍移)' : '(基準)');
+        s2SpectraVr1Val.textContent = `${sign1}${vr1.toFixed(2)} km/s ${mode1}`;
+      }
+
+      if (s2SpectraVr2Val) {
+        const sign2 = vr2 >= 0 ? '+' : '';
+        const mode2 = vr2 >= 0.1 ? '(紅移)' : (vr2 <= -0.1 ? '(藍移)' : '(基準)');
+        s2SpectraVr2Val.textContent = `${sign2}${vr2.toFixed(2)} km/s ${mode2}`;
+      }
+
+      const baseEw = 0.015;
+      const calcEw = baseEw * Math.pow(metalScale, 0.4);
+      if (s2SpectraEwVal) {
+        s2SpectraEwVal.textContent = `${calcEw.toFixed(3)} nm (${metalScale > 1000 ? '超寬重度阻尼翼' : '線性微弱吸收'})`;
+      }
+
+      if (s2SpectraStatusBox) {
+        if (metalScale > 1500) {
+          s2SpectraStatusBox.className = 'p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-xs font-bold flex items-center gap-1.5';
+          s2SpectraStatusBox.innerHTML = '<span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span> 🚨 探測到深層超金屬人造錨定核心！薩哈電離異常！';
+        } else if (Math.abs(sinP) < 0.15) {
+          s2SpectraStatusBox.className = 'p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center gap-1.5';
+          s2SpectraStatusBox.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500"></span> 軌道視線交疊：主伴雙星吸收線同軸重合';
+        } else {
+          s2SpectraStatusBox.className = 'p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-1.5';
+          s2SpectraStatusBox.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> 雙線分光雙星（SB2）：都卜勒譜線分離率 100%';
+        }
+      }
+    }
+
+    function drawSpectraCanvas() {
+      if (!s2SpectraCanvas) return;
+      const ctx = s2SpectraCanvas.getContext('2d');
+      const w = s2SpectraCanvas.width;
+      const h = s2SpectraCanvas.height;
+
+      s2SpectraTime += 0.03;
+      const phaseDeg = parseFloat(s2SpectraPhaseSlider ? s2SpectraPhaseSlider.value : 90);
+      const tempK = parseFloat(s2SpectraTempSlider ? s2SpectraTempSlider.value : 5260);
+      const metalScale = parseFloat(s2SpectraMetalSlider ? s2SpectraMetalSlider.value : 1);
+
+      const rad = phaseDeg * Math.PI / 180;
+      const sinP = Math.sin(rad);
+
+      // 清屏背景
+      ctx.fillStyle = '#090d16';
+      ctx.fillRect(0, 0, w, h);
+
+      // ================= 上半部：連續彩虹階梯光譜帶 =================
+      const specX = 40;
+      const specY = 28;
+      const specW = 480;
+      const specH = 65;
+
+      // 繪製連續彩色黑體漸變帶 (380nm ~ 700nm)
+      const grad = ctx.createLinearGradient(specX, 0, specX + specW, 0);
+      grad.addColorStop(0.00, '#3b0764'); // 380nm 近紫
+      grad.addColorStop(0.12, '#4338ca'); // 420nm 靛藍
+      grad.addColorStop(0.25, '#0284c7'); // 460nm 藍
+      grad.addColorStop(0.38, '#059669'); // 500nm 綠
+      grad.addColorStop(0.55, '#ca8a04'); // 560nm 黃綠
+      grad.addColorStop(0.68, '#d97706'); // 600nm 金橙
+      grad.addColorStop(0.85, '#dc2626'); // 650nm 鮮紅
+      grad.addColorStop(1.00, '#991b1b'); // 700nm 深紅
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(specX, specY, specW, specH);
+
+      // 邊框
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(specX, specY, specW, specH);
+
+      // 標題與標尺
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('階梯光柵二維色散光譜帶 (380 nm ── 700 nm)', specX, specY - 8);
+
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.6)';
+      ctx.textAlign = 'center';
+      ctx.fillText('380nm', specX, specY + specH + 14);
+      ctx.fillText('486nm (Hβ)', specX + specW * 0.33, specY + specH + 14);
+      ctx.fillText('589nm (Na D)', specX + specW * 0.65, specY + specH + 14);
+      ctx.fillText('656nm (Hα)', specX + specW * 0.86, specY + specH + 14);
+      ctx.fillText('700nm', specX + specW, specY + specH + 14);
+
+      // 基準特徵吸收線列表 (波長 nm, 基礎強度, 元素名)
+      const absLines = [
+        { wl: 393.4, strength: 0.85, name: 'Ca II K', isMetal: true },
+        { wl: 396.8, strength: 0.80, name: 'Ca II H', isMetal: true },
+        { wl: 434.0, strength: 0.70, name: 'Hγ', isMetal: false },
+        { wl: 486.1, strength: 0.88, name: 'Hβ', isMetal: false },
+        { wl: 517.3, strength: 0.60, name: 'Mg I b', isMetal: true },
+        { wl: 527.0, strength: 0.65, name: 'Fe I', isMetal: true },
+        { wl: 589.0, strength: 0.92, name: 'Na D₂', isMetal: true },
+        { wl: 589.6, strength: 0.88, name: 'Na D₁', isMetal: true },
+        { wl: 656.3, strength: 0.95, name: 'Hα', isMetal: false }
+      ];
+
+      // 將波長轉換為 X 座標 (380 ~ 700 nm)
+      function wlToX(wl) {
+        return specX + ((wl - 380) / (700 - 380)) * specW;
+      }
+
+      // 視向速度導致的波長偏移 (nm)
+      // v_r/c * wl
+      const c_kms = 299792;
+      const shift1 = (8.23 * sinP / c_kms);
+      const shift2 = (-24.68 * sinP / c_kms);
+
+      // 繪製吸收線 (主星 與 伴星)
+      absLines.forEach(line => {
+        // 主星吸收線 (紅移偏向正)
+        const wl1 = line.wl * (1 + shift1);
+        const x1 = wlToX(wl1);
+
+        // 伴星吸收線 (藍移偏向負)
+        const wl2 = line.wl * (1 + shift2);
+        const x2 = wlToX(wl2);
+
+        // 金屬線在超金屬核心下線寬劇烈增加
+        let widthFactor = 1.0;
+        if (line.isMetal) {
+          widthFactor = 1.0 + Math.pow(metalScale, 0.35) * 0.8;
+        }
+
+        // 畫主星吸收暗線 (半透明黑色帶)
+        if (x1 >= specX && x1 <= specX + specW) {
+          ctx.fillStyle = `rgba(10, 10, 15, ${0.75 * line.strength})`;
+          const lw1 = Math.max(1.5, 2.0 * widthFactor * (line.strength));
+          ctx.fillRect(x1 - lw1 / 2, specY, lw1, specH);
+
+          // 核心更黑
+          ctx.fillStyle = `rgba(0, 0, 0, ${0.9 * line.strength})`;
+          ctx.fillRect(x1 - 0.75, specY, 1.5, specH);
+        }
+
+        // 畫伴星吸收暗線 (若與主星分離，繪製次級分裂線)
+        if (Math.abs(x1 - x2) > 1.2 && x2 >= specX && x2 <= specX + specW) {
+          ctx.fillStyle = `rgba(15, 23, 42, ${0.65 * line.strength})`;
+          const lw2 = Math.max(1.2, 1.8 * widthFactor * (line.strength));
+          ctx.fillRect(x2 - lw2 / 2, specY, lw2, specH);
+
+          ctx.fillStyle = `rgba(0, 0, 0, ${0.85 * line.strength})`;
+          ctx.fillRect(x2 - 0.6, specY, 1.2, specH);
+        }
+      });
+
+      // ================= 下半部：光譜強度剖面曲線 I_λ / I_c =================
+      const profX = 40;
+      const profY = 155;
+      const profW = 480;
+      const profH = 85;
+
+      // 坐標系背景
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
+      ctx.fillRect(profX, profY, profW, profH);
+      ctx.strokeStyle = 'rgba(51, 65, 85, 0.8)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(profX, profY, profW, profH);
+
+      // 連續譜歸一化基線 (I/Ic = 1.0)
+      const baseLineY = profY + 15;
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(profX, baseLineY);
+      ctx.lineTo(profX + profW, baseLineY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.7)';
+      ctx.font = '9px monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText('Ic = 1.0', profX - 4, baseLineY + 3);
+      ctx.fillText('0.5', profX - 4, baseLineY + profH * 0.45);
+      ctx.fillText('0.0', profX - 4, profY + profH - 4);
+
+      // 繪製連續曲線
+      ctx.strokeStyle = '#f43f5e';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+
+      for (let px = 0; px <= profW; px += 2) {
+        const curWl = 380 + (px / profW) * (700 - 380);
+        let intensity = 1.0;
+
+        // 計算各吸收線的 Voigt 下凹貢獻
+        absLines.forEach(line => {
+          const wl1 = line.wl * (1 + shift1);
+          const wl2 = line.wl * (1 + shift2);
+
+          let sigma = 0.8;
+          if (line.isMetal) {
+            sigma = 0.8 * (1.0 + Math.pow(metalScale, 0.3) * 0.5);
+          }
+
+          // 主星高斯下凹
+          const d1 = (curWl - wl1);
+          const dip1 = 0.75 * line.strength * Math.exp(-(d1 * d1) / (2 * sigma * sigma));
+          intensity -= dip1;
+
+          // 伴星高斯下凹
+          const d2 = (curWl - wl2);
+          const dip2 = 0.55 * line.strength * Math.exp(-(d2 * d2) / (2 * sigma * sigma));
+          intensity -= dip2;
+        });
+
+        intensity = Math.max(0.05, Math.min(1.0, intensity));
+        const py = baseLineY + (1.0 - intensity) * (profH - 25);
+
+        if (px === 0) ctx.moveTo(profX + px, py);
+        else ctx.lineTo(profX + px, py);
+      }
+      ctx.stroke();
+
+      // 標注 Hα 與 Na D 分裂標籤
+      const xHa = wlToX(656.3);
+      ctx.fillStyle = '#f43f5e';
+      ctx.font = 'bold 9px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('Hα 656.3nm', xHa, profY + profH - 6);
+
+      const xNa = wlToX(589.3);
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillText('Na D 雙線', xNa, profY + profH - 6);
+
+      const xFe = wlToX(527.0);
+      ctx.fillStyle = metalScale > 1000 ? '#818cf8' : '#94a3b8';
+      ctx.fillText(metalScale > 1000 ? 'Fe 異常吸收帶!' : 'Fe I', xFe, profY + profH - 6);
+
+      s2SpectraAnimId = requestAnimationFrame(drawSpectraCanvas);
+    }
+
+    if (s2SpectraCanvas) {
+      if (s2SpectraAnimId) cancelAnimationFrame(s2SpectraAnimId);
+      if (s2SpectraPhaseSlider) {
+        s2SpectraPhaseSlider.addEventListener('input', () => {
+          updateSpectraSimUI();
+        });
+      }
+      if (s2SpectraTempSlider) {
+        s2SpectraTempSlider.addEventListener('input', () => {
+          updateSpectraSimUI();
+        });
+      }
+      if (s2SpectraMetalSlider) {
+        s2SpectraMetalSlider.addEventListener('input', () => {
+          updateSpectraSimUI();
+        });
+      }
+      updateSpectraSimUI();
+      drawSpectraCanvas();
+    }
 
 
     // ================== 第三卷實驗邏輯 ==================
