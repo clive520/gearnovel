@@ -130,5 +130,71 @@ window.GEAR_SERIES = [
     coverStyle: "from-rose-500/10 via-purple-500/5 to-slate-900/40 border-rose-500/30",
     startBookId: "book-4",
     startChapterId: 1
+  },
+  {
+    id: "series-3",
+    title: "我的老師不是人",
+    enTitle: "My Teacher Is Not Human",
+    subtitle: "校園爆笑科幻 · 全三卷完結套書（共 24 章）",
+    badge: "🤖 全三卷完結",
+    badgeColor: "sky",
+    targetAudience: "9～15 歲少兒 · 校園爆笑 × 輕科幻冒險",
+    tagline: "當全能仿生機器人導師掉了一顆常識齒輪，全校最皮的六年一班展開爆笑掩護大作戰！",
+    description: "教育部秘密測試計畫派遣全能仿生人「GS-X01」化身實習導師高峙舷進駐鹿陽國小六年一班。不料黑板前一顆常識調節黃銅齒輪意外脫落，觸發絕對字面解讀狂暴！指尖微波便當、頭頂超載冒煙、健康操跳出極限機械舞！為了不讓老師被科技總部回收銷毀，調皮點子王阿釁、天才少女班長晴晴、吃貨老巫與情報 AI 萌寵溜溜結成秘密同盟，迎戰假水電工、突破大雨遊樂園雲霄飛車危機，迎向笑中帶淚的畢業季！",
+    stats: {
+      totalVolumes: 3,
+      currentVolumesReleased: 3,
+      totalChapters: 24,
+      currentChaptersReleased: 24,
+      totalWords: "全三卷完結（全 24 章 · 10.1 萬字）",
+      statusText: "全三卷大結局圓滿完結！明天見，高老師！"
+    },
+    volumes: [
+      {
+        bookId: "book-7",
+        volNum: "第一卷",
+        title: "講台下的黃銅齒輪",
+        subtitle: "故障、結盟與日常大作戰",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第一卷完結（全 8 章 · 2.3 萬字）",
+        status: "全 8 章已完結",
+        theme: "常識齒輪脫落 × 字面意義魔人 × 指尖微波爐 × 乾冰舞台劇 × 透視光眼",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-8",
+        volNum: "第二卷",
+        title: "潛入校園的假水電工",
+        subtitle: "外部威脅、總部追查與校園防衛戰",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第二卷完結（全 8 章 · 4.2 萬字）",
+        status: "全 8 章已完結",
+        theme: "大實話家長會 × 彈珠游擊戰 × 太空步倒退走 × 深夜實驗室 × 軸承置換手術",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-9",
+        volNum: "第三卷",
+        title: "重啟奇蹟的畢業季",
+        subtitle: "畢業旅行大冒險、極限救援與告別",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第三卷完結（全 8 章 · 3.5 萬字）",
+        status: "全卷完結（全劇終 · 共 8 章）",
+        theme: "超載打地鼠 × 80度垂直鋼軌 × 解鎖100%全功率 × 大雨人牆 × 奇蹟的最後一顆齒輪",
+        firstChapterId: 1
+      }
+    ],
+    highlights: [
+      "全 24 章中英雙語對照，支援純中／純英／雙語段落切換",
+      "內建 Web Speech 兒童伴讀有聲朗讀引擎與卡拉OK高亮聚焦",
+      "26 名鹿陽國小學生與 AI 萌寵溜溜爆笑溫馨冒險全記錄"
+    ],
+    themeTone: "sky",
+    coverStyle: "from-sky-500/10 via-cyan-500/5 to-slate-900/40 border-sky-500/30",
+    startBookId: "book-7",
+    startChapterId: 1
   }
 ];

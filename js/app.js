@@ -527,6 +527,23 @@
     { name: '莫拉', role: '雙星天象台總台長 · 前任榮譽院長' },
     { name: '歌利亞號', role: '重型蒸汽星軌巨像' },
     { name: '歌利亞', role: '重型蒸汽星軌巨像' },
+    { name: '高峙舷', role: '六年一班班導 · 全能教育仿生人' },
+    { name: '高老師', role: '六年一班班導 · 全能教育仿生人' },
+    { name: '轆慄釁', role: '六年一班點子王 · 掩護作戰總指揮' },
+    { name: '阿釁', role: '六年一班點子王 · 掩護作戰總指揮' },
+    { name: '綝耘晴', role: '六年一班班長 · 理工天才地下機械師' },
+    { name: '晴晴', role: '六年一班班長 · 理工天才地下機械師' },
+    { name: '巫茞輆', role: '六年一班體育股長 · 肉包守護者' },
+    { name: '老巫', role: '六年一班體育股長 · 肉包守護者' },
+    { name: '溜溜', role: '班級 AI 智慧小寵物 · 超高速情報通報員' },
+    { name: '周嚴', role: '鹿陽國小學務主任 · 黑面判官' },
+    { name: '周主任', role: '鹿陽國小學務主任 · 黑面判官' },
+    { name: '黑面判官', role: '鹿陽國小學務主任 · 周嚴' },
+    { name: '李博士', role: '先端科技研發主管 · 假修繕工' },
+    { name: '邱守仁', role: '鹿陽國小校長 · 和藹茶道長者' },
+    { name: '尪伝恺', role: '六年一班學生 · 面部神經控制大師' },
+    { name: '林芸芸', role: '六年一班學生 · 鋼鐵意志勇氣少女' },
+    { name: '陳阿達', role: '六年二班體育生 · 籃球健將' },
     { name: '誠浩', role: '男主角 · 齒輪解謎少年' },
     { name: '葉旖緁', role: '女主角 · 數據與光學少女' },
     { name: '將江', role: '男主角 · 機械動力大師' },
@@ -567,7 +584,18 @@
     { name: 'Lin Yan', role: 'Academy Director' },
     { name: 'Elder Mola', role: 'Observatory Director' },
     { name: 'Mola', role: 'Observatory Director' },
-    { name: 'Goliath', role: 'Steam Colossus' }
+    { name: 'Goliath', role: 'Steam Colossus' },
+    { name: 'Gao Zhixian', role: 'Homeroom Teacher (GS-X01)' },
+    { name: 'Lu Lixin', role: 'Tactical Leader (A-Xin)' },
+    { name: 'A-Xin', role: 'Tactical Leader' },
+    { name: 'Lin Yunqing', role: 'Class President (Qingqing)' },
+    { name: 'Qingqing', role: 'Class President' },
+    { name: 'Wu Chenkai', role: 'Athletic Officer (Old Wu)' },
+    { name: 'Old Wu', role: 'Athletic Officer' },
+    { name: 'Liu-Liu', role: 'AI Smart Pet' },
+    { name: 'Zhou Yan', role: 'Dean of Students' },
+    { name: 'Dean Zhou', role: 'Dean of Students' },
+    { name: 'Dr. Li', role: 'Chief Scientist' }
   ];
   PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
   const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
@@ -755,8 +783,8 @@
         </p>
       </div>
 
-      <!-- 兩大旗艦套書專題展示區 (Series Showcase) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <!-- 三大旗艦套書專題展示區 (Series Showcase) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
         
         <!-- 【套書一】冒險齒輪：失落的二十四小時（三部曲完結篇） -->
         <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50">
@@ -975,6 +1003,116 @@
           </div>
         </div>
 
+        <!-- 【套書三】我的老師不是人（全三卷完結） -->
+        <div class="rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-500/10 via-cyan-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-sky-500/50 lg:col-span-2 xl:col-span-1">
+          <div>
+            <!-- 標籤與受眾 -->
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
+                🤖 第三套 · 全三卷完結旗艦套書
+              </span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded-full border border-sky-500/20 font-mono">
+                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-3') : '0'} 次閱讀
+                </span>
+                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+              </div>
+            </div>
+
+            <!-- 標題與引言 -->
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+              《我的老師不是人》
+            </h2>
+            <p class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mb-4">
+              看似嚴肅死板的機器人導師，卻擁有比誰都溫暖的超導心臟！
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              鹿陽國小六年一班迎來史上最神秘的班導師高峙舷——一位具備超導量子核心、透視雷射眼與高壓液壓關節的頂尖仿生人！頑童阿釁、黑客少女晴晴與老巫從密謀拆穿他的機械身份，到聯手對抗外部科技財團的掠奪，展開最感人至深的師生守護大作戰！
+            </p>
+
+            <!-- 收錄全三卷列表 -->
+            <div class="space-y-2.5 mb-6">
+              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+                <span class="text-sky-600 font-mono">全 24 章完結 · 15.6 萬字</span>
+              </div>
+
+              <!-- 卷一 -->
+              <a href="#/read/book-7/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-sky-500/30 flex items-center justify-between hover:border-sky-500 hover:bg-sky-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 transition-colors flex items-center gap-2">
+                      <span>《講台上的機械心跳》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 1～8 章 · 4.8 萬字 · 校園常規 × 邏輯閘電路 × 晶片降溫 × 仿生骨骼</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-7') : ''}</span>
+                  <span class="text-xs text-sky-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
+              </a>
+
+              <!-- 卷二 -->
+              <a href="#/read/book-8/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-2">
+                      <span>《校園地底的鋼鐵防線》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 9～16 章 · 5.4 萬字 · 地下兵工廠 × 無人機蜂群 × 記憶晶片 × 師生突圍</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-8') : ''}</span>
+                  <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
+              </a>
+
+              <!-- 卷三 -->
+              <a href="#/read/book-9/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                      <span>《畢業鐘聲與守護協議》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全8章完結</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">第 17～24 章 · 5.4 萬字 · 守護協議 × 畢業致詞 × 感情程式昇華 × 永恆守候</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-9') : ''}</span>
+                  <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- 底部亮點與行動按鈕 -->
+          <div>
+            <div class="pt-4 border-t border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                <span>🤖 超導量子仿生 × 24道 STEM 實證</span>
+                <span>·</span>
+                <span>🎓 守護協議動人告白</span>
+              </div>
+              <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                <a href="#/read/book-9/8" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀第三卷第 24 章（大結局）</span>
+                </a>
+                <button onclick="window.openSeriesModal('series-3')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
+                  📑 查看全 24 章目錄
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- 全域套書章節目錄彈窗 (Series Catalog Modal) -->
@@ -1007,9 +1145,17 @@
     const contentEl = document.getElementById('series-modal-content');
 
     if (titleEl) titleEl.textContent = series.title;
-    if (badgeEl) badgeEl.textContent = `${series.badge} · ${series.stats.statusText}`;
+    if (badgeEl) {
+      const toneColor = series.themeTone === 'rose' ? 'text-rose-600' : (series.themeTone === 'sky' ? 'text-sky-600' : 'text-amber-600');
+      badgeEl.className = `text-xs font-bold ${toneColor} mb-0.5`;
+      badgeEl.textContent = `${series.badge} · ${series.stats.statusText}`;
+    }
 
     if (contentEl) {
+      const volToneClass = series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : (series.themeTone === 'sky' ? 'bg-sky-500/15 text-sky-600' : 'bg-amber-500/15 text-amber-600');
+      const hoverBorderClass = series.themeTone === 'rose' ? 'hover:border-rose-500/50 hover:bg-rose-500/5 group-hover:text-rose-600' : (series.themeTone === 'sky' ? 'hover:border-sky-500/50 hover:bg-sky-500/5 group-hover:text-sky-600' : 'hover:border-amber-500/50 hover:bg-amber-500/5 group-hover:text-amber-600');
+      const countColorClass = series.themeTone === 'rose' ? 'text-rose-600/90 dark:text-rose-400' : (series.themeTone === 'sky' ? 'text-sky-600/90 dark:text-sky-400' : 'text-amber-600/90 dark:text-amber-400');
+
       contentEl.innerHTML = series.volumes.map(vol => {
         const book = vol.bookId ? DATA.books.find(b => b.id === vol.bookId) : null;
         const isReleased = book && book.chapters && book.chapters.length > 0;
@@ -1018,7 +1164,7 @@
           <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50/50 dark:bg-slate-800/30">
             <div class="flex items-center justify-between mb-3">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-lg ${series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : 'bg-amber-500/15 text-amber-600'} font-bold text-xs">
+                <span class="px-2.5 py-1 rounded-lg ${volToneClass} font-bold text-xs">
                   ${vol.volNum}
                 </span>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white">
@@ -1044,12 +1190,12 @@
                 ${book.chapters.map(ch => {
                   const chReads = window.StatsService ? window.StatsService.getChapterReads(book.id, ch.id) : '';
                   return `
-                  <a href="#/read/${book.id}/${ch.id}" onclick="document.getElementById('series-catalog-modal').classList.add('hidden')" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all flex items-center justify-between text-xs group">
-                    <span class="font-bold text-slate-700 dark:text-slate-200 group-hover:text-amber-600 truncate mr-2">
+                  <a href="#/read/${book.id}/${ch.id}" onclick="document.getElementById('series-catalog-modal').classList.add('hidden')" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 ${hoverBorderClass} transition-all flex items-center justify-between text-xs group">
+                    <span class="font-bold text-slate-700 dark:text-slate-200 truncate mr-2">
                       ${ch.title}
                     </span>
                     <div class="flex items-center gap-2 flex-shrink-0">
-                      ${chReads ? `<span class="text-[10px] text-amber-600/90 dark:text-amber-400 font-mono font-bold">👁️ ${chReads}</span>` : ''}
+                      ${chReads ? `<span class="text-[10px] ${countColorClass} font-mono font-bold">👁️ ${chReads}</span>` : ''}
                       <span class="text-[10px] text-slate-400 font-mono">${ch.wordCount}字</span>
                     </div>
                   </a>
@@ -1951,7 +2097,7 @@
   }
 
   // 頁面渲染器：人物與裝備圖鑑
-  let activeCharTab = 'series1'; // 'series1' | 'series2'
+  let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3'
 
   window.switchCharTab = function(tab) {
     activeCharTab = tab;
@@ -1962,38 +2108,44 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2');
+    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
+    const series3Chars = allChars.filter(char => char.vol === 'series3');
 
-    const filteredChars = activeCharTab === 'series2' ? series2Chars : series1Chars;
+    let filteredChars = series1Chars;
+    if (activeCharTab === 'series2') filteredChars = series2Chars;
+    else if (activeCharTab === 'series3') filteredChars = series3Chars;
+
+    const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
+    const isSeries3 = activeCharTab === 'series3';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'} text-xs font-bold mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600')} text-xs font-bold mb-3">
             <span>👥 登場人物與核心機密檔案</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
           <p class="text-sm text-slate-500">收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 兩大套書書籤切換 (直接顯示書名) -->
+        <!-- 三大套書書籤切換 (直接顯示書名) -->
         <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
-          <button onclick="window.switchCharTab('series1')" class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            !isSeries2
+          <button onclick="window.switchCharTab('series1')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries1
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/30 scale-105'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
           }">
             <span>《冒險齒輪：失落的二十四小時》</span>
             <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              !isSeries2
+              isSeries1
                 ? 'bg-amber-700 text-amber-100'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
             }">${series1Chars.length}</span>
           </button>
 
-          <button onclick="window.switchCharTab('series2')" class="px-6 py-3 rounded-2xl text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+          <button onclick="window.switchCharTab('series2')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries2
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
@@ -2005,20 +2157,36 @@
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
             }">${series2Chars.length}</span>
           </button>
+
+          <button onclick="window.switchCharTab('series3')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries3
+              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600'
+          }">
+            <span>《我的老師不是人》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries3
+                ? 'bg-sky-700 text-sky-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series3Chars.length}</span>
+          </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
             const isS2Char = char.vol === 'series2';
+            const isS3Char = char.vol === 'series3';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            else if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
 
-            const accentTextClass = isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400';
-            const avatarBgClass = isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20';
-            const cardHoverBorder = isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50';
+            const accentTextClass = isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400');
+            const avatarBgClass = isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20');
+            const cardHoverBorder = isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50');
+            const badgeIcon = isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️');
 
             return `
               <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg ${cardHoverBorder} flex flex-col justify-between">
@@ -2046,7 +2214,7 @@
 
                   ${char.badge ? `
                     <div class="mb-3 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 text-xs flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-                      <span class="${isS2Char ? 'text-rose-500' : 'text-amber-500'}">🎖️</span>
+                      <span class="${isS3Char ? 'text-sky-500' : (isS2Char ? 'text-rose-500' : 'text-amber-500')}">${badgeIcon}</span>
                       <span class="font-bold ${accentTextClass}">稱號/徽章：</span>
                       <span class="font-medium">${char.badge}</span>
                     </div>
