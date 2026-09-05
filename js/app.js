@@ -858,13 +858,13 @@
           </div>
         </div>
 
-        <!-- 【套書二】星願鐘擺與織光少女（預計全三卷） -->
+        <!-- 【套書二】星願鐘擺與織光少女（全三卷完結） -->
         <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50">
           <div>
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🔥 第三卷連載中
+                ✨ 全三卷完結
               </span>
               <div class="flex items-center gap-2">
                 <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
@@ -888,8 +888,8 @@
             <!-- 收錄全三卷列表 -->
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 規劃全三卷三部曲（第三卷火熱連載中）</span>
-                <span class="text-rose-600 font-mono">已更新至第 22 章 · 11.9 萬字</span>
+                <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+                <span class="text-rose-600 font-mono">全 30 章完結 · 17.5 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -928,21 +928,21 @@
                 </div>
               </a>
 
-              <!-- 卷三 (連載中) -->
-              <a href="#/read/book-6/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/40 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <!-- 卷三 (全卷完結) -->
+              <a href="#/read/book-6/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-500 hover:bg-purple-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                  <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                   <div>
-                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-2">
                       <span>《天穹之心的永恆鐘鳴》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">連載中</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全卷完結</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">已更新至第 22 章 · 1.4 萬字 · 引力時間膨脹 × 光晶格鐘 × 相對論大地測量</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 6.8 萬字 · 光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環 × 潘羅斯躍遷 × 永恆鐘鳴</div>
                   </div>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                   <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-6') : ''}</span>
-                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                  <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
                 </div>
               </a>
             </div>
@@ -952,16 +952,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 22道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 30道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-6/2" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>🔥 閱讀第三卷第 22 章</span>
+                <a href="#/read/book-6/10" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀第三卷第 30 章（大結局）</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 22 章目錄
+                  📑 查看全 30 章目錄
                 </button>
               </div>
             </div>
