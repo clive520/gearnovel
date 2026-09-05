@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 3,
       totalChapters: 30,
-      currentChaptersReleased: 27,
-      totalWords: "第三卷熱血連載中（已發布 27 章 · 15.4 萬字）",
-      statusText: "第三卷第 27 章全新上線！愛因斯坦環與引力透鏡之眸"
+      currentChaptersReleased: 28,
+      totalWords: "第三卷熱血連載中（已發布 28 章 · 16.2 萬字）",
+      statusText: "第三卷第 28 章全新上線！引力紅移與雙星洛希天門"
     },
     volumes: [
       {
@@ -114,10 +114,10 @@ window.GEAR_SERIES = [
         title: "天穹之心的永恆鐘鳴",
         subtitle: "引力時間膨脹與光晶格鐘",
         chaptersCount: 10,
-        releasedChapters: 7,
-        wordCount: "第三卷連載中（已發布 7 章 · 4.9 萬字）",
-        status: "連載中（第 27 章已上線）",
-        theme: "引力時間膨脹 × 脈衝星時鐘 × 愛因斯坦環 × 引力透鏡逆重構",
+        releasedChapters: 8,
+        wordCount: "第三卷連載中（已發布 8 章 · 5.7 萬字）",
+        status: "連載中（第 28 章已上線）",
+        theme: "引力時間膨脹 × 愛因斯坦環 × 引力紅移 × 雙星洛希天門",
         firstChapterId: 1
       }
     ],
