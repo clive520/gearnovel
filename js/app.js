@@ -895,11 +895,11 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/3" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 13 章</span>
+                <a href="#/read/book-5/4" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 14 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 13 章目錄
+                  📑 查看全 14 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (13項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (14項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3203,6 +3203,95 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：15=O, 18=R, 02=B, 09=I, 20=T。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
                 15 ➜ O  |  18 ➜ R  |  02 ➜ B  |  09 ➜ I  |  20 ➜ T  ==>  【 ORBIT 】（天體軌道／天球星軌）
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗 14：色散稜鏡陣列與柯西公式動態光譜模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 dark:text-amber-400 flex items-center gap-2">
+                <span>🌈 14. 柯西公式與色散稜鏡陣列光譜模擬器（第 14 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                波動光學 × 色散稜鏡
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              天極雙星近日點白熾強光交融，單片稜鏡因色散力不足導致光譜混疊。調節柯西色散係數、稜鏡頂角與多級稜鏡串聯陣列，觀察白光如何被精準色散分解為十二公尺寬的連續彩虹光譜，清晰分離藍巨星氦線與金矮星鈉雙線！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1">稜鏡玻璃材質（柯西係數 B）</label>
+                  <select id="series2-prism-glass-select" class="w-full text-xs p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200">
+                    <option value="flint" selected>晨光堂重火石琉璃 (Heavy Flint, B=0.0142 μm², nd=1.685)</option>
+                    <option value="ultra">超密重火石琉璃 (Dense Flint, B=0.0245 μm², nd=1.750)</option>
+                    <option value="crown">高透鋇冕琉璃 (Crown Glass, B=0.0040 μm², nd=1.528)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">等邊稜鏡頂角 α</span>
+                    <span id="series2-prism-apex-val" class="font-bold text-amber-500">60.0° (標準等邊角)</span>
+                  </div>
+                  <input id="series2-prism-apex-slider" type="range" min="30" max="75" step="5" value="60" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1">稜鏡陣列串聯級數</label>
+                  <select id="series2-prism-cascade-select" class="w-full text-xs p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200">
+                    <option value="1">單稜鏡 (Single Prism · 展開 1x · 吸收線混疊)</option>
+                    <option value="2">雙稜鏡消色差組 (Doublet Pair · 展開 6x)</option>
+                    <option value="3" selected>三級漸進高解析色散陣列 (Triple Cascade · 展開 24x)</option>
+                  </select>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <label class="flex items-center justify-between text-xs font-medium cursor-pointer">
+                    <span class="text-slate-700 dark:text-slate-200 font-semibold">微分角規對稱最小偏向角對齊</span>
+                    <input id="series2-prism-symm-toggle" type="checkbox" checked class="w-4 h-4 rounded text-amber-600 accent-amber-500 cursor-pointer">
+                  </label>
+                  <p class="text-[11px] text-slate-500 mt-0.5">啟動最小偏向角對稱光路（i₁=i₂），徹底消除彗差與光學像散。</p>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>紫光折射率 n(400nm)：<span id="series2-prism-nviolet-val" class="font-mono font-bold text-violet-500">1.774</span></div>
+                    <div>紅光折射率 n(700nm)：<span id="series2-prism-nred-val" class="font-mono font-bold text-red-500">1.714</span></div>
+                    <div>最小偏向角 δ_min：<span id="series2-prism-dev-val" class="font-mono font-bold text-amber-500">51.8°</span></div>
+                    <div>光譜角展開寬度 Δδ：<span id="series2-prism-disp-val" class="font-mono font-bold text-emerald-500">12.4° (展開 24 倍)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="series2-prism-canvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="series2-prism-status" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    光譜分離完成：氦線 (447nm) 與鈉雙線 (589nm) 完美解析
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">柯西非線性色散模型</span>
+                </div>
+                <p id="series2-prism-desc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  白光經三級火石-冕牌-火石陣列折射，角色散呈幾何級數放大，十二公尺光譜屏上吸收線分明，引力微震本徵頻率成功提煉！
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 14 章全新啟航密文：[ 16 - 18 - 09 - 19 - 13 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 18=R, 09=I, 19=S, 13=M。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
+                16 ➜ P  |  18 ➜ R  |  09 ➜ I  |  19 ➜ S  |  13 ➜ M  ==>  【 PRISM 】（色散稜鏡／光譜之門）
               </div>
             </div>
           </div>
@@ -6135,7 +6224,276 @@
     }
 
 
-// ================== 第三卷實驗邏輯 ==================
+    // 實驗 14：色散稜鏡陣列與柯西公式動態光譜模擬器 (Ch 46 / Book 5 Ch 4)
+    const s2PrismGlassSelect = document.getElementById('series2-prism-glass-select');
+    const s2PrismApexSlider = document.getElementById('series2-prism-apex-slider');
+    const s2PrismCascadeSelect = document.getElementById('series2-prism-cascade-select');
+    const s2PrismSymmToggle = document.getElementById('series2-prism-symm-toggle');
+
+    const s2PrismApexVal = document.getElementById('series2-prism-apex-val');
+    const s2PrismNvioletVal = document.getElementById('series2-prism-nviolet-val');
+    const s2PrismNredVal = document.getElementById('series2-prism-nred-val');
+    const s2PrismDevVal = document.getElementById('series2-prism-dev-val');
+    const s2PrismDispVal = document.getElementById('series2-prism-disp-val');
+    const s2PrismStatus = document.getElementById('series2-prism-status');
+    const s2PrismDesc = document.getElementById('series2-prism-desc');
+    const s2PrismCanvas = document.getElementById('series2-prism-canvas');
+
+    let s2PrismAnimId = null;
+    let s2PrismPhotonPhase = 0;
+
+    const s2PrismMaterials = {
+      flint: { name: '重火石琉璃', A: 1.625, B: 0.0142, desc: '晨光堂重火石，色散力強大' },
+      ultra: { name: '超密火石琉璃', A: 1.680, B: 0.0245, desc: '極限超密火石，極高色散指數' },
+      crown: { name: '高透鋇冕琉璃', A: 1.512, B: 0.0040, desc: '鋇冕光學琉璃，色散溫和穩定' }
+    };
+
+    function updatePrismSim() {
+      if (!s2PrismApexSlider) return;
+
+      const matKey = s2PrismGlassSelect ? s2PrismGlassSelect.value : 'flint';
+      const mat = s2PrismMaterials[matKey] || s2PrismMaterials.flint;
+      const apexDeg = parseFloat(s2PrismApexSlider.value);
+      const apexRad = (apexDeg * Math.PI) / 180;
+      const cascade = parseInt(s2PrismCascadeSelect ? s2PrismCascadeSelect.value : '3', 10);
+      const isSymm = s2PrismSymmToggle ? s2PrismSymmToggle.checked : true;
+
+      // 柯西公式 n(λ) = A + B / λ² (λ in μm)
+      const nViolet = mat.A + mat.B / (0.40 * 0.40);
+      const nRed = mat.A + mat.B / (0.70 * 0.70);
+      const nYellow = mat.A + mat.B / (0.589 * 0.589);
+
+      // 最小偏向角 δ_min = 2·arcsin(n · sin(α/2)) - α
+      const sinHalfA = Math.sin(apexRad / 2);
+      const devRadYellow = 2 * Math.asin(Math.min(0.99, nYellow * sinHalfA)) - apexRad;
+      const devDegYellow = (devRadYellow * 180) / Math.PI;
+
+      const devRadViolet = 2 * Math.asin(Math.min(0.99, nViolet * sinHalfA)) - apexRad;
+      const devRadRed = 2 * Math.asin(Math.min(0.99, nRed * sinHalfA)) - apexRad;
+      const singleDispDeg = ((devRadViolet - devRadRed) * 180) / Math.PI;
+
+      const cascadeMultiplier = cascade === 1 ? 1 : cascade === 2 ? 6 : 24;
+      const totalDispDeg = singleDispDeg * (cascade === 1 ? 1 : cascade === 2 ? 1.8 : 3.6);
+
+      if (s2PrismApexVal) s2PrismApexVal.textContent = `${apexDeg.toFixed(1)}° (${apexDeg === 60 ? '標準等邊角' : '非對稱頂角'})`;
+      if (s2PrismNvioletVal) s2PrismNvioletVal.textContent = nViolet.toFixed(4);
+      if (s2PrismNredVal) s2PrismNredVal.textContent = nRed.toFixed(4);
+      if (s2PrismDevVal) s2PrismDevVal.textContent = `${Math.max(10, devDegYellow).toFixed(1)}°`;
+      if (s2PrismDispVal) s2PrismDispVal.textContent = `${totalDispDeg.toFixed(2)}° (展開 ${cascadeMultiplier} 倍)`;
+
+      if (s2PrismStatus && s2PrismDesc) {
+        if (cascade === 3 && isSymm) {
+          s2PrismStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 光譜分離完成：氦線 (447nm) 與鈉雙線 (589nm) 完美解析';
+          s2PrismStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2PrismDesc.textContent = '白光經三級火石-冕牌-火石陣列折射，角色散呈幾何級數放大，十二公尺光譜屏上吸收線分明，引力微震本徵頻率成功提煉！';
+        } else if (cascade >= 2) {
+          s2PrismStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500"></span> 雙稜鏡消色差展開中：色差已抵消，但吸收線間距尚不足';
+          s2PrismStatus.className = 'font-semibold text-amber-500 flex items-center gap-1.5';
+          s2PrismDesc.textContent = '雙稜鏡消色差結構成功消除了光學色差，但角分辨率未達極限，藍巨星與金矮星的吸收譜線仍有微弱混疊。';
+        } else {
+          s2PrismStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> 光譜混疊警告！單片稜鏡色散力不足，吸收線互相湮滅';
+          s2PrismStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2PrismDesc.textContent = '單片稜鏡展開角過小，雙星微震吸收線在焦平面上緊密擠壓，無法分辨恆星特徵元素！請切換至三級高解析陣列。';
+        }
+      }
+    }
+
+    if (s2PrismGlassSelect) s2PrismGlassSelect.onchange = updatePrismSim;
+    if (s2PrismApexSlider) s2PrismApexSlider.oninput = updatePrismSim;
+    if (s2PrismCascadeSelect) s2PrismCascadeSelect.onchange = updatePrismSim;
+    if (s2PrismSymmToggle) s2PrismSymmToggle.onchange = updatePrismSim;
+
+    function drawPrismCanvas() {
+      if (!s2PrismCanvas) return;
+      const ctx = s2PrismCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const matKey = s2PrismGlassSelect ? s2PrismGlassSelect.value : 'flint';
+      const mat = s2PrismMaterials[matKey] || s2PrismMaterials.flint;
+      const cascade = parseInt(s2PrismCascadeSelect ? s2PrismCascadeSelect.value : '3', 10);
+      const isSymm = s2PrismSymmToggle ? s2PrismSymmToggle.checked : true;
+
+      const w = s2PrismCanvas.width;
+      const h = s2PrismCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2PrismPhotonPhase = (s2PrismPhotonPhase + 0.06) % 1;
+
+      // 深空暗色背景
+      ctx.fillStyle = '#060814';
+      ctx.fillRect(0, 0, w, h);
+
+      // 光學格線
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+
+      // 繪製稜鏡陣列幾何 (1 ~ 3 個稜鏡)
+      const prismPositions = [];
+      if (cascade === 1) {
+        prismPositions.push({ cx: 170, cy: 135, size: 70, inverted: false, fill: 'rgba(245, 158, 11, 0.22)', stroke: '#f59e0b' });
+      } else if (cascade === 2) {
+        prismPositions.push({ cx: 130, cy: 135, size: 60, inverted: false, fill: 'rgba(245, 158, 11, 0.22)', stroke: '#f59e0b' });
+        prismPositions.push({ cx: 210, cy: 135, size: 55, inverted: true, fill: 'rgba(56, 189, 248, 0.22)', stroke: '#38bdf8' });
+      } else {
+        prismPositions.push({ cx: 110, cy: 135, size: 55, inverted: false, fill: 'rgba(245, 158, 11, 0.22)', stroke: '#f59e0b' });
+        prismPositions.push({ cx: 175, cy: 135, size: 50, inverted: true, fill: 'rgba(56, 189, 248, 0.22)', stroke: '#38bdf8' });
+        prismPositions.push({ cx: 245, cy: 135, size: 55, inverted: false, fill: 'rgba(236, 72, 153, 0.22)', stroke: '#ec4899' });
+      }
+
+      // 繪製各稜鏡
+      prismPositions.forEach((p, idx) => {
+        ctx.fillStyle = p.fill;
+        ctx.strokeStyle = p.stroke;
+        ctx.lineWidth = 2;
+
+        const hHalf = (p.size * Math.sqrt(3)) / 2;
+        ctx.beginPath();
+        if (!p.inverted) {
+          ctx.moveTo(p.cx, p.cy - hHalf * 0.7);
+          ctx.lineTo(p.cx + p.size / 2, p.cy + hHalf * 0.5);
+          ctx.lineTo(p.cx - p.size / 2, p.cy + hHalf * 0.5);
+        } else {
+          ctx.moveTo(p.cx, p.cy + hHalf * 0.7);
+          ctx.lineTo(p.cx + p.size / 2, p.cy - hHalf * 0.5);
+          ctx.lineTo(p.cx - p.size / 2, p.cy - hHalf * 0.5);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // 標籤
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        const label = idx === 0 ? 'P1:火石' : idx === 1 ? 'P2:冕牌' : 'P3:密火石';
+        ctx.fillText(label, p.cx, p.cy + (p.inverted ? -18 : 28));
+      });
+
+      // 1. 入射光束 (白熾純白複合光)
+      const entryP = prismPositions[0];
+      const entryX = entryP.cx - entryP.size / 2;
+      const entryY = entryP.cy + 10;
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(10, entryY);
+      ctx.lineTo(entryX, entryY);
+      ctx.stroke();
+
+      // 入射光脈衝粒子
+      const pX = 10 + (entryX - 10) * s2PrismPhotonPhase;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(pX, entryY, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('雙星白熾強光 ➔', 14, entryY - 8);
+
+      // 2. 稜鏡內部與串聯折射 (簡化光路表現)
+      const lastP = prismPositions[prismPositions.length - 1];
+      const exitX = lastP.cx + lastP.size / 2;
+      const exitY = lastP.cy + 8;
+
+      // 串聯連線
+      ctx.strokeStyle = 'rgba(255, 255, 200, 0.5)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(entryX, entryY);
+      for (let i = 0; i < prismPositions.length; i++) {
+        ctx.lineTo(prismPositions[i].cx, prismPositions[i].cy + (isSymm ? 5 : 12));
+      }
+      ctx.lineTo(exitX, exitY);
+      ctx.stroke();
+
+      // 3. 出射光譜展開彩虹光扇 (Rainbow Fan)
+      const screenX = 510;
+      const colors = [
+        { name: '紅光 700nm', color: '#ef4444', yOff: -38 },
+        { name: '橙光 620nm', color: '#f97316', yOff: -24 },
+        { name: '黃光 589nm (Na)', color: '#eab308', yOff: -10, isAbsorp: true, label: 'Na D雙線' },
+        { name: '綠光 530nm', color: '#22c55e', yOff: 5 },
+        { name: '青光 490nm', color: '#06b6d4', yOff: 20 },
+        { name: '藍光 447nm (He)', color: '#3b82f6', yOff: 35, isAbsorp: true, label: 'He I線' },
+        { name: '紫光 400nm', color: '#a855f7', yOff: 50 }
+      ];
+
+      const spreadScale = cascade === 1 ? 0.35 : cascade === 2 ? 0.75 : 1.35;
+
+      colors.forEach(c => {
+        const destY = exitY + c.yOff * spreadScale;
+
+        // 彩虹光線
+        ctx.strokeStyle = c.color;
+        ctx.lineWidth = cascade === 3 ? 3 : 2;
+        ctx.globalAlpha = 0.85;
+        ctx.beginPath();
+        ctx.moveTo(exitX, exitY);
+        ctx.lineTo(screenX, destY);
+        ctx.stroke();
+
+        // 光譜焦平面投影帶
+        ctx.fillStyle = c.color;
+        ctx.fillRect(screenX, destY - 4, 35, 8);
+
+        // 吸收線刻痕 (Fraunhofer dark absorption line)
+        if (c.isAbsorp) {
+          if (cascade === 3 && isSymm) {
+            // 完美清晰分離的黑線
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(screenX + 12, destY - 5, 2.5, 10);
+            if (c.name.includes('Na')) {
+              ctx.fillRect(screenX + 22, destY - 5, 2.5, 10); // 鈉雙線分立
+            }
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = 'bold 9px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(c.label, screenX + 40, destY + 3);
+          } else {
+            // 混疊模糊
+            ctx.fillStyle = 'rgba(0,0,0,0.35)';
+            ctx.fillRect(screenX + 10, destY - 4, 15, 8);
+          }
+        }
+      });
+      ctx.globalAlpha = 1.0;
+
+      // 焦平面光譜螢幕架構
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(screenX - 2, 40, 42, 190);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.font = '9px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('焦平面', screenX + 19, 32);
+      ctx.fillText('光譜幕', screenX + 19, 242);
+
+      // 微分螺旋角規指標 (Goniometer Indicator)
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.9)';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(`微分角規進給: ${isSymm ? '0.138 μm (最小偏向角鎖定)' : '非對稱偏折 (彗差)'}`, 14, 252);
+
+      s2PrismAnimId = requestAnimationFrame(drawPrismCanvas);
+    }
+
+    if (s2PrismCanvas) {
+      if (s2PrismAnimId) cancelAnimationFrame(s2PrismAnimId);
+      updatePrismSim();
+      drawPrismCanvas();
+    }
+
+
+    // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
     const notesData = [
       { name: 'C4', freq: 261.63 },
