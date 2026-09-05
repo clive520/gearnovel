@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 3,
       totalChapters: 30,
-      currentChaptersReleased: 25,
-      totalWords: "第三卷熱血連載中（已發布 25 章 · 14.0 萬字）",
-      statusText: "第三卷第 25 章全新上線！懸空軌道站與超穩法布立腔"
+      currentChaptersReleased: 26,
+      totalWords: "第三卷熱血連載中（已發布 26 章 · 14.7 萬字）",
+      statusText: "第三卷第 26 章全新上線！星際消色散與脈衝星時鐘"
     },
     volumes: [
       {
@@ -114,10 +114,10 @@ window.GEAR_SERIES = [
         title: "天穹之心的永恆鐘鳴",
         subtitle: "引力時間膨脹與光晶格鐘",
         chaptersCount: 10,
-        releasedChapters: 5,
-        wordCount: "第三卷連載中（已發布 5 章 · 3.5 萬字）",
-        status: "連載中（第 25 章已上線）",
-        theme: "引力時間膨脹 × 自適應光帆 × 法布立-培羅超穩腔 × 脈衝星時鐘",
+        releasedChapters: 6,
+        wordCount: "第三卷連載中（已發布 6 章 · 4.2 萬字）",
+        status: "連載中（第 26 章已上線）",
+        theme: "引力時間膨脹 × 法布立超穩腔 × 相干消色散 × 夏皮羅延遲",
         firstChapterId: 1
       }
     ],
