@@ -895,11 +895,11 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/6" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 16 章</span>
+                <a href="#/read/book-5/7" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 17 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 16 章目錄
+                  📑 查看全 17 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (16項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (17項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3473,6 +3473,100 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：12=L, 01=A, 07=G, 18=R, 01=A, 14=N, 07=G, 05=E。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 font-mono text-xs font-bold">
                 12 ➜ L  |  01 ➜ A  |  07 ➜ G  |  18 ➜ R  |  01 ➜ A  |  14 ➜ N  |  07 ➜ G  |  05 ➜ E  ==>  【 LAGRANGE 】（拉格朗日平衡點）
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 實驗 17：自適應光學與波前重構動態模擬器 (第 17 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 dark:text-amber-400 flex items-center gap-2">
+                <span>🪞 17. 自適應光學與波前重構模擬器（第 17 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                夏克-哈特曼感測 × 61 單元壓電可形變鏡
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              模擬萬仞高空柯爾莫哥洛夫大氣湍流對雙星波前的劇烈破壞。拖動大氣相干長度（弗里德參數 r₀）與校正閉環開關，即時觀察夏克-哈特曼微透鏡陣列焦點光斑質心偏移 $(\Delta x, \Delta y) = f \cdot \nabla W$、澤尼克多項式相差分解、61單元壓電可變形反射鏡反相補償，以及斯特列爾比從 0.012 狂飆至 0.885 重現璀璨雙星愛里斑！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">大氣相干長度 (Fried Parameter r₀)</span>
+                    <span id="s2AdaptiveR0Val" class="font-bold text-amber-500">3.8 cm (強烈湍流)</span>
+                  </div>
+                  <input id="s2AdaptiveR0Slider" type="range" min="2.0" max="25.0" step="0.5" value="3.8" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>2.0 cm (暴風狂瀾)</span>
+                    <span class="text-amber-600 font-bold">3.8 cm (當前山巔)</span>
+                    <span>25.0 cm (澄澈虛空)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">閉環校正模式 (Correction Loop)</span>
+                  </div>
+                  <select id="s2AdaptiveLoopMode" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg p-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-amber-500">
+                    <option value="closed">全階閉環校正 (Tip/Tilt + 61-Actuator DM)</option>
+                    <option value="tiptilt">僅一級傾斜鏡校正 (Tip/Tilt Only)</option>
+                    <option value="open">開環未校正 (Open Loop - 原始大氣湍流)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">閉環控制採樣頻率 (Sampling Rate)</span>
+                    <span id="s2AdaptiveFreqVal" class="font-bold text-indigo-500">2000 Hz</span>
+                  </div>
+                  <input id="s2AdaptiveFreqSlider" type="range" min="200" max="2500" step="100" value="2000" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 space-y-2">
+                  <div id="s2AdaptiveLoopStatus" class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    ✓ 2,000Hz 壓電全階閉環：波前相位方差 σ² < 0.09 rad²
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>殘餘相位均方根誤差 RMS：<span id="s2AdaptiveRmsVal" class="font-mono font-bold text-indigo-500">24 nm (λ/23)</span></div>
+                    <div>斯特列爾比 Strehl Ratio S：<span id="s2AdaptiveStrehlVal" class="font-mono font-bold text-emerald-500">0.885 (馬雷夏爾極限達成)</span></div>
+                    <div>愛里斑峰值解析度：<span class="font-mono font-bold text-amber-500">0.069 角秒 (雙星完全分辨)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="s2AdaptiveCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="s2AdaptiveStatus" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    自適應波前重構完畢 · 雙星愛里斑清晰鎖定
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">左: 哈特曼斜率網格 | 右: 雙星焦點光斑</span>
+                </div>
+                <p id="s2AdaptiveDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  夏克-哈特曼微透鏡陣列即時捕捉 256 個子孔徑焦點偏折；61 單元壓電薄膜可變形鏡反向撫平波前，粉碎柯爾莫哥洛夫大氣散斑。
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 17 章核心密文：[ 15 - 16 - 20 - 09 - 03 - 19 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：15=O, 16=P, 20=T, 09=I, 03=C, 19=S。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
+                15 ➜ O  |  16 ➜ P  |  20 ➜ T  |  09 ➜ I  |  03 ➜ C  |  19 ➜ S  ==>  【 OPTICS 】（光學 · 波前重構之術）
               </div>
             </div>
           </div>
@@ -7264,6 +7358,334 @@
       updateLagrangeSim();
       drawLagrangeCanvas();
     }
+
+
+    // ==========================================
+    // 實驗 17：自適應光學與波前重構動態模擬器 (Ch 49 / Book 5 Ch 7)
+    // ==========================================
+    const s2AdaptiveCanvas = document.getElementById('s2AdaptiveCanvas');
+    const s2AdaptiveR0Slider = document.getElementById('s2AdaptiveR0Slider');
+    const s2AdaptiveLoopMode = document.getElementById('s2AdaptiveLoopMode');
+    const s2AdaptiveFreqSlider = document.getElementById('s2AdaptiveFreqSlider');
+    const s2AdaptiveR0Val = document.getElementById('s2AdaptiveR0Val');
+    const s2AdaptiveFreqVal = document.getElementById('s2AdaptiveFreqVal');
+    const s2AdaptiveLoopStatus = document.getElementById('s2AdaptiveLoopStatus');
+    const s2AdaptiveRmsVal = document.getElementById('s2AdaptiveRmsVal');
+    const s2AdaptiveStrehlVal = document.getElementById('s2AdaptiveStrehlVal');
+    const s2AdaptiveStatus = document.getElementById('s2AdaptiveStatus');
+    const s2AdaptiveDesc = document.getElementById('s2AdaptiveDesc');
+
+    let s2AdaptiveAnimId = null;
+    let s2AdaptiveTime = 0;
+    const GRID_SIZE = 8; // 8x8 sub-apertures for visual clarity on canvas
+
+    function updateAdaptiveSimUI() {
+      if (!s2AdaptiveR0Slider) return;
+      const r0 = parseFloat(s2AdaptiveR0Slider.value);
+      const mode = s2AdaptiveLoopMode ? s2AdaptiveLoopMode.value : 'closed';
+      const freq = s2AdaptiveFreqSlider ? parseInt(s2AdaptiveFreqSlider.value, 10) : 2000;
+
+      if (s2AdaptiveR0Val) {
+        let label = '強烈湍流';
+        if (r0 > 15) label = '優良視寧度';
+        else if (r0 > 8) label = '一般大氣';
+        s2AdaptiveR0Val.textContent = `${r0.toFixed(1)} cm (${label})`;
+      }
+      if (s2AdaptiveFreqVal) s2AdaptiveFreqVal.textContent = `${freq} Hz`;
+
+      let strehl = 0.012;
+      let rms = 480; // nm
+
+      if (mode === 'closed') {
+        strehl = Math.min(0.92, 0.82 + (r0 / 25.0) * 0.10);
+        rms = Math.max(18, 38 - (r0 / 25.0) * 20);
+        if (s2AdaptiveLoopStatus) {
+          s2AdaptiveLoopStatus.className = 'p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center gap-1.5';
+          s2AdaptiveLoopStatus.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span>✓ ${freq}Hz 壓電全階閉環：波前相位方差 σ² < 0.09 rad²`;
+        }
+        if (s2AdaptiveStatus) {
+          s2AdaptiveStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2AdaptiveStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>自適應波前重構完畢 · 雙星愛里斑清晰鎖定';
+        }
+      } else if (mode === 'tiptilt') {
+        strehl = 0.18 + (r0 / 25.0) * 0.12;
+        rms = 160 - (r0 / 25.0) * 40;
+        if (s2AdaptiveLoopStatus) {
+          s2AdaptiveLoopStatus.className = 'p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center gap-1.5';
+          s2AdaptiveLoopStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>⚠ 僅校正傾斜項：整體晃動消除，但高階像散/彗差瀰散嚴重';
+        }
+        if (s2AdaptiveStatus) {
+          s2AdaptiveStatus.className = 'font-semibold text-amber-500 flex items-center gap-1.5';
+          s2AdaptiveStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>整體傾斜已鎖定 · 高階散斑依然瀰散';
+        }
+      } else {
+        strehl = Math.max(0.008, 0.012 * (r0 / 3.8));
+        rms = 550 - (r0 / 25.0) * 120;
+        if (s2AdaptiveLoopStatus) {
+          s2AdaptiveLoopStatus.className = 'p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-1.5';
+          s2AdaptiveLoopStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>❌ 開環狀態：大氣湍流撕裂波前，光斑沸騰渙散！';
+        }
+        if (s2AdaptiveStatus) {
+          s2AdaptiveStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2AdaptiveStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>波前崩解 · 雙星光學信標完全淹沒';
+        }
+      }
+
+      if (s2AdaptiveRmsVal) s2AdaptiveRmsVal.textContent = `${rms.toFixed(0)} nm (λ/${(550.0/rms).toFixed(0)})`;
+      if (s2AdaptiveStrehlVal) s2AdaptiveStrehlVal.textContent = `${strehl.toFixed(3)} (${strehl >= 0.8 ? '馬雷夏爾極限達成' : '低相干散射'})`;
+    }
+
+    function drawAdaptiveCanvas() {
+      if (!s2AdaptiveCanvas) return;
+      const ctx = s2AdaptiveCanvas.getContext('2d');
+      const w = s2AdaptiveCanvas.width;
+      const h = s2AdaptiveCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2AdaptiveTime += 0.04;
+      const r0 = parseFloat(s2AdaptiveR0Slider ? s2AdaptiveR0Slider.value : 3.8);
+      const mode = s2AdaptiveLoopMode ? s2AdaptiveLoopMode.value : 'closed';
+      const turbAmp = Math.max(0.1, (10.0 / r0));
+
+      // 背景
+      ctx.fillStyle = '#050713';
+      ctx.fillRect(0, 0, w, h);
+
+      // 分割線：左側夏克-哈特曼微透鏡光斑陣列 (w: 260)，右側雙星焦點成像 (w: 300)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(260, 0);
+      ctx.lineTo(260, h);
+      ctx.stroke();
+
+      // ================= 左側：夏克-哈特曼子孔徑光斑陣列 =================
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('夏克-哈特曼微透鏡陣列 (Shack-Hartmann)', 130, 20);
+
+      const cellW = 200 / GRID_SIZE;
+      const startX = 30;
+      const startY = 38;
+
+      // 畫微透鏡蜂窩外框
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= GRID_SIZE; i++) {
+        ctx.beginPath();
+        ctx.moveTo(startX + i * cellW, startY);
+        ctx.lineTo(startX + i * cellW, startY + GRID_SIZE * cellW);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(startX, startY + i * cellW);
+        ctx.lineTo(startX + GRID_SIZE * cellW, startY + i * cellW);
+        ctx.stroke();
+      }
+
+      // 畫每個子孔徑的焦點質心
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          const centerX = startX + (c + 0.5) * cellW;
+          const centerY = startY + (r + 0.5) * cellW;
+
+          // 圓孔徑遮罩
+          const distToCenter = Math.hypot(c - (GRID_SIZE - 1) / 2, r - (GRID_SIZE - 1) / 2);
+          if (distToCenter > (GRID_SIZE / 2) + 0.2) continue;
+
+          // 計算大氣湍流造成的斜率偏移
+          let dx = Math.sin(s2AdaptiveTime + r * 0.8 + c * 0.5) * turbAmp * 1.5;
+          let dy = Math.cos(s2AdaptiveTime * 1.2 + r * 0.6 - c * 0.7) * turbAmp * 1.5;
+
+          // 若閉環校正，則抵消
+          if (mode === 'closed') {
+            dx *= 0.05;
+            dy *= 0.05;
+          } else if (mode === 'tiptilt') {
+            // 扣除整體平移，保留局部散亂
+            dx -= Math.sin(s2AdaptiveTime) * turbAmp * 1.2;
+            dy -= Math.cos(s2AdaptiveTime * 1.2) * turbAmp * 1.2;
+            dx *= 0.45;
+            dy *= 0.45;
+          }
+
+          // 基準點虛線十字
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.3)';
+          ctx.fillRect(centerX - 1, centerY - 1, 2, 2);
+
+          // 偏折向量線
+          if (Math.hypot(dx, dy) > 0.5) {
+            ctx.strokeStyle = mode === 'closed' ? 'rgba(74, 222, 128, 0.4)' : 'rgba(248, 113, 113, 0.6)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + dx, centerY + dy);
+            ctx.stroke();
+          }
+
+          // 光斑焦點
+          ctx.fillStyle = mode === 'closed' ? '#38bdf8' : '#f59e0b';
+          ctx.shadowColor = mode === 'closed' ? '#38bdf8' : '#f59e0b';
+          ctx.shadowBlur = 4;
+          ctx.beginPath();
+          ctx.arc(centerX + dx, centerY + dy, 2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      ctx.fillStyle = mode === 'closed' ? '#4ade80' : (mode === 'tiptilt' ? '#fbbf24' : '#f87171');
+      ctx.font = '10px monospace';
+      ctx.fillText(mode === 'closed' ? '✓ 波前斜率差殘差 < 0.02 μm/m' : (mode === 'tiptilt' ? '⚠ 殘留高階相差' : '❌ 嚴重波前湍流斜率畸變'), 130, startY + GRID_SIZE * cellW + 18);
+
+      // ================= 右側：雙星最終焦點成像 =================
+      const starCx = 410;
+      const starCy = 135;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('焦平面雙星成像 (Airy Discs vs Speckle)', starCx, 20);
+
+      // 主星 A (藍巨星) 與 伴星 B (金矮星) 角間距 0.4 角秒 (約 45px)
+      const sep = 44;
+      let star1X = starCx - sep / 2;
+      let star1Y = starCy;
+      let star2X = starCx + sep / 2;
+      let star2Y = starCy;
+
+      if (mode === 'open') {
+        // 開環狀態：大氣散斑劇烈跳動，兩星完全融合成一團沸騰的光斑
+        const numSpeckles = 40;
+        for (let i = 0; i < numSpeckles; i++) {
+          const sx = starCx + (Math.sin(s2AdaptiveTime * 2 + i * 1.3) * 35 + (Math.random() - 0.5) * 15) * (turbAmp / 2.5);
+          const sy = starCy + (Math.cos(s2AdaptiveTime * 2.3 + i * 1.7) * 35 + (Math.random() - 0.5) * 15) * (turbAmp / 2.5);
+          const rad = 2 + Math.random() * 4;
+
+          ctx.fillStyle = `hsla(${(i * 25) % 60 + 20}, 90%, 55%, ${0.2 + Math.random() * 0.3})`;
+          ctx.beginPath();
+          ctx.arc(sx, sy, rad, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#f87171';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('混沌散斑 · 雙星無法分辨', starCx, starCy + 75);
+      } else if (mode === 'tiptilt') {
+        // 傾斜校正：光斑質心不晃，但高階相差將光斑拉扯為橢圓模糊
+        const blurR = Math.max(12, 28 * (turbAmp / 3.0));
+
+        // 藍巨星模糊
+        let grad1 = ctx.createRadialGradient(star1X, star1Y, 2, star1X, star1Y, blurR);
+        grad1.addColorStop(0, 'rgba(96, 165, 250, 0.8)');
+        grad1.addColorStop(1, 'rgba(59, 130, 246, 0)');
+        ctx.fillStyle = grad1;
+        ctx.beginPath();
+        ctx.arc(star1X, star1Y, blurR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 金矮星模糊
+        let grad2 = ctx.createRadialGradient(star2X, star2Y, 2, star2X, star2Y, blurR * 0.7);
+        grad2.addColorStop(0, 'rgba(251, 191, 36, 0.8)');
+        grad2.addColorStop(1, 'rgba(245, 158, 11, 0)');
+        ctx.fillStyle = grad2;
+        ctx.beginPath();
+        ctx.arc(star2X, star2Y, blurR * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText('質心穩定 · 離焦彗差交疊 (Strehl ~0.25)', starCx, starCy + 75);
+      } else {
+        // 全階閉環校正：完美愛里斑 (Airy Discs)
+        // 藍巨星 A
+        ctx.fillStyle = '#60a5fa';
+        ctx.shadowColor = '#3b82f6';
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(star1X, star1Y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // 愛里斑第一暗環與第一亮環
+        ctx.strokeStyle = 'rgba(96, 165, 250, 0.4)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(star1X, star1Y, 11, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#93c5fd';
+        ctx.font = '10px sans-serif';
+        ctx.fillText('主星 A (藍巨星)', star1X, star1Y - 16);
+
+        // 金矮星 B
+        ctx.fillStyle = '#fbbf24';
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(star2X, star2Y, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        ctx.strokeStyle = 'rgba(251, 191, 36, 0.35)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(star2X, star2Y, 8.5, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#fde047';
+        ctx.font = '10px sans-serif';
+        ctx.fillText('伴星 B (金矮星)', star2X, star2Y - 16);
+
+        // 角間距標尺
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(star1X, starCy + 22);
+        ctx.lineTo(star2X, starCy + 22);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(star1X, starCy + 18);
+        ctx.lineTo(star1X, starCy + 26);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(star2X, starCy + 18);
+        ctx.lineTo(star2X, starCy + 26);
+        ctx.stroke();
+
+        ctx.fillStyle = '#4ade80';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Δθ = 0.40" (繞射極限愛里斑完全分辨)', starCx, starCy + 42);
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '10px monospace';
+        ctx.fillText('Strehl Ratio S = 0.885  |  RMS = 24 nm', starCx, starCy + 75);
+      }
+
+      s2AdaptiveAnimId = requestAnimationFrame(drawAdaptiveCanvas);
+    }
+
+    if (s2AdaptiveCanvas) {
+      if (s2AdaptiveAnimId) cancelAnimationFrame(s2AdaptiveAnimId);
+      if (s2AdaptiveR0Slider) {
+        s2AdaptiveR0Slider.addEventListener('input', () => {
+          updateAdaptiveSimUI();
+        });
+      }
+      if (s2AdaptiveLoopMode) {
+        s2AdaptiveLoopMode.addEventListener('change', () => {
+          updateAdaptiveSimUI();
+        });
+      }
+      if (s2AdaptiveFreqSlider) {
+        s2AdaptiveFreqSlider.addEventListener('input', () => {
+          updateAdaptiveSimUI();
+        });
+      }
+      updateAdaptiveSimUI();
+      drawAdaptiveCanvas();
+    }
+
 
 
 

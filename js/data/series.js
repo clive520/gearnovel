@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 16,
-      totalWords: "第二卷連載中（已發布 16 章 · 8.4 萬字）",
-      statusText: "第二卷火熱連載中（第 16 章已上線）"
+      currentChaptersReleased: 17,
+      totalWords: "第二卷連載中（已發布 17 章 · 9.0 萬字）",
+      statusText: "第二卷火熱連載中（第 17 章已上線）"
     },
     volumes: [
       {
@@ -100,12 +100,12 @@ window.GEAR_SERIES = [
         bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "天體引力攝動與拉格朗日點",
+        subtitle: "自適應光學與波前重構",
         chaptersCount: 10,
-        releasedChapters: 6,
-        wordCount: "連載中（已達 3.8 萬字）",
-        status: "第 16 章已上線",
-        theme: "限制性三體 CR3BP × 有效勢能面 × 拉格朗日點 × 勞斯穩定性判據",
+        releasedChapters: 7,
+        wordCount: "連載中（已達 4.4 萬字）",
+        status: "第 17 章已上線",
+        theme: "自適應光學 × 夏克-哈特曼感測器 × 澤尼克多項式 × 壓電可變形反射鏡",
         firstChapterId: 1
       },
       {
