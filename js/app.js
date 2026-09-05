@@ -856,7 +856,7 @@
               </a>
 
               <!-- 卷二 (連載中) -->
-              <a href="#/read/book-5/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <a href="#/read/book-5/9" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
                   <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                   <div>
@@ -896,10 +896,10 @@
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
                 <a href="#/read/book-5/8" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 18 章</span>
+                  <span>✨ 閱讀最新第 19 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 18 章目錄
+                  📑 查看全 19 章目錄
                 </button>
               </div>
             </div>
@@ -3669,6 +3669,105 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：19=S, 16=P, 05=E, 03=C, 20=T, 18=R, 01=A。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
                 19 ➜ S  |  16 ➜ P  |  05 ➜ E  |  03 ➜ C  |  20 ➜ T  |  18 ➜ R  |  01 ➜ A  ==>  【 SPECTRA 】（光譜 · 恆星元素之語）
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- 實驗 19：偏振星冕儀與塞曼效應全息模擬器 (第 19 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-violet-600 dark:text-violet-400 flex items-center gap-2">
+                <span>🔮 19. 偏振星冕儀與塞曼效應全息模擬器（第 19 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 border border-violet-200 dark:border-violet-800">
+                斯托克斯向量 × 塞曼效應 × 星冕零相消光
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              模擬布雷斯韋爾星冕零相干干涉儀（Bracewell Nulling Coronagraph）對天極主星百萬倍眩光的相消湮滅。旋轉四分之一波片快軸與偏振分析器角度，即時解算四維斯托克斯向量 [I, Q, U, V]ᵀ 與龐加萊球三維表象；調節伴星磁場強度觀察塞曼分裂，開啟星冕相消干涉將母星眩光壓制至 10⁻⁶，在偏振全息板上完整重構出上古星軌超導齒輪錨定樞紐！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">布雷斯韋爾星冕相消干涉 (Coronagraph Nulling)</span>
+                  </div>
+                  <select id="s2HoloNullingSelect" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg p-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-violet-500">
+                    <option value="on">開啟星冕零相干涉 (π 相位反相消光 · 消光比 10⁻⁶)</option>
+                    <option value="off">關閉星冕干涉 (未消光 · 母星眩光完全過曝淹沒)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">四分之一波片快軸角 (QWP Angle θ)</span>
+                    <span id="s2HoloQwpVal" class="font-bold text-violet-500">22.5° (正交分離)</span>
+                  </div>
+                  <input id="s2HoloQwpSlider" type="range" min="0" max="90" step="2.5" value="22.5" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-violet-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>0° (線偏)</span>
+                    <span class="text-violet-500 font-bold">22.5° (最佳正交分束)</span>
+                    <span>45° (圓偏)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">伴星深層環形磁場強度 (B-Field Intensity)</span>
+                    <span id="s2HoloBFieldVal" class="font-bold text-amber-500">3,850 Gauss</span>
+                  </div>
+                  <input id="s2HoloBFieldSlider" type="range" min="0" max="5000" step="50" value="3850" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>0 G (靜態)</span>
+                    <span class="text-amber-500 font-bold">3850 G (超導核心)</span>
+                    <span>5000 G (強磁)</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 space-y-2">
+                  <div id="s2HoloStatusBox" class="p-2 rounded-lg bg-violet-500/10 border border-violet-500/30 text-violet-600 dark:text-violet-400 text-xs font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-violet-500"></span>
+                    星冕相消干涉生效：母星光斑消光比 10⁻⁶ 達成
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>偏振度 DOP (P)：<span id="s2HoloDopVal" class="font-mono font-bold text-violet-500">28.4% (高度有序偏振)</span></div>
+                    <div>塞曼分裂量 Δλ_B：<span id="s2HoloZeemanVal" class="font-mono font-bold text-amber-500">0.050 nm (σ± 圓偏分離)</span></div>
+                    <div>斯托克斯四維向量：<span id="s2HoloStokesVal" class="font-mono font-bold text-sky-500">[1.00, 0.22, 0.12, 0.26]</span></div>
+                    <div>全息三維重構對比度：<span id="s2HoloContrastVal" class="font-mono font-bold text-emerald-500">99.98% (極限清晰)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="s2HoloCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="s2HoloCanvasStatus" class="font-semibold text-violet-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span>
+                    母星眩光相消完畢 · 上古超導齒輪樞紐全息顯影
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">左: 星冕消光全息場 | 右: 斯托克斯與龐加萊球</span>
+                </div>
+                <p id="s2HoloCanvasDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  布雷斯韋爾干涉儀導入 π 反相相位，使母星平面波干涉相消；伴星偏振光通過方解石雙折射全息記錄板，完美浮現三維超導齒輪與環形磁場。
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-violet-500/5 border border-violet-500/20">
+              <div class="text-xs font-bold text-violet-800 dark:text-violet-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 19 章核心密文：[ 19 - 20 - 15 - 11 - 05 - 19 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：19=S, 20=T, 15=O, 11=K, 05=E, 19=S。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-500/10 text-violet-600 dark:text-violet-400 font-mono text-xs font-bold">
+                19 ➜ S  |  20 ➜ T  |  15 ➜ O  |  11 ➜ K  |  05 ➜ E  |  19 ➜ S  ==>  【 STOKES 】（斯托克斯參量 · 偏振光學之魂）
               </div>
             </div>
           </div>
@@ -8100,6 +8199,328 @@
       }
       updateSpectraSimUI();
       drawSpectraCanvas();
+    }
+
+
+    
+    // ================== 實驗 19：偏振星冕儀與塞曼效應全息模擬器 (Ch 51 / Book 5 Ch 9) ==================
+    const s2HoloCanvas = document.getElementById('s2HoloCanvas');
+    const s2HoloNullingSelect = document.getElementById('s2HoloNullingSelect');
+    const s2HoloQwpSlider = document.getElementById('s2HoloQwpSlider');
+    const s2HoloBFieldSlider = document.getElementById('s2HoloBFieldSlider');
+    const s2HoloQwpVal = document.getElementById('s2HoloQwpVal');
+    const s2HoloBFieldVal = document.getElementById('s2HoloBFieldVal');
+    const s2HoloDopVal = document.getElementById('s2HoloDopVal');
+    const s2HoloZeemanVal = document.getElementById('s2HoloZeemanVal');
+    const s2HoloStokesVal = document.getElementById('s2HoloStokesVal');
+    const s2HoloContrastVal = document.getElementById('s2HoloContrastVal');
+    const s2HoloStatusBox = document.getElementById('s2HoloStatusBox');
+    const s2HoloCanvasStatus = document.getElementById('s2HoloCanvasStatus');
+
+    let s2HoloAnimId = null;
+    let s2HoloTime = 0;
+
+    function updateHoloSimUI() {
+      if (!s2HoloNullingSelect || !s2HoloQwpSlider || !s2HoloBFieldSlider) return;
+      const isNulling = s2HoloNullingSelect.value === 'on';
+      const qwpDeg = parseFloat(s2HoloQwpSlider.value);
+      const bField = parseFloat(s2HoloBFieldSlider.value);
+
+      if (s2HoloQwpVal) {
+        let note = '';
+        if (Math.abs(qwpDeg - 22.5) < 1.5) note = ' (最佳正交分束角)';
+        else if (Math.abs(qwpDeg - 45) < 1.5) note = ' (純圓偏振變換)';
+        else if (qwpDeg < 2) note = ' (同軸線偏振)';
+        s2HoloQwpVal.textContent = `${qwpDeg.toFixed(1)}°${note}`;
+      }
+
+      if (s2HoloBFieldVal) {
+        s2HoloBFieldVal.textContent = `${bField.toFixed(0)} Gauss`;
+      }
+
+      const zeemanDlam = (bField / 3850) * 0.050;
+      if (s2HoloZeemanVal) {
+        s2HoloZeemanVal.textContent = `${zeemanDlam.toFixed(3)} nm (σ± 圓偏分離)`;
+      }
+
+      const qwpRad = qwpDeg * Math.PI / 180;
+      const qVal = 0.35 * Math.cos(4 * qwpRad);
+      const uVal = 0.35 * Math.sin(4 * qwpRad);
+      const vVal = 0.40 * (bField / 3850) * Math.sin(2 * qwpRad);
+      const dop = Math.min(1.0, Math.sqrt(qVal * qVal + uVal * uVal + vVal * vVal));
+
+      if (s2HoloDopVal) {
+        s2HoloDopVal.textContent = `${(dop * 100).toFixed(1)}% (${dop > 0.2 ? '高純度偏振' : '低偏振態'})`;
+      }
+
+      if (s2HoloStokesVal) {
+        s2HoloStokesVal.textContent = `[1.00, ${qVal.toFixed(2)}, ${uVal.toFixed(2)}, ${vVal.toFixed(2)}]`;
+      }
+
+      if (s2HoloContrastVal) {
+        s2HoloContrastVal.textContent = isNulling ? '99.98% (母星百萬消光)' : '0.05% (眩光嚴重過曝)';
+      }
+
+      if (s2HoloStatusBox) {
+        if (!isNulling) {
+          s2HoloStatusBox.className = 'p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-1.5';
+          s2HoloStatusBox.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> ⚠ 關閉星冕相消：母星強烈眩光吞沒伴星全息光場！';
+        } else {
+          s2HoloStatusBox.className = 'p-2 rounded-lg bg-violet-500/10 border border-violet-500/30 text-violet-600 dark:text-violet-400 text-xs font-bold flex items-center gap-1.5';
+          s2HoloStatusBox.innerHTML = '<span class="w-2 h-2 rounded-full bg-violet-500"></span> 星冕相消干涉生效：母星光斑消光比 10⁻⁶ 達成';
+        }
+      }
+    }
+
+    function drawHoloCanvas() {
+      if (!s2HoloCanvas) return;
+      const ctx = s2HoloCanvas.getContext('2d');
+      const w = s2HoloCanvas.width;
+      const h = s2HoloCanvas.height;
+
+      s2HoloTime += 0.035;
+      const isNulling = s2HoloNullingSelect ? (s2HoloNullingSelect.value === 'on') : true;
+      const qwpDeg = parseFloat(s2HoloQwpSlider ? s2HoloQwpSlider.value : 22.5);
+      const bField = parseFloat(s2HoloBFieldSlider ? s2HoloBFieldSlider.value : 3850);
+
+      ctx.fillStyle = '#080a14';
+      ctx.fillRect(0, 0, w, h);
+
+      // ================= 左側：星冕儀焦平面成像 (x: 10 ~ 290) =================
+      const viewX = 145;
+      const viewY = 135;
+      const rOuter = 115;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(viewX, viewY, rOuter, 0, Math.PI * 2);
+      ctx.fillStyle = '#040711';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)';
+      ctx.setLineDash([2, 4]);
+      ctx.beginPath();
+      ctx.moveTo(viewX - rOuter, viewY);
+      ctx.lineTo(viewX + rOuter, viewY);
+      ctx.moveTo(viewX, viewY - rOuter);
+      ctx.lineTo(viewX, viewY + rOuter);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (!isNulling) {
+        const glareR = 105;
+        const gGrad = ctx.createRadialGradient(viewX, viewY, 5, viewX, viewY, glareR);
+        gGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+        gGrad.addColorStop(0.2, 'rgba(191, 219, 254, 0.85)');
+        gGrad.addColorStop(0.5, 'rgba(96, 165, 250, 0.5)');
+        gGrad.addColorStop(1, 'rgba(30, 58, 138, 0)');
+        ctx.fillStyle = gGrad;
+        ctx.beginPath();
+        ctx.arc(viewX, viewY, glareR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f87171';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('母星眩光過曝 · 伴星完全淹沒', viewX, viewY + 80);
+      } else {
+        const nullR = 32;
+        ctx.fillStyle = '#02040a';
+        ctx.beginPath();
+        ctx.arc(viewX, viewY, nullR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(viewX, viewY, nullR, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.6)';
+        ctx.font = '9px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('零相相消阱 (10⁻⁶)', viewX, viewY - 38);
+
+        const compX = viewX + 54;
+        const compY = viewY - 35;
+
+        const compGrad = ctx.createRadialGradient(compX, compY, 2, compX, compY, 16);
+        compGrad.addColorStop(0, '#fde047');
+        compGrad.addColorStop(0.3, 'rgba(250, 204, 21, 0.6)');
+        compGrad.addColorStop(1, 'rgba(234, 179, 8, 0)');
+        ctx.fillStyle = compGrad;
+        ctx.beginPath();
+        ctx.arc(compX, compY, 16, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.save();
+        ctx.translate(compX, compY);
+        ctx.rotate(s2HoloTime * 0.5);
+
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(0, 0, 26, 0, Math.PI * 2);
+        ctx.stroke();
+
+        const numTeeth = 12;
+        ctx.strokeStyle = 'rgba(167, 139, 250, 0.9)';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < numTeeth; i++) {
+          const a = (i / numTeeth) * Math.PI * 2;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(a) * 23, Math.sin(a) * 23);
+          ctx.lineTo(Math.cos(a) * 29, Math.sin(a) * 29);
+          ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#facc15';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = (i / 6) * Math.PI * 2;
+          const x = Math.cos(a) * 12;
+          const y = Math.sin(a) * 12;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+
+        const bScale = bField / 3850;
+        ctx.strokeStyle = `rgba(52, 211, 153, ${0.4 + 0.3 * Math.sin(s2HoloTime * 2)})`;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.ellipse(compX, compY, 36 * bScale, 20 * bScale, Math.PI / 4, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#a78bfa';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('★ 上古超金屬樞紐全息顯影', viewX, viewY + 95);
+      }
+      ctx.restore();
+
+      // ================= 右側：斯托克斯向量與偏振分析 (x: 300 ~ 540) =================
+      const stX = 310;
+      const stY = 30;
+      const stW = 230;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.font = 'bold 11px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('斯托克斯參量向量 S = [I, Q, U, V]ᵀ', stX, stY);
+
+      const qwpRad = qwpDeg * Math.PI / 180;
+      const qVal = 0.35 * Math.cos(4 * qwpRad);
+      const uVal = 0.35 * Math.sin(4 * qwpRad);
+      const vVal = 0.40 * (bField / 3850) * Math.sin(2 * qwpRad);
+
+      const params = [
+        { name: 'I (總光強)', val: 1.0, color: '#38bdf8' },
+        { name: 'Q (0°/90° 線偏)', val: qVal, color: '#818cf8' },
+        { name: 'U (±45° 對角線偏)', val: uVal, color: '#a78bfa' },
+        { name: 'V (右旋/左旋 圓偏)', val: vVal, color: '#f43f5e' }
+      ];
+
+      params.forEach((p, idx) => {
+        const barY = stY + 22 + idx * 28;
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.8)';
+        ctx.font = '9px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(p.name, stX, barY + 9);
+
+        const barW = 110;
+        const barH = 10;
+        const bX = stX + 85;
+        ctx.fillStyle = 'rgba(30, 41, 59, 0.8)';
+        ctx.fillRect(bX, barY, barW, barH);
+        ctx.strokeStyle = 'rgba(51, 65, 85, 0.8)';
+        ctx.strokeRect(bX, barY, barW, barH);
+
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+        ctx.beginPath();
+        ctx.moveTo(bX + barW / 2, barY - 2);
+        ctx.lineTo(bX + barW / 2, barY + barH + 2);
+        ctx.stroke();
+
+        ctx.fillStyle = p.color;
+        const len = (p.val / 1.0) * (barW / 2);
+        if (p.val >= 0) {
+          ctx.fillRect(bX + barW / 2, barY + 1, len, barH - 2);
+        } else {
+          ctx.fillRect(bX + barW / 2 + len, barY + 1, -len, barH - 2);
+        }
+
+        ctx.fillStyle = p.color;
+        ctx.textAlign = 'right';
+        ctx.fillText((p.val >= 0 ? '+' : '') + p.val.toFixed(2), stX + stW + 12, barY + 9);
+      });
+
+      const spX = 425;
+      const spY = 195;
+      const spR = 40;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(spX, spY, spR, 0, Math.PI * 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.4)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+      ctx.beginPath();
+      ctx.ellipse(spX, spY, spR, spR * 0.35, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      const ptX = spX + (qVal / 0.5) * (spR * 0.75);
+      const ptY = spY - (vVal / 0.5) * (spR * 0.75);
+
+      ctx.fillStyle = '#f43f5e';
+      ctx.shadowColor = '#f43f5e';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(ptX, ptY, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.font = '8px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('龐加萊球偏振態投影', spX, spY + spR + 15);
+      ctx.fillText('北極(圓偏)', spX, spY - spR - 4);
+      ctx.restore();
+
+      s2HoloAnimId = requestAnimationFrame(drawHoloCanvas);
+    }
+
+    if (s2HoloCanvas) {
+      if (s2HoloAnimId) cancelAnimationFrame(s2HoloAnimId);
+      if (s2HoloNullingSelect) {
+        s2HoloNullingSelect.addEventListener('change', () => {
+          updateHoloSimUI();
+        });
+      }
+      if (s2HoloQwpSlider) {
+        s2HoloQwpSlider.addEventListener('input', () => {
+          updateHoloSimUI();
+        });
+      }
+      if (s2HoloBFieldSlider) {
+        s2HoloBFieldSlider.addEventListener('input', () => {
+          updateHoloSimUI();
+        });
+      }
+      updateHoloSimUI();
+      drawHoloCanvas();
     }
 
 
