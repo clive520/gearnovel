@@ -817,7 +817,7 @@
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🌸 第二卷連載中
+                🔥 第三卷連載中
               </span>
               <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 少年成長</span>
             </div>
@@ -836,8 +836,8 @@
             <!-- 收錄全三卷列表 -->
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 規劃全三卷三部曲（第二卷火熱連載中）</span>
-                <span class="text-rose-600 font-mono">已更新至第 13 章 · 6.5 萬字</span>
+                <span>📚 規劃全三卷三部曲（第三卷火熱連載中）</span>
+                <span class="text-rose-600 font-mono">已更新至第 22 章 · 11.9 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -855,8 +855,8 @@
                 <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
               </a>
 
-              <!-- 卷二 (連載中) -->
-              <a href="#/read/book-5/10" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
+              <!-- 卷二 (全卷完結) -->
+              <a href="#/read/book-5/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
                   <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                   <div>
@@ -864,10 +864,10 @@
                       <span>《旋轉稜鏡的雙星軌道》</span>
                       <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全卷完結</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 1.8 萬字 · 開普勒第二定律 × 面速度守恆 × 橢圓非圓齒輪</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 光學頻率梳 × 雙星共鳴</div>
                   </div>
                 </div>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
               </a>
 
               <!-- 卷三 (連載中) -->
@@ -879,7 +879,7 @@
                       <span>《天穹之心的永恆鐘鳴》</span>
                       <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">連載中</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 dark:text-slate-400">最新第 22 章上線 · 1.4 萬字 · 相干光纖鏈路 × 主動相噪消除 × 相對論大地測量</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">已更新至第 22 章 · 1.4 萬字 · 引力時間膨脹 × 光晶格鐘 × 相對論大地測量</div>
                   </div>
                 </div>
                 <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
