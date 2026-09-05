@@ -70,18 +70,18 @@ window.GEAR_SERIES = [
     title: "星願鐘擺與織光少女",
     enTitle: "Star-Wish Pendulum and the Weaver of Light",
     subtitle: "鐘錶物理與唯美成長冒險（預計全三卷）",
-    badge: "🌸 熱烈連載中",
+    badge: "🌸 第一卷已完結",
     badgeColor: "rose",
-    targetAudience: "9～14 歲適讀 · 鐘錶物理 × 微甜初戀",
+    targetAudience: "9～14 歲適讀 · 鐘錶物理 × 少年成長",
     tagline: "聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！",
-    description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港首位女首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
+    description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
     stats: {
       totalVolumes: 3,
       currentVolumesReleased: 1,
       totalChapters: 30,
       currentChaptersReleased: 10,
       totalWords: "第一卷完結（全 10 章 · 4.6 萬字）",
-      statusText: "第一卷連載中 · 預計全三卷"
+      statusText: "第一卷已完結（全 10 章） · 預計全三卷"
     },
     volumes: [
       {
@@ -90,10 +90,10 @@ window.GEAR_SERIES = [
         title: "追光星盤的修復師",
         subtitle: "晨光堂發條與冰霜少女之約",
         chaptersCount: 10,
-        releasedChapters: 8,
+        releasedChapters: 10,
         wordCount: "第一卷完結（全 10 章 · 4.6 萬字）",
-        status: "第 1～8 章已上線",
-        theme: "虎克定律 × 司涅爾折射 × 居禮點熔爐 × 角動量雙星",
+        status: "全 10 章已完結",
+        theme: "虎克定律 × 雙金屬補償 × 翼帆升力 × 駐波和弦 × 陀螺進動",
         firstChapterId: 1
       },
       {

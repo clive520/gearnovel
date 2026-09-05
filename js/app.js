@@ -817,9 +817,9 @@
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🌸 第二套 · 熱烈連載中
+                🌸 第二套 · 第一卷完結
               </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 成長心動</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 少年成長</span>
             </div>
 
             <!-- 標題與引言 -->
@@ -830,14 +830,14 @@
               聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！
             </p>
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              十三歲鐘錶學徒采婭玆，立志成為星港首位女首席星軌修復師。在晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，熔鑄因瓦合金雙金屬發條，迎戰監察處重型蒸汽巨像！
+              十三歲鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，熔鑄因瓦合金雙金屬發條，迎戰監察處重型蒸汽巨像！
             </p>
 
             <!-- 收錄全三卷列表 -->
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 規劃全三卷三部曲（第一卷連載中）</span>
-                <span class="text-rose-600 font-mono">已發布 1.9 萬字</span>
+                <span>📚 規劃全三卷三部曲（第一卷已完結）</span>
+                <span class="text-rose-600 font-mono">第一卷 4.6 萬字完結</span>
               </div>
 
               <!-- 卷一 -->
@@ -847,9 +847,9 @@
                   <div>
                     <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition-colors flex items-center gap-2">
                       <span>《追光星盤的修復師》</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold">連載中</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-bold">全10章完結</span>
                     </div>
-                    <div class="text-[11px] text-slate-500">第 1～4 章已上線 · 虎克定律 × 司涅爾折射 × 居禮點熔爐 × 角動量雙星</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力 × 駐波和弦 × 陀螺進動</div>
                   </div>
                 </div>
                 <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
@@ -889,16 +889,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>🌸 精密鐘錶力學 × 居禮點合金</span>
+                <span>⚙️ 精密鐘錶力學 × 10道 STEM 實驗</span>
                 <span>·</span>
-                <span>👭 雙女主成長故事</span>
+                <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
                 <a href="#/read/book-4/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
                   <span>🌸 開始閱讀第一卷</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看章節目錄
+                  📑 查看全 10 章目錄
                 </button>
               </div>
             </div>
