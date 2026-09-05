@@ -70,18 +70,18 @@ window.GEAR_SERIES = [
     title: "星願鐘擺與織光少女",
     enTitle: "Star-Wish Pendulum and the Weaver of Light",
     subtitle: "鐘錶物理與唯美成長冒險（預計全三卷）",
-    badge: "🌸 第一卷已完結",
+    badge: "🌸 第二卷連載中",
     badgeColor: "rose",
     targetAudience: "9～14 歲適讀 · 鐘錶物理 × 少年成長",
     tagline: "聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！",
     description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
     stats: {
       totalVolumes: 3,
-      currentVolumesReleased: 1,
+      currentVolumesReleased: 2,
       totalChapters: 30,
-      currentChaptersReleased: 10,
-      totalWords: "第一卷完結（全 10 章 · 4.6 萬字）",
-      statusText: "第一卷已完結（全 10 章） · 預計全三卷"
+      currentChaptersReleased: 11,
+      totalWords: "第二卷連載中（已發布 11 章 · 5.1 萬字）",
+      statusText: "第二卷火熱連載中（第 11 章已上線）"
     },
     volumes: [
       {
@@ -97,16 +97,16 @@ window.GEAR_SERIES = [
         firstChapterId: 1
       },
       {
-        bookId: null,
+        bookId: "book-5",
         volNum: "第二卷",
         title: "旋轉稜鏡的雙星軌道",
-        subtitle: "星耀機械大賽與雙星共舞",
+        subtitle: "雙星天象台與偏振光譜",
         chaptersCount: 10,
-        releasedChapters: 0,
-        wordCount: "籌備中",
-        status: "構思籌備中",
-        theme: "角動量守恆 × 雙星都卜勒 × 天文星盤",
-        firstChapterId: null
+        releasedChapters: 1,
+        wordCount: "連載中（已達 0.5 萬字）",
+        status: "第 11 章已上線",
+        theme: "馬呂斯偏振定律 × 方解石雙折射 × 雙星都卜勒頻移",
+        firstChapterId: 1
       },
       {
         bookId: null,

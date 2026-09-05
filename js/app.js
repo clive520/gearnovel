@@ -817,7 +817,7 @@
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🌸 第二套 · 第一卷完結
+                🌸 第二套 · 第二卷連載中
               </span>
               <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 少年成長</span>
             </div>
@@ -836,8 +836,8 @@
             <!-- 收錄全三卷列表 -->
             <div class="space-y-2.5 mb-6">
               <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>📚 規劃全三卷三部曲（第一卷已完結）</span>
-                <span class="text-rose-600 font-mono">第一卷 4.6 萬字完結</span>
+                <span>📚 規劃全三卷三部曲（第二卷火熱連載中）</span>
+                <span class="text-rose-600 font-mono">已更新至第 11 章 · 5.1 萬字</span>
               </div>
 
               <!-- 卷一 -->
@@ -855,19 +855,20 @@
                 <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
               </a>
 
-              <!-- 卷二 (籌備中) -->
-              <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between opacity-85">
+              <!-- 卷二 (連載中) -->
+              <a href="#/read/book-5/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                   <div>
-                    <div class="text-sm font-bold text-slate-700 dark:text-slate-300">
-                      《旋轉稜鏡的雙星軌道》
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
+                      <span>《旋轉稜鏡的雙星軌道》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">第11章已上線</span>
                     </div>
-                    <div class="text-[11px] text-slate-400">預計 10 章 · 星耀機械大賽與雙星共振</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">連載中 · 0.5 萬字 · 馬呂斯偏振定律 × 方解石雙折射 × 雙星都卜勒頻移</div>
                   </div>
                 </div>
-                <span class="text-[11px] px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 font-semibold flex-shrink-0 ml-2">構思籌備中</span>
-              </div>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
 
               <!-- 卷三 (即將登場) -->
               <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between opacity-85">
@@ -889,16 +890,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 10道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 11道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-4/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>🌸 開始閱讀第一卷</span>
+                <a href="#/read/book-5/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 11 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 10 章目錄
+                  📑 查看全 11 章目錄
                 </button>
               </div>
             </div>
@@ -2099,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (10項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (11項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -2947,6 +2948,92 @@
 
         </div>
 
+
+        
+          <!-- 實驗十一：馬呂斯光學偏振定律與雙星都卜勒光譜模擬器 (第 11 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 11 章全新連載</span>
+                <span class="text-xs text-slate-500">馬呂斯定律 · 方解石雙折射 · 都卜勒頻移</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500">I = I₀ cos²θ | Δλ/λ₀ = v_r/c</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-2">
+              <span>🧭 11. 馬呂斯光學偏振定律與雙星都卜勒光譜模擬器（第 11 章）</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+              天極雙星互繞產生週期性都卜勒頻移（藍移與紅移）。強烈的大氣散射雜光掩蓋了星光吸收線；旋轉方解石晶體檢偏鏡（夾角 θ），依據馬呂斯定律（I = I₀ cos²θ），當 θ = 90° 時雜光完全消光（I = 0），雙星光譜吸收線清晰析出，解鎖雙星軌道與密鑰 POLAR！
+            </p>
+
+            <!-- 實驗互動控制面板 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">檢偏鏡偏振夾角 θ</span>
+                    <span id="series2-polar-theta-val" class="font-bold text-rose-500">90° (正交完全消光)</span>
+                  </div>
+                  <input id="series2-polar-theta-slider" type="range" min="0" max="180" step="5" value="90" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">雙星互繞軌道相位 Φ (都卜勒視向速度)</span>
+                    <span id="series2-polar-phase-val" class="font-bold text-sky-500">相位 90° (最大相對頻移)</span>
+                  </div>
+                  <input id="series2-polar-phase-slider" type="range" min="0" max="360" step="10" value="90" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                  <span class="text-xs text-slate-600 dark:text-slate-300">方解石雙折射分離（o光 / e光分離模式）</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="series2-polar-biref-toggle" type="checkbox" checked class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1 font-mono">
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">雜光透射率 I/I₀:</span>
+                    <span id="series2-polar-trans-val" class="font-bold text-emerald-500">0.0% (消光極限)</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">光譜信噪比 SNR:</span>
+                    <span id="series2-polar-snr-val" class="font-bold text-emerald-500">99.8 dB (無瑕析出)</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 col-span-2">
+                    <span class="text-slate-600 dark:text-slate-300 block text-[10px]">主副星光譜吸收線波長 (都卜勒位移):</span>
+                    <span id="series2-polar-wavelength-val" class="font-bold text-sky-500 text-[11px]">λ_A: 486.0 nm (藍移) | λ_B: 486.2 nm (紅移)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態偏振消光與雙星光譜 Canvas -->
+              <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900 text-white relative overflow-hidden">
+                <div id="series2-polar-status" class="mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  🧭 正交消光：雜光消除，雙星光譜精準分離（POLAR 鎖定）
+                </div>
+                <div class="relative w-full flex items-center justify-center">
+                  <canvas id="series2-polar-canvas" width="280" height="190" class="rounded-xl border border-slate-800 bg-slate-950 shadow-inner"></canvas>
+                </div>
+                <div id="series2-polar-desc" class="text-[11px] text-center text-slate-300 mt-2 font-mono">
+                  馬呂斯正交消光消除 99% 大氣雜光，雙星都卜勒分裂譜線完美呈現！
+                </div>
+              </div>
+            </div>
+
+            <!-- POLAR 密碼驗證卡片 -->
+            <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+              <div class="text-xs font-bold text-rose-800 dark:text-rose-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 11 章全新啟航密文：[ 16 - 15 - 12 - 01 - 18 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：16=P, 15=O, 12=L, 01=A, 18=R。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs font-bold">
+                16 ➜ P  |  15 ➜ O  |  12 ➜ L  |  01 ➜ A  |  18 ➜ R  ==>  【 POLAR 】（偏振光／極化之光）
+              </div>
+            </div>
+          </div>
 
         <!-- 第三卷實驗室內容 -->
         <div id="lab-section-vol3" class="${activeLabTab === 'vol3' ? 'space-y-8' : 'hidden'}">
@@ -5039,6 +5126,318 @@
     }
 
 
+
+    // ================== 第 11 章全新連載：馬呂斯偏振定律與雙星都卜勒光譜 ==================
+    const s2PolarThetaSlider = document.getElementById('series2-polar-theta-slider');
+    const s2PolarPhaseSlider = document.getElementById('series2-polar-phase-slider');
+    const s2PolarBirefToggle = document.getElementById('series2-polar-biref-toggle');
+
+    const s2PolarThetaVal = document.getElementById('series2-polar-theta-val');
+    const s2PolarPhaseVal = document.getElementById('series2-polar-phase-val');
+    const s2PolarTransVal = document.getElementById('series2-polar-trans-val');
+    const s2PolarSnrVal = document.getElementById('series2-polar-snr-val');
+    const s2PolarWavelengthVal = document.getElementById('series2-polar-wavelength-val');
+    const s2PolarStatus = document.getElementById('series2-polar-status');
+    const s2PolarDesc = document.getElementById('series2-polar-desc');
+    const s2PolarCanvas = document.getElementById('series2-polar-canvas');
+
+    let s2PolarAnimId = null;
+    let s2PolarOrbitAngle = 0;
+
+    function updatePolarSim() {
+      if (!s2PolarThetaSlider || !s2PolarPhaseSlider) return;
+      const thetaDeg = parseFloat(s2PolarThetaSlider.value); // 0 to 180
+      const phaseDeg = parseFloat(s2PolarPhaseSlider.value); // 0 to 360
+      const hasBiref = s2PolarBirefToggle ? s2PolarBirefToggle.checked : true;
+
+      // 馬呂斯定律：I = I0 * cos^2(theta)
+      // 假設雜光為沿 0° 方向的線偏振光，檢偏鏡夾角 theta
+      const rad = (thetaDeg * Math.PI) / 180.0;
+      const transRatio = Math.pow(Math.cos(rad), 2); // 0.0 to 1.0
+      const transPercent = (transRatio * 100).toFixed(1);
+
+      // 正交消光判定：theta 在 85° ~ 95° 之間
+      const isExtinct = Math.abs(thetaDeg - 90) <= 5;
+
+      // 都卜勒頻移：lambda = lambda0 * (1 +/- v_r / c)
+      // 基準氫-beta 線波長 486.13 nm，最大軌道視向速度 vr = 80 km/s (vr/c = 0.000267)
+      const baseLambda = 486.13;
+      const phaseRad = (phaseDeg * Math.PI) / 180.0;
+      const dopplerShift = 0.13 * Math.sin(phaseRad);
+      const lambdaA = (baseLambda - dopplerShift).toFixed(2);
+      const lambdaB = (baseLambda + dopplerShift).toFixed(2);
+
+      const snr = isExtinct ? (99.8 - Math.abs(thetaDeg - 90) * 1.5).toFixed(1) : Math.max(3.2, (100 - transRatio * 95)).toFixed(1);
+
+      if (s2PolarThetaVal) {
+        s2PolarThetaVal.textContent = `${thetaDeg}° (${isExtinct ? '正交完全消光' : (thetaDeg === 0 || thetaDeg === 180 ? '完全透射' : '部分偏振')})`;
+        s2PolarThetaVal.className = isExtinct ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2PolarPhaseVal) {
+        s2PolarPhaseVal.textContent = `相位 ${phaseDeg}° (${Math.abs(Math.sin(phaseRad)) > 0.8 ? '最大相對頻移' : '通過視線交會面'})`;
+      }
+      if (s2PolarTransVal) {
+        s2PolarTransVal.textContent = `${transPercent}% (${isExtinct ? '消光極限' : '雜光殘留'})`;
+        s2PolarTransVal.className = isExtinct ? 'font-bold text-emerald-500' : 'font-bold text-rose-500';
+      }
+      if (s2PolarSnrVal) {
+        s2PolarSnrVal.textContent = `${snr} dB (${isExtinct ? '無瑕析出' : '雜光淹沒'})`;
+        s2PolarSnrVal.className = isExtinct ? 'font-bold text-emerald-500' : 'font-bold text-amber-500';
+      }
+      if (s2PolarWavelengthVal) {
+        s2PolarWavelengthVal.textContent = `主星 λ_A: ${lambdaA} nm | 伴星 λ_B: ${lambdaB} nm (${Math.abs(dopplerShift) < 0.02 ? '譜線重合' : '譜線分裂'})`;
+      }
+
+      if (isExtinct) {
+        if (s2PolarStatus) {
+          s2PolarStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+          s2PolarStatus.textContent = '🧭 正交消光：雜光消除，雙星光譜精準分離（POLAR 鎖定）';
+        }
+        if (s2PolarDesc) {
+          s2PolarDesc.textContent = `馬呂斯定律達成正交消光（θ=${thetaDeg}°），99%大氣散射光被消除，都卜勒吸收譜線完美呈現！`;
+        }
+      } else {
+        if (s2PolarStatus) {
+          s2PolarStatus.className = 'mb-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40';
+          s2PolarStatus.textContent = '⚠️ 偏振夾角未正交：大氣散射雜光強烈';
+        }
+        if (s2PolarDesc) {
+          s2PolarDesc.textContent = `透射雜光達 ${transPercent}%！請調節夾角 θ 至 90° 以觸發馬呂斯正交消光極限！`;
+        }
+      }
+    }
+
+    if (s2PolarThetaSlider) s2PolarThetaSlider.oninput = updatePolarSim;
+    if (s2PolarPhaseSlider) s2PolarPhaseSlider.oninput = updatePolarSim;
+    if (s2PolarBirefToggle) s2PolarBirefToggle.onchange = updatePolarSim;
+
+    // 動態繪製雙星互繞都卜勒與偏振光譜 Canvas
+    function drawPolarCanvas() {
+      if (!s2PolarCanvas) return;
+      const ctx = s2PolarCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const thetaDeg = s2PolarThetaSlider ? parseFloat(s2PolarThetaSlider.value) : 90;
+      const phaseDeg = s2PolarPhaseSlider ? parseFloat(s2PolarPhaseSlider.value) : 90;
+      const hasBiref = s2PolarBirefToggle ? s2PolarBirefToggle.checked : true;
+      const isExtinct = Math.abs(thetaDeg - 90) <= 5;
+      const rad = (thetaDeg * Math.PI) / 180.0;
+      const transRatio = Math.pow(Math.cos(rad), 2);
+
+      const w = s2PolarCanvas.width;
+      const h = s2PolarCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      s2PolarOrbitAngle += 0.025;
+
+      // 背景
+      ctx.fillStyle = '#0b0f19';
+      ctx.fillRect(0, 0, w, h);
+
+      // 分為上下兩區：上半部為雙星互繞與偏振濾光鏡；下半部為高解析度都卜勒光譜儀帶
+      const starCx = 75;
+      const starCy = 65;
+      const orbitR = 38;
+
+      // 1. 繪製雙星軌道橢圓
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.ellipse(starCx, starCy, orbitR, orbitR * 0.55, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 質心
+      ctx.fillStyle = '#64748b';
+      ctx.beginPath();
+      ctx.arc(starCx, starCy, 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 計算雙星動態位置 (基於 slider phase 與動態微旋轉)
+      const currentOrbitRad = ((phaseDeg + 90) * Math.PI) / 180.0;
+      const star1X = starCx + orbitR * Math.cos(currentOrbitRad);
+      const star1Y = starCy + orbitR * 0.55 * Math.sin(currentOrbitRad);
+      const star2X = starCx - orbitR * 0.8 * Math.cos(currentOrbitRad);
+      const star2Y = starCy - orbitR * 0.55 * 0.8 * Math.sin(currentOrbitRad);
+
+      // 主星 (天極藍星 A)
+      const gradA = ctx.createRadialGradient(star1X, star1Y, 1, star1X, star1Y, 12);
+      gradA.addColorStop(0, '#67e8f9');
+      gradA.addColorStop(1, 'rgba(6, 182, 212, 0)');
+      ctx.fillStyle = gradA;
+      ctx.beginPath();
+      ctx.arc(star1X, star1Y, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#cffafe';
+      ctx.beginPath();
+      ctx.arc(star1X, star1Y, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 伴星 (天極金星 B)
+      const gradB = ctx.createRadialGradient(star2X, star2Y, 1, star2X, star2Y, 9);
+      gradB.addColorStop(0, '#fde047');
+      gradB.addColorStop(1, 'rgba(234, 179, 8, 0)');
+      ctx.fillStyle = gradB;
+      ctx.beginPath();
+      ctx.arc(star2X, star2Y, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#fef08a';
+      ctx.beginPath();
+      ctx.arc(star2X, star2Y, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 速度都卜勒向量箭頭
+      const vyA = Math.cos(currentOrbitRad); // 視向速度分量
+      ctx.strokeStyle = vyA > 0 ? '#38bdf8' : '#f87171'; // 藍移/紅移
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(star1X, star1Y);
+      ctx.lineTo(star1X, star1Y + vyA * 15);
+      ctx.stroke();
+
+      // 2. 右半部：方解石雙折射與檢偏鏡
+      const prismX = 185;
+      const prismY = 65;
+
+      // 方解石稜鏡輪廓
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 1.5;
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.12)';
+      ctx.beginPath();
+      ctx.moveTo(prismX - 25, prismY - 25);
+      ctx.lineTo(prismX + 25, prismY - 15);
+      ctx.lineTo(prismX + 15, prismY + 25);
+      ctx.lineTo(prismX - 35, prismY + 15);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // 光線入射與雙折射 (o光 / e光)
+      ctx.strokeStyle = '#f8fafc';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(starCx + 35, starCy);
+      ctx.lineTo(prismX - 25, prismY);
+      ctx.stroke();
+
+      // 稜鏡內部折射
+      if (hasBiref) {
+        // o-ray (尋常光 - 偏振沿垂直)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(prismX - 25, prismY);
+        ctx.lineTo(prismX + 20, prismY - 8);
+        ctx.lineTo(w - 20, prismY - 8);
+        ctx.stroke();
+
+        // e-ray (非常光 - 偏振沿水平)
+        ctx.strokeStyle = '#f43f5e';
+        ctx.beginPath();
+        ctx.moveTo(prismX - 25, prismY);
+        ctx.lineTo(prismX + 20, prismY + 10);
+        ctx.lineTo(w - 20, prismY + 10);
+        ctx.stroke();
+
+        // 標籤
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '8px monospace';
+        ctx.fillText('o-ray', prismX + 25, prismY - 12);
+        ctx.fillStyle = '#f43f5e';
+        ctx.fillText('e-ray', prismX + 25, prismY + 20);
+      } else {
+        ctx.strokeStyle = '#fbbf24';
+        ctx.beginPath();
+        ctx.moveTo(prismX - 25, prismY);
+        ctx.lineTo(prismX + 20, prismY);
+        ctx.lineTo(w - 20, prismY);
+        ctx.stroke();
+      }
+
+      // 檢偏鏡圓盤 (位於光路末端)
+      const polX = w - 40;
+      const polY = prismY;
+      const polR = 18;
+      ctx.save();
+      ctx.translate(polX, polY);
+      ctx.rotate(rad);
+      ctx.strokeStyle = isExtinct ? '#34d399' : '#fb7185';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, 0, polR, 0, Math.PI * 2);
+      ctx.stroke();
+      // 偏振柵線
+      ctx.lineWidth = 1;
+      for (let i = -12; i <= 12; i += 6) {
+        ctx.beginPath();
+        ctx.moveTo(i, -Math.sqrt(polR * polR - i * i));
+        ctx.lineTo(i, Math.sqrt(polR * polR - i * i));
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // 3. 下半部：光譜色帶與都卜勒吸收線
+      const specX = 20;
+      const specY = 135;
+      const specW = w - 40;
+      const specH = 26;
+
+      // 繪製連續彩虹光譜底圖
+      const specGrad = ctx.createLinearGradient(specX, 0, specX + specW, 0);
+      specGrad.addColorStop(0.0, '#3b82f6'); // 藍
+      specGrad.addColorStop(0.3, '#06b6d4'); // 青
+      specGrad.addColorStop(0.6, '#10b981'); // 綠
+      specGrad.addColorStop(0.85, '#eab308'); // 黃
+      specGrad.addColorStop(1.0, '#ef4444'); // 紅
+      ctx.fillStyle = specGrad;
+      ctx.fillRect(specX, specY, specW, specH);
+
+      // 散色雜光白霧層 (隨 transRatio 變白模糊)
+      if (transRatio > 0.02) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(0.85, transRatio * 0.9)})`;
+        ctx.fillRect(specX, specY, specW, specH);
+      }
+
+      // 外邊框
+      ctx.strokeStyle = isExtinct ? '#34d399' : '#64748b';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(specX, specY, specW, specH);
+
+      // 繪製都卜勒分裂吸收黑線 (H-beta 486.13 nm 附近)
+      const centerSpecX = specX + specW * 0.42;
+      const shiftPix = Math.sin(currentOrbitRad) * 16;
+
+      // 主星吸收線
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(centerSpecX - shiftPix - 1.5, specY, 3, specH);
+
+      // 伴星吸收線
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(centerSpecX + shiftPix * 0.8 - 1, specY, 2, specH);
+
+      // 標註譜線文字
+      ctx.fillStyle = isExtinct ? '#34d399' : '#94a3b8';
+      ctx.font = 'bold 9px monospace';
+      ctx.fillText(`H-β 486.1nm [Δλ=${Math.abs(shiftPix * 0.015).toFixed(2)}nm]`, specX, specY + specH + 16);
+
+      // 頂部狀態標題
+      ctx.fillStyle = isExtinct ? '#34d399' : '#fbbf24';
+      ctx.font = 'bold 9px monospace';
+      const polarText = isExtinct
+        ? '[MALUS EXTINCTION: I = I₀ cos²90° = 0.00 | POLAR VERIFIED]'
+        : `[HAZE LEAKAGE: I/I₀=${(transRatio * 100).toFixed(0)}% | θ=${thetaDeg}°]`;
+      ctx.fillText(polarText, 15, 18);
+
+      s2PolarAnimId = requestAnimationFrame(drawPolarCanvas);
+    }
+
+    if (s2PolarCanvas) {
+      if (s2PolarAnimId) cancelAnimationFrame(s2PolarAnimId);
+      updatePolarSim();
+      drawPolarCanvas();
+    }
+
+
 // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
     const notesData = [
@@ -5731,7 +6130,7 @@
                         ? (isSeries2 ? 'text-rose-600 dark:text-rose-400 hover:underline' : 'text-amber-600 dark:text-amber-400 hover:underline') 
                         : 'text-slate-500 hover:text-amber-600 transition-colors'
                     }">
-                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${targetChapterId} 章)</span>
+                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${badge.displayChapter || (targetBookId === 'book-5' ? targetChapterId + 10 : targetChapterId)} 章)</span>
                       <span>➜</span>
                     </a>
                   ` : `
