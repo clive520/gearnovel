@@ -870,19 +870,20 @@
                 <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
               </a>
 
-              <!-- 卷三 (即將登場) -->
-              <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between opacity-85">
+              <!-- 卷三 (連載中) -->
+              <a href="#/read/book-6/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/40 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                  <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                   <div>
-                    <div class="text-sm font-bold text-slate-700 dark:text-slate-300">
-                      《天穹之心的永恆鐘鳴》
+                    <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-2">
+                      <span>《天穹之心的永恆鐘鳴》</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-bold">連載中</span>
                     </div>
-                    <div class="text-[11px] text-slate-400">預計 10 章 · 首席星軌修復師終章大結局</div>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400">最新第 21 章上線 · 0.7 萬字 · 引力時間膨脹 × 光晶格鐘 × 魔術波長</div>
                   </div>
                 </div>
-                <span class="text-[11px] px-2.5 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 font-semibold flex-shrink-0 ml-2">即將登場</span>
-              </div>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+              </a>
             </div>
           </div>
 
@@ -890,16 +891,16 @@
           <div>
             <div class="pt-4 border-t border-rose-500/20 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                <span>⚙️ 精密鐘錶力學 × 13道 STEM 實驗</span>
+                <span>⚙️ 精密鐘錶力學 × 21道 STEM 實驗</span>
                 <span>·</span>
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/10" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀第 20 章大結局</span>
+                <a href="#/read/book-6/1" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>🔥 閱讀第三卷開篇第 21 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 19 章目錄
+                  📑 查看全 21 章目錄
                 </button>
               </div>
             </div>
@@ -2126,7 +2127,7 @@
               ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }">
-            全部模擬器 (20項)
+            全部模擬器 (21項)
           </button>
           <button id="s2-vol-btn-vol1" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
             activeLabVolume === 'vol1'
@@ -2147,7 +2148,7 @@
               ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }">
-            第三卷：天穹之心 (預告)
+            第三卷：天穹之心 (1項 · 連載中)
           </button>
         </div>
 
@@ -3944,23 +3945,109 @@
           </div>
           </div>
 
-          <!-- 第三卷預告卡片 -->
-          <div id="s2-vol3-container" class="${activeLabVolume === 'vol3' ? 'block mb-12' : (activeLabVolume === 'all' ? 'block mb-12 mt-8' : 'hidden')}">
-            <div class="p-8 rounded-3xl bg-gradient-to-br from-rose-500/5 via-amber-500/5 to-purple-500/5 border-2 border-dashed border-rose-500/20 text-center relative overflow-hidden">
-              <div class="w-16 h-16 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
-                🔔
+          <!-- 第三卷容器 (實驗 21) -->
+          <div id="s2-vol3-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol3') ? 'space-y-8 mb-12' + (activeLabVolume === 'all' ? ' mt-8' : '') : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-amber-500/20">
+              <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-sm flex items-center justify-center">卷三</span>
+              <div>
+                <h3 class="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  《天穹之心的永恆鐘鳴》
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-bold">第三卷 · 連載中</span>
+                </h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400">引力時間膨脹 × 光晶格鐘 × 魔術波長 × 天穹之心</p>
               </div>
-              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-rose-500/10 text-rose-600 dark:text-rose-400 mb-2 inline-block">
-                第三卷即將開啟 · 敬請期待
-              </span>
-              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white mb-2">《天穹之心的永恆鐘鳴》概念實驗室</h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto mb-6 leading-relaxed">
-                采婭玆與林漪姉即將前往星港最神聖的中央天穹巨鐘！第三卷預計整合十二平均律天體音階、引力諧振巨鐘、星港全城防禦網與終極星軌大決戰模擬器！
-              </p>
-              <div class="flex items-center justify-center gap-3">
-                <button onclick="document.getElementById('s2-vol-btn-vol2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-md shadow-rose-600/20 transition-all">
-                  ✨ 暢玩第二卷大結局模擬器
-                </button>
+            </div>
+
+            <!-- 實驗 21 卡片 -->
+            <div class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 shadow-sm space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">LAB 21</span>
+                  <h4 class="font-bold text-slate-900 dark:text-white">愛因斯坦引力時間膨脹與鍶原子光晶格鐘模擬器</h4>
+                </div>
+                <span class="text-xs text-slate-600 dark:text-slate-400">對應第 21 章（第三卷開篇）</span>
+              </div>
+
+              <!-- 實驗控制與畫布佈局 -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- 左側控制面板 -->
+                <div class="space-y-4">
+                  <!-- 晶格雷射波長選擇 -->
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">光晶格雷射波長 λ (nm)：</label>
+                    <select id="s2ChronosMagicSelect" class="w-full text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 font-medium">
+                      <option value="magic" selected>813.42 nm（鍶-87 魔術波長 · Δα=0 相消）</option>
+                      <option value="off780">780.00 nm（非魔術波長 · 嚴重 Stark 頻移）</option>
+                      <option value="off850">850.00 nm（非魔術波長 · 激發態極化率失諧）</option>
+                    </select>
+                  </div>
+
+                  <!-- 高度差 Slider -->
+                  <div>
+                    <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      <span>天穹之心海拔高度差 Δh：</span>
+                      <span id="s2ChronosAltVal" class="text-amber-600 dark:text-amber-400 font-mono">4,000 m (雪峰頂)</span>
+                    </div>
+                    <input id="s2ChronosAltSlider" type="range" min="0" max="6000" step="100" value="4000" class="w-full accent-amber-500 cursor-pointer">
+                    <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                      <span>0 m (海平面)</span>
+                      <span>6,000 m (天極極限峰)</span>
+                    </div>
+                  </div>
+
+                  <!-- 晶格位能阱深度 Slider -->
+                  <div>
+                    <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      <span>晶格阱深度 U₀ (反衝能量 E_r)：</span>
+                      <span id="s2ChronosTrapVal" class="text-amber-600 dark:text-amber-400 font-mono">100 E_r</span>
+                    </div>
+                    <input id="s2ChronosTrapSlider" type="range" min="20" max="200" step="5" value="100" class="w-full accent-amber-500 cursor-pointer">
+                    <div class="flex justify-between text-[10px] text-slate-600 dark:text-slate-400 mt-0.5">
+                      <span>20 E_r (弱囚禁)</span>
+                      <span>200 E_r (朗姆-迪克強束縛態)</span>
+                    </div>
+                  </div>
+
+                  <!-- 即時遙測數據盒 -->
+                  <div id="s2ChronosStatusBox" class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+                    <div class="font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                      天穹之心光學鐘即時指標
+                    </div>
+                    <div class="font-mono text-[11px] space-y-1">
+                      <div>引力時滯率 Δν/ν₀：<span id="s2ChronosRedshiftVal" class="font-bold text-amber-500">+4.36 × 10⁻¹³</span></div>
+                      <div>每日累積時滯 Δt/天：<span id="s2ChronosDriftVal" class="font-bold text-rose-500">+37.7 微秒/天 (高處更快)</span></div>
+                      <div>交流 Stark 頻移相消度：<span id="s2ChronosStarkVal" class="font-bold text-emerald-500">100.00% (Δα = 0)</span></div>
+                      <div>光晶格鐘不確定度：<span id="s2ChronosUncertVal" class="font-bold text-sky-500">1.0 × 10⁻¹⁸ (原子禁戒躍遷)</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 右側動態 Canvas 畫布 -->
+                <div class="lg:col-span-2 flex flex-col items-center">
+                  <canvas id="s2ChronosCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                  <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                    <span id="s2ChronosCanvasStatus" class="font-semibold text-emerald-500 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      魔術波長相消鎖定 · 鍶原子禁戒躍遷精準量測
+                    </span>
+                    <span class="text-slate-600 dark:text-slate-400">左: 1D 光學晶格位能阱與冷原子 | 右: 重力位能等時線與鐘頻譜</span>
+                  </div>
+                  <p id="s2ChronosCanvasDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                    愛因斯坦引力時間膨脹表明高處時鐘走得更快（Δν/ν₀ = gΔh/c²）。以 λ_magic = 813.42 nm 駐波光晶格無微擾囚禁鍶-87 原子，完全消除交流 Stark 頻移，精確抵消微秒級時滯失步！
+                  </p>
+                </div>
+              </div>
+
+              <!-- 核心密文卡片 -->
+              <div class="mt-4 p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                <div class="text-xs font-bold text-amber-800 dark:text-amber-400 mb-1 flex items-center gap-2">
+                  <span>🔐 第 21 章核心破譯密鑰：[ 03 - 08 - 18 - 15 - 14 - 15 - 19 ]</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：03=C, 08=H, 18=R, 15=O, 14=N, 15=O, 19=S。</p>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-xs font-bold">
+                  03 ➜ C  |  08 ➜ H  |  18 ➜ R  |  15 ➜ O  |  14 ➜ N  |  15 ➜ O  |  19 ➜ S  ==>  【 CHRONOS 】（時間之神 · 永恆基準）
+                </div>
               </div>
             </div>
           </div>
@@ -9065,6 +9152,358 @@
     }
 
 
+    // ================== 實驗 21：愛因斯坦引力時間膨脹與鍶原子光晶格鐘模擬器 (Ch 53 / Book 6 Ch 1) ==================
+    const s2ChronosCanvas = document.getElementById('s2ChronosCanvas');
+    const s2ChronosMagicSelect = document.getElementById('s2ChronosMagicSelect');
+    const s2ChronosAltSlider = document.getElementById('s2ChronosAltSlider');
+    const s2ChronosTrapSlider = document.getElementById('s2ChronosTrapSlider');
+    const s2ChronosAltVal = document.getElementById('s2ChronosAltVal');
+    const s2ChronosTrapVal = document.getElementById('s2ChronosTrapVal');
+    const s2ChronosRedshiftVal = document.getElementById('s2ChronosRedshiftVal');
+    const s2ChronosDriftVal = document.getElementById('s2ChronosDriftVal');
+    const s2ChronosStarkVal = document.getElementById('s2ChronosStarkVal');
+    const s2ChronosUncertVal = document.getElementById('s2ChronosUncertVal');
+    const s2ChronosCanvasStatus = document.getElementById('s2ChronosCanvasStatus');
+    const s2ChronosCanvasDesc = document.getElementById('s2ChronosCanvasDesc');
+
+    let s2ChronosAnimId = null;
+    let s2ChronosTime = 0;
+
+    function updateChronosSimUI() {
+      if (!s2ChronosMagicSelect || !s2ChronosAltSlider || !s2ChronosTrapSlider) return;
+      const waveMode = s2ChronosMagicSelect.value;
+      const altM = parseFloat(s2ChronosAltSlider.value);
+      const trapEr = parseFloat(s2ChronosTrapSlider.value);
+
+      if (s2ChronosAltVal) {
+        let label = '';
+        if (altM === 0) label = ' (海平面基準)';
+        else if (altM < 2000) label = ' (鹿陽城工坊低丘)';
+        else if (altM < 4500) label = ' (天脈雪峰頂 · 天穹之心)';
+        else label = ' (天極極限萬仞孤峰)';
+        s2ChronosAltVal.textContent = `${altM.toLocaleString()} m${label}`;
+      }
+
+      if (s2ChronosTrapVal) {
+        s2ChronosTrapVal.textContent = `${trapEr} E_r`;
+      }
+
+      // Gravitational Redshift: Δν / ν₀ = g · Δh / c² (g = 9.80665 m/s², c = 2.99792458e8 m/s)
+      // g / c² ≈ 1.0909e-16 m⁻¹
+      const g_over_c2 = 1.0909e-16;
+      const fracShift = g_over_c2 * altM;
+      // Drift per day in microseconds: fracShift * 86400 * 1e6 ≈ 9.425e-3 * altM
+      const driftUsPerDay = fracShift * 86400 * 1e6;
+
+      if (s2ChronosRedshiftVal) {
+        s2ChronosRedshiftVal.textContent = altM === 0 ? '0.00 (完全基準)' : `+${(fracShift * 1e13).toFixed(2)} × 10⁻¹³`;
+      }
+
+      if (s2ChronosDriftVal) {
+        s2ChronosDriftVal.textContent = altM === 0 ? '0.00 微秒/天 (無時滯)' : `+${driftUsPerDay.toFixed(1)} 微秒/天 (高處走得更快)`;
+      }
+
+      // Stark shift cancellation
+      let starkPercent = 100.0;
+      let uncertStr = '1.0 × 10⁻¹⁸ (原子禁戒躍遷)';
+      if (waveMode === 'off780') {
+        starkPercent = 18.5;
+        uncertStr = '4.2 × 10⁻¹⁴ (嚴重交流 Stark 展寬)';
+      } else if (waveMode === 'off850') {
+        starkPercent = 32.0;
+        uncertStr = '1.8 × 10⁻¹⁵ (激發態極化率失諧)';
+      }
+
+      if (s2ChronosStarkVal) {
+        s2ChronosStarkVal.textContent = `${starkPercent.toFixed(2)}% ${waveMode === 'magic' ? '(Δα = 0 魔術波長相消)' : '(光位移未消除)'}`;
+      }
+
+      if (s2ChronosUncertVal) {
+        s2ChronosUncertVal.textContent = uncertStr;
+      }
+
+      if (s2ChronosCanvasStatus) {
+        if (waveMode === 'magic') {
+          s2ChronosCanvasStatus.className = 'font-semibold text-emerald-500 flex items-center gap-1.5';
+          s2ChronosCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 魔術波長相消鎖定 · 鍶原子禁戒躍遷精準量測';
+        } else {
+          s2ChronosCanvasStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2ChronosCanvasStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> 非魔術波長 · 交流 Stark 頻移干擾鐘躍遷';
+        }
+      }
+    }
+
+    function drawChronosCanvas() {
+      if (!s2ChronosCanvas) return;
+      const ctx = s2ChronosCanvas.getContext('2d');
+      const w = s2ChronosCanvas.width;
+      const h = s2ChronosCanvas.height;
+
+      s2ChronosTime += 0.035;
+      const waveMode = s2ChronosMagicSelect ? s2ChronosMagicSelect.value : 'magic';
+      const altM = parseFloat(s2ChronosAltSlider ? s2ChronosAltSlider.value : 4000);
+      const trapEr = parseFloat(s2ChronosTrapSlider ? s2ChronosTrapSlider.value : 100);
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Background grid
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 25) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 25) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // ================= 左半部：1D 光學晶格駐波位能阱與囚禁冷鍶原子 (x: 0 ~ 275) =================
+      const leftW = 275;
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('1D 光學晶格位能阱 (λ = 813.42 nm)', 14, 20);
+
+      // Draw Standing Wave Potential Wells U(x) = -U0 * cos^2(kx)
+      const wellBaseY = 135;
+      const wellAmp = Math.min(65, (trapEr / 200) * 60 + 15);
+      const k = 0.08;
+
+      ctx.beginPath();
+      for (let px = 15; px <= leftW - 15; px++) {
+        const potential = -wellAmp * Math.pow(Math.cos(k * (px - 15) + Math.sin(s2ChronosTime * 0.5) * 0.05), 2);
+        const py = wellBaseY + potential;
+        if (px === 15) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = waveMode === 'magic' ? '#38bdf8' : '#f43f5e';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Optical lattice standing wave laser glow
+      ctx.strokeStyle = waveMode === 'magic' ? 'rgba(56, 189, 248, 0.25)' : 'rgba(244, 63, 94, 0.25)';
+      ctx.lineWidth = 8;
+      ctx.stroke();
+
+      // Trapped Strontium-87 Cold Atoms inside potential wells
+      // Minimum wells occur where cos^2(kx) is maximum (i.e. potential is at bottom)
+      const wellPeriod = Math.PI / k; // ≈ 39.27 px
+      for (let i = 0; i < 6; i++) {
+        const atomCenterX = 15 + i * wellPeriod;
+        if (atomCenterX > leftW - 25) break;
+
+        // In Lamb-Dicke regime (tight trap), atom thermal vibration is tiny
+        const vibAmp = waveMode === 'magic' ? (150 / trapEr) * 1.5 : 6.0;
+        const atomX = atomCenterX + Math.sin(s2ChronosTime * 3 + i * 1.2) * vibAmp;
+        const atomY = wellBaseY - wellAmp + Math.abs(Math.cos(s2ChronosTime * 4 + i)) * (vibAmp * 0.6);
+
+        // Draw atom glow
+        const atomGrad = ctx.createRadialGradient(atomX, atomY, 1, atomX, atomY, 10);
+        atomGrad.addColorStop(0, '#fef08a');
+        atomGrad.addColorStop(0.5, '#f59e0b');
+        atomGrad.addColorStop(1, 'rgba(245, 158, 11, 0)');
+        ctx.beginPath();
+        ctx.arc(atomX, atomY, 10, 0, Math.PI * 2);
+        ctx.fillStyle = atomGrad;
+        ctx.fill();
+
+        // Atom nucleus core
+        ctx.beginPath();
+        ctx.arc(atomX, atomY, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+      }
+
+      // Energy level diagram below the lattice
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px monospace';
+      ctx.fillText('⁸⁷Sr 鐘躍遷: ¹S₀ (基態) ➜ ³P₀ (激發態)', 15, 180);
+      ctx.fillText('躍遷頻率 ν₀ = 429,228,004,229,873 Hz', 15, 195);
+      ctx.fillText('魔術波長相消度: Δα(λ) = α_e - α_g = 0', 15, 210);
+
+      // Lamb-Dicke status
+      ctx.font = 'bold 10px sans-serif';
+      if (waveMode === 'magic') {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('✔ 朗姆-迪克效應 (Lamb-Dicke): 都卜勒反衝完全消除', 15, 235);
+        ctx.fillText('✔ 交流 Stark 頻移: 0.00 mHz (完美相消)', 15, 252);
+      } else {
+        ctx.fillStyle = '#f87171';
+        ctx.fillText('✘ Stark 頻移未消除: 鐘線嚴重展寬失真', 15, 235);
+        ctx.fillText('✘ 激發態與基態位能阱深度分離', 15, 252);
+      }
+
+      // Divider line
+      const splitX = 285;
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(splitX, 10);
+      ctx.lineTo(splitX, h - 10);
+      ctx.stroke();
+
+      // ================= 右半部：引力等時線與鐘頻率共振譜 (x: 295 ~ 550) =================
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('愛因斯坦引力紅移與頻率共振 (Δν/ν₀ = gΔh/c²)', splitX + 15, 20);
+
+      // Altitude mountain sketch & clock drift
+      const mtnBaseX = splitX + 20;
+      const mtnBaseY = 110;
+      const mtnH = 65;
+      const mtnW = 120;
+
+      // Mountain triangle
+      ctx.beginPath();
+      ctx.moveTo(mtnBaseX, mtnBaseY);
+      ctx.lineTo(mtnBaseX + mtnW / 2, mtnBaseY - mtnH);
+      ctx.lineTo(mtnBaseX + mtnW, mtnBaseY);
+      ctx.closePath();
+      ctx.fillStyle = '#1e293b';
+      ctx.fill();
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Snow peak
+      ctx.beginPath();
+      ctx.moveTo(mtnBaseX + mtnW / 2 - 20, mtnBaseY - mtnH + 25);
+      ctx.lineTo(mtnBaseX + mtnW / 2, mtnBaseY - mtnH);
+      ctx.lineTo(mtnBaseX + mtnW / 2 + 20, mtnBaseY - mtnH + 25);
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fill();
+
+      // Target point based on altM (0 ~ 6000)
+      const altRatio = altM / 6000;
+      const targetPtY = mtnBaseY - altRatio * mtnH;
+      const targetPtX = mtnBaseX + mtnW / 2;
+
+      // Mountain marker
+      ctx.beginPath();
+      ctx.arc(targetPtX, targetPtY, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Altitude label
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 10px monospace';
+      ctx.fillText(`Δh = ${altM}m`, targetPtX + 10, targetPtY + 4);
+
+      // Clock tick animation
+      // Bottom clock vs Top clock
+      const clockBottomAngle = s2ChronosTime * 1.5;
+      // Top clock runs faster by fraction: fracShift * large_factor for visual demo
+      const visualFastFactor = 1.0 + (altM / 6000) * 0.4;
+      const clockTopAngle = s2ChronosTime * 1.5 * visualFastFactor;
+
+      // Draw Top Clock
+      const topClkX = splitX + 195;
+      const topClkY = 60;
+      ctx.beginPath();
+      ctx.arc(topClkX, topClkY, 16, 0, Math.PI * 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.fill();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(topClkX, topClkY);
+      ctx.lineTo(topClkX + Math.cos(clockTopAngle) * 11, topClkY + Math.sin(clockTopAngle) * 11);
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = '9px sans-serif';
+      ctx.fillText('高處快鐘 (雪峰)', topClkX - 28, topClkY + 28);
+
+      // Draw Bottom Clock
+      const btmClkX = splitX + 195;
+      const btmClkY = 120;
+      ctx.beginPath();
+      ctx.arc(btmClkX, btmClkY, 16, 0, Math.PI * 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.fill();
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(btmClkX, btmClkY);
+      ctx.lineTo(btmClkX + Math.cos(clockBottomAngle) * 11, btmClkY + Math.sin(clockBottomAngle) * 11);
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '9px sans-serif';
+      ctx.fillText('海平面基準鐘', btmClkX - 25, btmClkY + 28);
+
+      // Resonant Spectrum graph at the bottom (x: splitX + 15 ~ splitX + 245, y: 170 ~ 240)
+      const specX = splitX + 15;
+      const specY = 225;
+      const specW = 230;
+      const specH = 45;
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(specX, specY - specH, specW, specH);
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(specX, specY - specH, specW, specH);
+
+      // Spectral resonance peak
+      ctx.beginPath();
+      const peakCenter = specX + specW / 2 + (waveMode === 'magic' ? 0 : (waveMode === 'off780' ? -35 : 40));
+      const peakWidth = waveMode === 'magic' ? 6 : 28;
+      for (let px = specX; px <= specX + specW; px++) {
+        const dx = px - peakCenter;
+        const lineShape = Math.exp(- (dx * dx) / (2 * peakWidth * peakWidth));
+        const py = specY - lineShape * (specH - 6);
+        if (px === specX) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = waveMode === 'magic' ? '#34d399' : '#f43f5e';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px monospace';
+      ctx.fillText('光譜線寬: ' + (waveMode === 'magic' ? '1.2 mHz (極致自然線寬)' : '2.4 kHz (Stark 展寬失諧)'), specX + 6, specY - specH + 12);
+
+      // Decryption confirmation banner
+      ctx.font = 'bold 11px sans-serif';
+      if (waveMode === 'magic') {
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('★ 密鑰認證：CHRONOS (時間之神 · 基準鎖定) ★', specX + 12, specY + 16);
+      } else {
+        ctx.fillStyle = '#fbbf24';
+        ctx.fillText('⚠ 交流 Stark 頻移干擾：請調至 813.42 nm 魔術波長', specX + 2, specY + 16);
+      }
+
+      s2ChronosAnimId = requestAnimationFrame(drawChronosCanvas);
+    }
+
+    if (s2ChronosCanvas) {
+      if (s2ChronosAnimId) cancelAnimationFrame(s2ChronosAnimId);
+      if (s2ChronosMagicSelect) {
+        s2ChronosMagicSelect.addEventListener('change', () => {
+          updateChronosSimUI();
+        });
+      }
+      if (s2ChronosAltSlider) {
+        s2ChronosAltSlider.addEventListener('input', () => {
+          updateChronosSimUI();
+        });
+      }
+      if (s2ChronosTrapSlider) {
+        s2ChronosTrapSlider.addEventListener('input', () => {
+          updateChronosSimUI();
+        });
+      }
+      updateChronosSimUI();
+      drawChronosCanvas();
+    }
+
+
+
     // ================== 第三卷實驗邏輯 ==================
     // 實驗一：十二平均律天體音叉共振儀 (Ch 30)
     const notesData = [
@@ -9757,7 +10196,7 @@
                         ? (isSeries2 ? 'text-rose-600 dark:text-rose-400 hover:underline' : 'text-amber-600 dark:text-amber-400 hover:underline') 
                         : 'text-slate-500 hover:text-amber-600 transition-colors'
                     }">
-                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${badge.displayChapter || (targetBookId === 'book-5' ? targetChapterId + 10 : targetChapterId)} 章)</span>
+                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${badge.displayChapter || (targetBookId === 'book-5' ? targetChapterId + 10 : (targetBookId === 'book-6' ? targetChapterId + 20 : targetChapterId))} 章)</span>
                       <span>➜</span>
                     </a>
                   ` : `
