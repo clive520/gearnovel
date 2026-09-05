@@ -733,7 +733,7 @@
   };
 
   // 記錄首頁套書展區展示狀態
-  let homeViewMode = 'carousel'; // 'carousel' | 'grid'
+  let homeViewMode = 'grid'; // 預設平鋪雙欄 ('grid' | 'carousel')
   let homeSlideIndex = 0;
 
   window.setHomeViewMode = function(mode) {
@@ -748,14 +748,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 2 : 3;
+    const maxIdx = isDesktop ? 1 : 2;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 2 : 3;
+    const maxIdx = isDesktop ? 1 : 2;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -766,13 +766,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 2 : 3;
+    const maxIndex = isDesktop ? 1 : 2;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -791,7 +791,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 3; d++) {
+    for (let d = 0; d <= 2; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -922,21 +922,14 @@
           </div>
         </div>
 
-        <!-- 底部亮點與行動按鈕 -->
-        <div class="pt-4 border-t border-amber-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            <span>✨ 32 章中英雙語</span>
-            <span>·</span>
-            <span>🧩 32 道 STEM 實驗</span>
-          </div>
-          <div class="flex items-center gap-2.5 w-full sm:w-auto">
-            <a href="#/read/book-1/1" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-              <span>📖 從頭開始閱讀</span>
-            </a>
-            <button onclick="window.openSeriesModal('series-1')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-              📑 全 32 回目錄
-            </button>
-          </div>
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
+          <a href="#/read/book-1/1" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從頭開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-1')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 32 回目錄
+          </button>
         </div>
       </div>
     `;
@@ -1034,21 +1027,14 @@
           </div>
         </div>
 
-        <!-- 底部亮點與行動按鈕 -->
-        <div class="pt-4 border-t border-rose-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            <span>⚙️ 鐘錶力學 × 30道實驗</span>
-            <span>·</span>
-            <span>🤝 少年夥伴共鳴</span>
-          </div>
-          <div class="flex items-center gap-2.5 w-full sm:w-auto">
-            <a href="#/read/book-6/10" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-              <span>✨ 閱讀第 30 章大結局</span>
-            </a>
-            <button onclick="window.openSeriesModal('series-2')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-              📑 全 30 回目錄
-            </button>
-          </div>
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-rose-500/20 flex items-center gap-3">
+          <a href="#/read/book-4/1" class="flex-1 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從頭開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-2')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 30 回目錄
+          </button>
         </div>
       </div>
     `;
@@ -1146,127 +1132,14 @@
           </div>
         </div>
 
-        <!-- 底部亮點與行動按鈕 -->
-        <div class="pt-4 border-t border-sky-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            <span>🤖 量子仿生 × 24道STEM</span>
-            <span>·</span>
-            <span>🎓 守護協議動人告白</span>
-          </div>
-          <div class="flex items-center gap-2.5 w-full sm:w-auto">
-            <a href="#/read/book-9/8" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-              <span>✨ 閱讀第 24 章大結局</span>
-            </a>
-            <button onclick="window.openSeriesModal('series-3')" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-              📑 全 24 回目錄
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  // 卡片產生函數：第四張《少兒科幻宇宙探索中心》
-  function getExploreCenterCardHtml() {
-    return `
-      <div class="rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-indigo-500/50 h-full">
-        <div>
-          <!-- 標籤與受眾 -->
-          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30">
-              🧭 互動探索 · 全宇宙總覽
-            </span>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20 font-mono">
-                31 位角色 · 32 個實驗
-              </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
-            </div>
-          </div>
-
-          <!-- 標題與引言 -->
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
-            《少兒科幻宇宙探索中心》
-          </h3>
-          <p class="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-3">
-            不只閱讀冒險，更能動手實踐科學與探索人物密檔！
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-            貫穿《冒險齒輪》、《星願鐘擺》與《我的老師不是人》三大長篇宇宙！你可以親自操作聲納共振儀、解開 Boolean 邏輯閘電路、探索 31 位核心登場主角與陣營的機密檔案，解鎖屬於你的小偵探專屬成就！
-          </p>
-
-          <!-- 三大核心入口模組 (對齊三卷卡片結構) -->
-          <div class="space-y-2 mb-5">
-            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-              <span>🔬 核心互動單元快速直達</span>
-              <span class="text-indigo-600 font-mono font-bold">即刻體驗</span>
-            </div>
-
-            <!-- 人物檔案誌 -->
-            <a href="#/characters" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">👥</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors truncate">
-                    人物檔案誌 (三套共 31 位角色)
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">高峙舷 × 誠浩 × 采婭玆 × 晴晴等角色全收錄</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">探索 ➜</span>
-              </div>
-            </a>
-
-            <!-- 密碼實驗室 -->
-            <a href="#/puzzle-lab" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">🧩</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
-                    小偵探密碼與 STEM 實驗室
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">32 項互動科學模擬器 · 雙星光學 × 邏輯閘 × 聲納</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">操作 ➜</span>
-              </div>
-            </a>
-
-            <!-- 閱讀成就 -->
-            <a href="#/badges" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">🏆</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors truncate">
-                    小讀者閱讀成就與書籤
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">全套書解謎勳章庫 · 跨載具雲端書籤無縫同步</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">前往 ➜</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- 底部亮點與行動按鈕 -->
-        <div class="pt-4 border-t border-indigo-500/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            <span>🌟 探索 31位人物檔案</span>
-            <span>·</span>
-            <span>🧪 32項互動科學</span>
-          </div>
-          <div class="flex items-center gap-2.5 w-full sm:w-auto">
-            <a href="#/characters" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-              <span>👥 進入人物誌</span>
-            </a>
-            <a href="#/puzzle-lab" class="flex-1 sm:flex-initial px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center transition-all">
-              🧩 前往實驗室
-            </a>
-          </div>
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-sky-500/20 flex items-center gap-3">
+          <a href="#/read/book-7/1" class="flex-1 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-md shadow-sky-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從頭開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-3')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 24 回目錄
+          </button>
         </div>
       </div>
     `;
@@ -1283,7 +1156,6 @@
     const card1 = getSeries1CardHtml();
     const card2 = getSeries2CardHtml();
     const card3 = getSeries3CardHtml();
-    const card4 = getExploreCenterCardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1333,15 +1205,14 @@
         <div>
           <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <span>📚 旗艦套書選讀</span>
-            <span class="text-xs font-normal text-slate-500 dark:text-slate-400 hidden sm:inline">（寬螢幕雙書並列 · 手機單書沉浸）</span>
           </h2>
         </div>
         <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
-          <button onclick="window.setHomeViewMode('carousel')" id="btn-view-carousel" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'carousel' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-            🎠 輪播展示
-          </button>
           <button onclick="window.setHomeViewMode('grid')" id="btn-view-grid" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'grid' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
             📑 平鋪雙欄
+          </button>
+          <button onclick="window.setHomeViewMode('carousel')" id="btn-view-carousel" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'carousel' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+            🎠 輪播展示
           </button>
         </div>
       </div>
@@ -1361,14 +1232,11 @@
               <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🤖 《我的老師不是人》
               </button>
-              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                🧭 宇宙探索中心
-              </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 3</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 2</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1390,9 +1258,6 @@
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card3}
               </div>
-              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
-                ${card4}
-              </div>
             </div>
           </div>
 
@@ -1401,7 +1266,6 @@
             <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-amber-600 transition-all"></button>
             <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400 hidden"></button>
           </div>
         </div>
       ` : `
@@ -1410,7 +1274,6 @@
           <div>${card1}</div>
           <div>${card2}</div>
           <div>${card3}</div>
-          <div>${card4}</div>
         </div>
       `}
 
