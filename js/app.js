@@ -817,7 +817,7 @@
             <!-- 標籤與受眾 -->
             <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
-                🌸 第二套 · 第二卷連載中
+                🌸 第二卷連載中
               </span>
               <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 少年成長</span>
             </div>
@@ -1904,7 +1904,7 @@
               ? 'bg-rose-600 text-white shadow-md'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺</span>
+            <span>🌸 星願鐘擺</span>
             <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series2Count}</span>
           </button>
 
@@ -2078,7 +2078,7 @@
   }
 
   // 記錄實驗室當前頁籤狀態：套書 (Series) 與卷別 (Volume)
-  let activeLabSeries = 'series-2'; // 'series-1' | 'series-2' | 'series-3' | 'series-4'
+  let activeLabSeries = 'series-1'; // 'series-1' | 'series-2' | 'series-3' | 'series-4'
   let activeLabVolume = 'all';      // 'all' | 'vol1' | 'vol2' | 'vol3'
   let activeLabTab = 'series2';     // 向下相容變數
 
@@ -2095,46 +2095,26 @@
           <p class="text-sm text-slate-500 dark:text-slate-400">書中出現的真實密碼學、天體物理、波動光學、流體力學與精密鐘錶物理！親自動手操作，解開科學奧秘。</p>
         </div>
 
-        <!-- ==================== 第一層：套書切換主選單 (Series Selector) ==================== -->
-        <div class="flex items-center justify-center flex-wrap gap-2.5 sm:gap-3 mb-6">
-          <!-- 第二套書按鈕 -->
-          <button id="tab-btn-series2" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabSeries === 'series-2'
-              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/40 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
-          }">
-            <span>🌸 第二套 · 星願鐘擺</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/15 text-rose-600 dark:text-rose-400'}">20項 · 完結</span>
-          </button>
-
-          <!-- 第一套書按鈕 -->
-          <button id="tab-btn-series1" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+        <!-- ==================== 第一層：書籍切換主選單 (按出版順序排列) ==================== -->
+        <div class="flex items-center justify-center flex-wrap gap-3 mb-6">
+          <!-- 《冒險齒輪：失落的二十四小時》按鈕 (先出版) -->
+          <button id="tab-btn-series1" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
             activeLabSeries === 'series-1'
               ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 ring-2 ring-indigo-400/40 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600'
           }">
-            <span>📘 第一套 · 冒險齒輪</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-1' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400'}">11項 · 全三卷</span>
+            <span>📘 冒險齒輪：失落的二十四小時</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-1' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400'}">11項 · 全三卷</span>
           </button>
 
-          <!-- 第三套書按鈕 (未來擴展) -->
-          <button id="tab-btn-series3" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabSeries === 'series-3'
-              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/40 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 opacity-80 hover:opacity-100'
+          <!-- 《星願鐘擺與織光少女》按鈕 (後出版) -->
+          <button id="tab-btn-series2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabSeries === 'series-2'
+              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/40 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
           }">
-            <span>🔭 第三套書 (深空計畫)</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/15 text-sky-600 dark:text-sky-400'}">籌備中</span>
-          </button>
-
-          <!-- 第四套書按鈕 (未來擴展) -->
-          <button id="tab-btn-series4" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabSeries === 'series-4'
-              ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25 ring-2 ring-purple-400/40 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-purple-500 opacity-80 hover:opacity-100'
-          }">
-            <span>🌌 第四套書 (未知維度)</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-4' ? 'bg-purple-700 text-purple-100' : 'bg-purple-500/15 text-purple-600 dark:text-purple-400'}">敬請期待</span>
+            <span>🌸 星願鐘擺與織光少女</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/15 text-rose-600 dark:text-rose-400'}">20項 · 完結</span>
           </button>
         </div>
 
@@ -2205,7 +2185,7 @@
 
         <!-- ==================== 第二套書內容容器 (Series 2 Container) ==================== -->
         <div id="lab-series-2-container" class="${activeLabSeries === 'series-2' ? 'block' : 'hidden'}">
-          <!-- 第二套 · 第一卷 (10項) -->
+          <!-- 第一卷 (10項) -->
           <div id="s2-vol1-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol1') ? 'space-y-8 mb-12' : 'hidden'}">
             <div class="flex items-center gap-3 pb-3 border-b border-rose-500/20">
               <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-sm flex items-center justify-center">卷一</span>
@@ -2855,7 +2835,7 @@
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第二套 · 第 9 章</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第 9 章</span>
                 <span class="text-xs text-slate-500">波的疊加 · 駐波方程 · 傅立葉諧波</span>
               </div>
               <span class="text-xs font-mono text-slate-500">y = 2A sin(kx) cos(ωt)</span>
@@ -2948,7 +2928,7 @@
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第二套 · 第 10 章大結局</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">第 10 章大結局</span>
                 <span class="text-xs text-slate-500">角動量守恆 · 陀螺進動 · 天頂閉環</span>
               </div>
               <span class="text-xs font-mono text-slate-500">τ = dL/dt = Ω_p × L</span>
@@ -3030,7 +3010,7 @@
           </div>
           </div>
 
-          <!-- 第二套 · 第二卷 (10項) -->
+          <!-- 第二卷 (10項) -->
           <div id="s2-vol2-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol2') ? 'space-y-8 mb-12' : 'hidden'}">
             <div class="flex items-center gap-3 pb-3 border-b border-amber-500/20 pt-4">
               <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-sm flex items-center justify-center">卷二</span>
@@ -3046,7 +3026,7 @@
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 11 章全新連載</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第 11 章全新連載</span>
                 <span class="text-xs text-slate-500">馬呂斯定律 · 方解石雙折射 · 都卜勒頻移</span>
               </div>
               <span class="text-xs font-mono text-slate-500">I = I₀ cos²θ | Δλ/λ₀ = v_r/c</span>
@@ -3132,7 +3112,7 @@
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 12 章全新連載</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第 12 章全新連載</span>
                 <span class="text-xs text-slate-500">司涅爾全反射 · 臨界角 · 數值孔徑 NA</span>
               </div>
               <span class="text-xs font-mono text-slate-500">n₁ sin θ₁ = n₂ sin θ₂ | θ_c = arcsin(n₂/n₁)</span>
@@ -3218,7 +3198,7 @@
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第二套 · 第 13 章全新連載</span>
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">第 13 章全新連載</span>
                 <span class="text-xs text-slate-500">開普勒第二定律 · 角動量守恆 · 橢圓非圓齒輪</span>
               </div>
               <span class="text-xs font-mono text-slate-500">dA/dt = 1/2 r² ω = L/(2μ) = const</span>
@@ -3871,7 +3851,7 @@
               <span class="px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                 第 20 章終章專屬 · 實驗 20
               </span>
-              <span class="text-xs text-slate-600 dark:text-slate-400">第二套第二卷大結局 · 十全陣列大圓滿</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400">第二卷大結局 · 十全陣列大圓滿</span>
             </div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
               <span>🌈 光學頻率梳與雙星軌道完全共振模擬器</span>
@@ -3964,7 +3944,7 @@
           </div>
           </div>
 
-          <!-- 第二套 · 第三卷預告卡片 -->
+          <!-- 第三卷預告卡片 -->
           <div id="s2-vol3-container" class="${activeLabVolume === 'vol3' ? 'block mb-12' : (activeLabVolume === 'all' ? 'block mb-12 mt-8' : 'hidden')}">
             <div class="p-8 rounded-3xl bg-gradient-to-br from-rose-500/5 via-amber-500/5 to-purple-500/5 border-2 border-dashed border-rose-500/20 text-center relative overflow-hidden">
               <div class="w-16 h-16 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
@@ -4491,131 +4471,12 @@
           </div>
         </div>
 
-        <!-- ==================== 第三套書概念藍圖容器 (Series 3 Container) ==================== -->
-        <div id="lab-series-3-container" class="${activeLabSeries === 'series-3' ? 'block' : 'hidden'}">
-          <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-sky-950 via-slate-900 to-indigo-950 text-white border border-sky-500/30 shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="relative z-10">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-400 text-xs font-bold mb-4 border border-sky-500/30">
-                <span>🔭 第三套書實驗室概念藍圖 · 籌備中</span>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-extrabold mb-3 bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">
-                深空躍遷與量子織網：前沿 STEM 概念實驗室
-              </h2>
-              <p class="text-sm text-slate-300 max-w-2xl mb-8 leading-relaxed">
-                隨著少年學者邁向天頂之外的浩瀚深空，第三套書將帶領讀者探索更高維度的物理前沿！我們正在設計全新的量子與相對論交互模擬器：
-              </p>
-
-              <!-- 概念模擬器卡片網格 -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
-                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>⚛️ 量子糾纏通訊與 QKD 密鑰分發</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">利用貝爾不等式與單光子正交自旋偏振，在無延遲深空中實現不可破譯的量子加密通信！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
-                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>🕳️ 史瓦西黑洞與愛因斯坦-羅森橋</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">模擬極限時空曲率下的引力時間膨脹、光子球層與微型時空蟲洞穿越路徑！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
-                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>🧲 托卡馬克磁約束反物質引擎</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">超導環形磁場約束正負電子湮滅高能伽馬射線，計算比衝與相對論推進效率！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
-                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>🚀 阿爾庫比埃度規曲率泡泡模擬</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">時空前縮後張幾何流形，探索超光速視界折射與負能量密度分佈！</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap items-center gap-3">
-                <button onclick="document.getElementById('tab-btn-series2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 transition-all flex items-center gap-2">
-                  <span>🌸 體驗第二套星願鐘擺實驗室 (20項)</span>
-                </button>
-                <button onclick="document.getElementById('tab-btn-series1').click()" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all flex items-center gap-2">
-                  <span>📘 體驗第一套冒險齒輪實驗室 (11項)</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ==================== 第四套書概念藍圖容器 (Series 4 Container) ==================== -->
-        <div id="lab-series-4-container" class="${activeLabSeries === 'series-4' ? 'block' : 'hidden'}">
-          <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-purple-950 via-slate-900 to-rose-950 text-white border border-purple-500/30 shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="relative z-10">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-4 border border-purple-500/30">
-                <span>🌌 第四套書實驗室概念藍圖 · 敬請期待</span>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-extrabold mb-3 bg-gradient-to-r from-white via-purple-200 to-pink-400 bg-clip-text text-transparent">
-                未知維度與宇宙拓撲：宏觀天文 STEM 實驗室
-              </h2>
-              <p class="text-sm text-slate-300 max-w-2xl mb-8 leading-relaxed">
-                穿越平行宇宙與高維弦理論的交織空間！第四套書將引領讀者探索宇宙終極奧秘，規劃中的互動模擬器包括：
-              </p>
-
-              <!-- 概念模擬器卡片網格 -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
-                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>🌀 卡拉比-丘流形高維投影儀</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">在三維螢幕上動態旋轉六維緊緻化幾何空間，觀察超弦自旋態之振動模式！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
-                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>⏳ 麥克斯韋妖與宇宙熱寂時間箭頭</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">追蹤微觀熱分子隨機碰撞與資訊熵代價，解析時間為何不可逆流之物理鐵律！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
-                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>📡 宇宙微波背景輻射角功率譜</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">調諧暴脹時期量子漲落聲學波峰，反演宇宙重子物質、暗物質與暗能量比例！</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
-                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
-                    <span>🛡️ 戴森球恆星級引力透鏡陣列</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
-                  </div>
-                  <p class="text-xs text-slate-400">操控圍繞太陽建造的數百萬枚反射鏡帆，實現星系尺度超微角秒解析度觀測！</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap items-center gap-3">
-                <button onclick="document.getElementById('tab-btn-series2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 transition-all flex items-center gap-2">
-                  <span>🌸 體驗第二套星願鐘擺實驗室 (20項)</span>
-                </button>
-                <button onclick="document.getElementById('tab-btn-series1').click()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all flex items-center gap-2">
-                  <span>📘 體驗第一套冒險齒輪實驗室 (11項)</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
     `;
 
-        // ==================== 第一層：套書切換事件 ====================
+        // ==================== 第一層：書籍切換事件 (按出版順序) ====================
     const tabSeries1 = document.getElementById('tab-btn-series1');
     const tabSeries2 = document.getElementById('tab-btn-series2');
-    const tabSeries3 = document.getElementById('tab-btn-series3');
-    const tabSeries4 = document.getElementById('tab-btn-series4');
 
     if (tabSeries1) {
       tabSeries1.onclick = () => {
@@ -4628,18 +4489,6 @@
       tabSeries2.onclick = () => {
         activeLabSeries = 'series-2';
         activeLabVolume = 'all';
-        renderPuzzleLab();
-      };
-    }
-    if (tabSeries3) {
-      tabSeries3.onclick = () => {
-        activeLabSeries = 'series-3';
-        renderPuzzleLab();
-      };
-    }
-    if (tabSeries4) {
-      tabSeries4.onclick = () => {
-        activeLabSeries = 'series-4';
         renderPuzzleLab();
       };
     }
