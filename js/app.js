@@ -1944,7 +1944,7 @@
   }
 
   // 頁面渲染器：人物與裝備圖鑑
-  let activeCharTab = 'all';
+  let activeCharTab = 'series1'; // 'series1' | 'series2'
 
   window.switchCharTab = function(tab) {
     activeCharTab = tab;
@@ -1954,98 +1954,71 @@
   function renderCharacters() {
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
-    const filteredChars = allChars.filter(char => {
-      if (activeCharTab === 'all') return true;
-      return char.vol === activeCharTab;
-    });
 
-    const series2Count = allChars.filter(c => c.vol === 'series2').length;
-    const vol3Count = allChars.filter(c => c.vol === 'vol3').length;
-    const vol2Count = allChars.filter(c => c.vol === 'vol2').length;
-    const vol1Count = allChars.filter(c => c.vol === 'vol1').length;
-    const coreCount = allChars.filter(c => c.vol === 'core').length;
+    const series1Chars = allChars.filter(char => char.vol !== 'series2');
+    const series2Chars = allChars.filter(char => char.vol === 'series2');
+
+    const filteredChars = activeCharTab === 'series2' ? series2Chars : series1Chars;
+    const isSeries2 = activeCharTab === 'series2';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>👥 冒險齒輪 · 人物檔案誌</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'} text-xs font-bold mb-3">
+            <span>👥 登場人物與核心機密檔案</span>
           </div>
-          <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">登場人物與核心機密檔案</h1>
-          <p class="text-sm text-slate-500">涵蓋第一套冒險三部曲與第二套《星願鐘擺與織光少女》，全系列共 ${allChars.length} 位核心主角、夥伴與導師檔案。</p>
+          <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
+          <p class="text-sm text-slate-500">收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 卷別切換標籤頁 -->
-        <div class="flex items-center justify-center flex-wrap gap-2.5 mb-10">
-          <button onclick="window.switchCharTab('all')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'all'
-              ? 'bg-amber-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
+        <!-- 兩大套書書籤切換 (直接顯示書名) -->
+        <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
+          <button onclick="window.switchCharTab('series1')" class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            !isSeries2
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
           }">
-            <span>全部人物</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'all' ? 'bg-amber-700 text-amber-100' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${allChars.length}</span>
+            <span>《冒險齒輪：失落的二十四小時》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              !isSeries2
+                ? 'bg-amber-700 text-amber-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series1Chars.length}</span>
           </button>
 
-          <button onclick="window.switchCharTab('series2')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'series2'
-              ? 'bg-rose-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
+          <button onclick="window.switchCharTab('series2')" class="px-6 py-3 rounded-2xl text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries2
+              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
           }">
-            <span>🌸 星願鐘擺</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series2Count}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('vol3')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'vol3'
-              ? 'bg-sky-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500'
-          }">
-            <span>🪽 第三卷 · 星穹浮空城</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/10 text-sky-600'}">${vol3Count}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('vol2')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'vol2'
-              ? 'bg-emerald-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500'
-          }">
-            <span>⛵ 第二卷 · 千島齒輪海</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol2' ? 'bg-emerald-700 text-emerald-100' : 'bg-emerald-500/10 text-emerald-600'}">${vol2Count}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('core')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'core'
-              ? 'bg-amber-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
-          }">
-            <span>🎒 第一套核心群</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'core' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${coreCount}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('vol1')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            activeCharTab === 'vol1'
-              ? 'bg-indigo-600 text-white shadow-md'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500'
-          }">
-            <span>🏫 第一卷 · 鹿陽地下404</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] ${activeCharTab === 'vol1' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/10 text-indigo-600'}">${vol1Count}</span>
+            <span>《星願鐘擺與織光少女》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries2
+                ? 'bg-rose-700 text-rose-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series2Chars.length}</span>
           </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (char.vol === 'series2') volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
-            if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
-            if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
-            if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
+            if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            else if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            else if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            else if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
+
+            const accentTextClass = isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400';
+            const avatarBgClass = isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20';
+            const cardHoverBorder = isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50';
 
             return `
-              <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg flex flex-col justify-between">
+              <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg ${cardHoverBorder} flex flex-col justify-between">
                 <div>
                   <div class="flex items-start justify-between gap-3 mb-4">
                     <div class="flex items-start gap-4">
-                      <div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center text-3xl border border-amber-500/20 shadow-inner flex-shrink-0">
+                      <div class="w-14 h-14 rounded-2xl ${avatarBgClass} flex items-center justify-center text-3xl border shadow-inner flex-shrink-0">
                         ${char.avatar}
                       </div>
                       <div>
@@ -2053,7 +2026,7 @@
                           <h3 class="text-xl font-bold text-slate-900 dark:text-white">${char.name}</h3>
                           <span class="text-xs text-slate-400 font-mono">(${char.enName})</span>
                         </div>
-                        <div class="text-xs font-bold text-amber-600 mb-1">${char.role}</div>
+                        <div class="text-xs font-bold ${accentTextClass} mb-1">${char.role}</div>
                         <div class="text-[11px] text-slate-400">${char.class} · ${char.age}</div>
                       </div>
                     </div>
@@ -2066,8 +2039,8 @@
 
                   ${char.badge ? `
                     <div class="mb-3 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 text-xs flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-                      <span class="text-amber-500">🎖️</span>
-                      <span class="font-bold text-amber-600">稱號/徽章：</span>
+                      <span class="${isS2Char ? 'text-rose-500' : 'text-amber-500'}">🎖️</span>
+                      <span class="font-bold ${accentTextClass}">稱號/徽章：</span>
                       <span class="font-medium">${char.badge}</span>
                     </div>
                   ` : ''}
@@ -2081,7 +2054,7 @@
                       <div class="text-xs font-bold text-slate-400">專屬裝備與物件：</div>
                       ${char.items.map(item => `
                         <div class="text-xs bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
-                          <span class="font-bold text-amber-600">▪ ${item.name}：</span>
+                          <span class="font-bold ${accentTextClass}">▪ ${item.name}：</span>
                           <span class="text-slate-600 dark:text-slate-300">${item.desc}</span>
                         </div>
                       `).join('')}
