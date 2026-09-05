@@ -69,9 +69,9 @@ window.GEAR_SERIES = [
     id: "series-2",
     title: "星願鐘擺與織光少女",
     enTitle: "Star-Wish Pendulum and the Weaver of Light",
-    subtitle: "鐘錶物理與唯美成長冒險（預計全三卷）",
-    badge: "🔥 第三卷連載中",
-    badgeColor: "emerald",
+    subtitle: "鐘錶物理與唯美成長冒險（全三卷完結）",
+    badge: "✨ 全三卷完結",
+    badgeColor: "rose",
     targetAudience: "9～14 歲適讀 · 鐘錶物理 × 少年成長",
     tagline: "聽懂齒輪心跳的晨光堂女孩，與手握微積分的冰霜少女並肩追光！",
     description: "十三歲的晨光堂鐘錶學徒采婭玆，立志成為星港青年首席星軌修復師。在舊城區的晨光堂裡，她用薰衣草鐘錶油化解了天才少女林漪姉冰冷的外殼，並在雲海引航少年罧貁銁的默默陪伴下，深入地下熔爐熔鑄因瓦合金雙金屬發條，迎戰監察處的重型蒸汽巨像！",
@@ -79,9 +79,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 3,
       totalChapters: 30,
-      currentChaptersReleased: 29,
-      totalWords: "第三卷熱血連載中（已發布 29 章 · 16.8 萬字）",
-      statusText: "第三卷第 29 章全新上線！克爾能層與潘羅斯時空躍遷"
+      currentChaptersReleased: 30,
+      totalWords: "全三卷震撼完結（全 30 章 · 17.5 萬字）",
+      statusText: "全三卷大結局震撼完結！天穹之心與永恆共鳴鐘鳴"
     },
     volumes: [
       {
@@ -114,10 +114,10 @@ window.GEAR_SERIES = [
         title: "天穹之心的永恆鐘鳴",
         subtitle: "引力時間膨脹與光晶格鐘",
         chaptersCount: 10,
-        releasedChapters: 9,
-        wordCount: "第三卷連載中（已發布 9 章 · 6.3 萬字）",
-        status: "連載中（第 29 章已上線 · 終章即將揭幕）",
-        theme: "克爾度規 × 静止界限能層 × 潘羅斯過程 × 超輻射平復",
+        releasedChapters: 10,
+        wordCount: "第三卷完結（全 10 章 · 6.8 萬字）",
+        status: "全卷完結（全劇終 · 共 10 章）",
+        theme: "光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環 × 潘羅斯躍遷 × 永恆鐘鳴",
         firstChapterId: 1
       }
     ],
