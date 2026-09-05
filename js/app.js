@@ -895,11 +895,11 @@
                 <span>🤝 少年夥伴並肩共鳴</span>
               </div>
               <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <a href="#/read/book-5/5" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
-                  <span>✨ 閱讀最新第 15 章</span>
+                <a href="#/read/book-5/6" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-500 hover:from-amber-500 hover:to-rose-400 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95">
+                  <span>✨ 閱讀最新第 16 章</span>
                 </a>
                 <button onclick="window.openSeriesModal('series-2')" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all">
-                  📑 查看全 15 章目錄
+                  📑 查看全 16 章目錄
                 </button>
               </div>
             </div>
@@ -2100,7 +2100,7 @@
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (15項)</span>
+            <span>🌸 第二套 · 星願鐘擺 (16項)</span>
             <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
           </button>
           <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
@@ -3379,6 +3379,100 @@
               <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：06=F, 18=R, 09=I, 14=N, 07=G, 05=E。</p>
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                 06 ➜ F  |  18 ➜ R  |  09 ➜ I  |  14 ➜ N  |  07 ➜ G  |  05 ➜ E  ==>  【 FRINGE 】（干涉條紋／光波環紋）
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 實驗 16：三體有效勢能面與拉格朗日點動態模擬器 (第 16 章) -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-purple-600 dark:text-purple-400 flex items-center gap-2">
+                <span>🪐 16. 三體有效勢能面與拉格朗日點模擬器（第 16 章）</span>
+              </h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800">
+                限制性三體 (CR3BP) × 勞斯穩定性判據
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              探索同轉旋轉座標系下的圓型限制性三體問題（CR3BP）。調整雙星質量比 μ = M₂/(M₁+M₂) 與雅可比能量常數，即時觀察旋轉有效勢能面 U_eff、羅希瓣（Roche Lobes）、五大拉格朗日點（L₁～L₅）分佈，以及勞斯穩定性分水嶺（μ < 0.03852）下科氏力陀螺效應維持的封閉蝌蚪形與馬蹄形軌道！
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- 控制面板 -->
+              <div class="space-y-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-sm">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">雙星質量比 μ = M₂ / (M₁ + M₂)</span>
+                    <span id="s2LagrangeMuVal" class="font-bold text-purple-500">0.034 (勞斯穩定)</span>
+                  </div>
+                  <input id="s2LagrangeMuSlider" type="range" min="0.010" max="0.060" step="0.001" value="0.034" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                  <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>0.010 (特洛伊緊密)</span>
+                    <span class="text-purple-600 font-bold">0.0385 (勞斯極限)</span>
+                    <span>0.060 (混沌發散)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">軌道模式 (Phase Space Trajectory)</span>
+                  </div>
+                  <select id="s2LagrangeOrbitMode" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg p-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-purple-500">
+                    <option value="tadpole">蝌蚪形軌道 (Tadpole Orbit @ L4/L5)</option>
+                    <option value="horseshoe">馬蹄形軌道 (Horseshoe Orbit L4-L3-L5)</option>
+                    <option value="roche">羅希瓣物質溢流 (Roche Lobe Overflow @ L1)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-600 dark:text-slate-300">旋轉座標系角速度 ω</span>
+                    <span id="s2LagrangeOmegaVal" class="font-bold text-indigo-500">1.00 rad/s</span>
+                  </div>
+                  <input id="s2LagrangeOmegaSlider" type="range" min="0.5" max="2.0" step="0.1" value="1.0" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700 space-y-2">
+                  <div id="s2LagrangeRouthStatus" class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    ✓ 滿足勞斯判據：科氏力陀螺效應有效束縛 (μ < 0.0385)
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                    <div>L₁ 希爾半徑 γ₁：<span id="s2LagrangeL1Val" class="font-mono font-bold text-indigo-500">0.224 R</span></div>
+                    <div>L₄/L₅ 夾角幾何：<span class="font-mono font-bold text-purple-500">正三角形 60.0° (精確平衡)</span></div>
+                    <div>勞斯判別式 Δ：<span id="s2LagrangeDeltaVal" class="font-mono font-bold text-emerald-500">+0.1132 > 0</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 動態 Canvas 畫布 -->
+              <div class="lg:col-span-2 flex flex-col items-center">
+                <canvas id="s2LagrangeCanvas" width="560" height="270" class="w-full max-w-[560px] h-auto bg-slate-950 rounded-xl border border-slate-800 shadow-inner"></canvas>
+                <div class="w-full flex items-center justify-between text-xs mt-2 px-1">
+                  <span id="s2LagrangeStatus" class="font-semibold text-purple-500 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                    限制性三體勢能面解析中 · 巡天星槎引力走廊鎖定
+                  </span>
+                  <span class="text-slate-600 dark:text-slate-400">同轉旋轉座標系 (Synodic)</span>
+                </div>
+                <p id="s2LagrangeDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-left w-full">
+                  主伴雙星旋轉系中，L1~L3 鞍點具備發散不穩定性；L4/L5 三角點高原在科氏力動態偏折下形成優雅的金色蝌蚪形自穩定閉合軌道。
+                </p>
+              </div>
+            </div>
+
+            <!-- 密文解密卡片 -->
+            <div class="mt-4 p-3.5 rounded-xl bg-purple-500/5 border border-purple-500/20">
+              <div class="text-xs font-bold text-purple-800 dark:text-purple-400 mb-1 flex items-center gap-2">
+                <span>🔐 第 16 章核心密文：[ 12 - 01 - 07 - 18 - 01 - 14 - 07 - 05 ]</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">對應 26 個英文字母序號：12=L, 01=A, 07=G, 18=R, 01=A, 14=N, 07=G, 05=E。</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 font-mono text-xs font-bold">
+                12 ➜ L  |  01 ➜ A  |  07 ➜ G  |  18 ➜ R  |  01 ➜ A  |  14 ➜ N  |  07 ➜ G  |  05 ➜ E  ==>  【 LAGRANGE 】（拉格朗日平衡點）
               </div>
             </div>
           </div>
@@ -6882,6 +6976,295 @@
       updateInterferoSim();
       drawInterferoCanvas();
     }
+
+
+    // ==========================================
+    // 實驗 16：三體有效勢能面與拉格朗日點動態模擬器 (Ch 48 / Book 5 Ch 6)
+    // ==========================================
+    const s2LagrangeCanvas = document.getElementById('s2LagrangeCanvas');
+    const s2LagrangeMuSlider = document.getElementById('s2LagrangeMuSlider');
+    const s2LagrangeOrbitMode = document.getElementById('s2LagrangeOrbitMode');
+    const s2LagrangeOmegaSlider = document.getElementById('s2LagrangeOmegaSlider');
+    const s2LagrangeMuVal = document.getElementById('s2LagrangeMuVal');
+    const s2LagrangeOmegaVal = document.getElementById('s2LagrangeOmegaVal');
+    const s2LagrangeRouthStatus = document.getElementById('s2LagrangeRouthStatus');
+    const s2LagrangeL1Val = document.getElementById('s2LagrangeL1Val');
+    const s2LagrangeDeltaVal = document.getElementById('s2LagrangeDeltaVal');
+    const s2LagrangeStatus = document.getElementById('s2LagrangeStatus');
+    const s2LagrangeDesc = document.getElementById('s2LagrangeDesc');
+
+    let s2LagrangeAnimId = null;
+    let s2LagrangeParticles = [];
+    const ROUTH_CRITICAL = 0.0385207;
+
+    function resetLagrangeParticles() {
+      s2LagrangeParticles = [];
+      const mode = s2LagrangeOrbitMode ? s2LagrangeOrbitMode.value : 'tadpole';
+      const mu = parseFloat(s2LagrangeMuSlider ? s2LagrangeMuSlider.value : 0.034);
+      const count = 30;
+
+      for (let i = 0; i < count; i++) {
+        let x = 0, y = 0, vx = 0, vy = 0;
+        if (mode === 'tadpole') {
+          // 圍繞 L4 (x = 0.5 - mu, y = sqrt(3)/2) 展開微小閉合環
+          const l4x = 0.5 - mu;
+          const l4y = Math.sqrt(3) / 2;
+          const theta = (i / count) * Math.PI * 2;
+          const r = 0.03 + (i % 5) * 0.015;
+          x = l4x + r * Math.cos(theta);
+          y = l4y + r * Math.sin(theta);
+          vx = -0.06 * Math.sin(theta);
+          vy = 0.06 * Math.cos(theta);
+        } else if (mode === 'horseshoe') {
+          // 環抱 L4, L3, L5 的巨大馬蹄形
+          const phase = (i / count) * Math.PI * 1.85 - 0.92 * Math.PI;
+          const r = 1.0 + (Math.random() - 0.5) * 0.06;
+          x = -mu + r * Math.cos(phase);
+          y = r * Math.sin(phase);
+          vx = -0.08 * Math.sin(phase);
+          vy = 0.08 * Math.cos(phase);
+        } else {
+          // 羅希瓣物質溢流 (過 L1 點湧向伴星)
+          const gamma1 = Math.cbrt(mu / 3.0);
+          const l1x = 1 - mu - gamma1;
+          x = l1x - 0.04 + (Math.random() - 0.5) * 0.02;
+          y = (Math.random() - 0.5) * 0.03;
+          vx = 0.07 + Math.random() * 0.04;
+          vy = (Math.random() - 0.5) * 0.04;
+        }
+        s2LagrangeParticles.push({ x, y, vx, vy, trail: [] });
+      }
+    }
+
+    function updateLagrangeSim() {
+      if (!s2LagrangeMuSlider) return;
+      const mu = parseFloat(s2LagrangeMuSlider.value);
+      const isStable = mu < ROUTH_CRITICAL;
+      const gamma1 = Math.cbrt(mu / 3.0);
+      const delta = 1 - 27 * mu * (1 - mu);
+
+      if (s2LagrangeMuVal) {
+        s2LagrangeMuVal.textContent = `${mu.toFixed(3)} (${isStable ? '勞斯穩定' : '發散不穩定'})`;
+        s2LagrangeMuVal.className = `font-bold ${isStable ? 'text-purple-500' : 'text-rose-500'}`;
+      }
+      if (s2LagrangeL1Val) s2LagrangeL1Val.textContent = `${gamma1.toFixed(3)} R`;
+      if (s2LagrangeDeltaVal) {
+        s2LagrangeDeltaVal.textContent = `${delta > 0 ? '+' : ''}${delta.toFixed(4)} ${delta > 0 ? '> 0' : '< 0'}`;
+        s2LagrangeDeltaVal.className = `font-mono font-bold ${delta > 0 ? 'text-emerald-500' : 'text-rose-500'}`;
+      }
+
+      if (s2LagrangeRouthStatus) {
+        if (isStable) {
+          s2LagrangeRouthStatus.className = 'p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center gap-1.5';
+          s2LagrangeRouthStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span>✓ 滿足勞斯判據：科氏力陀螺效應有效束縛 (μ < 0.0385)';
+        } else {
+          s2LagrangeRouthStatus.className = 'p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-1.5';
+          s2LagrangeRouthStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>⚠ 越過勞斯分水嶺：特徵根實部裂變，軌道混沌發散！';
+        }
+      }
+
+      if (s2LagrangeStatus) {
+        if (isStable) {
+          s2LagrangeStatus.className = 'font-semibold text-purple-500 flex items-center gap-1.5';
+          s2LagrangeStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>限制性三體勢能面穩定 · 巡天星槎引力走廊打通';
+        } else {
+          s2LagrangeStatus.className = 'font-semibold text-rose-500 flex items-center gap-1.5';
+          s2LagrangeStatus.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>引力攝動失諧 · 特洛伊群面臨流星暴雨解體威脅';
+        }
+      }
+    }
+
+    function drawLagrangeCanvas() {
+      if (!s2LagrangeCanvas) return;
+      const ctx = s2LagrangeCanvas.getContext('2d');
+      const w = s2LagrangeCanvas.width;
+      const h = s2LagrangeCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const mu = parseFloat(s2LagrangeMuSlider ? s2LagrangeMuSlider.value : 0.034);
+      const omega = parseFloat(s2LagrangeOmegaSlider ? s2LagrangeOmegaSlider.value : 1.0);
+      const mode = s2LagrangeOrbitMode ? s2LagrangeOrbitMode.value : 'tadpole';
+      const isStable = mu < ROUTH_CRITICAL;
+
+      // 深空背景
+      ctx.fillStyle = '#060814';
+      ctx.fillRect(0, 0, w, h);
+
+      // 質心坐標系投影 (cx, cy)
+      const cx = w / 2;
+      const cy = h / 2;
+      const scale = 150;
+
+      function toScreen(x, y) {
+        return { sx: cx + x * scale, sy: cy - y * scale };
+      }
+
+      // 旋轉系參考同心圓
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(cx, cy, scale, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 主星 M1 在 (-mu, 0)，伴星 M2 在 (1 - mu, 0)
+      const m1 = toScreen(-mu, 0);
+      const m2 = toScreen(1 - mu, 0);
+
+      // 五大拉格朗日點計算
+      const gamma1 = Math.cbrt(mu / 3.0);
+      const l1 = toScreen(1 - mu - gamma1, 0);
+      const l2 = toScreen(1 - mu + gamma1, 0);
+      const l3 = toScreen(-1 - (5.0 / 12.0) * mu, 0);
+      const l4 = toScreen(0.5 - mu, Math.sqrt(3) / 2);
+      const l5 = toScreen(0.5 - mu, -Math.sqrt(3) / 2);
+
+      // 繪製正三角形引力連線 (M1-M2-L4 & M1-M2-L5)
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.25)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(m1.sx, m1.sy);
+      ctx.lineTo(l4.sx, l4.sy);
+      ctx.lineTo(m2.sx, m2.sy);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(m1.sx, m1.sy);
+      ctx.lineTo(l5.sx, l5.sy);
+      ctx.lineTo(m2.sx, m2.sy);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 羅希瓣等勢面示意線
+      ctx.strokeStyle = 'rgba(236, 72, 153, 0.25)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(m1.sx, m1.sy, scale * (1 - gamma1 * 1.1), 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(m2.sx, m2.sy, scale * gamma1 * 1.15, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 繪製五大拉格朗日點
+      const pts = [
+        { pt: l1, label: 'L₁', col: '#fbbf24' },
+        { pt: l2, label: 'L₂', col: '#fbbf24' },
+        { pt: l3, label: 'L₃', col: '#fbbf24' },
+        { pt: l4, label: 'L₄', col: isStable ? '#10b981' : '#ef4444' },
+        { pt: l5, label: 'L₅', col: isStable ? '#10b981' : '#ef4444' }
+      ];
+      pts.forEach(p => {
+        ctx.fillStyle = p.col;
+        ctx.shadowColor = p.col;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(p.pt.sx, p.pt.sy, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(p.label, p.pt.sx + 6, p.pt.sy - 6);
+      });
+
+      // 限制性三體微分方程步進
+      const dt = 0.02 * omega;
+      s2LagrangeParticles.forEach(p => {
+        const d1x = p.x + mu;
+        const d2x = p.x - (1 - mu);
+        const r1 = Math.sqrt(d1x * d1x + p.y * p.y) + 0.002;
+        const r2 = Math.sqrt(d2x * d2x + p.y * p.y) + 0.002;
+
+        const dUdx = p.x - ((1 - mu) * d1x) / (r1 * r1 * r1) - (mu * d2x) / (r2 * r2 * r2);
+        const dUdy = p.y - ((1 - mu) * p.y) / (r1 * r1 * r1) - (mu * p.y) / (r2 * r2 * r2);
+
+        let ax = 2 * omega * p.vy + dUdx;
+        let ay = -2 * omega * p.vx + dUdy;
+
+        // 若越過勞斯極限，施加非線性發散擾動
+        if (!isStable) {
+          ax += (Math.random() - 0.48) * 0.18;
+          ay += (Math.random() - 0.48) * 0.18;
+        }
+
+        p.vx += ax * dt;
+        p.vy += ay * dt;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+
+        p.trail.push({ x: p.x, y: p.y });
+        if (p.trail.length > 22) p.trail.shift();
+
+        // 繪製軌道殘影
+        if (p.trail.length > 1) {
+          ctx.strokeStyle = isStable ? 'rgba(168, 85, 247, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          p.trail.forEach((t, idx) => {
+            const sc = toScreen(t.x, t.y);
+            if (idx === 0) ctx.moveTo(sc.sx, sc.sy);
+            else ctx.lineTo(sc.sx, sc.sy);
+          });
+          ctx.stroke();
+        }
+
+        // 粒子光點
+        const sc = toScreen(p.x, p.y);
+        ctx.fillStyle = isStable ? '#c084fc' : '#f87171';
+        ctx.beginPath();
+        ctx.arc(sc.sx, sc.sy, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 繪製主星 M1 (幽藍巨星)
+      ctx.fillStyle = '#3b82f6';
+      ctx.shadowColor = '#60a5fa';
+      ctx.shadowBlur = 16;
+      ctx.beginPath();
+      ctx.arc(m1.sx, m1.sy, 11, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('M₁', m1.sx - 7, m1.sy - 15);
+
+      // 繪製伴星 M2 (赤紅金矮星)
+      ctx.fillStyle = '#ef4444';
+      ctx.shadowColor = '#f87171';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(m2.sx, m2.sy, Math.max(5, 12 * Math.cbrt(mu)), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('M₂', m2.sx - 7, m2.sy - 13);
+
+      s2LagrangeAnimId = requestAnimationFrame(drawLagrangeCanvas);
+    }
+
+    if (s2LagrangeCanvas) {
+      if (s2LagrangeAnimId) cancelAnimationFrame(s2LagrangeAnimId);
+      if (s2LagrangeMuSlider) {
+        s2LagrangeMuSlider.addEventListener('input', () => {
+          updateLagrangeSim();
+          resetLagrangeParticles();
+        });
+      }
+      if (s2LagrangeOrbitMode) {
+        s2LagrangeOrbitMode.addEventListener('change', () => {
+          resetLagrangeParticles();
+        });
+      }
+      if (s2LagrangeOmegaSlider) {
+        s2LagrangeOmegaSlider.addEventListener('input', () => {
+          if (s2LagrangeOmegaVal) s2LagrangeOmegaVal.textContent = `${parseFloat(s2LagrangeOmegaSlider.value).toFixed(2)} rad/s`;
+        });
+      }
+      resetLagrangeParticles();
+      updateLagrangeSim();
+      drawLagrangeCanvas();
+    }
+
 
 
     // ================== 第三卷實驗邏輯 ==================
