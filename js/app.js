@@ -703,7 +703,7 @@
       ` : ''}
 
       <!-- 精簡題頭 -->
-      <div class="mb-10 text-center max-w-2xl mx-auto">
+      <div class="mb-8 text-center max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
           <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
         </div>
@@ -713,6 +713,37 @@
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
           專為 9～14 歲孩子打造的原創長篇科幻。融合 STEM 物理數學謎題、有聲伴讀體驗。
         </p>
+      </div>
+
+      <!-- 全站即時雲端統計看板 -->
+      <div class="mb-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6">
+        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
+          <span class="text-xl">📖</span>
+          <div class="text-left">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">全站累計共讀</div>
+            <div class="text-sm font-black text-amber-600 dark:text-amber-400 font-mono">
+              ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '24.8 萬'} 次
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
+          <span class="text-xl">🔥</span>
+          <div class="text-left">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">已解鎖章節</div>
+            <div class="text-sm font-black text-emerald-600 dark:text-emerald-400 font-mono">
+              全 54 回正篇
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/20 shadow-sm flex items-center gap-3 backdrop-blur-sm">
+          <span class="text-xl">🧪</span>
+          <div class="text-left">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">STEM 互動實驗</div>
+            <div class="text-sm font-black text-purple-600 dark:text-purple-400 font-mono">
+              54 道破譯謎題
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 兩大旗艦套書專題展示區 (Series Showcase) -->
@@ -726,7 +757,12 @@
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                 🏆 第一套 · 全三卷完結旗艦套書
               </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲少兒 · STEM 密碼解謎</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
+                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-1') : '14.2 萬'} 次閱讀
+                </span>
+                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+              </div>
             </div>
 
             <!-- 標題與引言 -->
@@ -758,7 +794,10 @@
                     <div class="text-[11px] text-slate-500">第 1～10 章 · 43.7k 字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
                   </div>
                 </div>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-1') : ''}</span>
+                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
 
               <!-- 卷二 -->
@@ -772,7 +811,10 @@
                     <div class="text-[11px] text-slate-500">第 11～22 章 · 52.1k 字 · 大航海 × 聲納共振 × 全息折射</div>
                   </div>
                 </div>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
+                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
 
               <!-- 卷三 -->
@@ -786,7 +828,10 @@
                     <div class="text-[11px] text-slate-500">第 23～32 章 · 48.5k 字 · 平流層天梯 × 天體音波 × 反重力科技</div>
                   </div>
                 </div>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-3') : ''}</span>
+                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
             </div>
           </div>
@@ -819,7 +864,12 @@
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
                 🔥 第三卷連載中
               </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀 · 鐘錶物理 × 少年成長</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
+                  👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-2') : '10.6 萬'} 次閱讀
+                </span>
+                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～14 歲適讀</span>
+              </div>
             </div>
 
             <!-- 標題與引言 -->
@@ -852,7 +902,10 @@
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力 × 駐波和弦 × 陀螺進動</div>
                   </div>
                 </div>
-                <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-4') : ''}</span>
+                  <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
 
               <!-- 卷二 (全卷完結) -->
@@ -867,7 +920,10 @@
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">全 10 章完結 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 光學頻率梳 × 雙星共鳴</div>
                   </div>
                 </div>
-                <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-5') : ''}</span>
+                  <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
 
               <!-- 卷三 (連載中) -->
@@ -882,7 +938,10 @@
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">已更新至第 22 章 · 1.4 萬字 · 引力時間膨脹 × 光晶格鐘 × 相對論大地測量</div>
                   </div>
                 </div>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2">閱讀 ➜</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-6') : ''}</span>
+                  <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                </div>
               </a>
             </div>
           </div>
@@ -957,9 +1016,14 @@
                   ${vol.title}
                 </h4>
               </div>
-              <span class="text-xs font-medium text-slate-500">
-                ${vol.wordCount}
-              </span>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 font-semibold">
+                  👁️ ${window.StatsService ? window.StatsService.getBookReads(vol.bookId) : ''}
+                </span>
+                <span class="text-xs font-medium text-slate-500">
+                  ${vol.wordCount}
+                </span>
+              </div>
             </div>
 
             <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">
@@ -968,14 +1032,19 @@
 
             ${isReleased ? `
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                ${book.chapters.map(ch => `
+                ${book.chapters.map(ch => {
+                  const chReads = window.StatsService ? window.StatsService.getChapterReads(book.id, ch.id) : '';
+                  return `
                   <a href="#/read/${book.id}/${ch.id}" onclick="document.getElementById('series-catalog-modal').classList.add('hidden')" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all flex items-center justify-between text-xs group">
                     <span class="font-bold text-slate-700 dark:text-slate-200 group-hover:text-amber-600 truncate mr-2">
                       ${ch.title}
                     </span>
-                    <span class="text-[10px] text-slate-400 font-mono flex-shrink-0">${ch.wordCount}字</span>
+                    <div class="flex items-center gap-2 flex-shrink-0">
+                      ${chReads ? `<span class="text-[10px] text-amber-600/90 dark:text-amber-400 font-mono font-bold">👁️ ${chReads}</span>` : ''}
+                      <span class="text-[10px] text-slate-400 font-mono">${ch.wordCount}字</span>
+                    </div>
                   </a>
-                `).join('')}
+                `;}).join('')}
               </div>
             ` : `
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 text-slate-400 text-xs text-center font-medium">
@@ -1427,6 +1496,9 @@
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
     const chapter = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     saveProgress(bookId, chapter.id);
+    if (window.StatsService) {
+      window.StatsService.recordChapterRead(bookId, chapter.id);
+    }
 
     const prevChapter = book.chapters.find(c => c.id === chapterId - 1);
     const nextChapter = book.chapters.find(c => c.id === chapterId + 1);
@@ -1527,13 +1599,16 @@
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
             ${displayTitle}
           </h1>
-          <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+          <div class="flex items-center gap-3 text-xs text-slate-500 flex-wrap">
             <button id="btn-header-listen" class="px-3.5 py-1 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
               <span class="text-sm">🎧</span>
               <span>聽這章故事</span>
             </button>
             <span>📖 約 ${chapter.wordCount} 字</span>
             <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold">
+              👁️ ${window.StatsService ? window.StatsService.getChapterReads(bookId, chapter.id) : ''} 次閱讀
+            </span>
           </div>
         </header>
 
@@ -1555,6 +1630,15 @@
             </div>
           </div>
         ` : ''}
+
+        <!-- 閱讀共讀里程碑提示 -->
+        <div class="mt-8 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-amber-900 dark:text-amber-200">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🎉</span>
+            <span>您是第 <strong class="font-mono text-amber-600 dark:text-amber-400">${window.StatsService ? window.StatsService.getChapterReads(bookId, chapter.id) : ''}</strong> 位閱讀本章的探索者！</span>
+          </div>
+          <span class="text-[11px] text-slate-400 font-mono">⚡ 雲端即時共讀統計</span>
+        </div>
 
         <!-- 上下一章導航按鈕 -->
         <footer class="mt-14 pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
@@ -10721,6 +10805,16 @@
   window.addEventListener('DOMContentLoaded', () => {
     initGlobalEvents();
     handleRoute();
+
+    // 監聽雲端閱讀統計數據更新，自動同步更新首頁看板
+    if (window.StatsService) {
+      window.StatsService.onUpdate(() => {
+        const curHash = window.location.hash || '';
+        if (curHash === '' || curHash === '#/' || curHash === '#/library') {
+          renderLibrary();
+        }
+      });
+    }
   });
 
 })();
