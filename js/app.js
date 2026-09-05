@@ -2077,8 +2077,10 @@
     return svgs[ch] || `<div class="w-14 h-9 rounded border border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center text-[10px] font-mono text-slate-400 inline-block bg-slate-50 dark:bg-slate-800">SPACE</div>`;
   }
 
-  // 記錄實驗室當前頁籤狀態
-  let activeLabTab = 'vol3';
+  // 記錄實驗室當前頁籤狀態：套書 (Series) 與卷別 (Volume)
+  let activeLabSeries = 'series-2'; // 'series-1' | 'series-2' | 'series-3' | 'series-4'
+  let activeLabVolume = 'all';      // 'all' | 'vol1' | 'vol2' | 'vol3'
+  let activeLabTab = 'series2';     // 向下相容變數
 
   // 頁面渲染器：少年密碼實驗室 (Puzzle Lab - 全卷升級版)
   function renderPuzzleLab() {
@@ -2087,49 +2089,135 @@
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-8">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>🧩 動腦實驗室</span>
+            <span>🧩 動腦科學實驗室</span>
           </div>
-          <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">小偵探密碼破譯工作台</h1>
-          <p class="text-sm text-slate-500">書中出現的真實密碼學、物理光學、流體力學、天體物理與十二平均律！動手操作，解開科學奧秘。</p>
+          <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">小偵探密碼與 STEM 實驗室</h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400">書中出現的真實密碼學、天體物理、波動光學、流體力學與精密鐘錶物理！親自動手操作，解開科學奧秘。</p>
         </div>
 
-        <!-- 卷別切換頁籤 -->
-        <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
-          <button id="tab-btn-series2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabTab === 'series2' 
-              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25' 
+        <!-- ==================== 第一層：套書切換主選單 (Series Selector) ==================== -->
+        <div class="flex items-center justify-center flex-wrap gap-2.5 sm:gap-3 mb-6">
+          <!-- 第二套書按鈕 -->
+          <button id="tab-btn-series2" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabSeries === 'series-2'
+              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/40 scale-105'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500'
           }">
-            <span>🌸 第二套 · 星願鐘擺 (17項)</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/20 text-rose-600'}">NEW!</span>
+            <span>🌸 第二套 · 星願鐘擺</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/15 text-rose-600 dark:text-rose-400'}">20項 · 完結</span>
           </button>
-          <button id="tab-btn-vol3"  class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabTab === 'vol3' 
-              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25' 
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500'
-          }">
-            <span>🪽 第三卷：天體音波與平流層 (4項)</span>
-            <span class="px-1.5 py-0.5 rounded-md text-[10px] ${activeLabTab === 'vol3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/20 text-sky-600'}">NEW!</span>
-          </button>
-          <button id="tab-btn-vol2" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabTab === 'vol2' 
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20' 
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500'
-          }">
-            <span>🌊 第二卷：海事與光學流體 (4項)</span>
-          </button>
-          <button id="tab-btn-vol1" class="px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
-            activeLabTab === 'vol1' 
-              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' 
+
+          <!-- 第一套書按鈕 -->
+          <button id="tab-btn-series1" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabSeries === 'series-1'
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 ring-2 ring-indigo-400/40 scale-105'
               : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500'
           }">
-            <span>📘 第一卷：校園與機械電路 (3項)</span>
+            <span>📘 第一套 · 冒險齒輪</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-1' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400'}">11項 · 全三卷</span>
+          </button>
+
+          <!-- 第三套書按鈕 (未來擴展) -->
+          <button id="tab-btn-series3" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabSeries === 'series-3'
+              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/40 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 opacity-80 hover:opacity-100'
+          }">
+            <span>🔭 第三套書 (深空計畫)</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/15 text-sky-600 dark:text-sky-400'}">籌備中</span>
+          </button>
+
+          <!-- 第四套書按鈕 (未來擴展) -->
+          <button id="tab-btn-series4" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+            activeLabSeries === 'series-4'
+              ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25 ring-2 ring-purple-400/40 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-purple-500 opacity-80 hover:opacity-100'
+          }">
+            <span>🌌 第四套書 (未知維度)</span>
+            <span class="px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${activeLabSeries === 'series-4' ? 'bg-purple-700 text-purple-100' : 'bg-purple-500/15 text-purple-600 dark:text-purple-400'}">敬請期待</span>
           </button>
         </div>
 
-        <!-- 第二套實驗室內容 -->
-        <div id="lab-section-series2" class="${activeLabTab === 'series2' ? 'space-y-8' : 'hidden'}">
-          <!-- 實驗一：虎克定律發條熱膨脹與單擺等時週期模擬器 -->
+        <!-- ==================== 第二層：套書卷別次級導航列 (Volume Filter) ==================== -->
+        <!-- 第二套書之卷別次導航 -->
+        <div id="s2-vol-nav" class="${activeLabSeries === 'series-2' ? 'flex' : 'hidden'} items-center justify-center flex-wrap gap-2 mb-8 p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 max-w-2xl mx-auto border border-slate-200 dark:border-slate-700/60 shadow-inner">
+          <button id="s2-vol-btn-all" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'all'
+              ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            全部模擬器 (20項)
+          </button>
+          <button id="s2-vol-btn-vol1" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol1'
+              ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第一卷：追光星盤 (10項)
+          </button>
+          <button id="s2-vol-btn-vol2" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol2'
+              ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第二卷：旋轉稜鏡 (10項 · 完結)
+          </button>
+          <button id="s2-vol-btn-vol3" class="flex-1 min-w-[110px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol3'
+              ? 'bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第三卷：天穹之心 (預告)
+          </button>
+        </div>
+
+        <!-- 第一套書之卷別次導航 -->
+        <div id="s1-vol-nav" class="${activeLabSeries === 'series-1' ? 'flex' : 'hidden'} items-center justify-center flex-wrap gap-2 mb-8 p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 max-w-2xl mx-auto border border-slate-200 dark:border-slate-700/60 shadow-inner">
+          <button id="s1-vol-btn-all" class="flex-1 min-w-[100px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'all'
+              ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            全部模擬器 (11項)
+          </button>
+          <button id="s1-vol-btn-vol1" class="flex-1 min-w-[100px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol1'
+              ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第一卷：校園電路 (3項)
+          </button>
+          <button id="s1-vol-btn-vol2" class="flex-1 min-w-[100px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol2'
+              ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第二卷：海事流體 (4項)
+          </button>
+          <button id="s1-vol-btn-vol3" class="flex-1 min-w-[100px] py-1.5 px-3 rounded-xl font-bold text-xs transition-all ${
+            activeLabVolume === 'vol3'
+              ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+          }">
+            第三卷：天體音波 (4項)
+          </button>
+        </div>
+
+        <!-- ==================== 第二套書內容容器 (Series 2 Container) ==================== -->
+        <div id="lab-series-2-container" class="${activeLabSeries === 'series-2' ? 'block' : 'hidden'}">
+          <!-- 第二套 · 第一卷 (10項) -->
+          <div id="s2-vol1-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol1') ? 'space-y-8 mb-12' : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-rose-500/20">
+              <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-sm flex items-center justify-center">卷一</span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>🌸 第一卷：追光星盤的修復師</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400">實驗 1～10 · 鐘錶力學與聲學</span>
+                </h2>
+                <p class="text-xs text-slate-500">晨光堂發條與冰霜少女之約 · 虎克定律、雙金屬補償、翼帆升力、駐波和弦與陀螺進動</p>
+              </div>
+            </div>
+            <!-- 實驗一：虎克定律發條熱膨脹與單擺等時週期模擬器 -->
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
@@ -2940,17 +3028,21 @@
               </div>
             </div>
           </div>
+          </div>
 
-
-
-
-
-
-        </div>
-
-
-        
-          <!-- 實驗十一：馬呂斯光學偏振定律與雙星都卜勒光譜模擬器 (第 11 章) -->
+          <!-- 第二套 · 第二卷 (10項) -->
+          <div id="s2-vol2-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol2') ? 'space-y-8 mb-12' : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-amber-500/20 pt-4">
+              <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-sm flex items-center justify-center">卷二</span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>✨ 第二卷：旋轉稜鏡的雙星軌道</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">實驗 11～20 · 現代光學與引力大圓滿</span>
+                </h2>
+                <p class="text-xs text-slate-500">三千公尺孤峰雙星天象台 · 偏振光學、外差干涉、拉格朗日點、自適應光學、星冕全息與光學頻率梳</p>
+              </div>
+            </div>
+            <!-- 實驗十一：馬呂斯光學偏振定律與雙星都卜勒光譜模擬器 (第 11 章) -->
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
               <div class="flex items-center gap-2">
@@ -3870,9 +3962,323 @@
               </div>
             </div>
           </div>
+          </div>
 
-        <!-- 第三卷實驗室內容 -->
-        <div id="lab-section-vol3" class="${activeLabTab === 'vol3' ? 'space-y-8' : 'hidden'}">
+          <!-- 第二套 · 第三卷預告卡片 -->
+          <div id="s2-vol3-container" class="${activeLabVolume === 'vol3' ? 'block mb-12' : (activeLabVolume === 'all' ? 'block mb-12 mt-8' : 'hidden')}">
+            <div class="p-8 rounded-3xl bg-gradient-to-br from-rose-500/5 via-amber-500/5 to-purple-500/5 border-2 border-dashed border-rose-500/20 text-center relative overflow-hidden">
+              <div class="w-16 h-16 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
+                🔔
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-rose-500/10 text-rose-600 dark:text-rose-400 mb-2 inline-block">
+                第三卷即將開啟 · 敬請期待
+              </span>
+              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white mb-2">《天穹之心的永恆鐘鳴》概念實驗室</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto mb-6 leading-relaxed">
+                采婭玆與林漪姉即將前往星港最神聖的中央天穹巨鐘！第三卷預計整合十二平均律天體音階、引力諧振巨鐘、星港全城防禦網與終極星軌大決戰模擬器！
+              </p>
+              <div class="flex items-center justify-center gap-3">
+                <button onclick="document.getElementById('s2-vol-btn-vol2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-md shadow-rose-600/20 transition-all">
+                  ✨ 暢玩第二卷大結局模擬器
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 第一套書內容容器 (Series 1 Container) ==================== -->
+        <div id="lab-series-1-container" class="${activeLabSeries === 'series-1' ? 'block' : 'hidden'}">
+          <!-- 第一套 · 第一卷 (3項) -->
+          <div id="s1-vol1-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol1') ? 'space-y-8 mb-12' : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-indigo-500/20">
+              <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-sm flex items-center justify-center">卷一</span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>📘 第一卷：校園地下 404 室</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">工具 1～3 · 經典密碼與電路</span>
+                </h2>
+                <p class="text-xs text-slate-500">失竊的記憶與機械摺紙犬 · A1Z26 代換密碼、布林邏輯門與齒輪傳動比計算</p>
+              </div>
+            </div>
+            <div class="space-y-8">
+          <!-- 工具一：A1Z26 字母代換機 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
+              <span>1️⃣ A1Z26 密碼轉換機（第一章登場）</span>
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">輸入英文單詞（如 DONT DRINK MILK）轉換為數字，或輸入數字（以空格或減號分開）還原英文！</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">英文字母輸入：</label>
+                <input id="a1z26-text" type="text" value="DONT DRINK MILK" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm uppercase" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">A1Z26 數字代碼：</label>
+                <input id="a1z26-num" type="text" class="w-full p-3 rounded-xl border border-amber-500/50 bg-amber-500/5 font-mono text-sm font-bold text-amber-600" readonly />
+              </div>
+            </div>
+          </div>
+
+          <!-- 工具二：布林邏輯門模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
+              <span>2️⃣ 布林邏輯門真值驗證器（第四章登場）</span>
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">公式：<code>Y = (A AND (NOT B)) OR (B AND C)</code>。點擊三個開關切換通電 (1) 或斷電 (0)，看看電磁脈衝是否會釋放！</p>
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+              <button id="switch-a" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">紅閘 A：關 (0)</button>
+              <button id="switch-b" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">藍閘 B：關 (0)</button>
+              <button id="switch-c" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">黃閘 C：關 (0)</button>
+            </div>
+            <div id="logic-output" class="p-4 rounded-xl border font-mono text-sm flex items-center justify-between">
+              <div>
+                <div>輸出數值：<span id="logic-val" class="font-bold text-lg">0</span></div>
+                <div id="logic-eval" class="text-xs text-slate-400 mt-1">Y = (0 AND 1) OR (0 AND 0) = 0</div>
+              </div>
+              <div id="logic-status" class="px-3 py-1 rounded-lg text-xs font-bold">休眠脈衝未觸發</div>
+            </div>
+          </div>
+
+          <!-- 工具三：齒輪傳動比計算器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
+              <span>3️⃣ 齒輪傳動比計算機（第八章登場）</span>
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">公式：<code>i = Z3 / Z1</code>（惰輪 Z2 僅改變旋轉方向，不影響總比值）。拖動滑桿觀察傳動比與最簡整數比！</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">主動輪齒數 Z1: <span id="val-z1" class="text-amber-600 font-bold">24</span></label>
+                <input id="slider-z1" type="range" min="10" max="60" value="24" class="w-full" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">惰輪齒數 Z2 (不計入): <span id="val-z2" class="text-slate-400 font-bold">16</span></label>
+                <input id="slider-z2" type="range" min="10" max="40" value="16" class="w-full opacity-60" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">從動輪齒數 Z3: <span id="val-z3" class="text-amber-600 font-bold">36</span></label>
+                <input id="slider-z3" type="range" min="10" max="60" value="36" class="w-full" />
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-center">
+              <div class="text-xs text-slate-500">計算出的最簡整數傳動比：</div>
+              <div id="gear-ratio-result" class="text-2xl font-black text-amber-600 mt-1">3 / 2 (1.50)</div>
+              <div class="text-xs text-amber-700 dark:text-amber-300 mt-1">※ 旋鈕 A 設為 3，旋鈕 B 設為 2 即可解開第零天密鑰鎖！</div>
+            </div>
+          </div>
+        </div>
+          </div>
+
+          <!-- 第一套 · 第二卷 (4項) -->
+          <div id="s1-vol2-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol2') ? 'space-y-8 mb-12' : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-amber-500/20 pt-4">
+              <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-sm flex items-center justify-center">卷二</span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>🌊 第二卷：千島齒輪海的迷失燈塔</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">實驗 1～4 · 海事旗語與流體光學</span>
+                </h2>
+                <p class="text-xs text-slate-500">大航海與深海聲納共振 · 國際海事旗語、阿基米德浮箱力矩、布魯斯特偏振與五度相生律</p>
+              </div>
+            </div>
+            <div class="space-y-8">
+          <!-- 實驗一：國際海事信號旗語解碼機 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🚩 1. 國際海事信號旗語解碼機（第 14 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 font-bold">海事通訊密碼</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              國際信號旗（ICS）是全球航海通用的視覺密碼系統！輸入任何英文單字或句子，即時升起對應的標準海事旗幟：
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold text-slate-400">快速填入劇中密鑰：</span>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PILOT">PILOT (燈塔水閘密鑰)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="SOS">SOS (緊急呼救)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="GEAR">GEAR (冒險齒輪)</button>
+                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PICO">PICO (機械摺紙犬)</button>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-500 mb-1">英文字母輸入（A-Z）：</label>
+                <input id="ics-input" type="text" value="PILOT" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm uppercase tracking-wider" placeholder="輸入英文字母..." />
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+                <div class="text-xs font-bold text-slate-400 mb-3">信號旗幟懸掛陣列：</div>
+                <div id="ics-flags-display" class="flex flex-wrap items-center gap-3 min-h-[50px]">
+                  <!-- SVG 旗幟將即時渲染在此 -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗二：阿基米德浮箱力矩平衡天平 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>⚖️ 2. 阿基米德浮箱力矩平衡天平（第 16 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-bold">流體浮力 × 槓桿力矩</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              深海 100 ATM 水壓猛烈衝擊水門！三組浮箱力臂分別為 <strong>L1 = 1m, L2 = 2m, L3 = 3m</strong>，總排水配重剛好為 <strong>11 格</strong>。調整三組水量，讓三組力矩（τ = V × L）完全平衡關死重壓門！
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>左浮箱 V1 (力臂 1m):</span>
+                  <span id="txt-v1" class="text-amber-600 font-mono text-sm font-bold">6 格</span>
+                </div>
+                <input id="slider-v1" type="range" min="0" max="11" value="6" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v1" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>中浮箱 V2 (力臂 2m):</span>
+                  <span id="txt-v2" class="text-amber-600 font-mono text-sm font-bold">3 格</span>
+                </div>
+                <input id="slider-v2" type="range" min="0" max="11" value="3" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v2" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>右浮箱 V3 (力臂 3m):</span>
+                  <span id="txt-v3" class="text-amber-600 font-mono text-sm font-bold">2 格</span>
+                </div>
+                <input id="slider-v3" type="range" min="0" max="11" value="2" class="w-full" />
+                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v3" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
+              </div>
+            </div>
+
+            <!-- 力矩狀態面板 -->
+            <div id="archimedes-status-box" class="p-5 rounded-xl border transition-all">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs font-bold text-slate-400">當前注水總量 / 力矩配比：</div>
+                  <div id="archimedes-calc" class="font-mono font-bold text-sm mt-1">總水量：11 / 11 格 ｜ 力矩值：τ1=6, τ2=6, τ3=6</div>
+                </div>
+                <div id="archimedes-badge" class="px-4 py-2 rounded-xl text-xs font-bold"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 實驗三：布魯斯特角偏光透鏡模擬器 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🪞 3. 布魯斯特角偏光透鏡模擬器（第 17 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-600 font-bold">大氣逆溫 × 偏振光學</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              大氣逆溫層與全息投影製造出三座一模一樣的島嶼！旋轉護目鏡偏振轉輪至完全偏振角（tan(θB) = 1.00020 / 1.00035 ≈ 45.0°），消除水面反射眩光與全息激光虛像：
+            </p>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 mb-6">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500">護目鏡偏振角度轉輪：</span>
+                <span id="txt-polarizer-angle" class="text-amber-600 font-mono text-lg font-bold">0.0°</span>
+              </div>
+              <input id="slider-polarizer" type="range" min="0" max="90" step="1" value="0" class="w-full" />
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                <span>0° (未偏振)</span>
+                <span class="text-amber-600 font-bold">45° (布魯斯特角)</span>
+                <span>90° (垂直偏振)</span>
+              </div>
+            </div>
+
+            <!-- 三島光學顯像區 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- A 島 -->
+              <div id="island-a" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">A 號島嶼</div>
+                <div id="island-a-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+              <!-- B 島 -->
+              <div id="island-b" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">B 號島嶼</div>
+                <div id="island-b-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+              <!-- C 島 -->
+              <div id="island-c" class="p-4 rounded-xl border text-center transition-all duration-300">
+                <div class="text-2xl mb-1">🏝️</div>
+                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">C 號島嶼</div>
+                <div id="island-c-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
+              </div>
+            </div>
+
+            <div id="polarizer-verdict" class="mt-4 p-3 rounded-lg text-center text-xs font-bold font-mono"></div>
+          </div>
+
+          <!-- 實驗四：畢達哥拉斯五度相生律管風琴 -->
+          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
+                <span>🎵 4. 畢達哥拉斯五度相生律風琴諧波器（第 18 章）</span>
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 font-bold">聲學駐波 × 純律和弦</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+              四根青銅石柱管長與頻率成反比（f ∝ 1/L）。點擊管柱試聽單音，或點擊「奏響天琴和弦」，產生純五度共振，平息夜光機械水母群並化解聲學懸浮！
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <button id="pipe-1" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">1號柱 (4.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Do (C4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">261.6 Hz · 比值 6</div>
+              </button>
+              <button id="pipe-2" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">2號柱 (3.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Fa (F4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">349.2 Hz · 比值 8</div>
+              </button>
+              <button id="pipe-3" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">3號柱 (2.67m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">Sol (G4)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">392.0 Hz · 比值 9</div>
+              </button>
+              <button id="pipe-4" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
+                <div class="text-xs text-slate-400 mb-1">4號柱 (2.0m)</div>
+                <div class="text-xl font-bold text-amber-600 font-mono">High Do (C5)</div>
+                <div class="text-[10px] text-slate-400 mt-1 font-mono">523.3 Hz · 比值 12</div>
+              </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <button id="btn-play-chord" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition-all">
+                <span>🎼 同步吹響【天琴純五度和弦】</span>
+              </button>
+              <div id="chord-status" class="text-xs font-mono text-slate-500 flex-1 text-center sm:text-left">
+                點擊上方按鈕聆聽四大音頻疊加產生的相干諧波
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+
+          <!-- 第一套 · 第三卷 (4項) -->
+          <div id="s1-vol3-container" class="${(activeLabVolume === 'all' || activeLabVolume === 'vol3') ? 'space-y-8 mb-12' : 'hidden'}">
+            <div class="flex items-center gap-3 pb-3 border-b border-sky-500/20 pt-4">
+              <span class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 font-black text-sm flex items-center justify-center">卷三</span>
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>🪽 第三卷：星穹鐘樓的第十二個音符</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400">實驗 1～4 · 天體音波與平流層</span>
+                </h2>
+                <p class="text-xs text-slate-500">平流層天梯與反重力破曉 · 十二平均律音叉共振、都卜勒頻移、平流層氣壓計與行星共振天梯</p>
+              </div>
+            </div>
+            <div class="space-y-8">
           <!-- 實驗一：十二平均律天體音叉共振儀 -->
           <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
             <div class="flex items-center justify-between gap-2 mb-2">
@@ -4082,294 +4488,183 @@
             <div id="resonance-status-box" class="p-3.5 rounded-xl text-xs font-mono"></div>
           </div>
         </div>
-
-        <!-- 第二卷實驗室內容 -->
-        <div id="lab-section-vol2" class="${activeLabTab === 'vol2' ? 'space-y-8' : 'hidden'}">
-          <!-- 實驗一：國際海事信號旗語解碼機 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
-                <span>🚩 1. 國際海事信號旗語解碼機（第 14 章）</span>
-              </h3>
-              <span class="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 font-bold">海事通訊密碼</span>
-            </div>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-              國際信號旗（ICS）是全球航海通用的視覺密碼系統！輸入任何英文單字或句子，即時升起對應的標準海事旗幟：
-            </p>
-            
-            <div class="space-y-4">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="text-xs font-bold text-slate-400">快速填入劇中密鑰：</span>
-                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PILOT">PILOT (燈塔水閘密鑰)</button>
-                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="SOS">SOS (緊急呼救)</button>
-                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="GEAR">GEAR (冒險齒輪)</button>
-                <button class="btn-flag-preset px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-600 text-xs font-mono font-bold" data-word="PICO">PICO (機械摺紙犬)</button>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">英文字母輸入（A-Z）：</label>
-                <input id="ics-input" type="text" value="PILOT" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm uppercase tracking-wider" placeholder="輸入英文字母..." />
-              </div>
-
-              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
-                <div class="text-xs font-bold text-slate-400 mb-3">信號旗幟懸掛陣列：</div>
-                <div id="ics-flags-display" class="flex flex-wrap items-center gap-3 min-h-[50px]">
-                  <!-- SVG 旗幟將即時渲染在此 -->
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
 
-          <!-- 實驗二：阿基米德浮箱力矩平衡天平 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
-                <span>⚖️ 2. 阿基米德浮箱力矩平衡天平（第 16 章）</span>
-              </h3>
-              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-bold">流體浮力 × 槓桿力矩</span>
-            </div>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-              深海 100 ATM 水壓猛烈衝擊水門！三組浮箱力臂分別為 <strong>L1 = 1m, L2 = 2m, L3 = 3m</strong>，總排水配重剛好為 <strong>11 格</strong>。調整三組水量，讓三組力矩（τ = V × L）完全平衡關死重壓門！
-            </p>
+        <!-- ==================== 第三套書概念藍圖容器 (Series 3 Container) ==================== -->
+        <div id="lab-series-3-container" class="${activeLabSeries === 'series-3' ? 'block' : 'hidden'}">
+          <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-sky-950 via-slate-900 to-indigo-950 text-white border border-sky-500/30 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-400 text-xs font-bold mb-4 border border-sky-500/30">
+                <span>🔭 第三套書實驗室概念藍圖 · 籌備中</span>
+              </div>
+              <h2 class="text-2xl md:text-3xl font-extrabold mb-3 bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">
+                深空躍遷與量子織網：前沿 STEM 概念實驗室
+              </h2>
+              <p class="text-sm text-slate-300 max-w-2xl mb-8 leading-relaxed">
+                隨著少年學者邁向天頂之外的浩瀚深空，第三套書將帶領讀者探索更高維度的物理前沿！我們正在設計全新的量子與相對論交互模擬器：
+              </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span>左浮箱 V1 (力臂 1m):</span>
-                  <span id="txt-v1" class="text-amber-600 font-mono text-sm font-bold">6 格</span>
+              <!-- 概念模擬器卡片網格 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
+                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>⚛️ 量子糾纏通訊與 QKD 密鑰分發</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">利用貝爾不等式與單光子正交自旋偏振，在無延遲深空中實現不可破譯的量子加密通信！</p>
                 </div>
-                <input id="slider-v1" type="range" min="0" max="11" value="6" class="w-full" />
-                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v1" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span>中浮箱 V2 (力臂 2m):</span>
-                  <span id="txt-v2" class="text-amber-600 font-mono text-sm font-bold">3 格</span>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
+                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>🕳️ 史瓦西黑洞與愛因斯坦-羅森橋</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">模擬極限時空曲率下的引力時間膨脹、光子球層與微型時空蟲洞穿越路徑！</p>
                 </div>
-                <input id="slider-v2" type="range" min="0" max="11" value="3" class="w-full" />
-                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v2" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span>右浮箱 V3 (力臂 3m):</span>
-                  <span id="txt-v3" class="text-amber-600 font-mono text-sm font-bold">2 格</span>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
+                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>🧲 托卡馬克磁約束反物質引擎</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">超導環形磁場約束正負電子湮滅高能伽馬射線，計算比衝與相對論推進效率！</p>
                 </div>
-                <input id="slider-v3" type="range" min="0" max="11" value="2" class="w-full" />
-                <div class="text-[11px] text-slate-400 mt-2">平衡力矩：<span id="tau-v3" class="font-mono font-bold text-slate-700 dark:text-slate-200">6</span> 單位</div>
-              </div>
-            </div>
-
-            <!-- 力矩狀態面板 -->
-            <div id="archimedes-status-box" class="p-5 rounded-xl border transition-all">
-              <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div>
-                  <div class="text-xs font-bold text-slate-400">當前注水總量 / 力矩配比：</div>
-                  <div id="archimedes-calc" class="font-mono font-bold text-sm mt-1">總水量：11 / 11 格 ｜ 力矩值：τ1=6, τ2=6, τ3=6</div>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors">
+                  <div class="text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>🚀 阿爾庫比埃度規曲率泡泡模擬</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">時空前縮後張幾何流形，探索超光速視界折射與負能量密度分佈！</p>
                 </div>
-                <div id="archimedes-badge" class="px-4 py-2 rounded-xl text-xs font-bold"></div>
               </div>
-            </div>
-          </div>
 
-          <!-- 實驗三：布魯斯特角偏光透鏡模擬器 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
-                <span>🪞 3. 布魯斯特角偏光透鏡模擬器（第 17 章）</span>
-              </h3>
-              <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-600 font-bold">大氣逆溫 × 偏振光學</span>
-            </div>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-              大氣逆溫層與全息投影製造出三座一模一樣的島嶼！旋轉護目鏡偏振轉輪至完全偏振角（tan(θB) = 1.00020 / 1.00035 ≈ 45.0°），消除水面反射眩光與全息激光虛像：
-            </p>
-
-            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 mb-6">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-500">護目鏡偏振角度轉輪：</span>
-                <span id="txt-polarizer-angle" class="text-amber-600 font-mono text-lg font-bold">0.0°</span>
-              </div>
-              <input id="slider-polarizer" type="range" min="0" max="90" step="1" value="0" class="w-full" />
-              <div class="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
-                <span>0° (未偏振)</span>
-                <span class="text-amber-600 font-bold">45° (布魯斯特角)</span>
-                <span>90° (垂直偏振)</span>
-              </div>
-            </div>
-
-            <!-- 三島光學顯像區 -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <!-- A 島 -->
-              <div id="island-a" class="p-4 rounded-xl border text-center transition-all duration-300">
-                <div class="text-2xl mb-1">🏝️</div>
-                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">A 號島嶼</div>
-                <div id="island-a-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
-              </div>
-              <!-- B 島 -->
-              <div id="island-b" class="p-4 rounded-xl border text-center transition-all duration-300">
-                <div class="text-2xl mb-1">🏝️</div>
-                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">B 號島嶼</div>
-                <div id="island-b-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
-              </div>
-              <!-- C 島 -->
-              <div id="island-c" class="p-4 rounded-xl border text-center transition-all duration-300">
-                <div class="text-2xl mb-1">🏝️</div>
-                <div class="font-bold text-sm mb-1 text-slate-800 dark:text-slate-200">C 號島嶼</div>
-                <div id="island-c-desc" class="text-xs text-slate-400">遠景輪廓模糊，水霧瀰漫</div>
-              </div>
-            </div>
-
-            <div id="polarizer-verdict" class="mt-4 p-3 rounded-lg text-center text-xs font-bold font-mono"></div>
-          </div>
-
-          <!-- 實驗四：畢達哥拉斯五度相生律管風琴 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <h3 class="text-lg font-bold text-amber-600 flex items-center gap-2">
-                <span>🎵 4. 畢達哥拉斯五度相生律風琴諧波器（第 18 章）</span>
-              </h3>
-              <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 font-bold">聲學駐波 × 純律和弦</span>
-            </div>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-              四根青銅石柱管長與頻率成反比（f ∝ 1/L）。點擊管柱試聽單音，或點擊「奏響天琴和弦」，產生純五度共振，平息夜光機械水母群並化解聲學懸浮！
-            </p>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-              <button id="pipe-1" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
-                <div class="text-xs text-slate-400 mb-1">1號柱 (4.0m)</div>
-                <div class="text-xl font-bold text-amber-600 font-mono">Do (C4)</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono">261.6 Hz · 比值 6</div>
-              </button>
-              <button id="pipe-2" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
-                <div class="text-xs text-slate-400 mb-1">2號柱 (3.0m)</div>
-                <div class="text-xl font-bold text-amber-600 font-mono">Fa (F4)</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono">349.2 Hz · 比值 8</div>
-              </button>
-              <button id="pipe-3" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
-                <div class="text-xs text-slate-400 mb-1">3號柱 (2.67m)</div>
-                <div class="text-xl font-bold text-amber-600 font-mono">Sol (G4)</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono">392.0 Hz · 比值 9</div>
-              </button>
-              <button id="pipe-4" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-amber-500 text-center transition-all">
-                <div class="text-xs text-slate-400 mb-1">4號柱 (2.0m)</div>
-                <div class="text-xl font-bold text-amber-600 font-mono">High Do (C5)</div>
-                <div class="text-[10px] text-slate-400 mt-1 font-mono">523.3 Hz · 比值 12</div>
-              </button>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center gap-4">
-              <button id="btn-play-chord" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition-all">
-                <span>🎼 同步吹響【天琴純五度和弦】</span>
-              </button>
-              <div id="chord-status" class="text-xs font-mono text-slate-500 flex-1 text-center sm:text-left">
-                點擊上方按鈕聆聽四大音頻疊加產生的相干諧波
+              <div class="flex flex-wrap items-center gap-3">
+                <button onclick="document.getElementById('tab-btn-series2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 transition-all flex items-center gap-2">
+                  <span>🌸 體驗第二套星願鐘擺實驗室 (20項)</span>
+                </button>
+                <button onclick="document.getElementById('tab-btn-series1').click()" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all flex items-center gap-2">
+                  <span>📘 體驗第一套冒險齒輪實驗室 (11項)</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 第一卷實驗室內容 -->
-        <div id="lab-section-vol1" class="${activeLabTab === 'vol1' ? 'space-y-8' : 'hidden'}">
-          <!-- 工具一：A1Z26 字母代換機 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
-              <span>1️⃣ A1Z26 密碼轉換機（第一章登場）</span>
-            </h3>
-            <p class="text-xs text-slate-500 mb-4">輸入英文單詞（如 DONT DRINK MILK）轉換為數字，或輸入數字（以空格或減號分開）還原英文！</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">英文字母輸入：</label>
-                <input id="a1z26-text" type="text" value="DONT DRINK MILK" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm uppercase" />
+        <!-- ==================== 第四套書概念藍圖容器 (Series 4 Container) ==================== -->
+        <div id="lab-series-4-container" class="${activeLabSeries === 'series-4' ? 'block' : 'hidden'}">
+          <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-purple-950 via-slate-900 to-rose-950 text-white border border-purple-500/30 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-4 border border-purple-500/30">
+                <span>🌌 第四套書實驗室概念藍圖 · 敬請期待</span>
               </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">A1Z26 數字代碼：</label>
-                <input id="a1z26-num" type="text" class="w-full p-3 rounded-xl border border-amber-500/50 bg-amber-500/5 font-mono text-sm font-bold text-amber-600" readonly />
-              </div>
-            </div>
-          </div>
+              <h2 class="text-2xl md:text-3xl font-extrabold mb-3 bg-gradient-to-r from-white via-purple-200 to-pink-400 bg-clip-text text-transparent">
+                未知維度與宇宙拓撲：宏觀天文 STEM 實驗室
+              </h2>
+              <p class="text-sm text-slate-300 max-w-2xl mb-8 leading-relaxed">
+                穿越平行宇宙與高維弦理論的交織空間！第四套書將引領讀者探索宇宙終極奧秘，規劃中的互動模擬器包括：
+              </p>
 
-          <!-- 工具二：布林邏輯門模擬器 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
-              <span>2️⃣ 布林邏輯門真值驗證器（第四章登場）</span>
-            </h3>
-            <p class="text-xs text-slate-500 mb-4">公式：<code>Y = (A AND (NOT B)) OR (B AND C)</code>。點擊三個開關切換通電 (1) 或斷電 (0)，看看電磁脈衝是否會釋放！</p>
-            <div class="flex flex-wrap items-center gap-4 mb-6">
-              <button id="switch-a" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">紅閘 A：關 (0)</button>
-              <button id="switch-b" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">藍閘 B：關 (0)</button>
-              <button id="switch-c" class="px-5 py-3 rounded-xl font-bold text-sm border-2 transition-all">黃閘 C：關 (0)</button>
-            </div>
-            <div id="logic-output" class="p-4 rounded-xl border font-mono text-sm flex items-center justify-between">
-              <div>
-                <div>輸出數值：<span id="logic-val" class="font-bold text-lg">0</span></div>
-                <div id="logic-eval" class="text-xs text-slate-400 mt-1">Y = (0 AND 1) OR (0 AND 0) = 0</div>
+              <!-- 概念模擬器卡片網格 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
+                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>🌀 卡拉比-丘流形高維投影儀</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">在三維螢幕上動態旋轉六維緊緻化幾何空間，觀察超弦自旋態之振動模式！</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
+                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>⏳ 麥克斯韋妖與宇宙熱寂時間箭頭</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">追蹤微觀熱分子隨機碰撞與資訊熵代價，解析時間為何不可逆流之物理鐵律！</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
+                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>📡 宇宙微波背景輻射角功率譜</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">調諧暴脹時期量子漲落聲學波峰，反演宇宙重子物質、暗物質與暗能量比例！</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition-colors">
+                  <div class="text-purple-400 font-bold text-sm mb-1 flex items-center gap-2">
+                    <span>🛡️ 戴森球恆星級引力透鏡陣列</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">規劃中</span>
+                  </div>
+                  <p class="text-xs text-slate-400">操控圍繞太陽建造的數百萬枚反射鏡帆，實現星系尺度超微角秒解析度觀測！</p>
+                </div>
               </div>
-              <div id="logic-status" class="px-3 py-1 rounded-lg text-xs font-bold">休眠脈衝未觸發</div>
-            </div>
-          </div>
 
-          <!-- 工具三：齒輪傳動比計算器 -->
-          <div class="p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
-            <h3 class="text-lg font-bold text-amber-600 mb-2 flex items-center gap-2">
-              <span>3️⃣ 齒輪傳動比計算機（第八章登場）</span>
-            </h3>
-            <p class="text-xs text-slate-500 mb-4">公式：<code>i = Z3 / Z1</code>（惰輪 Z2 僅改變旋轉方向，不影響總比值）。拖動滑桿觀察傳動比與最簡整數比！</p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">主動輪齒數 Z1: <span id="val-z1" class="text-amber-600 font-bold">24</span></label>
-                <input id="slider-z1" type="range" min="10" max="60" value="24" class="w-full" />
+              <div class="flex flex-wrap items-center gap-3">
+                <button onclick="document.getElementById('tab-btn-series2').click()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 transition-all flex items-center gap-2">
+                  <span>🌸 體驗第二套星願鐘擺實驗室 (20項)</span>
+                </button>
+                <button onclick="document.getElementById('tab-btn-series1').click()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all flex items-center gap-2">
+                  <span>📘 體驗第一套冒險齒輪實驗室 (11項)</span>
+                </button>
               </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">惰輪齒數 Z2 (不計入): <span id="val-z2" class="text-slate-400 font-bold">16</span></label>
-                <input id="slider-z2" type="range" min="10" max="40" value="16" class="w-full opacity-60" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 mb-1">從動輪齒數 Z3: <span id="val-z3" class="text-amber-600 font-bold">36</span></label>
-                <input id="slider-z3" type="range" min="10" max="60" value="36" class="w-full" />
-              </div>
-            </div>
-            <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-center">
-              <div class="text-xs text-slate-500">計算出的最簡整數傳動比：</div>
-              <div id="gear-ratio-result" class="text-2xl font-black text-amber-600 mt-1">3 / 2 (1.50)</div>
-              <div class="text-xs text-amber-700 dark:text-amber-300 mt-1">※ 旋鈕 A 設為 3，旋鈕 B 設為 2 即可解開第零天密鑰鎖！</div>
             </div>
           </div>
         </div>
       </section>
     `;
 
-    // 頁籤切換事件
-    const tabVol1 = document.getElementById('tab-btn-vol1');
-    const tabVol2 = document.getElementById('tab-btn-vol2');
-    const tabVol3 = document.getElementById('tab-btn-vol3');
-
-    if (tabVol3) {
-      tabVol3.onclick = () => {
-        activeLabTab = 'vol3';
-        renderPuzzleLab();
-      };
-    }
-    if (tabVol2) {
-      tabVol2.onclick = () => {
-        activeLabTab = 'vol2';
-        renderPuzzleLab();
-      };
-    }
+        // ==================== 第一層：套書切換事件 ====================
+    const tabSeries1 = document.getElementById('tab-btn-series1');
     const tabSeries2 = document.getElementById('tab-btn-series2');
+    const tabSeries3 = document.getElementById('tab-btn-series3');
+    const tabSeries4 = document.getElementById('tab-btn-series4');
+
+    if (tabSeries1) {
+      tabSeries1.onclick = () => {
+        activeLabSeries = 'series-1';
+        activeLabVolume = 'all';
+        renderPuzzleLab();
+      };
+    }
     if (tabSeries2) {
       tabSeries2.onclick = () => {
-        activeLabTab = 'series2';
+        activeLabSeries = 'series-2';
+        activeLabVolume = 'all';
+        renderPuzzleLab();
+      };
+    }
+    if (tabSeries3) {
+      tabSeries3.onclick = () => {
+        activeLabSeries = 'series-3';
+        renderPuzzleLab();
+      };
+    }
+    if (tabSeries4) {
+      tabSeries4.onclick = () => {
+        activeLabSeries = 'series-4';
         renderPuzzleLab();
       };
     }
 
-    if (tabVol1) {
-      tabVol1.onclick = () => {
-        activeLabTab = 'vol1';
-        renderPuzzleLab();
-      };
-    }
+    // ==================== 第二層：第二套書卷別切換事件 ====================
+    ['all', 'vol1', 'vol2', 'vol3'].forEach(v => {
+      const btn = document.getElementById(`s2-vol-btn-${v}`);
+      if (btn) {
+        btn.onclick = () => {
+          activeLabVolume = v;
+          renderPuzzleLab();
+        };
+      }
+    });
+
+    // ==================== 第二層：第一套書卷別切換事件 ====================
+    ['all', 'vol1', 'vol2', 'vol3'].forEach(v => {
+      const btn = document.getElementById(`s1-vol-btn-${v}`);
+      if (btn) {
+        btn.onclick = () => {
+          activeLabVolume = v;
+          renderPuzzleLab();
+        };
+      }
+    });
 
     // ================== 第二套實驗邏輯 (虎克定律 & A1Z26) ==================
     const s2TurnsSlider = document.getElementById('series2-turns-slider');
