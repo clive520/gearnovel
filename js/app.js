@@ -523,6 +523,10 @@
     { name: '罧貁銁', role: '男主角 · 雲海引航少年' },
     { name: '露露', role: '折耳機械萌狐' },
     { name: '雷諾', role: '天樞科學院傲慢學員' },
+    { name: '莫拉長老', role: '雙星天象台總台長 · 前任榮譽院長' },
+    { name: '莫拉', role: '雙星天象台總台長 · 前任榮譽院長' },
+    { name: '歌利亞號', role: '重型蒸汽星軌巨像' },
+    { name: '歌利亞', role: '重型蒸汽星軌巨像' },
     { name: '誠浩', role: '男主角 · 齒輪解謎少年' },
     { name: '葉旖緁', role: '女主角 · 數據與光學少女' },
     { name: '將江', role: '男主角 · 機械動力大師' },
@@ -560,7 +564,10 @@
     { name: 'Renault', role: 'Academy Student' },
     { name: 'Master Cai', role: 'Dawn Hall Master' },
     { name: 'Director Lin', role: 'Academy Director' },
-    { name: 'Lin Yan', role: 'Academy Director' }
+    { name: 'Lin Yan', role: 'Academy Director' },
+    { name: 'Elder Mola', role: 'Observatory Director' },
+    { name: 'Mola', role: 'Observatory Director' },
+    { name: 'Goliath', role: 'Steam Colossus' }
   ];
   PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
   const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
