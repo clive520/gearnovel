@@ -865,19 +865,20 @@
           <!-- 收錄全三卷列表 -->
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-              <span>📚 收錄全三卷三部曲（共 32 章已完結）</span>
+              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
               <span class="text-amber-600 font-mono font-bold">14.4 萬字</span>
             </div>
 
             <!-- 卷一 -->
-            <a href="#/read/book-1/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+            <a href="#/read/book-1/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
                 <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
-                    《校園地下 404 室》
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《校園地下 404 室》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1～10 章 · 43.7k 字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～10 章 · 4.4 萬字 · 校園密室 × 摩斯代碼 × 邏輯電路</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -887,36 +888,38 @@
             </a>
 
             <!-- 卷二 -->
-            <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+            <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
-                    《千島齒輪海的迷失燈塔》
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《千島齒輪海的迷失燈塔》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 11～22 章 · 52.1k 字 · 大航海 × 聲納共振 × 全息折射</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 11～22 章 · 5.2 萬字 · 大航海 × 聲納共振 × 全息折射</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                 <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
               </div>
             </a>
 
             <!-- 卷三 -->
-            <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between hover:border-amber-500/60 hover:bg-amber-500/5 transition-all group shadow-sm">
+            <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors truncate">
-                    《星穹鐘樓的第十二個音符》
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《星穹鐘樓的第十二個音符》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 23～32 章 · 48.5k 字 · 平流層天梯 × 天體音波 × 反重力科技</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 23～32 章 · 4.8 萬字 · 平流層天梯 × 天體音波 × 反重力科技</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                 <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-3') : ''}</span>
-                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+                <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
               </div>
             </a>
           </div>
@@ -980,7 +983,7 @@
                     <span class="truncate">《追光星盤的修復師》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～10 章 · 4.6 萬字 · 虎克定律 × 雙金屬補償 × 翼帆升力</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -998,7 +1001,7 @@
                     <span class="truncate">《旋轉稜鏡的雙星軌道》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 雙星共鳴</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 11～20 章 · 5.9 萬字 · 雙星都卜勒 × 階梯光柵 × 雙星共鳴</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1016,7 +1019,7 @@
                     <span class="truncate">《天穹之心的永恆鐘鳴》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">全 10 章 · 6.8 萬字 · 光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 21～30 章 · 7.0 萬字 · 光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">

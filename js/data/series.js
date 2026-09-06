@@ -27,7 +27,7 @@ window.GEAR_SERIES = [
         title: "校園地下 404 室",
         subtitle: "失竊的記憶與機械摺紙犬",
         chaptersCount: 10,
-        wordCount: "43.7k 字",
+        wordCount: "第 1～10 章 · 4.4 萬字",
         status: "已完結",
         theme: "校園密室 × 摩斯代碼 × 邏輯電路",
         firstChapterId: 1
@@ -38,7 +38,7 @@ window.GEAR_SERIES = [
         title: "千島齒輪海的迷失燈塔",
         subtitle: "大航海與深海聲納共振",
         chaptersCount: 12,
-        wordCount: "52.1k 字",
+        wordCount: "第 11～22 章 · 5.2 萬字",
         status: "已完結",
         theme: "大航海 × 聲納共振 × 全息折射",
         firstChapterId: 11
@@ -49,9 +49,9 @@ window.GEAR_SERIES = [
         title: "星穹鐘樓的第十二個音符",
         subtitle: "平流層天梯與反重力破曉",
         chaptersCount: 10,
-        wordCount: "48.5k 字",
+        wordCount: "第 23～32 章 · 4.8 萬字",
         status: "已完結",
-        theme: "平流層 × 天體音波 × 反重力科技",
+        theme: "平流層天梯 × 天體音波 × 反重力科技",
         firstChapterId: 23
       }
     ],
@@ -80,8 +80,8 @@ window.GEAR_SERIES = [
       currentVolumesReleased: 3,
       totalChapters: 30,
       currentChaptersReleased: 30,
-      totalWords: "全三卷震撼完結（全 30 章 · 17.5 萬字）",
-      statusText: "全三卷大結局震撼完結！天穹之心與永恆共鳴鐘鳴"
+      totalWords: "17.5 萬字",
+      statusText: "全三卷 · 30章完結"
     },
     volumes: [
       {
@@ -91,9 +91,9 @@ window.GEAR_SERIES = [
         subtitle: "晨光堂發條與冰霜少女之約",
         chaptersCount: 10,
         releasedChapters: 10,
-        wordCount: "第一卷完結（全 10 章 · 4.6 萬字）",
+        wordCount: "第 1～10 章 · 4.6 萬字",
         status: "全 10 章已完結",
-        theme: "虎克定律 × 雙金屬補償 × 翼帆升力 × 駐波和弦 × 陀螺進動",
+        theme: "虎克定律 × 雙金屬補償 × 翼帆升力",
         firstChapterId: 1
       },
       {
@@ -103,9 +103,9 @@ window.GEAR_SERIES = [
         subtitle: "雙星軌道完全校準與永恆共鳴",
         chaptersCount: 10,
         releasedChapters: 10,
-        wordCount: "第二卷完結（全 10 章 · 5.9 萬字）",
-        status: "全卷完結（共 10 章）",
-        theme: "潮汐共振阻尼 × 引力波四極輻射 × 光學頻率梳 × 雙星大合唱",
+        wordCount: "第 11～20 章 · 5.9 萬字",
+        status: "全 10 章已完結",
+        theme: "雙星都卜勒 × 階梯光柵 × 雙星共鳴",
         firstChapterId: 1
       },
       {
@@ -115,9 +115,9 @@ window.GEAR_SERIES = [
         subtitle: "引力時間膨脹與光晶格鐘",
         chaptersCount: 10,
         releasedChapters: 10,
-        wordCount: "第三卷完結（全 10 章 · 6.8 萬字）",
-        status: "全卷完結（全劇終 · 共 10 章）",
-        theme: "光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環 × 潘羅斯躍遷 × 永恆鐘鳴",
+        wordCount: "第 21～30 章 · 7.0 萬字",
+        status: "全 10 章已完結",
+        theme: "光晶格鐘 × 脈衝星時鐘 × 愛因斯坦環",
         firstChapterId: 1
       }
     ],
@@ -146,44 +146,44 @@ window.GEAR_SERIES = [
       currentVolumesReleased: 3,
       totalChapters: 24,
       currentChaptersReleased: 24,
-      totalWords: "全三卷完結（全 24 章 · 10.1 萬字）",
-      statusText: "全三卷大結局圓滿完結！明天見，高老師！"
+      totalWords: "15.6 萬字",
+      statusText: "全三卷 · 24章完結"
     },
     volumes: [
       {
         bookId: "book-7",
         volNum: "第一卷",
-        title: "講台下的黃銅齒輪",
+        title: "講台上的機械心跳",
         subtitle: "故障、結盟與日常大作戰",
         chaptersCount: 8,
         releasedChapters: 8,
-        wordCount: "第一卷完結（全 8 章 · 2.3 萬字）",
+        wordCount: "第 1～8 章 · 4.8 萬字",
         status: "全 8 章已完結",
-        theme: "常識齒輪脫落 × 字面意義魔人 × 指尖微波爐 × 乾冰舞台劇 × 透視光眼",
+        theme: "校園常規 × 邏輯閘電路 × 仿生骨骼",
         firstChapterId: 1
       },
       {
         bookId: "book-8",
         volNum: "第二卷",
-        title: "潛入校園的假水電工",
+        title: "校園地底的鋼鐵防線",
         subtitle: "外部威脅、總部追查與校園防衛戰",
         chaptersCount: 8,
         releasedChapters: 8,
-        wordCount: "第二卷完結（全 8 章 · 4.2 萬字）",
+        wordCount: "第 9～16 章 · 5.4 萬字",
         status: "全 8 章已完結",
-        theme: "大實話家長會 × 彈珠游擊戰 × 太空步倒退走 × 深夜實驗室 × 軸承置換手術",
+        theme: "地下兵工廠 × 無人機蜂群 × 晶片降溫",
         firstChapterId: 1
       },
       {
         bookId: "book-9",
         volNum: "第三卷",
-        title: "重啟奇蹟的畢業季",
+        title: "畢業鐘聲與守護協議",
         subtitle: "畢業旅行大冒險、極限救援與告別",
         chaptersCount: 8,
         releasedChapters: 8,
-        wordCount: "第三卷完結（全 8 章 · 3.5 萬字）",
-        status: "全卷完結（全劇終 · 共 8 章）",
-        theme: "超載打地鼠 × 80度垂直鋼軌 × 解鎖100%全功率 × 大雨人牆 × 奇蹟的最後一顆齒輪",
+        wordCount: "第 17～24 章 · 5.4 萬字",
+        status: "全 8 章已完結",
+        theme: "守護協議 × 畢業致詞 × 感情程式昇華",
         firstChapterId: 1
       }
     ],
