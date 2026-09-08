@@ -1311,7 +1311,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>🎨 收錄全 4 篇心靈小故事（全篇完結）</span>
-              <span class="text-rose-600 font-mono font-bold">4.7 萬字</span>
+              <span class="text-rose-600 font-mono font-bold">3.2 萬字</span>
             </div>
 
             <!-- 篇一 -->
@@ -1323,7 +1323,7 @@
                     <span class="truncate">《把全家畫回來》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1 篇 · 1.0 萬字 · 親情守護 × 家人重聚與心靈畫筆</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1 篇 · 0.8 萬字 · 親情守護 × 家人重聚與心靈畫筆</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1341,7 +1341,7 @@
                     <span class="truncate">《給誤會的那顆星》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 2 篇 · 1.2 萬字 · 友情和解 × 星夜傾訴與真誠釋懷</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 2 篇 · 0.8 萬字 · 友情和解 × 星夜傾訴與真誠釋懷</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1359,7 +1359,7 @@
                     <span class="truncate">《陪阿嬤走進她的畫》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 3 篇 · 1.2 萬字 · 祖孫跨代 × 記憶失智與永恆眷戀</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 3 篇 · 0.8 萬字 · 祖孫跨代 × 記憶失智與永恆眷戀</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1377,7 +1377,7 @@
                     <span class="truncate">《畫給自己的天空》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 4 篇 · 1.3 萬字 · 自我接納 × 擁抱脆弱與燦爛綻放</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 4 篇 · 0.8 萬字 · 自我接納 × 擁抱脆弱與燦爛綻放</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">

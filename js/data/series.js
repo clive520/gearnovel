@@ -281,7 +281,7 @@ window.GEAR_SERIES = [
       currentVolumesReleased: 1,
       totalChapters: 4,
       currentChaptersReleased: 4,
-      totalWords: "4.7 萬字",
+      totalWords: "3.2 萬字",
       statusText: "單冊 · 全 4 篇完結"
     },
     bookId: "book-13",
@@ -293,7 +293,7 @@ window.GEAR_SERIES = [
         subtitle: "心靈繪畫與奇幻成長旅程",
         chaptersCount: 4,
         releasedChapters: 4,
-        wordCount: "全 4 篇 · 4.7 萬字",
+        wordCount: "全 4 篇 · 3.2 萬字",
         status: "全 4 篇已完結",
         theme: "親情守護 × 友情和解 × 祖孫跨代 × 心靈自癒",
         firstChapterId: 1
@@ -304,7 +304,7 @@ window.GEAR_SERIES = [
         id: 1,
         title: "第一篇：把全家畫回來",
         enTitle: "Chapter 1: Painting the Family Back Together",
-        wordCount: "10,388 字",
+        wordCount: "7,832 字",
         theme: "親情守護 · 家人重聚與心靈畫筆",
         desc: "奷纭在畫室閣樓意外畫出真實的家，看見父母為了生計奔波的疲憊與愛，學會用畫筆搭起家的橋樑。"
       },
@@ -312,7 +312,7 @@ window.GEAR_SERIES = [
         id: 2,
         title: "第二篇：給誤會的那顆星",
         enTitle: "Chapter 2: A Star for the Misunderstanding",
-        wordCount: "11,728 字",
+        wordCount: "8,105 字",
         theme: "友情和解 · 星夜傾訴與真誠釋懷",
         desc: "因為誤會而漸行漸遠的好友夏知星，在夜空畫卷中重現兩人曾經的笑語，星光下解開彼此心底的刺。"
       },
@@ -320,7 +320,7 @@ window.GEAR_SERIES = [
         id: 3,
         title: "第三篇：陪阿嬤走進她的畫",
         enTitle: "Chapter 3: Stepping into Grandma's Painting",
-        wordCount: "11,844 字",
+        wordCount: "8,061 字",
         theme: "祖孫跨代 · 記憶失智與永恆眷戀",
         desc: "阿嬤的記憶日益模糊，奷纭走進阿嬤年輕時的日式老屋水彩畫中，陪伴少女時代的阿嬤跳完最後一支舞。"
       },
@@ -328,7 +328,7 @@ window.GEAR_SERIES = [
         id: 4,
         title: "第四篇：畫給自己的天空",
         enTitle: "Chapter 4: The Sky Painted for Myself",
-        wordCount: "12,653 字",
+        wordCount: "7,997 字",
         theme: "自我接納 · 擁抱脆弱與燦爛綻放",
         desc: "在色彩斑斕的畫境迷宮深處，奷纭與那個躲在陰影裡的自己相遇，終於明白：不需要完美，也能自由飛翔。"
       }
