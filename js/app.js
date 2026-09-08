@@ -549,7 +549,11 @@
     { name: '將江', role: '男主角 · 機械動力大師' },
     { name: '皮可', role: '智慧機械貓頭鷹' },
     { name: '沈天成', role: '前機械導師' },
-    { name: '嵐', role: '海風島暴風少女' }
+    { name: '嵐', role: '海風島暴風少女' },
+    { name: '林未晞', role: '女主角 · 來自約40年後的時空旅人' },
+    { name: '未晞', role: '女主角 · 來自未來的時空旅人' },
+    { name: '時序手環', role: '林未晞的未來核心時空科技裝備' },
+    { name: '守護地球大作戰', role: '六年一班與未晞的拯救地球任務' }
   ];
   PROPER_NAMES_ZH.sort((a, b) => b.name.length - a.name.length);
   const ZH_NAME_MAP = Object.fromEntries(PROPER_NAMES_ZH.map(n => [n.name, n.role]));
@@ -595,7 +599,10 @@
     { name: 'Liu-Liu', role: 'AI Smart Pet' },
     { name: 'Zhou Yan', role: 'Dean of Students' },
     { name: 'Dean Zhou', role: 'Dean of Students' },
-    { name: 'Dr. Li', role: 'Chief Scientist' }
+    { name: 'Dr. Li', role: 'Chief Scientist' },
+    { name: 'Lin Weixi', role: 'Protagonist · Time Traveler from Future' },
+    { name: 'Weixi', role: 'Protagonist · Time Traveler' },
+    { name: 'Chronos Bracelet', role: 'Temporal Gear of Lin Weixi' }
   ];
   PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
   const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
@@ -748,14 +755,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 1 : 2;
+    const maxIdx = isDesktop ? 2 : 3;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 1 : 2;
+    const maxIdx = isDesktop ? 2 : 3;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -766,13 +773,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 1 : 2;
+    const maxIndex = isDesktop ? 2 : 3;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -791,7 +798,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 2; d++) {
+    for (let d = 0; d <= 3; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1148,6 +1155,111 @@
     `;
   }
 
+  // 卡片產生函數：第四套《來自未來的轉學生》
+  function getSeries4CardHtml() {
+    return `
+      <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-emerald-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              🌱 第四套 · 全三卷完結旗艦套書
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-4') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《來自未來的轉學生》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-3">
+            當手腕上的倒數光環亮起，全班二十六人展開守護地球大作戰！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小六年一班迎來神秘轉學生林未晞，手腕戴著能投影破碎未來的時序手環。班長晴晴以科學調查揭開時空秘密，攜手點子王阿釁、吃貨老巫與AI萌寵溜溜發起『守護地球大作戰』！從垃圾分類、午餐零浪費到追查上游偷排管線，全班結成最強同盟，迎向笑中帶淚的奇蹟告別！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+              <span class="text-emerald-600 font-mono font-bold">14.0 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-10/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《來自未來的轉學生》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～8 章 · 3.7 萬字 · 轉學生降臨 × 時序手環 × 祕密同盟</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-10') : ''}</span>
+                <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-11/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-teal-500/30 flex items-center justify-between hover:border-teal-500 hover:bg-teal-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-teal-500/15 text-teal-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《守護地球大作戰》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 9～16 章 · 5.1 萬字 · 淨灘行動 × 塑膠危機 × 綠色園遊會</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-11') : ''}</span>
+                <span class="text-xs text-teal-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-12/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《最後的守護》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 17～24 章 · 5.1 萬字 · 追查偷排 × 空汙紅害 × 奇蹟告別</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-12') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-emerald-500/20 flex items-center gap-3">
+          <a href="#/read/book-10/1" class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從頭開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-4')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 24 回目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 頁面渲染器：書庫首頁（自適應雙書/單書旗艦展區）
   function renderLibrary() {
     const container = document.getElementById('app-main');
@@ -1159,6 +1271,7 @@
     const card1 = getSeries1CardHtml();
     const card2 = getSeries2CardHtml();
     const card3 = getSeries3CardHtml();
+    const card4 = getSeries4CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1235,11 +1348,14 @@
               <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🤖 《我的老師不是人》
               </button>
+              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+                🌱 《來自未來的轉學生》
+              </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 2</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 3</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1261,6 +1377,9 @@
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card3}
               </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card4}
+              </div>
             </div>
           </div>
 
@@ -1269,6 +1388,7 @@
             <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-amber-600 transition-all"></button>
             <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
           </div>
         </div>
       ` : `
@@ -1277,6 +1397,7 @@
           <div>${card1}</div>
           <div>${card2}</div>
           <div>${card3}</div>
+          <div>${card4}</div>
         </div>
       `}
 
@@ -1318,15 +1439,15 @@
 
     if (titleEl) titleEl.textContent = series.title;
     if (badgeEl) {
-      const toneColor = series.themeTone === 'rose' ? 'text-rose-600' : (series.themeTone === 'sky' ? 'text-sky-600' : 'text-amber-600');
+      const toneColor = series.themeTone === 'rose' ? 'text-rose-600' : (series.themeTone === 'sky' ? 'text-sky-600' : (series.themeTone === 'emerald' ? 'text-emerald-600' : 'text-amber-600'));
       badgeEl.className = `text-xs font-bold ${toneColor} mb-0.5`;
       badgeEl.textContent = `${series.badge} · ${series.stats.statusText}`;
     }
 
     if (contentEl) {
-      const volToneClass = series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : (series.themeTone === 'sky' ? 'bg-sky-500/15 text-sky-600' : 'bg-amber-500/15 text-amber-600');
-      const hoverBorderClass = series.themeTone === 'rose' ? 'hover:border-rose-500/50 hover:bg-rose-500/5 group-hover:text-rose-600' : (series.themeTone === 'sky' ? 'hover:border-sky-500/50 hover:bg-sky-500/5 group-hover:text-sky-600' : 'hover:border-amber-500/50 hover:bg-amber-500/5 group-hover:text-amber-600');
-      const countColorClass = series.themeTone === 'rose' ? 'text-rose-600/90 dark:text-rose-400' : (series.themeTone === 'sky' ? 'text-sky-600/90 dark:text-sky-400' : 'text-amber-600/90 dark:text-amber-400');
+      const volToneClass = series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : (series.themeTone === 'sky' ? 'bg-sky-500/15 text-sky-600' : (series.themeTone === 'emerald' ? 'bg-emerald-500/15 text-emerald-600' : 'bg-amber-500/15 text-amber-600'));
+      const hoverBorderClass = series.themeTone === 'rose' ? 'hover:border-rose-500/50 hover:bg-rose-500/5 group-hover:text-rose-600' : (series.themeTone === 'sky' ? 'hover:border-sky-500/50 hover:bg-sky-500/5 group-hover:text-sky-600' : (series.themeTone === 'emerald' ? 'hover:border-emerald-500/50 hover:bg-emerald-500/5 group-hover:text-emerald-600' : 'hover:border-amber-500/50 hover:bg-amber-500/5 group-hover:text-amber-600'));
+      const countColorClass = series.themeTone === 'rose' ? 'text-rose-600/90 dark:text-rose-400' : (series.themeTone === 'sky' ? 'text-sky-600/90 dark:text-sky-400' : (series.themeTone === 'emerald' ? 'text-emerald-600/90 dark:text-emerald-400' : 'text-amber-600/90 dark:text-amber-400'));
 
       contentEl.innerHTML = series.volumes.map(vol => {
         const book = vol.bookId ? DATA.books.find(b => b.id === vol.bookId) : null;
@@ -2269,7 +2390,7 @@
   }
 
   // 頁面渲染器：人物與裝備圖鑑
-  let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3'
+  let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3' | 'series4'
 
   window.switchCharTab = function(tab) {
     activeCharTab = tab;
@@ -2280,29 +2401,32 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3');
+    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
     const series3Chars = allChars.filter(char => char.vol === 'series3');
+    const series4Chars = allChars.filter(char => char.vol === 'series4');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
     else if (activeCharTab === 'series3') filteredChars = series3Chars;
+    else if (activeCharTab === 'series4') filteredChars = series4Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
     const isSeries3 = activeCharTab === 'series3';
+    const isSeries4 = activeCharTab === 'series4';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600')} text-xs font-bold mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'))} text-xs font-bold mb-3">
             <span>👥 登場人物與核心機密檔案</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
           <p class="text-sm text-slate-500">收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 三大套書書籤切換 (直接顯示書名) -->
+        <!-- 四大套書書籤切換 (直接顯示書名) -->
         <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
           <button onclick="window.switchCharTab('series1')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries1
@@ -2342,23 +2466,38 @@
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
             }">${series3Chars.length}</span>
           </button>
+
+          <button onclick="window.switchCharTab('series4')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries4
+              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-2 ring-emerald-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600'
+          }">
+            <span>《來自未來的轉學生》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries4
+                ? 'bg-emerald-700 text-emerald-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series4Chars.length}</span>
+          </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
-            const isS2Char = char.vol === 'series2';
+            const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
+            const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            else if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
 
-            const accentTextClass = isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400');
-            const avatarBgClass = isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20');
-            const cardHoverBorder = isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50');
-            const badgeIcon = isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️');
+            const accentTextClass = isS4Char ? 'text-emerald-600 dark:text-emerald-400' : (isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'));
+            const avatarBgClass = isS4Char ? 'bg-emerald-500/10 border-emerald-500/20' : (isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20'));
+            const cardHoverBorder = isS4Char ? 'hover:border-emerald-500/50' : (isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50'));
+            const badgeIcon = isS4Char ? '🌱' : (isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️'));
 
             return `
               <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg ${cardHoverBorder} flex flex-col justify-between">
@@ -2386,7 +2525,7 @@
 
                   ${char.badge ? `
                     <div class="mb-3 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 text-xs flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-                      <span class="${isS3Char ? 'text-sky-500' : (isS2Char ? 'text-rose-500' : 'text-amber-500')}">${badgeIcon}</span>
+                      <span class="${isS4Char ? 'text-emerald-500' : (isS3Char ? 'text-sky-500' : (isS2Char ? 'text-rose-500' : 'text-amber-500'))}">${badgeIcon}</span>
                       <span class="font-bold ${accentTextClass}">稱號/徽章：</span>
                       <span class="font-medium">${char.badge}</span>
                     </div>

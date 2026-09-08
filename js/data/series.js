@@ -196,5 +196,71 @@ window.GEAR_SERIES = [
     coverStyle: "from-sky-500/10 via-cyan-500/5 to-slate-900/40 border-sky-500/30",
     startBookId: "book-7",
     startChapterId: 1
+  },
+  {
+    id: "series-4",
+    title: "來自未來的轉學生",
+    enTitle: "The Transfer Student from the Future",
+    subtitle: "校園溫馨喜劇 × 環保教育 · 全三卷完結套書（共 24 章）",
+    badge: "🌱 第四套 · 全三卷完結",
+    badgeColor: "emerald",
+    targetAudience: "9～15 歲少兒 · 校園溫馨 × 環保教育 × 時空冒險",
+    tagline: "當手腕上的倒數光環亮起，全班二十六人展開守護地球大作戰！",
+    description: "鹿陽國小六年一班迎來神秘轉學生林未晞，手腕戴著能投影破碎未來的時序手環。班長晴晴以科學調查揭開時空秘密，攜手點子王阿釁、吃貨老巫與AI萌寵溜溜發起『守護地球大作戰』！從垃圾分類、午餐零浪費到追查上游偷排管線，全班結成最強同盟，迎向笑中帶淚的奇蹟告別！",
+    stats: {
+      totalVolumes: 3,
+      currentVolumesReleased: 3,
+      totalChapters: 24,
+      currentChaptersReleased: 24,
+      totalWords: "14.0 萬字",
+      statusText: "全三卷 · 24章完結"
+    },
+    volumes: [
+      {
+        bookId: "book-10",
+        volNum: "第一卷",
+        title: "來自未來的轉學生",
+        subtitle: "轉學生降臨、祕密結盟與守護地球大作戰成立",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第 1～8 章 · 3.7 萬字",
+        status: "全 8 章已完結",
+        theme: "轉學生降臨 × 時序手環 × 祕密同盟",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-11",
+        volNum: "第二卷",
+        title: "守護地球大作戰",
+        subtitle: "行動擴大、現實阻力、污染線索與離別倒數",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第 9～16 章 · 5.1 萬字",
+        status: "全 8 章已完結",
+        theme: "淨灘行動 × 塑膠危機 × 綠色園遊會",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-12",
+        volNum: "第三卷",
+        title: "最後的守護",
+        subtitle: "污染事件實戰、真相大白、極限救援與告別",
+        chaptersCount: 8,
+        releasedChapters: 8,
+        wordCount: "第 17～24 章 · 5.1 萬字",
+        status: "全 8 章已完結",
+        theme: "追查偷排 × 空汙紅害 × 奇蹟告別",
+        firstChapterId: 1
+      }
+    ],
+    highlights: [
+      "全 24 章中英雙語對照，支援純中／純英／雙語段落切換",
+      "內建 Web Speech 兒童伴讀有聲朗讀引擎與卡拉OK高亮聚焦",
+      "26 名鹿陽國小學生與神秘轉學生林未晞動人環保冒險全記錄"
+    ],
+    themeTone: "emerald",
+    coverStyle: "from-emerald-500/10 via-teal-500/5 to-slate-900/40 border-emerald-500/30",
+    startBookId: "book-10",
+    startChapterId: 1
   }
 ];
