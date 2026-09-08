@@ -553,7 +553,13 @@
     { name: '林未晞', role: '女主角 · 來自約40年後的時空旅人' },
     { name: '未晞', role: '女主角 · 來自未來的時空旅人' },
     { name: '時序手環', role: '林未晞的未來核心時空科技裝備' },
-    { name: '守護地球大作戰', role: '六年一班與未晞的拯救地球任務' }
+    { name: '守護地球大作戰', role: '六年一班與未晞的拯救地球任務' },
+    { name: '柳奷纭', role: '女主角 · 擁有奇幻畫筆的高中少女' },
+    { name: '奷纭', role: '女主角 · 手作與心靈繪畫少女' },
+    { name: '夏知星', role: '女配角 · 奷纭摯友 · 星夜下的和解者' },
+    { name: '知星', role: '女配角 · 奷纭摯友' },
+    { name: '阿嬤', role: '長輩 · 奷纭的阿嬤 · 跨越時空的思念與守護' },
+    { name: '畫中的自己', role: '心靈投射 · 奷纭內心深處的自癒化身' }
   ];
   PROPER_NAMES_ZH.sort((a, b) => b.name.length - a.name.length);
   const ZH_NAME_MAP = Object.fromEntries(PROPER_NAMES_ZH.map(n => [n.name, n.role]));
@@ -602,7 +608,13 @@
     { name: 'Dr. Li', role: 'Chief Scientist' },
     { name: 'Lin Weixi', role: 'Protagonist · Time Traveler from Future' },
     { name: 'Weixi', role: 'Protagonist · Time Traveler' },
-    { name: 'Chronos Bracelet', role: 'Temporal Gear of Lin Weixi' }
+    { name: 'Chronos Bracelet', role: 'Temporal Gear of Lin Weixi' },
+    { name: 'Liu Qianyun', role: 'Protagonist · Crafting and Painting Girl' },
+    { name: 'Qianyun', role: 'Protagonist · Crafting Girl' },
+    { name: 'Xia Zhixing', role: 'Best Friend of Qianyun' },
+    { name: 'Zhixing', role: 'Best Friend of Qianyun' },
+    { name: 'Grandma', role: 'Qianyun\'s Grandmother' },
+    { name: 'Inner Self', role: 'Qianyun\'s Inner Reflection' }
   ];
   PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
   const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
@@ -741,10 +753,16 @@
 
   // 記錄首頁套書展區展示狀態
   let homeViewMode = 'grid'; // 預設平鋪雙欄 ('grid' | 'carousel')
+  let homeGenreFilter = 'all'; // 體裁篩選 ('all' | 'long' | 'short')
   let homeSlideIndex = 0;
 
   window.setHomeViewMode = function(mode) {
     homeViewMode = mode;
+    renderLibrary();
+  };
+
+  window.setHomeGenreFilter = function(filter) {
+    homeGenreFilter = filter;
     renderLibrary();
   };
 
@@ -755,14 +773,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 2 : 3;
+    const maxIdx = isDesktop ? 3 : 4;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 2 : 3;
+    const maxIdx = isDesktop ? 3 : 4;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -773,13 +791,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 2 : 3;
+    const maxIndex = isDesktop ? 3 : 4;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -798,7 +816,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 3; d++) {
+    for (let d = 0; d <= 4; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1260,6 +1278,129 @@
     `;
   }
 
+  // 卡片產生函數：第五套《手作少女的奇幻旅程》（療癒短篇集）
+  function getSeries5CardHtml() {
+    return `
+      <div class="rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-pink-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-rose-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
+              🎨 療癒短篇集 · 單冊全 4 篇完結
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-5') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">全齡適讀 · 溫馨療癒</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《手作少女的奇幻旅程》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 mb-3">
+            每一幅畫都是一次勇敢的對話，畫筆勾勒的不只是線條，更是心靈深處的光！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            害羞敏感的高中少女柳奷纭，在畫室閣樓裡默默畫著說不出口的心事。當神奇的畫筆引領她走進畫中的時空，她展開了四段奇幻的心靈旅程：在失落的客廳重聚家人、在星夜下解開與好友夏知星的心結、牽著阿嬤的手重回少女記憶的日式廊下，最終在畫境深處擁抱那個曾經自卑怯弱的自己。
+          </p>
+
+          <!-- 收錄全 4 篇列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>🎨 收錄全 4 篇心靈小故事（全篇完結）</span>
+              <span class="text-rose-600 font-mono font-bold">4.7 萬字</span>
+            </div>
+
+            <!-- 篇一 -->
+            <a href="#/read/book-13/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-rose-500/30 flex items-center justify-between hover:border-rose-500 hover:bg-rose-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 font-black text-xs flex items-center justify-center flex-shrink-0">篇一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《把全家畫回來》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1 篇 · 1.0 萬字 · 親情守護 × 家人重聚與心靈畫筆</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getChapterReads('book-13', 1) : ''}</span>
+                <span class="text-xs text-rose-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 篇二 -->
+            <a href="#/read/book-13/2" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-pink-500/30 flex items-center justify-between hover:border-pink-500 hover:bg-pink-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-pink-500/15 text-pink-600 font-black text-xs flex items-center justify-center flex-shrink-0">篇二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《給誤會的那顆星》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 2 篇 · 1.2 萬字 · 友情和解 × 星夜傾訴與真誠釋懷</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getChapterReads('book-13', 2) : ''}</span>
+                <span class="text-xs text-pink-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 篇三 -->
+            <a href="#/read/book-13/3" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-fuchsia-500/30 flex items-center justify-between hover:border-fuchsia-500 hover:bg-fuchsia-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-fuchsia-500/15 text-fuchsia-600 font-black text-xs flex items-center justify-center flex-shrink-0">篇三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-fuchsia-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《陪阿嬤走進她的畫》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 3 篇 · 1.2 萬字 · 祖孫跨代 × 記憶失智與永恆眷戀</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getChapterReads('book-13', 3) : ''}</span>
+                <span class="text-xs text-fuchsia-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 篇四 -->
+            <a href="#/read/book-13/4" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-500 hover:bg-purple-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">篇四</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《畫給自己的天空》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 4 篇 · 1.3 萬字 · 自我接納 × 擁抱脆弱與燦爛綻放</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getChapterReads('book-13', 4) : ''}</span>
+                <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-rose-500/20 flex items-center gap-3">
+          <a href="#/read/book-13/1" class="flex-1 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從篇一開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-5')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 4 篇目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 頁面渲染器：書庫首頁（自適應雙書/單書旗艦展區）
   function renderLibrary() {
     const container = document.getElementById('app-main');
@@ -1272,6 +1413,7 @@
     const card2 = getSeries2CardHtml();
     const card3 = getSeries3CardHtml();
     const card4 = getSeries4CardHtml();
+    const card5 = getSeries5CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1304,24 +1446,36 @@
       <!-- 精簡題頭 -->
       <div class="mb-10 text-center max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold mb-3">
-          <span>⚙️ 原創少兒科幻 · 精選套書體系</span>
+          <span>⚙️ 原創小說館 · 多元體裁選讀</span>
           <span class="text-amber-300 dark:text-amber-700 font-normal">·</span>
           <span class="font-medium font-mono text-[11px] opacity-90">📖 全站共讀 ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '0'} 次</span>
         </div>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-          冒險齒輪 · 少兒科幻小說庫
+          冒險齒輪 · 少兒科幻與奇幻小說庫
         </h1>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
-          專為 9～14 歲孩子打造的原創長篇科幻。融合 STEM 物理數學謎題、有聲伴讀體驗。
+          專為少兒與青少年打造的原創小說庫。涵蓋硬核科幻、校園成長、心靈療癒等各類短篇與長篇完結作品。
         </p>
       </div>
 
-      <!-- 旗艦套書專題展示區 (Series Showcase Header & Mode Switcher) -->
+      <!-- 作品專題展示區 (Showcase Header & Mode Switcher) -->
       <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <span>📚 旗艦套書選讀</span>
+        <div class="flex items-center gap-3 flex-wrap">
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2 mr-1">
+            <span>📚 精選作品選讀</span>
           </h2>
+          <!-- 體裁快速篩選標籤 -->
+          <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
+            <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+              全部作品 (5)
+            </button>
+            <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+              📚 長篇系列套書 (4)
+            </button>
+            <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+              🎨 療癒短篇集 (1)
+            </button>
+          </div>
         </div>
         <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
           <button onclick="window.setHomeViewMode('grid')" id="btn-view-grid" class="px-3 py-1.5 rounded-lg transition-all ${homeViewMode === 'grid' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
@@ -1351,11 +1505,14 @@
               <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🌱 《來自未來的轉學生》
               </button>
+              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
+                🎨 《手作少女》
+              </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 3</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 5</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1380,6 +1537,9 @@
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card4}
               </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card5}
+              </div>
             </div>
           </div>
 
@@ -1389,15 +1549,21 @@
             <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
           </div>
         </div>
       ` : `
         <!-- 平鋪雙欄展示模式 (Tiled Grid Mode: 寬螢幕雙欄 · 手機單欄) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <div>${card1}</div>
-          <div>${card2}</div>
-          <div>${card3}</div>
-          <div>${card4}</div>
+          ${(homeGenreFilter === 'all' || homeGenreFilter === 'long') ? `
+            <div>${card1}</div>
+            <div>${card2}</div>
+            <div>${card3}</div>
+            <div>${card4}</div>
+          ` : ''}
+          ${(homeGenreFilter === 'all' || homeGenreFilter === 'short') ? `
+            <div>${card5}</div>
+          ` : ''}
         </div>
       `}
 
@@ -2390,7 +2556,7 @@
   }
 
   // 頁面渲染器：人物與裝備圖鑑
-  let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3' | 'series4'
+  let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3' | 'series4' | 'series5'
 
   window.switchCharTab = function(tab) {
     activeCharTab = tab;
@@ -2401,32 +2567,35 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4');
+    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
     const series3Chars = allChars.filter(char => char.vol === 'series3');
     const series4Chars = allChars.filter(char => char.vol === 'series4');
+    const series5Chars = allChars.filter(char => char.vol === 'series5');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
     else if (activeCharTab === 'series3') filteredChars = series3Chars;
     else if (activeCharTab === 'series4') filteredChars = series4Chars;
+    else if (activeCharTab === 'series5') filteredChars = series5Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
     const isSeries3 = activeCharTab === 'series3';
     const isSeries4 = activeCharTab === 'series4';
+    const isSeries5 = activeCharTab === 'series5';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'))} text-xs font-bold mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600')))} text-xs font-bold mb-3">
             <span>👥 登場人物與核心機密檔案</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
           <p class="text-sm text-slate-500">收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 四大套書書籤切換 (直接顯示書名) -->
+        <!-- 五大作品書籤切換 (直接顯示書名) -->
         <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
           <button onclick="window.switchCharTab('series1')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries1
@@ -2479,25 +2648,40 @@
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
             }">${series4Chars.length}</span>
           </button>
+
+          <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries5
+              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
+          }">
+            <span>《手作少女的奇幻旅程》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries5
+                ? 'bg-rose-700 text-rose-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series5Chars.length}</span>
+          </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS5Char = char.vol === 'series5';
             const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            else if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (char.vol === 'vol3') volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
 
-            const accentTextClass = isS4Char ? 'text-emerald-600 dark:text-emerald-400' : (isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'));
-            const avatarBgClass = isS4Char ? 'bg-emerald-500/10 border-emerald-500/20' : (isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20'));
-            const cardHoverBorder = isS4Char ? 'hover:border-emerald-500/50' : (isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50'));
-            const badgeIcon = isS4Char ? '🌱' : (isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️'));
+            const accentTextClass = isS5Char ? 'text-rose-600 dark:text-rose-400' : (isS4Char ? 'text-emerald-600 dark:text-emerald-400' : (isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400')));
+            const avatarBgClass = isS5Char ? 'bg-rose-500/10 border-rose-500/20' : (isS4Char ? 'bg-emerald-500/10 border-emerald-500/20' : (isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20')));
+            const cardHoverBorder = isS5Char ? 'hover:border-rose-500/50' : (isS4Char ? 'hover:border-emerald-500/50' : (isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50')));
+            const badgeIcon = isS5Char ? '🎨' : (isS4Char ? '🌱' : (isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️')));
 
             return `
               <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg ${cardHoverBorder} flex flex-col justify-between">

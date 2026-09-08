@@ -262,5 +262,85 @@ window.GEAR_SERIES = [
     coverStyle: "from-emerald-500/10 via-teal-500/5 to-slate-900/40 border-emerald-500/30",
     startBookId: "book-10",
     startChapterId: 1
+  },
+  {
+    id: "series-5",
+    type: "collection",
+    title: "手作少女的奇幻旅程",
+    enTitle: "The Crafting Girl's Fantasy Journey",
+    subtitle: "奇幻心靈繪畫 · 溫馨療癒短篇小說集（全 4 篇）",
+    badge: "🎨 療癒短篇集 · 全 4 篇完結",
+    badgeColor: "rose",
+    category: "healing",
+    categoryName: "療癒短篇",
+    targetAudience: "全齡適讀 · 親情 × 友情 × 祖孫 × 自我接納",
+    tagline: "每一幅畫都是一次勇敢的對話，畫筆勾勒的不只是線條，更是心靈深處的光！",
+    description: "害羞敏感的高中少女柳奷纭，在畫室閣樓裡默默畫著說不出口的心事。當神奇的畫筆引領她走進畫中的時空，她展開了四段奇幻的心靈旅程：在失落的客廳重聚家人、在星夜下解開與好友夏知星的心結、牽著阿嬤的手重回少女記憶的日式廊下，最終在畫境深處擁抱那個曾經自卑怯弱的自己。一本獻給所有溫柔靈魂的心靈療癒短篇集。",
+    stats: {
+      totalVolumes: 1,
+      currentVolumesReleased: 1,
+      totalChapters: 4,
+      currentChaptersReleased: 4,
+      totalWords: "4.7 萬字",
+      statusText: "單冊 · 全 4 篇完結"
+    },
+    bookId: "book-13",
+    volumes: [
+      {
+        bookId: "book-13",
+        volNum: "單冊全 4 篇",
+        title: "手作少女的奇幻旅程",
+        subtitle: "心靈繪畫與奇幻成長旅程",
+        chaptersCount: 4,
+        releasedChapters: 4,
+        wordCount: "全 4 篇 · 4.7 萬字",
+        status: "全 4 篇已完結",
+        theme: "親情守護 × 友情和解 × 祖孫跨代 × 心靈自癒",
+        firstChapterId: 1
+      }
+    ],
+    chaptersList: [
+      {
+        id: 1,
+        title: "第一篇：把全家畫回來",
+        enTitle: "Chapter 1: Painting the Family Back Together",
+        wordCount: "10,388 字",
+        theme: "親情守護 · 家人重聚與心靈畫筆",
+        desc: "奷纭在畫室閣樓意外畫出真實的家，看見父母為了生計奔波的疲憊與愛，學會用畫筆搭起家的橋樑。"
+      },
+      {
+        id: 2,
+        title: "第二篇：給誤會的那顆星",
+        enTitle: "Chapter 2: A Star for the Misunderstanding",
+        wordCount: "11,728 字",
+        theme: "友情和解 · 星夜傾訴與真誠釋懷",
+        desc: "因為誤會而漸行漸遠的好友夏知星，在夜空畫卷中重現兩人曾經的笑語，星光下解開彼此心底的刺。"
+      },
+      {
+        id: 3,
+        title: "第三篇：陪阿嬤走進她的畫",
+        enTitle: "Chapter 3: Stepping into Grandma's Painting",
+        wordCount: "11,844 字",
+        theme: "祖孫跨代 · 記憶失智與永恆眷戀",
+        desc: "阿嬤的記憶日益模糊，奷纭走進阿嬤年輕時的日式老屋水彩畫中，陪伴少女時代的阿嬤跳完最後一支舞。"
+      },
+      {
+        id: 4,
+        title: "第四篇：畫給自己的天空",
+        enTitle: "Chapter 4: The Sky Painted for Myself",
+        wordCount: "12,653 字",
+        theme: "自我接納 · 擁抱脆弱與燦爛綻放",
+        desc: "在色彩斑斕的畫境迷宮深處，奷纭與那個躲在陰影裡的自己相遇，終於明白：不需要完美，也能自由飛翔。"
+      }
+    ],
+    highlights: [
+      "全 4 篇獨立心靈奇幻故事，段落 100% 繁中／英文對照",
+      "細膩刻畫親情、友情、祖孫羈絆與青少年自我認同",
+      "支援 Web Speech 兒童伴讀朗讀與即時雙語切換"
+    ],
+    themeTone: "rose",
+    coverStyle: "from-rose-500/10 via-pink-500/5 to-slate-900/40 border-rose-500/30",
+    startBookId: "book-13",
+    startChapterId: 1
   }
 ];
