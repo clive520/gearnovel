@@ -559,7 +559,11 @@
     { name: '夏知星', role: '女配角 · 奷纭摯友 · 星夜下的和解者' },
     { name: '知星', role: '女配角 · 奷纭摯友' },
     { name: '阿嬤', role: '長輩 · 奷纭的阿嬤 · 跨越時空的思念與守護' },
-    { name: '畫中的自己', role: '心靈投射 · 奷纭內心深處的自癒化身' }
+    { name: '畫中的自己', role: '心靈投射 · 奷纭內心深處的自癒化身' },
+    { name: '作弊互助會', role: '六年一班成立的作弊防堵應對同盟' },
+    { name: '誠實博物館', role: '陳列28項作弊神器的成長紀念展覽' },
+    { name: '老巫爸爸', role: '訂下雞腿賭注的可愛家長' },
+    { name: '柯媽媽', role: '家長會副會長 · 嚴格要求成績' }
   ];
   PROPER_NAMES_ZH.sort((a, b) => b.name.length - a.name.length);
   const ZH_NAME_MAP = Object.fromEntries(PROPER_NAMES_ZH.map(n => [n.name, n.role]));
@@ -773,14 +777,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 3 : 4;
+    const maxIdx = isDesktop ? 4 : 5;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 3 : 4;
+    const maxIdx = isDesktop ? 4 : 5;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -791,13 +795,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 3 : 4;
+    const maxIndex = isDesktop ? 4 : 5;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -816,7 +820,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 4; d++) {
+    for (let d = 0; d <= 5; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1401,6 +1405,111 @@
     `;
   }
 
+  // 卡片產生函數：第六套《全班作弊中》（少兒爆笑校園科幻套書）
+  function getSeries6CardHtml() {
+    return `
+      <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+              🏆 第五套 · 全三卷完結旗艦套書
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-6') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《全班作弊中》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mb-3">
+            當二十六個鬼靈精怪碰上全世界最強的仿生人監考官，一場笑破肚皮的作弊軍備競賽就此展開！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小六年一班迎來史上最嚴峻的考試考驗！為了保衛遊戲機與老巫的雞腿賭注，調皮點子王阿釁率領全班二十六人成立『作弊互助會』，從橡皮擦迷你圖書館、紙飛機空投、咳嗽密碼，一路升級到班長晴晴研發的紫外線小抄與溜溜快遞大作戰！然而擁有透視光眼與語音波形分析的機器人導師高峙舷早已洞悉一切。全班費盡心思設計作弊神器的過程，竟演變成最神奇的自律複習，迎向笑中帶淚的大反轉！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
+              <span class="text-amber-600 font-mono font-bold">4.3 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-14/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《小抄的起點》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～6 章 · 1.5 萬字 · 橡皮擦圖書館 × 3D紙飛機 × 咳嗽暗號</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-14') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-15/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-orange-500/30 flex items-center justify-between hover:border-orange-500 hover:bg-orange-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-orange-500/15 text-orange-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《作弊科技革命》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 7～12 章 · 1.5 萬字 · 紫外線隱形墨水 × 萌寵快遞 × 防駭模式</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-15') : ''}</span>
+                <span class="text-xs text-orange-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-16/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-yellow-500/30 flex items-center justify-between hover:border-yellow-500 hover:bg-yellow-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-yellow-500/15 text-yellow-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-yellow-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《最棒的作弊》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13～18 章 · 1.3 萬字 · 人體分段精讀 × 開放式考卷 × 誠實博物館</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-16') : ''}</span>
+                <span class="text-xs text-yellow-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
+          <a href="#/read/book-14/1" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 從頭開始閱讀</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-6')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 18 回目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 頁面渲染器：書庫首頁（自適應雙書/單書旗艦展區）
   function renderLibrary() {
     const container = document.getElementById('app-main');
@@ -1414,6 +1523,7 @@
     const card3 = getSeries3CardHtml();
     const card4 = getSeries4CardHtml();
     const card5 = getSeries5CardHtml();
+    const card6 = getSeries6CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1467,10 +1577,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (5)
+              全部作品 (6)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (4)
+              📚 長篇系列套書 (5)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -1505,7 +1615,10 @@
               <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🌱 《來自未來的轉學生》
               </button>
-              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+                📝 《全班作弊中》
+              </button>
+              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
                 🎨 《手作少女》
               </button>
             </div>
@@ -1538,6 +1651,9 @@
                 ${card4}
               </div>
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card6}
+              </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card5}
               </div>
             </div>
@@ -1550,6 +1666,7 @@
             <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
           </div>
         </div>
       ` : `
@@ -1560,6 +1677,7 @@
             <div>${card2}</div>
             <div>${card3}</div>
             <div>${card4}</div>
+            <div>${card6}</div>
           ` : ''}
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'short') ? `
             <div>${card5}</div>
@@ -2567,28 +2685,31 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5');
+    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5' && char.vol !== 'series6');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
     const series3Chars = allChars.filter(char => char.vol === 'series3');
     const series4Chars = allChars.filter(char => char.vol === 'series4');
     const series5Chars = allChars.filter(char => char.vol === 'series5');
+    const series6Chars = allChars.filter(char => char.vol === 'series6');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
     else if (activeCharTab === 'series3') filteredChars = series3Chars;
     else if (activeCharTab === 'series4') filteredChars = series4Chars;
     else if (activeCharTab === 'series5') filteredChars = series5Chars;
+    else if (activeCharTab === 'series6') filteredChars = series6Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
     const isSeries3 = activeCharTab === 'series3';
     const isSeries4 = activeCharTab === 'series4';
     const isSeries5 = activeCharTab === 'series5';
+    const isSeries6 = activeCharTab === 'series6';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600')))} text-xs font-bold mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries6 ? 'bg-amber-500/10 text-amber-600' : (isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'))))} text-xs font-bold mb-3">
             <span>👥 登場人物與核心機密檔案</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
@@ -2649,6 +2770,19 @@
             }">${series4Chars.length}</span>
           </button>
 
+          <button onclick="window.switchCharTab('series6')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries6
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
+          }">
+            <span>《全班作弊中》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries6
+                ? 'bg-amber-700 text-amber-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series6Chars.length}</span>
+          </button>
+
           <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries5
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
@@ -2665,12 +2799,14 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS6Char = char.vol === 'series6';
             const isS5Char = char.vol === 'series5';
             const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
+            else if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (isS2Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
@@ -2678,10 +2814,10 @@
             else if (char.vol === 'vol2') volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (char.vol === 'vol1') volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
 
-            const accentTextClass = isS5Char ? 'text-rose-600 dark:text-rose-400' : (isS4Char ? 'text-emerald-600 dark:text-emerald-400' : (isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400')));
-            const avatarBgClass = isS5Char ? 'bg-rose-500/10 border-rose-500/20' : (isS4Char ? 'bg-emerald-500/10 border-emerald-500/20' : (isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20')));
-            const cardHoverBorder = isS5Char ? 'hover:border-rose-500/50' : (isS4Char ? 'hover:border-emerald-500/50' : (isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50')));
-            const badgeIcon = isS5Char ? '🎨' : (isS4Char ? '🌱' : (isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️')));
+            const accentTextClass = isS6Char ? 'text-amber-600 dark:text-amber-400' : (isS5Char ? 'text-rose-600 dark:text-rose-400' : (isS4Char ? 'text-emerald-600 dark:text-emerald-400' : (isS3Char ? 'text-sky-600 dark:text-sky-400' : (isS2Char ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'))));
+            const avatarBgClass = isS6Char ? 'bg-amber-500/10 border-amber-500/20' : (isS5Char ? 'bg-rose-500/10 border-rose-500/20' : (isS4Char ? 'bg-emerald-500/10 border-emerald-500/20' : (isS3Char ? 'bg-sky-500/10 border-sky-500/20' : (isS2Char ? 'bg-rose-500/10 border-rose-500/20' : 'bg-amber-500/10 border-amber-500/20'))));
+            const cardHoverBorder = isS6Char ? 'hover:border-amber-500/50' : (isS5Char ? 'hover:border-rose-500/50' : (isS4Char ? 'hover:border-emerald-500/50' : (isS3Char ? 'hover:border-sky-500/50' : (isS2Char ? 'hover:border-rose-500/50' : 'hover:border-amber-500/50'))));
+            const badgeIcon = isS6Char ? '📝' : (isS5Char ? '🎨' : (isS4Char ? '🌱' : (isS3Char ? '🤖' : (isS2Char ? '🌸' : '🎖️'))));
 
             return `
               <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-lg ${cardHoverBorder} flex flex-col justify-between">
@@ -2709,7 +2845,7 @@
 
                   ${char.badge ? `
                     <div class="mb-3 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800 text-xs flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-                      <span class="${isS4Char ? 'text-emerald-500' : (isS3Char ? 'text-sky-500' : (isS2Char ? 'text-rose-500' : 'text-amber-500'))}">${badgeIcon}</span>
+                      <span class="${isS6Char ? 'text-amber-500' : (isS5Char ? 'text-rose-500' : (isS4Char ? 'text-emerald-500' : (isS3Char ? 'text-sky-500' : (isS2Char ? 'text-rose-500' : 'text-amber-500'))))}">${badgeIcon}</span>
                       <span class="font-bold ${accentTextClass}">稱號/徽章：</span>
                       <span class="font-medium">${char.badge}</span>
                     </div>

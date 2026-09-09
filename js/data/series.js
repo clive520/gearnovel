@@ -342,5 +342,71 @@ window.GEAR_SERIES = [
     coverStyle: "from-rose-500/10 via-pink-500/5 to-slate-900/40 border-rose-500/30",
     startBookId: "book-13",
     startChapterId: 1
+  },
+  {
+    id: "series-6",
+    title: "全班作弊中",
+    enTitle: "The Whole Class Is Cheating",
+    subtitle: "少兒爆笑校園科幻 · 全三卷完結套書（共 18 章）",
+    badge: "🏆 第五套 · 全三卷完結旗艦套書",
+    badgeColor: "amber",
+    targetAudience: "9～15 歲少兒 · 少兒爆笑校園科幻 × 成長喜劇",
+    tagline: "當二十六個鬼靈精怪碰上全世界最強的仿生人監考官，一場笑破肚皮的作弊軍備競賽就此展開！",
+    description: "鹿陽國小六年一班迎來史上最嚴峻的考試考驗！為了保衛遊戲機與老巫的雞腿賭注，調皮點子王阿釁率領全班二十六人成立『作弊互助會』，從橡皮擦迷你圖書館、紙飛機空投、咳嗽密碼，一路升級到班長晴晴研發的紫外線小抄與溜溜快遞大作戰！然而擁有透視光眼與語音波形分析的機器人導師高峙舷早已洞悉一切。全班費盡心思設計作弊神器的過程，竟演變成最神奇的自律複習，迎向笑中帶淚的大反轉！",
+    stats: {
+      totalVolumes: 3,
+      currentVolumesReleased: 3,
+      totalChapters: 18,
+      currentChaptersReleased: 18,
+      totalWords: "4.3 萬字",
+      statusText: "全三卷 · 18章完結"
+    },
+    volumes: [
+      {
+        bookId: "book-14",
+        volNum: "第一卷",
+        title: "小抄的起點",
+        subtitle: "低科技作弊 VS 透視光眼",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 1～6 章 · 1.5 萬字",
+        status: "全 6 章已完結",
+        theme: "橡皮擦圖書館 × 3D紙飛機 × 咳嗽暗號",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-15",
+        volNum: "第二卷",
+        title: "作弊科技革命",
+        subtitle: "科技軍備競賽與AI反制",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 7～12 章 · 1.5 萬字",
+        status: "全 6 章已完結",
+        theme: "紫外線隱形墨水 × 萌寵快遞 × 防駭模式",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-16",
+        volNum: "第三卷",
+        title: "最棒的作弊",
+        subtitle: "開放式考卷、反轉與誠實博物館",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 13～18 章 · 1.3 萬字",
+        status: "全 6 章已完結",
+        theme: "人體分段精讀 × 開放式考卷 × 誠實博物館",
+        firstChapterId: 1
+      }
+    ],
+    highlights: [
+      "全 18 章中英雙語對照，段落 100% 嚴格 1:1 對齊",
+      "透視光眼、字面解讀與 28 項作弊神器的爆笑軍備競賽",
+      "最好的作弊是不用作弊——笑中帶淚的暖心教育反轉"
+    ],
+    themeTone: "amber",
+    coverStyle: "from-amber-500/10 via-orange-500/5 to-slate-900/40 border-amber-500/30",
+    startBookId: "book-14",
+    startChapterId: 1
   }
 ];
