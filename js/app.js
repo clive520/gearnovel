@@ -777,14 +777,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 5 : 6;
+    const maxIdx = isDesktop ? 4 : 5;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 5 : 6;
+    const maxIdx = isDesktop ? 4 : 5;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -795,13 +795,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 5 : 6;
+    const maxIndex = isDesktop ? 4 : 5;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 6; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -820,7 +820,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 6; d++) {
+    for (let d = 0; d <= 5; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1510,112 +1510,6 @@
     `;
   }
 
-
-  // 卡片產生函數：第七套《冒險齒輪：不可思議事件簿》（少兒科幻偵探推理套書）
-  function getSeries7CardHtml() {
-    return `
-      <div class="rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-indigo-500/50 h-full">
-        <div>
-          <!-- 標籤與受眾 -->
-          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30">
-              🏆 第六套 · 全三卷完結旗艦套書
-            </span>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20 font-mono">
-                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-7') : '0'} 次閱讀
-              </span>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">8～15 歲適讀</span>
-            </div>
-          </div>
-
-          <!-- 標題與引言 -->
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
-            《冒險齒輪：不可思議事件簿》
-          </h3>
-          <p class="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-3">
-            當午夜的鋼琴自己彈奏、大鐘樓的時間逆向倒轉，三位少年名偵探的齒輪解謎大冒險！
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-            鹿陽國小的發明少年陸言戴上多光譜黃銅單片鏡，攜手奇幻直覺少女沈星葵與機械破壞狂方小克，成立『齒輪偵探事務所』！面對怪盜『發條魔術師』奧利弗發出的齒輪預告信，三人從校園深夜音樂教室、雪地密室，一路殺向迷霧海港電車與黃金大鐘樓。融合光學偏振、次聲波共振、氣浮力學與行星差速齒輪，所有看似無法解釋的奇幻謎團，背後都咬合著最精密的齒輪真相！
-          </p>
-
-          <!-- 收錄全三卷列表 -->
-          <div class="space-y-2 mb-5">
-            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-              <span>📚 收錄全三卷三部曲（全卷震撼完結）</span>
-              <span class="text-indigo-600 font-mono font-bold">2.1 萬字</span>
-            </div>
-
-            <!-- 卷一 -->
-            <a href="#/read/book-17/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-1.5 truncate">
-                    <span class="truncate">《消失的影子與第十三個台階》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1～6 章 · 0.8 萬字 · 深夜發光鋼琴 × 液壓陷阱階梯 × 乾冰氣浮銅像</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-17') : ''}</span>
-                <span class="text-xs text-indigo-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-              </div>
-            </a>
-
-            <!-- 卷二 -->
-            <a href="#/read/book-18/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-500 hover:bg-purple-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-1.5 truncate">
-                    <span class="truncate">《海霧港口的蒸汽幽靈》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 7～12 章 · 0.7 萬字 · 穿牆幽靈電車 × 拍賣行定格鐘擺 × 仿生逆風信使</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-18') : ''}</span>
-                <span class="text-xs text-purple-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-              </div>
-            </a>
-
-            <!-- 卷三 -->
-            <a href="#/read/book-19/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-blue-500/30 flex items-center justify-between hover:border-blue-500 hover:bg-blue-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-blue-500/15 text-blue-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors flex items-center gap-1.5 truncate">
-                    <span class="truncate">《黃金鐘樓的時間倒流》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
-                  </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 13～18 章 · 0.6 萬字 · 雙螺旋第五層 × 頻閃懸停水滴 × 行星差速巨閘</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-19') : ''}</span>
-                <span class="text-xs text-blue-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- 底部行動按鈕 -->
-        <div class="pt-4 border-t border-indigo-500/20 flex items-center gap-3">
-          <a href="#/read/book-17/1" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 從頭開始閱讀</span>
-          </a>
-          <button onclick="window.openSeriesModal('series-7')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
-            📑 全 18 回目錄
-          </button>
-        </div>
-      </div>
-    `;
-  }
-
   // 頁面渲染器：書庫首頁（自適應雙書/單書旗艦展區）
   function renderLibrary() {
     const container = document.getElementById('app-main');
@@ -1630,7 +1524,6 @@
     const card4 = getSeries4CardHtml();
     const card5 = getSeries5CardHtml();
     const card6 = getSeries6CardHtml();
-    const card7 = getSeries7CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1684,10 +1577,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (7)
+              全部作品 (6)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (6)
+              📚 長篇系列套書 (5)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -1725,10 +1618,7 @@
               <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 📝 《全班作弊中》
               </button>
-              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600 whitespace-nowrap">
-                🕵️ 《不可思議事件簿》
-              </button>
-              <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
                 🎨 《手作少女》
               </button>
             </div>
@@ -1764,9 +1654,6 @@
                 ${card6}
               </div>
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
-                ${card7}
-              </div>
-              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card5}
               </div>
             </div>
@@ -1780,7 +1667,6 @@
             <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
           </div>
         </div>
       ` : `
@@ -1792,7 +1678,6 @@
             <div>${card3}</div>
             <div>${card4}</div>
             <div>${card6}</div>
-            <div>${card7}</div>
           ` : ''}
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'short') ? `
             <div>${card5}</div>
@@ -1838,15 +1723,15 @@
 
     if (titleEl) titleEl.textContent = series.title;
     if (badgeEl) {
-      const toneColor = series.themeTone === 'indigo' ? 'text-indigo-600' : (series.themeTone === 'rose' ? 'text-rose-600' : (series.themeTone === 'sky' ? 'text-sky-600' : (series.themeTone === 'emerald' ? 'text-emerald-600' : 'text-amber-600')));
+      const toneColor = series.themeTone === 'rose' ? 'text-rose-600' : (series.themeTone === 'sky' ? 'text-sky-600' : (series.themeTone === 'emerald' ? 'text-emerald-600' : 'text-amber-600'));
       badgeEl.className = `text-xs font-bold ${toneColor} mb-0.5`;
       badgeEl.textContent = `${series.badge} · ${series.stats.statusText}`;
     }
 
     if (contentEl) {
-      const volToneClass = series.themeTone === 'indigo' ? 'bg-indigo-500/15 text-indigo-600' : (series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : (series.themeTone === 'sky' ? 'bg-sky-500/15 text-sky-600' : (series.themeTone === 'emerald' ? 'bg-emerald-500/15 text-emerald-600' : 'bg-amber-500/15 text-amber-600')));
-      const hoverBorderClass = series.themeTone === 'indigo' ? 'hover:border-indigo-500/50 hover:bg-indigo-500/5 group-hover:text-indigo-600' : (series.themeTone === 'rose' ? 'hover:border-rose-500/50 hover:bg-rose-500/5 group-hover:text-rose-600' : (series.themeTone === 'sky' ? 'hover:border-sky-500/50 hover:bg-sky-500/5 group-hover:text-sky-600' : (series.themeTone === 'emerald' ? 'hover:border-emerald-500/50 hover:bg-emerald-500/5 group-hover:text-emerald-600' : 'hover:border-amber-500/50 hover:bg-amber-500/5 group-hover:text-amber-600')));
-      const countColorClass = series.themeTone === 'indigo' ? 'text-indigo-600/90 dark:text-indigo-400' : (series.themeTone === 'rose' ? 'text-rose-600/90 dark:text-rose-400' : (series.themeTone === 'sky' ? 'text-sky-600/90 dark:text-sky-400' : (series.themeTone === 'emerald' ? 'text-emerald-600/90 dark:text-emerald-400' : 'text-amber-600/90 dark:text-amber-400')));
+      const volToneClass = series.themeTone === 'rose' ? 'bg-rose-500/15 text-rose-600' : (series.themeTone === 'sky' ? 'bg-sky-500/15 text-sky-600' : (series.themeTone === 'emerald' ? 'bg-emerald-500/15 text-emerald-600' : 'bg-amber-500/15 text-amber-600'));
+      const hoverBorderClass = series.themeTone === 'rose' ? 'hover:border-rose-500/50 hover:bg-rose-500/5 group-hover:text-rose-600' : (series.themeTone === 'sky' ? 'hover:border-sky-500/50 hover:bg-sky-500/5 group-hover:text-sky-600' : (series.themeTone === 'emerald' ? 'hover:border-emerald-500/50 hover:bg-emerald-500/5 group-hover:text-emerald-600' : 'hover:border-amber-500/50 hover:bg-amber-500/5 group-hover:text-amber-600'));
+      const countColorClass = series.themeTone === 'rose' ? 'text-rose-600/90 dark:text-rose-400' : (series.themeTone === 'sky' ? 'text-sky-600/90 dark:text-sky-400' : (series.themeTone === 'emerald' ? 'text-emerald-600/90 dark:text-emerald-400' : 'text-amber-600/90 dark:text-amber-400'));
 
       contentEl.innerHTML = series.volumes.map(vol => {
         const book = vol.bookId ? DATA.books.find(b => b.id === vol.bookId) : null;
@@ -2806,7 +2691,6 @@
     const series4Chars = allChars.filter(char => char.vol === 'series4');
     const series5Chars = allChars.filter(char => char.vol === 'series5');
     const series6Chars = allChars.filter(char => char.vol === 'series6');
-    const series7Chars = allChars.filter(char => char.vol === 'series7');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
@@ -2814,7 +2698,6 @@
     else if (activeCharTab === 'series4') filteredChars = series4Chars;
     else if (activeCharTab === 'series5') filteredChars = series5Chars;
     else if (activeCharTab === 'series6') filteredChars = series6Chars;
-    else if (activeCharTab === 'series7') filteredChars = series7Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
@@ -2822,12 +2705,11 @@
     const isSeries4 = activeCharTab === 'series4';
     const isSeries5 = activeCharTab === 'series5';
     const isSeries6 = activeCharTab === 'series6';
-    const isSeries7 = activeCharTab === 'series7';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries7 ? 'bg-indigo-500/10 text-indigo-600' : (isSeries6 ? 'bg-amber-500/10 text-amber-600' : (isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600')))))} text-xs font-bold mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries6 ? 'bg-amber-500/10 text-amber-600' : (isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'))))} text-xs font-bold mb-3">
             <span>👥 登場人物與核心機密檔案</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
@@ -2901,19 +2783,6 @@
             }">${series6Chars.length}</span>
           </button>
 
-          <button onclick="window.switchCharTab('series7')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries7
-              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 ring-2 ring-indigo-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600'
-          }">
-            <span>《不可思議事件簿》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries7
-                ? 'bg-indigo-700 text-indigo-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series7Chars.length}</span>
-          </button>
-
           <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries5
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
@@ -2931,7 +2800,6 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
             const isS6Char = char.vol === 'series6';
-            const isS7Char = char.vol === 'series7';
             const isS5Char = char.vol === 'series5';
             const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
@@ -6266,7 +6134,7 @@
       ctx.arc(0, 0, 14, 0, Math.PI * 2);
       ctx.fill();
       // 齒輪齒
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 6; i++) {
         ctx.rotate(Math.PI / 3);
         ctx.fillRect(-2, -18, 4, 6);
       }
@@ -9799,7 +9667,7 @@
         ctx.strokeStyle = '#facc15';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 6; i++) {
           const a = (i / 6) * Math.PI * 2;
           const x = Math.cos(a) * 12;
           const y = Math.sin(a) * 12;
@@ -10375,7 +10243,7 @@
       // Trapped Strontium-87 Cold Atoms inside potential wells
       // Minimum wells occur where cos^2(kx) is maximum (i.e. potential is at bottom)
       const wellPeriod = Math.PI / k; // ≈ 39.27 px
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 6; i++) {
         const atomCenterX = 15 + i * wellPeriod;
         if (atomCenterX > leftW - 25) break;
 
@@ -11496,7 +11364,6 @@
     const series3Badges = allBadges.filter(b => b.series === 'series3');
     const series4Badges = allBadges.filter(b => b.series === 'series4');
     const series6Badges = allBadges.filter(b => b.series === 'series6');
-    const series7Badges = allBadges.filter(b => b.series === 'series7');
     const series5Badges = allBadges.filter(b => b.series === 'series5');
 
     let displayBadges = allBadges;
@@ -11510,8 +11377,6 @@
       displayBadges = series4Badges;
     } else if (activeBadgeTab === 'series6') {
       displayBadges = series6Badges;
-    } else if (activeBadgeTab === 'series7') {
-      displayBadges = series7Badges;
     } else if (activeBadgeTab === 'series5') {
       displayBadges = series5Badges;
     }
@@ -11531,7 +11396,6 @@
       series3: '《我的老師不是人》收集進度',
       series4: '《來自未來的轉學生》收集進度',
       series6: '《全班作弊中》收集進度',
-      series7: '《不可思議事件簿》收集進度',
       series5: '《手作少女的奇幻旅程》收集進度'
     };
 
@@ -11626,15 +11490,6 @@
             <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series6' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${series6Badges.length}</span>
           </button>
 
-          <button onclick="window.switchBadgeTab('series7')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
-            activeBadgeTab === 'series7'
-              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50'
-          }">
-            <span>🕵️ 第六套：《不可思議事件簿》</span>
-            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series7' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/10 text-indigo-600'}">${series7Badges.length}</span>
-          </button>
-
           <button onclick="window.switchBadgeTab('series5')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
             activeBadgeTab === 'series5'
               ? 'bg-rose-600 text-white shadow-md shadow-rose-600/20'
@@ -11660,10 +11515,6 @@
                 borderClass = 'border-rose-500/40 bg-gradient-to-b from-rose-500/10 to-transparent shadow-md';
                 iconBgClass = 'bg-rose-500/20 text-rose-600';
                 linkColorClass = 'text-rose-600 dark:text-rose-400 hover:underline';
-              } else if (seriesId === 'series7') {
-                borderClass = 'border-indigo-500/40 bg-gradient-to-b from-indigo-500/10 to-transparent shadow-md';
-                iconBgClass = 'bg-indigo-500/20 text-indigo-600';
-                linkColorClass = 'text-indigo-600 dark:text-indigo-400 hover:underline';
               } else if (seriesId === 'series3') {
                 borderClass = 'border-sky-500/40 bg-gradient-to-b from-sky-500/10 to-transparent shadow-md';
                 iconBgClass = 'bg-sky-500/20 text-sky-600';
