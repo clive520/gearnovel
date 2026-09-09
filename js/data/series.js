@@ -409,4 +409,71 @@ window.GEAR_SERIES = [
     startBookId: "book-14",
     startChapterId: 1
   }
+,
+{
+  "id": "series-7",
+  "title": "冒險齒輪：不可思議事件簿",
+  "enTitle": "Adventure Gear: The Files of the Impossible",
+  "subtitle": "少兒科幻推理 · 全新長篇連載（第 1 章已釋出）",
+  "badge": "🔍 連載中 · 第 1 章",
+  "badgeColor": "indigo",
+  "targetAudience": "9～15 歲適讀 · STEM 齒輪偵探 × 校園不可思議",
+  "tagline": "世上沒有無解的怪談，只有未被拆解的齒輪與光學偏振！",
+  "description": "鹿陽國小百年校舍怪事頻傳：深夜自彈莫札特的幽靈鋼琴、雨夜憑空多出的鐘樓第十三階、正午蒸發影子的古董日晷……冷靜推演的偵探社長陸言、共振聽音的天才少女沈星葵、鬼馬發明家方小克攜手機械刺蝟皮球，成立「齒輪偵探事務所」，運用偏振光譜、聲學駐波與發條力學，抽絲剝繭破解一件件匪夷所思的校園與港灣迷案！",
+  "stats": {
+    "totalVolumes": 3,
+    "currentVolumesReleased": 1,
+    "totalChapters": 18,
+    "currentChaptersReleased": 1,
+    "totalWords": "0.9 萬字",
+    "statusText": "第一卷連載中 · 已發布第 1 章"
+  },
+  "volumes": [
+    {
+      "bookId": "book-17",
+      "volNum": "第一卷",
+      "title": "消失的影子與第十三個台階",
+      "subtitle": "校園不可思議事件簿",
+      "chaptersCount": 6,
+      "releasedChapters": 1,
+      "wordCount": "第 1 章已發布 · 0.9 萬字",
+      "status": "連載中（第 1 章）",
+      "theme": "校園怪談 × 偏振光譜 × 凸輪機構",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-18",
+      "volNum": "第二卷",
+      "title": "海霧港口的蒸汽幽靈",
+      "subtitle": "港灣連環大案",
+      "chaptersCount": 6,
+      "releasedChapters": 0,
+      "wordCount": "規劃中",
+      "status": "即將推出",
+      "theme": "港灣奇案 × 伯努利流體 × 全息折射",
+      "firstChapterId": 7
+    },
+    {
+      "bookId": "book-19",
+      "volNum": "第三卷",
+      "title": "黃金鐘樓的時間倒流",
+      "subtitle": "終極世紀對決",
+      "chaptersCount": 6,
+      "releasedChapters": 0,
+      "wordCount": "規劃中",
+      "status": "即將推出",
+      "theme": "雙螺旋鐘樓 × 次聲波共振 × 行星差速器",
+      "firstChapterId": 13
+    }
+  ],
+  "highlights": [
+    "支援繁體中文／英文雙語 100% 嚴格對照閱讀",
+    "硬核且有趣的少兒 STEM 物理、機械、光學推理破解",
+    "冷靜陸言、敏銳星葵、機靈小克與機械刺蝟皮球的齒輪偵探團"
+  ],
+  "themeTone": "indigo",
+  "coverStyle": "from-indigo-500/10 via-indigo-500/5 to-slate-900/40 border-indigo-500/30",
+  "startBookId": "book-17",
+  "startChapterId": 1
+}
 ];
