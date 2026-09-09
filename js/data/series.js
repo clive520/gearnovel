@@ -409,4 +409,71 @@ window.GEAR_SERIES = [
     startBookId: "book-14",
     startChapterId: 1
   }
+  ,
+  {
+    id: "series-7",
+    title: "冒險齒輪：不可思議事件簿",
+    enTitle: "Adventure Gear: The Files of the Impossible",
+    subtitle: "少兒科幻偵探推理 · 全三卷完結套書（共 18 章）",
+    badge: "🏆 第六套 · 全三卷完結旗艦套書",
+    badgeColor: "indigo",
+    targetAudience: "8～15 歲少兒 · 本格偵探推理 × 齒輪科學解謎",
+    tagline: "當午夜的鋼琴自己彈奏、大鐘樓的時間逆向倒轉，三位少年名偵探的齒輪解謎大冒險！",
+    description: "鹿陽國小的發明少年陸言戴上多光譜黃銅單片鏡，攜手奇幻直覺少女沈星葵與機械破壞狂方小克，成立『齒輪偵探事務所』！面對怪盜『發條魔術師』奧利弗發出的齒輪預告信，三人從校園深夜音樂教室、雪地密室，一路殺向迷霧海港電車與黃金大鐘樓。融合光學偏振、次聲波共振、氣浮力學與行星差速齒輪，所有看似無法解釋的奇幻謎團，背後都咬合著最精密的齒輪真相！",
+    stats: {
+      totalVolumes: 3,
+      currentVolumesReleased: 3,
+      totalChapters: 18,
+      currentChaptersReleased: 18,
+      totalWords: "2.1 萬字",
+      statusText: "全三卷 · 18章完結"
+    },
+    volumes: [
+      {
+        bookId: "book-17",
+        volNum: "第一卷",
+        title: "消失的影子與第十三個台階",
+        subtitle: "校園不可思議事件簿",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 1～6 章 · 0.8 萬字",
+        status: "全 6 章已完結",
+        theme: "深夜發光鋼琴 × 液壓陷阱階梯 × 乾冰氣浮銅像",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-18",
+        volNum: "第二卷",
+        title: "海霧港口的蒸汽幽靈",
+        subtitle: "港灣連環大案與怪盜宣戰",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 7～12 章 · 0.7 萬字",
+        status: "全 6 章已完結",
+        theme: "穿牆幽靈電車 × 拍賣行定格鐘擺 × 仿生逆風信使",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-19",
+        volNum: "第三卷",
+        title: "黃金鐘樓的時間倒流",
+        subtitle: "終極世紀對決與防洪巨閘真相",
+        chaptersCount: 6,
+        releasedChapters: 6,
+        wordCount: "第 13～18 章 · 0.6 萬字",
+        status: "全 6 章已完結",
+        theme: "雙螺旋第五層 × 頻閃懸停水滴 × 行星差速巨閘",
+        firstChapterId: 1
+      }
+    ],
+    highlights: [
+      "全 18 章中英雙語對照，段落 100% 嚴格 1:1 對齊",
+      "本格偵探推理 × 18 道硬核齒輪物理與光學 STEM 解密",
+      "黃銅單片鏡、記憶共振音叉與發條刺蝟皮球的奇幻破案大冒險"
+    ],
+    themeTone: "indigo",
+    coverStyle: "from-indigo-500/10 via-purple-500/5 to-slate-900/40 border-indigo-500/30",
+    startBookId: "book-17",
+    startChapterId: 1
+  }
 ];
