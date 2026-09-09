@@ -11358,15 +11358,27 @@
     const container = document.getElementById('app-main');
     const allBadges = DATA.badges || [];
     
-    // 第一套與第二套新書徽章分組
+    // 各套書徽章分組
     const series1Badges = allBadges.filter(b => b.series === 'series1' || (!b.series && b.id <= 32));
-    const series2Badges = allBadges.filter(b => b.series === 'series2' || b.id >= 33);
+    const series2Badges = allBadges.filter(b => b.series === 'series2' || (b.id >= 33 && b.id <= 62));
+    const series3Badges = allBadges.filter(b => b.series === 'series3');
+    const series4Badges = allBadges.filter(b => b.series === 'series4');
+    const series6Badges = allBadges.filter(b => b.series === 'series6');
+    const series5Badges = allBadges.filter(b => b.series === 'series5');
 
     let displayBadges = allBadges;
     if (activeBadgeTab === 'series1') {
       displayBadges = series1Badges;
     } else if (activeBadgeTab === 'series2') {
       displayBadges = series2Badges;
+    } else if (activeBadgeTab === 'series3') {
+      displayBadges = series3Badges;
+    } else if (activeBadgeTab === 'series4') {
+      displayBadges = series4Badges;
+    } else if (activeBadgeTab === 'series6') {
+      displayBadges = series6Badges;
+    } else if (activeBadgeTab === 'series5') {
+      displayBadges = series5Badges;
     }
 
     const total = displayBadges.length;
@@ -11376,6 +11388,16 @@
     const overallTotal = allBadges.length;
     const overallUnlocked = state.unlockedBadges.length;
     const overallPercent = overallTotal > 0 ? Math.round((overallUnlocked / overallTotal) * 100) : 0;
+
+    const tabProgressTitles = {
+      all: '全書庫總收集進度',
+      series1: '《失落的二十四小時》收集進度',
+      series2: '《星願鐘擺與織光少女》收集進度',
+      series3: '《我的老師不是人》收集進度',
+      series4: '《來自未來的轉學生》收集進度',
+      series6: '《全班作弊中》收集進度',
+      series5: '《手作少女的奇幻旅程》收集進度'
+    };
 
     container.innerHTML = `
       <section class="max-w-5xl mx-auto mb-16">
@@ -11396,7 +11418,7 @@
           <div class="mt-6 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
             <div class="flex items-center justify-between text-xs font-bold mb-2.5">
               <span class="text-slate-700 dark:text-slate-300">
-                ${activeBadgeTab === 'all' ? '總收集進度' : (activeBadgeTab === 'series1' ? '《失落的二十四小時》收集進度' : '《星願鐘擺與織光少女》收集進度')}：
+                ${tabProgressTitles[activeBadgeTab] || '收集進度'}：
                 <span class="text-amber-600 font-mono font-black">${unlockedCount} / ${total}</span> 枚
               </span>
               <span class="text-amber-600 font-mono font-bold text-sm">${percent}%</span>
@@ -11440,30 +11462,85 @@
             <span>🌸 第二套：《星願鐘擺與織光少女》</span>
             <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series2' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series2Badges.length}</span>
           </button>
+
+          <button onclick="window.switchBadgeTab('series3')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series3'
+              ? 'bg-sky-600 text-white shadow-md shadow-sky-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500/50'
+          }">
+            <span>🤖 第三套：《我的老師不是人》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series3' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/10 text-sky-600'}">${series3Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series4')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series4'
+              ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50'
+          }">
+            <span>🌱 第四套：《來自未來的轉學生》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series4' ? 'bg-emerald-700 text-emerald-100' : 'bg-emerald-500/10 text-emerald-600'}">${series4Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series6')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series6'
+              ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50'
+          }">
+            <span>📝 第五套：《全班作弊中》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series6' ? 'bg-amber-700 text-amber-100' : 'bg-amber-500/10 text-amber-600'}">${series6Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series5')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series5'
+              ? 'bg-rose-600 text-white shadow-md shadow-rose-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500/50'
+          }">
+            <span>🎨 療癒短篇：《手作少女》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series5' ? 'bg-rose-700 text-rose-100' : 'bg-rose-500/10 text-rose-600'}">${series5Badges.length}</span>
+          </button>
         </div>
 
         <!-- 勳章卡片展示網格 -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           ${displayBadges.map(badge => {
             const isUnlocked = state.unlockedBadges.includes(badge.id);
-            const isSeries2 = badge.series === 'series2' || badge.id >= 33;
+            const seriesId = badge.series || (badge.id <= 32 ? 'series1' : 'series2');
+            
+            let borderClass = 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40';
+            let iconBgClass = 'bg-slate-200 dark:bg-slate-800 opacity-60 grayscale';
+            let linkColorClass = 'text-slate-500 hover:text-amber-600';
+
+            if (isUnlocked) {
+              if (seriesId === 'series2' || seriesId === 'series5') {
+                borderClass = 'border-rose-500/40 bg-gradient-to-b from-rose-500/10 to-transparent shadow-md';
+                iconBgClass = 'bg-rose-500/20 text-rose-600';
+                linkColorClass = 'text-rose-600 dark:text-rose-400 hover:underline';
+              } else if (seriesId === 'series3') {
+                borderClass = 'border-sky-500/40 bg-gradient-to-b from-sky-500/10 to-transparent shadow-md';
+                iconBgClass = 'bg-sky-500/20 text-sky-600';
+                linkColorClass = 'text-sky-600 dark:text-sky-400 hover:underline';
+              } else if (seriesId === 'series4') {
+                borderClass = 'border-emerald-500/40 bg-gradient-to-b from-emerald-500/10 to-transparent shadow-md';
+                iconBgClass = 'bg-emerald-500/20 text-emerald-600';
+                linkColorClass = 'text-emerald-600 dark:text-emerald-400 hover:underline';
+              } else {
+                borderClass = 'border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-transparent shadow-md';
+                iconBgClass = 'bg-amber-500/20 text-amber-600';
+                linkColorClass = 'text-amber-600 dark:text-amber-400 hover:underline';
+              }
+            }
+
             const targetBookId = badge.bookId || (badge.id <= 10 ? 'book-1' : badge.id <= 22 ? 'book-2' : 'book-3');
             const targetChapterId = badge.chapterId !== undefined ? badge.chapterId : badge.id;
+            const displayChNum = badge.displayChapter || (targetBookId === 'book-5' ? targetChapterId + 10 : (targetBookId === 'book-6' ? targetChapterId + 20 : targetChapterId));
+            const unitName = badge.series === 'series5' ? '篇' : '章';
 
             return `
-              <div class="badge-card p-5 rounded-2xl border transition-all ${
-                isUnlocked 
-                  ? (isSeries2 ? 'border-rose-500/40 bg-gradient-to-b from-rose-500/10 to-transparent shadow-md' : 'border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-transparent shadow-md') 
-                  : 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40'
-              } flex flex-col justify-between">
+              <div class="badge-card p-5 rounded-2xl border transition-all ${borderClass} flex flex-col justify-between">
                 <div>
                   <!-- 頂部圖示與狀態標籤 -->
                   <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-inner ${
-                      isUnlocked 
-                        ? (isSeries2 ? 'bg-rose-500/20 text-rose-600' : 'bg-amber-500/20 text-amber-600') 
-                        : 'bg-slate-200 dark:bg-slate-800 opacity-60 grayscale'
-                    }">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-inner ${iconBgClass}">
                       ${badge.icon}
                     </div>
                     <div class="flex flex-col items-end gap-1">
@@ -11493,12 +11570,8 @@
                 <!-- 底部章節跳轉動作 -->
                 <div class="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs">
                   ${!badge.upcoming ? `
-                    <a href="#/read/${targetBookId}/${targetChapterId}" class="inline-flex items-center gap-1 text-[11px] font-bold ${
-                      isUnlocked 
-                        ? (isSeries2 ? 'text-rose-600 dark:text-rose-400 hover:underline' : 'text-amber-600 dark:text-amber-400 hover:underline') 
-                        : 'text-slate-500 hover:text-amber-600 transition-colors'
-                    }">
-                      <span>📖 ${isUnlocked ? '重溫本章' : '前往閱讀解鎖'} (第 ${badge.displayChapter || (targetBookId === 'book-5' ? targetChapterId + 10 : (targetBookId === 'book-6' ? targetChapterId + 20 : targetChapterId))} 章)</span>
+                    <a href="#/read/${targetBookId}/${targetChapterId}" class="inline-flex items-center gap-1 text-[11px] font-bold ${linkColorClass}">
+                      <span>📖 ${isUnlocked ? '重溫本' + unitName : '前往閱讀解鎖'} (第 ${displayChNum} ${unitName})</span>
                       <span>➜</span>
                     </a>
                   ` : `
@@ -11514,7 +11587,6 @@
       </section>
     `;
   }
-
 
     // 全域頂部導覽列與彈窗事件初始化
   function initGlobalEvents() {
