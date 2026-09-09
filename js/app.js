@@ -1561,10 +1561,10 @@
           <span class="font-medium font-mono text-[11px] opacity-90">📖 全站共讀 ${window.StatsService ? window.StatsService.getTotalSiteReads(true) : '0'} 次</span>
         </div>
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-          冒險齒輪 · 少兒科幻與奇幻小說庫
+          冒險齒輪 · 少兒小說庫
         </h1>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
-          專為少兒與青少年打造的原創小說庫。涵蓋硬核科幻、校園成長、心靈療癒等各類短篇與長篇完結作品。
+          專為少兒與青少年打造的原創小說。
         </p>
       </div>
 
