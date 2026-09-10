@@ -414,8 +414,8 @@ window.GEAR_SERIES = [
   "id": "series-7",
   "title": "冒險齒輪：不可思議事件簿",
   "enTitle": "Adventure Gear: The Files of the Impossible",
-  "subtitle": "少兒科幻推理 · 第二卷熱更中（第 10 章已釋出）",
-  "badge": "🔥 第二卷熱更中 · 第 10 章",
+  "subtitle": "少兒科幻推理 · 第二卷熱更中（第 11 章已釋出）",
+  "badge": "🔥 第二卷熱更中 · 第 11 章",
   "badgeColor": "indigo",
   "targetAudience": "9～15 歲適讀 · STEM 齒輪偵探 × 校園不可思議",
   "tagline": "世上沒有無解的怪談，只有未被拆解的齒輪與光學偏振！",
@@ -424,9 +424,9 @@ window.GEAR_SERIES = [
     "totalVolumes": 3,
     "currentVolumesReleased": 2,
     "totalChapters": 18,
-    "currentChaptersReleased": 10,
-    "totalWords": "5.9 萬字",
-    "statusText": "第二卷連載中 · 已發布第 10 章"
+    "currentChaptersReleased": 11,
+    "totalWords": "6.5 萬字",
+    "statusText": "第二卷連載中 · 已發布第 11 章"
   },
   "volumes": [
     {
@@ -447,9 +447,9 @@ window.GEAR_SERIES = [
       "title": "海霧港口的蒸汽幽靈",
       "subtitle": "港灣連環大案",
       "chaptersCount": 6,
-      "releasedChapters": 4,
-      "wordCount": "第 7～10 章已發布 · 2.2 萬字",
-      "status": "第二卷連載中（已釋出至第 10 章）",
+      "releasedChapters": 5,
+      "wordCount": "第 7～11 章已發布 · 2.8 萬字",
+      "status": "第二卷連載中（已釋出至第 11 章）",
       "theme": "港灣奇案 × 伯努利流體 × 全息折射",
       "firstChapterId": 1
     },
