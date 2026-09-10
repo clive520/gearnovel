@@ -1571,9 +1571,9 @@
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《海霧港口的蒸汽幽靈》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-indigo-500 text-white font-bold flex-shrink-0">熱更中</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">卷二完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 7～11 章已釋出 · 2.8 萬字 · 幽靈電車 × 深海鐘樓 × 逆流沙漏</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章大完結 · 3.3 萬字 · 幽靈電車 × 逆流沙漏 × 黃金鐘樓</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1598,8 +1598,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-indigo-500/20 flex items-center gap-3">
-          <a href="#/read/book-18/5" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第 11 章（要塞逆流沙漏）</span>
+          <a href="#/read/book-18/6" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 閱讀第 12 章（第二卷大結局）</span>
           </a>
           <button onclick="window.openSeriesModal('series-7')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全書規劃大綱
