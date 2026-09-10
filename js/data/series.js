@@ -414,8 +414,8 @@ window.GEAR_SERIES = [
   "id": "series-7",
   "title": "冒險齒輪：不可思議事件簿",
   "enTitle": "Adventure Gear: The Files of the Impossible",
-  "subtitle": "少兒科幻推理 · 第三卷熱更中（第 14 章已釋出）",
-  "badge": "🔥 第三卷熱更中 · 第 14 章",
+  "subtitle": "少兒科幻推理 · 第三卷熱更中（第 15 章已釋出）",
+  "badge": "🔥 第三卷熱更中 · 第 15 章",
   "badgeColor": "indigo",
   "targetAudience": "9～15 歲適讀 · STEM 齒輪偵探 × 校園不可思議",
   "tagline": "世上沒有無解的怪談，只有未被拆解的齒輪與光學偏振！",
@@ -424,9 +424,9 @@ window.GEAR_SERIES = [
     "totalVolumes": 3,
     "currentVolumesReleased": 3,
     "totalChapters": 18,
-    "currentChaptersReleased": 14,
-    "totalWords": "8.1 萬字",
-    "statusText": "第三卷連載中 · 已發布第 14 章"
+    "currentChaptersReleased": 15,
+    "totalWords": "8.6 萬字",
+    "statusText": "第三卷連載中 · 已發布第 15 章"
   },
   "volumes": [
     {
@@ -459,9 +459,9 @@ window.GEAR_SERIES = [
       "title": "黃金鐘樓的時間倒流",
       "subtitle": "終極世紀對決",
       "chaptersCount": 6,
-      "releasedChapters": 2,
-      "wordCount": "第 13～14 章已發布 · 1.1 萬字",
-      "status": "第三卷連載中（已釋出至第 14 章）",
+      "releasedChapters": 3,
+      "wordCount": "第 13～15 章已發布 · 1.6 萬字",
+      "status": "第三卷連載中（已釋出至第 15 章）",
       "theme": "雙螺旋鐘樓 × 次聲波共振 × 行星差速器",
       "firstChapterId": 13
     }
