@@ -1518,7 +1518,7 @@
           <!-- 標籤與受眾 -->
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30">
-              🔍 全新連載 · 第 1 章已釋出
+              🔍 全新連載 · 第 1～2 章已釋出
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20 font-mono">
@@ -1543,11 +1543,11 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 卷次收錄進度（每章 4,000～5,000 字長篇推理）</span>
-              <span class="text-indigo-600 font-mono font-bold">0.9 萬字</span>
+              <span class="text-indigo-600 font-mono font-bold">1.4 萬字</span>
             </div>
 
             <!-- 卷一 -->
-            <a href="#/read/book-17/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
+            <a href="#/read/book-17/2" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
                 <span class="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
                 <div class="min-w-0">
@@ -1555,7 +1555,7 @@
                     <span class="truncate">《消失的影子與第十三個台階》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-indigo-500 text-white font-bold flex-shrink-0">連載中</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1 章已釋出 · 9,000 字 · 深夜音樂教室的無人演奏會</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～2 章已釋出 · 1.4 萬字 · 幽靈鋼琴 × 消失的第十三階</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1592,8 +1592,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-indigo-500/20 flex items-center gap-3">
-          <a href="#/read/book-17/1" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第 1 章</span>
+          <a href="#/read/book-17/2" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 續讀第 2 章</span>
           </a>
           <button onclick="window.openSeriesModal('series-7')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全書規劃大綱
