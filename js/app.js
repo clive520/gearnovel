@@ -1543,7 +1543,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 卷次收錄進度（每章 4,000～5,000 字長篇推理）</span>
-              <span class="text-indigo-600 font-mono font-bold">4.2 萬字</span>
+              <span class="text-indigo-600 font-mono font-bold">7.5 萬字</span>
             </div>
 
             <!-- 卷一 -->
@@ -1555,7 +1555,7 @@
                     <span class="truncate">《消失的影子與第十三個台階》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">卷一完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1～4 章已釋出 · 4.2 萬字 · 幽靈鋼琴 × 消失第十三階 × 雕像巡遊 × 被偷走影子的日晷</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章大完結 · 3.7 萬字 · 幽靈鋼琴 × 消失第十三階 × 日晷 × 自轉銀齒輪</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1582,24 +1582,30 @@
               </div>
             </a>
 
-            <!-- 卷三預告 -->
-            <div class="p-3 rounded-2xl bg-slate-50/50 dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-70">
+            <!-- 卷三 -->
+            <a href="#/read/book-19/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-600 dark:text-slate-300 truncate">《黃金鐘樓的時間倒流》</div>
-                  <div class="text-[11px] text-slate-400 truncate">終極世紀對決 · 規劃中即將推出</div>
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《黃金鐘樓的時間倒流》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">熱更中</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13 章已釋出 · 0.5 萬字 · 頻閃逆轉大鐘盤 × 18.9Hz 次聲波 × 萬曆星盤</div>
                 </div>
               </div>
-              <span class="text-[11px] text-slate-400 font-medium px-2 py-0.5 rounded bg-slate-200/50 dark:bg-slate-700/50">敬請期待</span>
-            </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-19') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
           </div>
         </div>
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-indigo-500/20 flex items-center gap-3">
-          <a href="#/read/book-18/6" class="flex-1 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第 12 章（第二卷大結局）</span>
+          <a href="#/read/book-19/1" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 閱讀第 13 章（第三卷古都鐘樓）</span>
           </a>
           <button onclick="window.openSeriesModal('series-7')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全書規劃大綱

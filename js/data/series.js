@@ -414,19 +414,19 @@ window.GEAR_SERIES = [
   "id": "series-7",
   "title": "冒險齒輪：不可思議事件簿",
   "enTitle": "Adventure Gear: The Files of the Impossible",
-  "subtitle": "少兒科幻推理 · 第二卷大完結（全 12 章已釋出）",
-  "badge": "🎉 第二卷大完結 · 全 12 章",
+  "subtitle": "少兒科幻推理 · 第三卷熱更中（第 13 章已釋出）",
+  "badge": "🔥 第三卷熱更中 · 第 13 章",
   "badgeColor": "indigo",
   "targetAudience": "9～15 歲適讀 · STEM 齒輪偵探 × 校園不可思議",
   "tagline": "世上沒有無解的怪談，只有未被拆解的齒輪與光學偏振！",
   "description": "鹿陽國小百年校舍怪事頻傳：深夜自彈莫札特的幽靈鋼琴、雨夜憑空多出的鐘樓第十三階、正午蒸發影子的古董日晷……冷靜推演的偵探社長陸言、共振聽音的天才少女沈星葵、鬼馬發明家方小克攜手機械刺蝟皮球，成立「齒輪偵探事務所」，運用偏振光譜、聲學駐波與發條力學，抽絲剝繭破解一件件匪夷所思的校園與港灣迷案！",
   "stats": {
     "totalVolumes": 3,
-    "currentVolumesReleased": 2,
+    "currentVolumesReleased": 3,
     "totalChapters": 18,
-    "currentChaptersReleased": 12,
-    "totalWords": "7.0 萬字",
-    "statusText": "第二卷大完結 · 全 12 章"
+    "currentChaptersReleased": 13,
+    "totalWords": "7.5 萬字",
+    "statusText": "第三卷連載中 · 已發布第 13 章"
   },
   "volumes": [
     {
@@ -459,9 +459,9 @@ window.GEAR_SERIES = [
       "title": "黃金鐘樓的時間倒流",
       "subtitle": "終極世紀對決",
       "chaptersCount": 6,
-      "releasedChapters": 0,
-      "wordCount": "規劃中",
-      "status": "即將推出",
+      "releasedChapters": 1,
+      "wordCount": "第 13 章已發布 · 0.5 萬字",
+      "status": "第三卷連載中（已釋出至第 13 章）",
       "theme": "雙螺旋鐘樓 × 次聲波共振 × 行星差速器",
       "firstChapterId": 13
     }
