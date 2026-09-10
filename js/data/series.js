@@ -414,19 +414,19 @@ window.GEAR_SERIES = [
   "id": "series-7",
   "title": "冒險齒輪：不可思議事件簿",
   "enTitle": "Adventure Gear: The Files of the Impossible",
-  "subtitle": "少兒科幻推理 · 第一卷大完結（全 6 章已釋出）",
-  "badge": "🏆 第一卷大完結 · 全 6 章",
+  "subtitle": "少兒科幻推理 · 第二卷熱更中（第 7 章已釋出）",
+  "badge": "🔥 第二卷熱更中 · 第 7 章",
   "badgeColor": "indigo",
   "targetAudience": "9～15 歲適讀 · STEM 齒輪偵探 × 校園不可思議",
   "tagline": "世上沒有無解的怪談，只有未被拆解的齒輪與光學偏振！",
   "description": "鹿陽國小百年校舍怪事頻傳：深夜自彈莫札特的幽靈鋼琴、雨夜憑空多出的鐘樓第十三階、正午蒸發影子的古董日晷……冷靜推演的偵探社長陸言、共振聽音的天才少女沈星葵、鬼馬發明家方小克攜手機械刺蝟皮球，成立「齒輪偵探事務所」，運用偏振光譜、聲學駐波與發條力學，抽絲剝繭破解一件件匪夷所思的校園與港灣迷案！",
   "stats": {
     "totalVolumes": 3,
-    "currentVolumesReleased": 1,
+    "currentVolumesReleased": 2,
     "totalChapters": 18,
-    "currentChaptersReleased": 1,
-    "totalWords": "0.9 萬字",
-    "statusText": "第一卷連載中 · 已發布第 1 章"
+    "currentChaptersReleased": 7,
+    "totalWords": "4.2 萬字",
+    "statusText": "第二卷連載中 · 已發布第 7 章"
   },
   "volumes": [
     {
@@ -435,9 +435,9 @@ window.GEAR_SERIES = [
       "title": "消失的影子與第十三個台階",
       "subtitle": "校園不可思議事件簿",
       "chaptersCount": 6,
-      "releasedChapters": 1,
-      "wordCount": "第 1 章已發布 · 0.9 萬字",
-      "status": "連載中（第 1 章）",
+      "releasedChapters": 6,
+      "wordCount": "全 6 章已發布 · 3.7 萬字",
+      "status": "第一卷大完結（全 6 章）",
       "theme": "校園怪談 × 偏振光譜 × 凸輪機構",
       "firstChapterId": 1
     },
@@ -447,11 +447,11 @@ window.GEAR_SERIES = [
       "title": "海霧港口的蒸汽幽靈",
       "subtitle": "港灣連環大案",
       "chaptersCount": 6,
-      "releasedChapters": 0,
-      "wordCount": "規劃中",
-      "status": "即將推出",
+      "releasedChapters": 1,
+      "wordCount": "第 7 章已發布 · 0.5 萬字",
+      "status": "第二卷連載中（第 7 章）",
       "theme": "港灣奇案 × 伯努利流體 × 全息折射",
-      "firstChapterId": 7
+      "firstChapterId": 1
     },
     {
       "bookId": "book-19",
