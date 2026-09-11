@@ -1523,7 +1523,63 @@
 
 
   
-  function getSeries8CardHtml() {
+  
+  // 卡片產生函數：第九套《平行時空的同班同學》
+  function getSeries9CardHtml() {
+    return `
+      <div class="rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-500/10 via-cyan-500/5 to-slate-900/40 dark:to-slate-950 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group shadow-lg hover:shadow-sky-500/10 transition-all duration-300">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-sky-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-sky-500/20 transition-all"></div>
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-black tracking-wide uppercase bg-sky-500/20 text-sky-400 border border-sky-500/30">
+              🎉 全三卷 24 章大完結
+            </span>
+            <span class="text-xs font-mono text-slate-400">9～15 歲適讀 · 平行時空成長</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-sky-400 transition-colors">
+            《平行時空的同班同學》
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold text-sky-600 dark:text-sky-400 mb-3">
+            平行時空校園群像 · 全三卷 24 章震撼大完結！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 line-clamp-3">
+            海聲國小舊禮堂老鏡泛起銀白漣漪！安靜退縮的林澈穿過裂縫，遇見自信耀眼的另一個自己。開學第三天的一句話讓兩個世界分道揚鑣；面對覆蓋危機與七天倒數，五十二位少年在理性與熱血中學會自我接納，迎來溫暖奇蹟！
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6">
+            <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-900/60 border border-sky-500/20">
+              <span class="text-[10px] text-slate-400 block mb-0.5">第一卷 · 8章完結</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">舊禮堂的鏡子</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-900/60 border border-sky-500/20">
+              <span class="text-[10px] text-slate-400 block mb-0.5">第二卷 · 8章完結</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">被說出口的話</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-900/60 border border-sky-500/20">
+              <span class="text-[10px] text-slate-400 block mb-0.5">第三卷 · 8章完結</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-200">留下來的人</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-sky-500/20">
+          <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <span>📖 全三卷 24 章</span>
+            <span>·</span>
+            <span>4.0 萬字雙語</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="#/series-9" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-sky-600 hover:bg-sky-500 text-white shadow-md shadow-sky-600/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5">
+              <span>探索全系列</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+function getSeries8CardHtml() {
     return `
       <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-emerald-500/50 h-full">
         <div>
@@ -1712,6 +1768,7 @@
     const card6 = getSeries6CardHtml();
     const card7 = getSeries7CardHtml();
     const card8 = getSeries8CardHtml();
+    const card9 = getSeries9CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1815,11 +1872,14 @@
               <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600 whitespace-nowrap">
                 🐦 《班上鳥事》
               </button>
+              <button onclick="window.goToHomeSlide(8)" id="home-slide-tab-8" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600 whitespace-nowrap">
+                🪞 《平行時空的同班同學》
+              </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 8</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 9</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1866,6 +1926,7 @@
             <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-indigo-400"></button>
             <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
             <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-emerald-400"></button>
+            <button onclick="window.goToHomeSlide(8)" id="home-slide-dot-8" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-sky-400"></button>
           </div>
         </div>
       ` : `
@@ -1879,6 +1940,7 @@
             <div>${card6}</div>
             <div>${card7}</div>
             <div>${card8}</div>
+            <div>${card9}</div>
           ` : ''}
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'short') ? `
             <div>${card5}</div>
@@ -2894,6 +2956,7 @@
     const series6Chars = allChars.filter(char => char.vol === 'series6');
     const series7Chars = allChars.filter(char => char.vol === 'series7');
     const series8Chars = allChars.filter(char => char.vol === 'series8');
+    const series9Chars = allChars.filter(char => char.vol === 'series9');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
@@ -2903,6 +2966,7 @@
     else if (activeCharTab === 'series6') filteredChars = series6Chars;
     else if (activeCharTab === 'series7') filteredChars = series7Chars;
     else if (activeCharTab === 'series8') filteredChars = series8Chars;
+    else if (activeCharTab === 'series9') filteredChars = series9Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
@@ -2912,6 +2976,7 @@
     const isSeries6 = activeCharTab === 'series6';
     const isSeries7 = activeCharTab === 'series7';
     const isSeries8 = activeCharTab === 'series8';
+    const isSeries9 = activeCharTab === 'series9';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
@@ -3016,6 +3081,19 @@
             }">${series8Chars.length}</span>
           </button>
 
+          <button onclick="window.switchCharTab('series9')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries9
+              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600'
+          }">
+            <span>《平行時空的同班同學》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries9
+                ? 'bg-sky-700 text-sky-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series9Chars.length}</span>
+          </button>
+
           <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries5
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
@@ -3032,6 +3110,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS9Char = char.vol === 'series9';
             const isS8Char = char.vol === 'series8';
             const isS6Char = char.vol === 'series6';
             const isS5Char = char.vol === 'series5';
@@ -3039,7 +3118,8 @@
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS8Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            if (isS9Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            else if (isS8Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
             else if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
@@ -11601,6 +11681,7 @@
     const series6Badges = allBadges.filter(b => b.series === 'series6');
     const series7Badges = allBadges.filter(b => b.series === 'series7');
     const series8Badges = allBadges.filter(b => b.series === 'series8');
+    const series9Badges = allBadges.filter(b => b.series === 'series9');
     const series5Badges = allBadges.filter(b => b.series === 'series5');
 
     let displayBadges = allBadges;
@@ -11619,6 +11700,9 @@
     }
     else if (activeBadgeTab === 'series8') {
       displayBadges = series8Badges;
+    }
+    else if (activeBadgeTab === 'series9') {
+      displayBadges = series9Badges;
     } else if (activeBadgeTab === 'series5') {
       displayBadges = series5Badges;
     }
@@ -11640,6 +11724,7 @@
       series6: '《全班作弊中》收集進度',
       series7: '《不可思議事件簿》收集進度',
       series8: '《班上鳥事》收集進度',
+      series9: '《平行時空的同班同學》收集進度',
       series5: '《手作少女的奇幻旅程》收集進度'
     };
 
@@ -11750,6 +11835,15 @@
           }">
             <span>🐦 第八套：《班上鳥事》</span>
             <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series8' ? 'bg-emerald-700 text-emerald-100' : 'bg-emerald-500/10 text-emerald-600'}">${series8Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series9')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series9'
+              ? 'bg-sky-600 text-white shadow-md shadow-sky-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500/50'
+          }">
+            <span>🪞 第九套：《平行時空的同班同學》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series9' ? 'bg-sky-700 text-sky-100' : 'bg-sky-500/10 text-sky-600'}">${series9Badges.length}</span>
           </button>
 
           <button onclick="window.switchBadgeTab('series5')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${

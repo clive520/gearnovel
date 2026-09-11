@@ -518,4 +518,71 @@ window.GEAR_SERIES = [
   "startBookId": "book-20",
   "startChapterId": 1
 }
+,
+{
+  "id": "series-9",
+  "title": "平行時空的同班同學",
+  "enTitle": "Classmates from a Parallel World",
+  "subtitle": "平行時空校園群像 · 全三卷 24 章震撼大完結！",
+  "badge": "🎉 全三卷 24 章大完結",
+  "badgeColor": "sky",
+  "targetAudience": "9～15 歲適讀 · 平行時空 × 群像成長 × 溫馨省思",
+  "tagline": "兩個世界只差一個小小的選擇，卻讓五十二個少年的人生截然不同。",
+  "description": "離海堤兩條街的海聲國小六年一班，舊禮堂舞台後方蒙塵的老鏡在放學後悄然泛起銀白漣漪。安靜退縮的林澈穿過時空裂縫，赫然遇見了開朗自信、光芒四射的「另一個自己」！原來開學第三天體育課上老師的一句話，讓同一個班級分化出截然不同的兩個平行世界。隨著七天倒數鐘聲響起、不可逆的世界覆蓋危機逼近，兩班五十二位少年在理性班長周予晴與熱血班長趙小陽帶領下展開跨時空大作戰。從互相猜忌到攜手追尋分歧點，在成長與告別中學會換位思考與被看見，寫下最溫暖動人的奇蹟篇章！",
+  "stats": {
+    "totalVolumes": 3,
+    "currentVolumesReleased": 3,
+    "totalChapters": 24,
+    "currentChaptersReleased": 24,
+    "totalWords": "4.0 萬字",
+    "statusText": "全三卷 24 章大完結"
+  },
+  "volumes": [
+    {
+      "bookId": "book-21",
+      "volNum": "第一卷",
+      "title": "舊禮堂的鏡子",
+      "subtitle": "第一幕：禮堂鏡與時空裂縫",
+      "chaptersCount": 8,
+      "releasedChapters": 8,
+      "wordCount": "全 8 章已完結 · 1.5 萬字",
+      "status": "第一卷完結（全 8 章）",
+      "theme": "銀白漣漪 × 鏡像相遇 × 輪流回家守則",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-22",
+      "volNum": "第二卷",
+      "title": "被說出口的話",
+      "subtitle": "第二幕：對不上的記憶與分歧點",
+      "chaptersCount": 8,
+      "releasedChapters": 8,
+      "wordCount": "全 8 章已完結 · 1.3 萬字",
+      "status": "第二卷完結（全 8 章）",
+      "theme": "覆蓋來襲 × 接力選拔重演 × 鏡裂危機",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-23",
+      "volNum": "第三卷",
+      "title": "留下來的人",
+      "subtitle": "第三幕：時間投影與奇蹟的選擇",
+      "chaptersCount": 8,
+      "releasedChapters": 8,
+      "wordCount": "全 8 章已完結 · 1.2 萬字",
+      "status": "第三卷完結（全 8 章）",
+      "theme": "時間投影 × 交換人生 × 奇蹟的早晨",
+      "firstChapterId": 1
+    }
+  ],
+  "highlights": [
+    "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀",
+    "7 天倒數硬時鐘 × 嚴謹時空規則與兩班對照組精彩心理交鋒",
+    "催人淚下的自我接納與換位思考：有人選擇留下，兩個世界都多了一個被看見的人"
+  ],
+  "themeTone": "sky",
+  "coverStyle": "from-sky-500/10 via-cyan-500/5 to-slate-900/40 border-sky-500/30",
+  "startBookId": "book-21",
+  "startChapterId": 1
+}
 ];
