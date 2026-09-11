@@ -1543,7 +1543,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 卷次收錄進度（每章 4,000～5,000 字長篇推理）</span>
-              <span class="text-indigo-600 font-mono font-bold">8.6 萬字</span>
+              <span class="text-indigo-600 font-mono font-bold">9.2 萬字</span>
             </div>
 
             <!-- 卷一 -->
@@ -1591,7 +1591,7 @@
                     <span class="truncate">《黃金鐘樓的時間倒流》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">熱更中</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 13～15 章已釋出 · 1.6 萬字 · 頻閃大鐘盤 × 倒懸卡皮查擺 × 雙曲面隱形鏡陣</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13～16 章已釋出 · 2.2 萬字 · 倒懸卡皮查擺 × 雙曲面隱形鏡陣 × 康達水刀破局</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1604,8 +1604,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-indigo-500/20 flex items-center gap-3">
-          <a href="#/read/book-19/3" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第 15 章（回音鏡陣黃金聖柩）</span>
+          <a href="#/read/book-19/4" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 閱讀第 16 章（永樂天樞逆潮狂瀾）</span>
           </a>
           <button onclick="window.openSeriesModal('series-7')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全書規劃大綱
