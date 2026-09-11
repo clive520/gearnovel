@@ -475,5 +475,47 @@ window.GEAR_SERIES = [
   "coverStyle": "from-indigo-500/10 via-indigo-500/5 to-slate-900/40 border-indigo-500/30",
   "startBookId": "book-17",
   "startChapterId": 1
+},
+{
+  "id": "series-8",
+  "title": "班上鳥事",
+  "enTitle": "A Class of Feathered Troubles",
+  "subtitle": "校園成長溫馨喜劇 · 全 15 章震撼大完結！",
+  "badge": "🎉 全書 15 章大完結",
+  "badgeColor": "emerald",
+  "targetAudience": "9～15 歲適讀 · 校園生活 × 爆笑幽默 × 生命救贖",
+  "tagline": "世上沒有真正的壞孩子，只有被吵鬧聲掩蓋的溫柔心跳。",
+  "description": "鹿陽國小六年一班是全校聞名的「魔王班」、「拆遷隊」，兩個月內接連氣走三任導師！直到孩子王阿棠在榕樹下冒死從校貓爪下救回一隻奄奄一息的雛麻雀「小麻」，全班的命運開始天翻地覆。擁有「跨物種心靈感應」秘密天賦的冷面毒舌班長陸書晴（晴子），被迫成為人鳥之間的地下首席翻譯官。為了讓極度敏感的小麻活命，全班在晴子的鐵腕指揮下展開全員踮腳、唇語交談的「極限消音作戰」，與手持望遠鏡的學務主任周嚴及深陷心理學迷思的菜鳥溫老師展開一場令人啼笑皆非的溫馨成長攻防！",
+  "stats": {
+    "totalVolumes": 1,
+    "currentVolumesReleased": 1,
+    "totalChapters": 15,
+    "currentChaptersReleased": 15,
+    "totalWords": "6.0 萬字",
+    "statusText": "全書 15 章大完結"
+  },
+  "volumes": [
+    {
+      "bookId": "book-20",
+      "volNum": "全一卷",
+      "title": "班上鳥事",
+      "subtitle": "極限消音革命與溫柔救贖",
+      "chaptersCount": 15,
+      "releasedChapters": 15,
+      "wordCount": "全 15 章已完結 · 6.0 萬字",
+      "status": "全書大完結（全 15 章）",
+      "theme": "極限寂靜 × 冷面幽默 × 成長詩意",
+      "firstChapterId": 1
+    }
+  ],
+  "highlights": [
+    "支援繁體中文／英文雙語 100% 嚴格對照閱讀",
+    "令人捧腹的冷面幽默 × 催人淚下的純真生命救贖",
+    "毒舌通靈班長晴子、熱血霸王阿棠與傲嬌麻雀老爺的奇妙羈絆"
+  ],
+  "themeTone": "emerald",
+  "coverStyle": "from-emerald-500/10 via-teal-500/5 to-slate-900/40 border-emerald-500/30",
+  "startBookId": "book-20",
+  "startChapterId": 1
 }
 ];

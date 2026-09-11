@@ -1522,6 +1522,76 @@
   }
 
 
+  
+  function getSeries8CardHtml() {
+    return `
+      <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-emerald-500/50 h-full">
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              🐦 全本大完結 · 全 15 章已上線
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-8') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug">
+            《班上鳥事》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-3">
+            世上沒有真正的壞孩子，只有被吵鬧聲掩蓋的溫柔心跳。
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小六年一班是全校聞名的「魔王班」，接連氣走三任導師！直到孩子王阿棠在榕樹下冒死從校貓爪下救回一隻奄奄一息的雛麻雀「小麻」，全班展開了全員踮腳尖、無聲交談的「極限消音革命」。通靈毒舌班長晴子、熱血霸王阿棠與傲嬌麻雀老爺，譜寫出一場令人捧腹又催人淚下的純真救贖！
+          </p>
+
+          <!-- 收錄章節列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 全書規格（每章 3,000～5,800 字長篇少年文學）</span>
+              <span class="text-emerald-600 font-mono font-bold">6.0 萬字</span>
+            </div>
+
+            <!-- 全一卷卡片 -->
+            <a href="#/read/book-20/1" class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500 hover:bg-emerald-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 font-black text-sm flex items-center justify-center flex-shrink-0">全本</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《班上鳥事：全員康復》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">全書完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 15 章大完結 · 6.0 萬字 · 極限消音作戰 × 傲嬌鳥爺 × 溫柔救贖</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-20') : ''}</span>
+                <span class="text-xs text-emerald-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-emerald-500/20 flex items-center gap-3">
+          <a href="#/read/book-20/1" class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 開始閱讀第 1 章</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-8')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 15 回大綱目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+
   function getSeries7CardHtml() {
     return `
       <div class="rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-indigo-500/50 h-full">
@@ -1641,6 +1711,7 @@
     const card5 = getSeries5CardHtml();
     const card6 = getSeries6CardHtml();
     const card7 = getSeries7CardHtml();
+    const card8 = getSeries8CardHtml();
 
     container.innerHTML = `
       <!-- 最近閱讀書籤續讀膠囊（有書籤時精簡展示） -->
@@ -1694,10 +1765,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (7)
+              全部作品 (8)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (6)
+              📚 長篇系列套書 (7)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -1741,11 +1812,14 @@
               <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
                 🎨 《手作少女》
               </button>
+              <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600 whitespace-nowrap">
+                🐦 《班上鳥事》
+              </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 7</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 8</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1791,6 +1865,7 @@
             <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-indigo-400"></button>
             <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
+            <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-emerald-400"></button>
           </div>
         </div>
       ` : `
@@ -1803,6 +1878,7 @@
             <div>${card4}</div>
             <div>${card6}</div>
             <div>${card7}</div>
+            <div>${card8}</div>
           ` : ''}
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'short') ? `
             <div>${card5}</div>
@@ -2817,6 +2893,7 @@
     const series5Chars = allChars.filter(char => char.vol === 'series5');
     const series6Chars = allChars.filter(char => char.vol === 'series6');
     const series7Chars = allChars.filter(char => char.vol === 'series7');
+    const series8Chars = allChars.filter(char => char.vol === 'series8');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
@@ -2825,6 +2902,7 @@
     else if (activeCharTab === 'series5') filteredChars = series5Chars;
     else if (activeCharTab === 'series6') filteredChars = series6Chars;
     else if (activeCharTab === 'series7') filteredChars = series7Chars;
+    else if (activeCharTab === 'series8') filteredChars = series8Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
@@ -2833,6 +2911,7 @@
     const isSeries5 = activeCharTab === 'series5';
     const isSeries6 = activeCharTab === 'series6';
     const isSeries7 = activeCharTab === 'series7';
+    const isSeries8 = activeCharTab === 'series8';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
@@ -2924,6 +3003,19 @@
             }">${series7Chars.length}</span>
           </button>
 
+          <button onclick="window.switchCharTab('series8')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries8
+              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-2 ring-emerald-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600'
+          }">
+            <span>《班上鳥事》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries8
+                ? 'bg-emerald-700 text-emerald-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series8Chars.length}</span>
+          </button>
+
           <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries5
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
@@ -2940,13 +3032,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS8Char = char.vol === 'series8';
             const isS6Char = char.vol === 'series6';
             const isS5Char = char.vol === 'series5';
             const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
+            if (isS8Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            else if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
             else if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (isS3Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
@@ -11506,6 +11600,7 @@
     const series4Badges = allBadges.filter(b => b.series === 'series4');
     const series6Badges = allBadges.filter(b => b.series === 'series6');
     const series7Badges = allBadges.filter(b => b.series === 'series7');
+    const series8Badges = allBadges.filter(b => b.series === 'series8');
     const series5Badges = allBadges.filter(b => b.series === 'series5');
 
     let displayBadges = allBadges;
@@ -11521,6 +11616,9 @@
       displayBadges = series6Badges;
     } else if (activeBadgeTab === 'series7') {
       displayBadges = series7Badges;
+    }
+    else if (activeBadgeTab === 'series8') {
+      displayBadges = series8Badges;
     } else if (activeBadgeTab === 'series5') {
       displayBadges = series5Badges;
     }
@@ -11541,6 +11639,7 @@
       series4: '《來自未來的轉學生》收集進度',
       series6: '《全班作弊中》收集進度',
       series7: '《不可思議事件簿》收集進度',
+      series8: '《班上鳥事》收集進度',
       series5: '《手作少女的奇幻旅程》收集進度'
     };
 
@@ -11642,6 +11741,15 @@
           }">
             <span>🔍 第七套：《不可思議事件簿》</span>
             <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series7' ? 'bg-indigo-700 text-indigo-100' : 'bg-indigo-500/10 text-indigo-600'}">${series7Badges.length}</span>
+          </button>
+
+          <button onclick="window.switchBadgeTab('series8')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+            activeBadgeTab === 'series8'
+              ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50'
+          }">
+            <span>🐦 第八套：《班上鳥事》</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] ${activeBadgeTab === 'series8' ? 'bg-emerald-700 text-emerald-100' : 'bg-emerald-500/10 text-emerald-600'}">${series8Badges.length}</span>
           </button>
 
           <button onclick="window.switchBadgeTab('series5')" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
