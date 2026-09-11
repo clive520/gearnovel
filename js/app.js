@@ -116,6 +116,9 @@
       state.progress[bookId].read.push(chapterId);
     }
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
+    if (window.AuthService && window.AuthService.isLoggedIn()) {
+      window.AuthService.syncProgressToCloud(state.progress);
+    }
     
     // 智慧定位該章節專屬徽章（精確區隔第一套與第二套新書章節）
     const badge = DATA.badges.find(b => 
@@ -196,7 +199,16 @@
 
     playTone(523.25, 0.1);
     setTimeout(() => playTone(659.25, 0.15), 80);
-    showToast(`🔖 已在「${chapter.title} (${newBookmark.percent}%)」放入書籤！`, 'success');
+
+    const isUserLoggedIn = window.AuthService && window.AuthService.isLoggedIn();
+    if (isUserLoggedIn) {
+      showToast(`🔖 已在「${chapter.title} (${newBookmark.percent}%)」放入書籤！(雲端已同步)`, 'success');
+    } else {
+      showToast(`🔖 書籤已放入！提醒：登入帳號可永久保存`, 'info');
+      if (typeof window.openBookmarkGuestPrompt === 'function') {
+        window.openBookmarkGuestPrompt(chapter.title, newBookmark.percent);
+      }
+    }
   }
 
   function removeBookmark(id) {
@@ -286,19 +298,18 @@
       <div class="mb-3 px-3.5 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs flex items-center justify-between">
         <div class="flex items-center gap-2 text-emerald-800 dark:text-emerald-300">
           <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>雲端書籤同步中（<strong>${user.displayName || user.email}</strong>）</span>
+          <span>雲端書籤與進度同步中（<strong>${user.displayName || user.email}</strong>）</span>
         </div>
         <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">跨載具即時保存</span>
       </div>
     ` : `
-      <div class="mb-3 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs flex items-center justify-between gap-3">
-        <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-          <span>☁️</span>
-          <span>登入 Google 可跨手機、平板、電腦同步書籤</span>
+      <div class="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-amber-800 dark:text-amber-300">
+          <span>⚠️</span>
+          <span>訪客模式：登入或註冊帳號可永久保存書籤與閱讀紀錄</span>
         </div>
-        <button onclick="window.triggerGoogleSignIn()" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 hover:border-amber-500 text-slate-700 dark:text-slate-200 font-medium flex items-center gap-1.5 shadow-sm text-xs whitespace-nowrap transition-all">
-          ${googleIcon}
-          <span>立即登入</span>
+        <button onclick="window.openAuthModal('login')" class="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold flex items-center gap-1.5 shadow-sm text-xs whitespace-nowrap transition-all">
+          <span>🔑 登入 / 註冊</span>
         </button>
       </div>
     `;
@@ -11798,18 +11809,190 @@
     // ================== 使用者登入與跨載具書籤同步 ==================
     const googleIconSvg = `<svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>`;
 
+    // ================== 會員驗證視窗與 UI 控制 ==================
+    window.openAuthModal = function (mode = 'login') {
+      const modal = document.getElementById('auth-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      window.switchAuthMode(mode);
+    };
+
+    window.closeAuthModal = function () {
+      const modal = document.getElementById('auth-modal');
+      if (modal) modal.classList.add('hidden');
+      const alertBox = document.getElementById('auth-alert');
+      if (alertBox) {
+        alertBox.classList.add('hidden');
+        alertBox.innerText = '';
+      }
+    };
+
+    window.switchAuthMode = function (mode) {
+      const title = document.getElementById('auth-modal-title');
+      const subtitle = document.getElementById('auth-modal-subtitle');
+      const formLogin = document.getElementById('auth-form-login');
+      const formRegister = document.getElementById('auth-form-register');
+      const googleSection = document.getElementById('auth-google-section');
+      const switchToRegister = document.getElementById('auth-switch-to-register');
+      const switchToLogin = document.getElementById('auth-switch-to-login');
+      const alertBox = document.getElementById('auth-alert');
+
+      if (alertBox) {
+        alertBox.classList.add('hidden');
+        alertBox.innerText = '';
+      }
+
+      if (mode === 'register') {
+        if (title) title.innerText = '註冊冒險齒輪新帳號';
+        if (subtitle) subtitle.innerText = '只需 10 秒，永久保存您的書籤、閱讀進度與探索成就';
+        if (formLogin) formLogin.classList.add('hidden');
+        if (formRegister) formRegister.classList.remove('hidden');
+        if (googleSection) googleSection.classList.add('hidden');
+        if (switchToRegister) switchToRegister.classList.add('hidden');
+        if (switchToLogin) switchToLogin.classList.remove('hidden');
+      } else {
+        if (title) title.innerText = '登入冒險齒輪會員';
+        if (subtitle) subtitle.innerText = '永久保存您的書籤、閱讀進度與探索成就';
+        if (formLogin) formLogin.classList.remove('hidden');
+        if (formRegister) formRegister.classList.add('hidden');
+        if (googleSection) googleSection.classList.remove('hidden');
+        if (switchToRegister) switchToRegister.classList.remove('hidden');
+        if (switchToLogin) switchToLogin.classList.add('hidden');
+      }
+    };
+
+    function showAuthAlert(msg, type = 'error') {
+      const alertBox = document.getElementById('auth-alert');
+      if (!alertBox) return;
+      alertBox.className = type === 'error' 
+        ? 'mb-4 p-3 rounded-xl text-xs font-medium border bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300'
+        : 'mb-4 p-3 rounded-xl text-xs font-medium border bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900 text-emerald-700 dark:text-emerald-300';
+      alertBox.innerText = msg;
+      alertBox.classList.remove('hidden');
+    }
+
+    window.handleAuthLogin = async function (e) {
+      if (e) e.preventDefault();
+      const accountInput = document.getElementById('auth-login-account');
+      const passInput = document.getElementById('auth-login-password');
+      const btn = document.getElementById('btn-submit-login');
+
+      if (!accountInput || !passInput) return;
+      const account = accountInput.value.trim();
+      const password = passInput.value.trim();
+
+      if (!account || !password) {
+        showAuthAlert('請輸入帳號與密碼！');
+        return;
+      }
+
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = '⏳ 正在驗證登入中...';
+      }
+
+      try {
+        await window.AuthService.signInWithPassword(account, password);
+        window.closeAuthModal();
+        showToast(`🎉 登入成功！歡迎回來，${account}`, 'success');
+      } catch (err) {
+        showAuthAlert(err.message || '登入失敗，請檢查帳號密碼。');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = '🚀 登入帳號';
+        }
+      }
+    };
+
+    window.handleAuthRegister = async function (e) {
+      if (e) e.preventDefault();
+      const nameInput = document.getElementById('auth-register-name');
+      const accountInput = document.getElementById('auth-register-account');
+      const passInput = document.getElementById('auth-register-password');
+      const confirmInput = document.getElementById('auth-register-confirm');
+      const btn = document.getElementById('btn-submit-register');
+
+      if (!nameInput || !accountInput || !passInput || !confirmInput) return;
+      const displayName = nameInput.value.trim();
+      const emailOrAccount = accountInput.value.trim();
+      const password = passInput.value.trim();
+      const confirmPass = confirmInput.value.trim();
+
+      if (!displayName || !emailOrAccount || !password) {
+        showAuthAlert('請填寫完整註冊資訊！');
+        return;
+      }
+      if (password.length < 6) {
+        showAuthAlert('密碼長度至少需要 6 個字元！');
+        return;
+      }
+      if (password !== confirmPass) {
+        showAuthAlert('兩次密碼輸入不一致，請再次確認！');
+        return;
+      }
+
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = '⏳ 正在創建專屬帳號...';
+      }
+
+      try {
+        await window.AuthService.registerWithPassword({
+          displayName,
+          emailOrAccount,
+          password
+        });
+        window.closeAuthModal();
+        showToast(`🎉 註冊成功！歡迎加入冒險齒輪，${displayName}`, 'success');
+      } catch (err) {
+        showAuthAlert(err.message || '註冊失敗，請重試。');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = '✨ 立即註冊並登入';
+        }
+      }
+    };
+
+    // ================== 未登入訪客書籤提示控制 ==================
+    window.openBookmarkGuestPrompt = function (chapterTitle, percent) {
+      const modal = document.getElementById('bookmark-guest-modal');
+      const nameEl = document.getElementById('guest-bookmark-chapter-name');
+      if (nameEl) {
+        nameEl.innerText = `已定位於「${chapterTitle} (${percent}%)」`;
+      }
+      if (modal) {
+        modal.classList.remove('hidden');
+      }
+    };
+
+    window.closeBookmarkGuestPrompt = function () {
+      const modal = document.getElementById('bookmark-guest-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    };
+
     function renderUserAuthUI(user) {
       const desktopContainer = document.getElementById('user-auth-desktop');
       const mobileContainer = document.getElementById('user-auth-mobile');
 
       if (user) {
-        const avatarUrl = user.photoURL || 'https://www.gravatar.com/avatar/?d=mp';
         const displayName = user.displayName || (user.email ? user.email.split('@')[0] : '探索者');
+        const avatarLetter = (displayName[0] || 'G').toUpperCase();
+        const avatarImg = user.photoURL 
+          ? `<img src="${user.photoURL}" alt="${displayName}" class="w-8 h-8 rounded-full border border-amber-500/50 object-cover shadow-sm flex-shrink-0" referrerpolicy="no-referrer" />`
+          : `<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 text-white font-bold flex items-center justify-center text-xs shadow-sm flex-shrink-0">${avatarLetter}</div>`;
+        
+        const mobAvatarImg = user.photoURL
+          ? `<img src="${user.photoURL}" alt="${displayName}" class="w-7 h-7 rounded-full border border-amber-500/50 object-cover flex-shrink-0" referrerpolicy="no-referrer" />`
+          : `<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">${avatarLetter}</div>`;
 
         if (desktopContainer) {
           desktopContainer.innerHTML = `
             <div class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
-              <img src="${avatarUrl}" alt="${displayName}" class="w-8 h-8 rounded-full border border-amber-500/50 object-cover shadow-sm" referrerpolicy="no-referrer" />
+              ${avatarImg}
               <div class="hidden lg:flex flex-col text-left max-w-[110px]">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">${displayName}</span>
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">雲端已同步</span>
@@ -11825,10 +12008,10 @@
           mobileContainer.innerHTML = `
             <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
               <div class="flex items-center gap-2.5 min-w-0">
-                <img src="${avatarUrl}" alt="${displayName}" class="w-7 h-7 rounded-full border border-amber-500/50 object-cover flex-shrink-0" referrerpolicy="no-referrer" />
+                ${mobAvatarImg}
                 <div class="flex flex-col min-w-0">
                   <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">${displayName}</span>
-                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">雲端書籤同步中</span>
+                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">雲端書籤與紀錄同步中</span>
                 </div>
               </div>
               <button onclick="window.triggerSignOut()" class="px-2.5 py-1 rounded-lg text-xs text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 font-medium transition-all flex-shrink-0">
@@ -11841,9 +12024,9 @@
         if (desktopContainer) {
           desktopContainer.innerHTML = `
             <div class="pl-2 border-l border-slate-200 dark:border-slate-800">
-              <button onclick="window.triggerGoogleSignIn()" title="登入 Google 跨載具同步閱讀進度與書籤" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 transition-all text-xs font-medium flex items-center gap-1.5 shadow-sm">
-                ${googleIconSvg}
-                <span>Google 登入</span>
+              <button onclick="window.openAuthModal('login')" title="登入或註冊帳號，永久保存書籤與閱讀紀錄" class="px-3.5 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500 text-amber-700 dark:text-amber-400 hover:text-white transition-all text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <span>🔑</span>
+                <span>登入 / 註冊</span>
               </button>
             </div>
           `;
@@ -11851,9 +12034,9 @@
 
         if (mobileContainer) {
           mobileContainer.innerHTML = `
-            <button onclick="window.triggerGoogleSignIn()" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 font-medium text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
-              ${googleIconSvg}
-              <span>登入 Google 跨載具同步書籤</span>
+            <button onclick="window.openAuthModal('login')" class="w-full px-3 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+              <span>🔑</span>
+              <span>會員登入 / 免費註冊帳號</span>
             </button>
           `;
         }
@@ -11864,8 +12047,9 @@
       if (!window.AuthService) return;
       try {
         await window.AuthService.signInWithGoogle();
+        window.closeAuthModal();
       } catch (err) {
-        console.error('[App] 登入失敗:', err);
+        showAuthAlert(err.message || 'Google 登入失敗');
       }
     };
 
@@ -11884,7 +12068,7 @@
         renderUserAuthUI(user);
 
         if (user) {
-          // 登入時抓取雲端書籤並智慧合併
+          // 1. 登入時抓取雲端書籤並智慧合併
           const cloudBms = await window.AuthService.fetchCloudBookmarks();
           if (cloudBms && Array.isArray(cloudBms)) {
             const merged = window.AuthService.mergeBookmarks(state.bookmarks, cloudBms);
@@ -11896,6 +12080,17 @@
           }
           updateNavBookmarkBadge();
 
+          // 2. 登入時抓取雲端閱讀進度與已讀章節並智慧合併
+          const cloudProg = await window.AuthService.fetchCloudProgress();
+          if (cloudProg && typeof cloudProg === 'object') {
+            state.progress = window.AuthService.mergeProgress(state.progress, cloudProg);
+            localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
+            await window.AuthService.syncProgressToCloud(state.progress);
+          } else if (state.progress) {
+            await window.AuthService.syncProgressToCloud(state.progress);
+          }
+          syncProgressBadges();
+
           const curHash = window.location.hash || '';
           if (curHash === '' || curHash === '#/' || curHash === '#/library') {
             renderLibrary();
@@ -11904,7 +12099,7 @@
           if (bmModal && !bmModal.classList.contains('hidden')) {
             renderBookmarksModal();
           }
-          showToast(`👋 歡迎回來，${user.displayName || '探索者'}！已同步雲端書籤`, 'success');
+          showToast(`👋 歡迎回來，${user.displayName || '探索者'}！已同步雲端書籤與進度`, 'success');
         } else {
           updateNavBookmarkBadge();
           const bmModal = document.getElementById('bookmarks-modal');
@@ -11928,6 +12123,24 @@
             if (bmModal && !bmModal.classList.contains('hidden')) {
               renderBookmarksModal();
             }
+            const curHash = window.location.hash || '';
+            if (curHash === '' || curHash === '#/' || curHash === '#/library') {
+              renderLibrary();
+            }
+          }
+        }
+      });
+
+      // 監聽雲端即時閱讀進度推送更新
+      window.addEventListener('gear_cloud_progress_updated', (e) => {
+        if (!window.AuthService.isLoggedIn()) return;
+        const incoming = e.detail;
+        if (incoming && typeof incoming === 'object') {
+          const merged = window.AuthService.mergeProgress(state.progress, incoming);
+          if (JSON.stringify(merged) !== JSON.stringify(state.progress)) {
+            state.progress = merged;
+            localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
+            syncProgressBadges();
             const curHash = window.location.hash || '';
             if (curHash === '' || curHash === '#/' || curHash === '#/library') {
               renderLibrary();
