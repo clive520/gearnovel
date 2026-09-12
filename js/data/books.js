@@ -7254,6 +7254,30 @@ window.GEAR_NOVELS_DATA = {
         "displayChapter": 8,
         "upcoming": false,
         "volTitle": "第九套 · 留下來的人"
+    },
+    {
+        "id": 162,
+        "name": "微維度旅人初啟程",
+        "icon": "🔬",
+        "desc": "閱讀《冒險齒輪：齒輪星核的微縮旅人》第 1 章：閣樓裡的微維度震盪！觸動黃金限位銷，壓縮千倍墜入黃銅巨械宇宙！",
+        "series": "series10",
+        "bookId": "book-24",
+        "chapterId": 1,
+        "displayChapter": 1,
+        "upcoming": false,
+        "volTitle": "第十套 · 跌入游絲深淵"
+    },
+    {
+        "id": 163,
+        "name": "果凍水滴的表面張力",
+        "icon": "💧",
+        "desc": "閱讀《冒險齒輪：齒輪星核的微縮旅人》第 2 章：一毫米的世界！致命的果凍水滴！利用疏水效應與界面活性劑，突破十微克溺水危機！",
+        "series": "series10",
+        "bookId": "book-24",
+        "chapterId": 2,
+        "displayChapter": 2,
+        "upcoming": false,
+        "volTitle": "第十套 · 跌入游絲深淵"
     }
   ]
 };
