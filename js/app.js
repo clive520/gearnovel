@@ -796,14 +796,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 5 : 6;
+    const maxIdx = isDesktop ? 8 : 9;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 5 : 6;
+    const maxIdx = isDesktop ? 8 : 9;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -814,18 +814,18 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 5 : 6;
+    const maxIndex = isDesktop ? 8 : 9;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 10; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
         if (isActive) {
-          const activeToneClass = (i === 0) ? "bg-sky-600 ring-sky-400/30" : ((i === 1) ? "bg-emerald-600 ring-emerald-400/30" : ((i === 2) ? "bg-indigo-600 ring-indigo-400/30" : "bg-amber-600 ring-amber-400/30"));
+          const activeToneClass = (i === 0) ? "bg-amber-600 ring-amber-400/30" : ((i === 1) ? "bg-sky-600 ring-sky-400/30" : ((i === 2) ? "bg-emerald-600 ring-emerald-400/30" : ((i === 3) ? "bg-indigo-600 ring-indigo-400/30" : "bg-amber-600 ring-amber-400/30")));
           tab.className = `px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 ${activeToneClass} text-white ring-2 whitespace-nowrap`;
         } else {
           tab.className = "px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap";
@@ -840,7 +840,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d <= 6; d++) {
+    for (let d = 0; d < 10; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -848,7 +848,7 @@
         } else {
           dot.classList.remove('hidden');
           if (d === effectiveIdx) {
-            const activeDotColor = (d === 0) ? "bg-sky-600" : ((d === 1) ? "bg-emerald-600" : ((d === 2) ? "bg-indigo-600" : "bg-amber-600"));
+            const activeDotColor = (d === 0) ? "bg-amber-600" : ((d === 1) ? "bg-sky-600" : ((d === 2) ? "bg-emerald-600" : ((d === 3) ? "bg-indigo-600" : "bg-amber-600")));
             dot.className = `w-6 h-2 rounded-full ${activeDotColor} transition-all`;
           } else {
             dot.className = "w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400";
@@ -1534,6 +1534,107 @@
 
   
   
+  // 卡片產生函數：第十套《冒險齒輪：齒輪星核的微縮旅人》
+  function getSeries10CardHtml() {
+    return `
+      <div class="rounded-3xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-slate-900/10 dark:to-slate-950/40 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-amber-500/50 h-full relative group">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-500/20 transition-all"></div>
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              <span>🔥 2026 全新重磅連載 · 第 1 章已上線</span>
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-10') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug group-hover:text-amber-500 transition-colors">
+            《冒險齒輪：齒輪星核的微縮旅人》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mb-3">
+            當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            鹿陽國小舊鐘樓閣樓，發明少年誠浩、學霸班長葉旖緁、死黨將江與機械柴犬皮可意外啟動了爺爺封存百年的『渾天星象天文座鐘』。微維度空間摺疊場瞬間將四人壓縮一千倍（身高僅 1.5 毫米），墜入龐大的齒輪底盤！主發條啟動 720 分鐘自毀倒數，微縮旅人們展開生死大突圍！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 全三卷長篇套書（第一卷熱烈連載中）</span>
+              <span class="text-amber-600 font-mono font-bold">全 18 章規劃</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-24/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《跌入游絲深淵》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1 章已上線 · 0.6 萬字 · 空間摺疊 × 表面張力 × 平方立方定律</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-24') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-70">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 truncate">
+                    <span class="truncate">《發條迷宮與黃銅微國》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium flex-shrink-0">籌備中</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 truncate">全 6 章規劃 · 自走自動機 × 剛玉滑道 × 錨式擒縱器</div>
+                </div>
+              </div>
+              <span class="text-xs text-slate-400 font-medium">即將推出</span>
+            </div>
+
+            <!-- 卷三 -->
+            <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-70">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 truncate">
+                    <span class="truncate">《天體星核的逆轉破曉》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium flex-shrink-0">籌備中</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 truncate">全 6 章大結局 · 微重力跳躍 × 歐拉多面體 × 相干脈衝逆轉</div>
+                </div>
+              </div>
+              <span class="text-xs text-slate-400 font-medium">即將推出</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
+          <a href="#/read/book-24/1" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 開始閱讀第 1 章</span>
+          </a>
+          <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
+            📑 全 18 回大綱目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 卡片產生函數：第九套《平行時空的同班同學》
     // 卡片產生函數：第九套《平行時空的同班同學》
   function getSeries9CardHtml() {
@@ -1831,6 +1932,7 @@
     const card6 = getSeries6CardHtml();
     const card7 = getSeries7CardHtml();
     const card8 = getSeries8CardHtml();
+    const card10 = getSeries10CardHtml();
     const card9 = getSeries9CardHtml();
 
     container.innerHTML = `
@@ -1885,10 +1987,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (9)
+              全部作品 (10)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (8)
+              📚 長篇系列套書 (9)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -1911,39 +2013,42 @@
           <!-- 頂部套書切換標籤與翻頁按鈕 -->
           <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
             <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
-              <button onclick="window.goToHomeSlide(0)" id="home-slide-tab-0" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-sky-600 text-white ring-2 ring-sky-400/30 whitespace-nowrap flex items-center gap-1.5">
-                <span>🪞 《平行時空的同班同學》</span>
-                <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-sky-400/30 text-sky-100 font-bold">NEW</span>
+              <button onclick="window.goToHomeSlide(0)" id="home-slide-tab-0" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-amber-600 text-white ring-2 ring-amber-400/30 whitespace-nowrap flex items-center gap-1.5">
+                <span>🔬 《齒輪星核的微縮旅人》</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-amber-400/30 text-amber-100 font-bold">NEW</span>
               </button>
-              <button onclick="window.goToHomeSlide(1)" id="home-slide-tab-1" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(1)" id="home-slide-tab-1" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600 whitespace-nowrap">
+                🪞 《平行時空的同班同學》
+              </button>
+              <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600 whitespace-nowrap">
                 🐦 《班上鳥事》
               </button>
-              <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600 whitespace-nowrap">
                 🔍 《不可思議事件簿》
               </button>
-              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 📝 《全班作弊中》
               </button>
-              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🌱 《來自未來的轉學生》
               </button>
-              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 🤖 《我的老師不是人》
               </button>
-              <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
                 🌸 《星願鐘擺》
               </button>
-              <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(8)" id="home-slide-tab-8" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
                 📘 《冒險齒輪》
               </button>
-              <button onclick="window.goToHomeSlide(8)" id="home-slide-tab-8" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
+              <button onclick="window.goToHomeSlide(9)" id="home-slide-tab-9" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
                 🎨 《手作少女》
               </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 9</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 10</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-amber-600 hover:border-amber-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -1956,6 +2061,9 @@
           <!-- 輪播軌道容器 -->
           <div id="home-slider-container" class="overflow-hidden rounded-3xl -mx-2 sm:-mx-3">
             <div id="home-slider-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card10}
+              </div>
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card9}
               </div>
@@ -1987,21 +2095,23 @@
 
           <!-- 底部圓點指示器 -->
           <div class="flex items-center justify-center gap-2 mt-6">
-            <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-sky-600 transition-all"></button>
-            <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-emerald-400"></button>
-            <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-indigo-400"></button>
-            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-amber-600 transition-all"></button>
+            <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-sky-400"></button>
+            <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-emerald-400"></button>
+            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-indigo-400"></button>
             <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
             <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
-            <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(8)" id="home-slide-dot-8" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
+            <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
+            <button onclick="window.goToHomeSlide(8)" id="home-slide-dot-8" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
+            <button onclick="window.goToHomeSlide(9)" id="home-slide-dot-9" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
           </div>
         </div>
       ` : `
         <!-- 平鋪雙欄展示模式 (Tiled Grid Mode: 寬螢幕雙欄 · 手機單欄) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'long') ? `
+            <div>${card10}</div>
             <div>${card9}</div>
             <div>${card8}</div>
             <div>${card7}</div>
