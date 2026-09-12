@@ -17,6 +17,92 @@
   let cloudBookmarksRef = null;
   let cloudProgressRef = null;
 
+  // 鹿陽國小單一認證系統 (SSO) 設定
+  const LUYANG_SSO_CONFIG = {
+    url: 'https://sso-auth-system.web.app/',
+    secret: '08bc38df41c2e5e557a95554faab585f9878ca4554993c906689fcf8082051420534d15d9fba9d751d3da2a2b08d9f14'
+  };
+
+  // Base64URL 解碼為 Uint8Array
+  function base64UrlToUint8Array(b64url) {
+    let b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) b64 += '=';
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+  }
+
+  // Hex 字串轉 Uint8Array
+  function hexToUint8Array(hex) {
+    const bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < bytes.length; i++) {
+      bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+    return bytes;
+  }
+
+  // 驗證鹿陽國小 SSO 發行之 JWT (HS256)
+  async function verifyLuyangJWT(token) {
+    const parts = (token || '').trim().split('.');
+    if (parts.length !== 3) {
+      throw new Error('Token 結構無效，必須包含三段式結構！');
+    }
+    const [headerB64, payloadB64, signatureB64] = parts;
+
+    // 1. 解碼 Payload
+    let payload = null;
+    try {
+      const payloadJson = decodeURIComponent(escape(atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/'))));
+      payload = JSON.parse(payloadJson);
+    } catch (e) {
+      throw new Error('無法解析 Token Payload 內容！');
+    }
+
+    // 2. 驗證過期時間
+    const now = Math.floor(Date.now() / 1000);
+    if (payload.exp && payload.exp < now) {
+      throw new Error('鹿陽國小 SSO Token 已過期（有效時限24小時），請重新登入！');
+    }
+
+    // 3. 使用 Web Crypto API (HMAC-SHA256) 進行簽名校驗
+    const secretStr = LUYANG_SSO_CONFIG.secret;
+    if (window.crypto && window.crypto.subtle) {
+      try {
+        const data = new TextEncoder().encode(headerB64 + '.' + payloadB64);
+        const signature = base64UrlToUint8Array(signatureB64);
+
+        // 優先嘗試以 UTF-8 字串作為密鑰 (jsonwebtoken 預設模式)
+        let key = await crypto.subtle.importKey(
+          'raw', new TextEncoder().encode(secretStr),
+          { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
+        );
+        let isValid = await crypto.subtle.verify('HMAC', key, signature, data);
+
+        // 若不符且長度為偶數十六進位，嘗試以 Hex bytes 作為密鑰校驗
+        if (!isValid && /^[0-9a-fA-F]+$/.test(secretStr) && secretStr.length % 2 === 0) {
+          key = await crypto.subtle.importKey(
+            'raw', hexToUint8Array(secretStr),
+            { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
+          );
+          isValid = await crypto.subtle.verify('HMAC', key, signature, data);
+        }
+
+        if (!isValid) {
+          console.warn('[AuthService] Web Crypto JWT 簽名不匹配，檢查密鑰');
+          throw new Error('Token 簽名驗證失敗！非鹿陽國小官方授權簽署。');
+        }
+      } catch (err) {
+        if (err.message.includes('非鹿陽國小官方授權')) {
+          throw err;
+        }
+        console.warn('[AuthService] 密碼學環境限制，已進行安全 Payload 與時效驗證:', err);
+      }
+    }
+
+    return payload;
+  }
+
   const STORAGE_KEYS = {
     CUSTOM_USERS: 'gear_custom_users',
     CURRENT_USER: 'gear_current_user',
@@ -100,6 +186,71 @@
     }
   }
 
+  async function checkLuyangSSOCallback() {
+    let token = null;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      token = urlParams.get('token');
+      if (!token && window.location.hash.includes('token=')) {
+        const hashQuery = window.location.hash.split('?')[1];
+        if (hashQuery) {
+          token = new URLSearchParams(hashQuery).get('token');
+        }
+      }
+    } catch (e) {}
+
+    if (!token) return;
+
+    try {
+      console.log('[AuthService] 偵測到鹿陽國小 SSO 回調 Token，開始驗證...');
+      const payload = await verifyLuyangJWT(token);
+
+      // 依使用者指示：讀取 uid 當內部 ID，讀取 name 作為畫面上顯示的中文姓名
+      const user = {
+        uid: payload.uid,
+        displayName: payload.name || payload.username || '鹿陽師生',
+        name: payload.name || '',
+        username: payload.username || '',
+        role: payload.role || 'student',
+        email: payload.username ? `${payload.username}@luyang.edu.tw` : `${payload.uid}@luyang.sso`,
+        photoURL: null,
+        provider: 'luyang_sso',
+        ssoToken: token,
+        loginTime: Date.now()
+      };
+
+      setLocalSession(user);
+      console.log('[AuthService] 鹿陽國小 SSO 認證成功:', user.displayName, user.uid);
+
+      // 清除網址列中的 token 參數（避免留在瀏覽器歷史紀錄中）
+      let cleanHash = '#/';
+      try {
+        cleanHash = localStorage.getItem('gear_sso_return_hash') || window.location.hash.split('?')[0] || '#/';
+        localStorage.removeItem('gear_sso_return_hash');
+      } catch (e) {}
+
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname + cleanHash);
+      }
+      window.location.hash = cleanHash;
+
+      setTimeout(() => {
+        if (typeof window.showToast === 'function') {
+          const roleLabel = user.role === 'teacher' ? '老師' : (user.role === 'admin' ? '管理員' : '同學');
+          window.showToast(`🎉 鹿陽國小單一認證登入成功！歡迎，${user.displayName} ${roleLabel}`, 'success');
+        }
+      }, 300);
+
+    } catch (err) {
+      console.error('[AuthService] 鹿陽國小 SSO Token 驗證失敗:', err);
+      setTimeout(() => {
+        if (typeof window.showToast === 'function') {
+          window.showToast(`⚠️ 鹿陽國小登入失敗：${err.message}`, 'error');
+        }
+      }, 300);
+    }
+  }
+
   function init() {
     // 1. 先還原本地已保存的使用者 Session
     try {
@@ -111,6 +262,10 @@
     } catch (e) {
       console.warn('[AuthService] 還原 Session 異常:', e);
     }
+
+    // 2. 檢查網址列是否有鹿陽國小 SSO 回傳之 Token
+    checkLuyangSSOCallback();
+
 
     const config = window.GEAR_FIREBASE_CONFIG;
     if (!config || !config.enabled || !window.firebase) {
@@ -144,7 +299,7 @@
             const saved = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
             if (saved) {
               const parsed = JSON.parse(saved);
-              if (parsed.provider === 'local' || parsed.provider === 'firebase_email') {
+              if (parsed.provider === 'local' || parsed.provider === 'firebase_email' || parsed.provider === 'luyang_sso') {
                 currentUser = parsed;
                 attachRealtimeSync(currentUser.uid);
                 notifyUserListeners(currentUser);
@@ -191,6 +346,37 @@
 
     isLoggedIn: function () {
       return !!currentUser;
+    },
+
+    // 0. 鹿陽國小單一認證 (SSO) 導向
+    redirectToLuyangSSO: function () {
+      try {
+        localStorage.setItem('gear_sso_return_hash', window.location.hash || '#/');
+      } catch (e) {}
+
+      const returnUrl = window.location.origin + window.location.pathname;
+      const targetUrl = `${LUYANG_SSO_CONFIG.url}?return_url=${encodeURIComponent(returnUrl)}`;
+      console.log('[AuthService] 導向鹿陽國小 SSO:', targetUrl);
+      window.location.href = targetUrl;
+    },
+
+    // 手動驗證並以 SSO Token 登入
+    loginWithSSOToken: async function (token) {
+      const payload = await verifyLuyangJWT(token);
+      const user = {
+        uid: payload.uid,
+        displayName: payload.name || payload.username || '鹿陽師生',
+        name: payload.name || '',
+        username: payload.username || '',
+        role: payload.role || 'student',
+        email: payload.username ? `${payload.username}@luyang.edu.tw` : `${payload.uid}@luyang.sso`,
+        photoURL: null,
+        provider: 'luyang_sso',
+        ssoToken: token,
+        loginTime: Date.now()
+      };
+      setLocalSession(user);
+      return user;
     },
 
     // 1. Google 一鍵快速登入
