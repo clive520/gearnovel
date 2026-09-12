@@ -1544,7 +1544,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span>🔥 2026 全新重磅連載 · 第 1 章已上線</span>
+              <span>🔥 2026 全新重磅連載 · 第 2 章已上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
@@ -1581,7 +1581,7 @@
                     <span class="truncate">《跌入游絲深淵》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1 章已上線 · 0.6 萬字 · 空間摺疊 × 表面張力 × 平方立方定律</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1～2 章已上線 · 1.1 萬字 · 空間摺疊 × 果凍水滴 × 表面張力極限救援</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1624,8 +1624,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
-          <a href="#/read/book-24/1" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 開始閱讀第 1 章</span>
+          <a href="#/read/book-24/2" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 繼續閱讀第 2 章</span>
           </a>
           <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 18 回大綱目錄
@@ -1801,7 +1801,7 @@
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-emerald-500/20 flex items-center gap-3">
           <a href="#/read/book-20/1" class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 開始閱讀第 1 章</span>
+            <span>📖 繼續閱讀第 2 章</span>
           </a>
           <button onclick="window.openSeriesModal('series-8')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 15 回大綱目錄

@@ -9,7 +9,7 @@ window.GEAR_SERIES = [
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
     subtitle: "少兒微觀硬核科幻 · 全三卷連載中（第 1 章上線）",
-    badge: "🔥 2026 全新重磅連載 · 第 1 章已上線",
+    badge: "🔥 2026 全新重磅連載 · 第 2 章已上線",
     badgeColor: "amber",
     targetAudience: "9～15 歲適讀 · 微觀物理 × 平方立方定律 × 古董座鐘冒險",
     tagline: "當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！",
