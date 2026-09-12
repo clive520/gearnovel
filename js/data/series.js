@@ -8,8 +8,8 @@ window.GEAR_SERIES = [
     id: "series-10",
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
-    subtitle: "少兒微觀硬核科幻 · 全三卷連載中（第 1～5 章已上線）",
-    badge: "🔥 2026 全新重磅連載 · 第 5 章已上線",
+    subtitle: "少兒微觀硬核科幻 · 全三卷（第一卷完結 · 全 6 章已上線）",
+    badge: "🎉 第一卷完結 · 全 6 章盛大收官",
     badgeColor: "amber",
     targetAudience: "9～15 歲適讀 · 微觀物理 × 平方立方定律 × 古董座鐘冒險",
     tagline: "當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！",
@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 1,
       totalChapters: 18,
-      currentChaptersReleased: 5,
-      totalWords: "2.7 萬字（連載中）",
-      statusText: "第一卷連載中 · 第 1～5 章已上線"
+      currentChaptersReleased: 6,
+      totalWords: "3.3 萬字（第一卷完結）",
+      statusText: "第一卷完結 · 全 6 章已上線"
     },
     volumes: [
       {
@@ -29,9 +29,9 @@ window.GEAR_SERIES = [
         title: "跌入游絲深淵",
         subtitle: "第一幕：微維度震盪與一毫米的世界",
         chaptersCount: 6,
-        releasedChapters: 5,
-        wordCount: "第 1～5 章已上線 · 2.7 萬字",
-        status: "第一卷連載中（已釋出 5 章）",
+        releasedChapters: 6,
+        wordCount: "全 6 章已完結 · 3.3 萬字",
+        status: "第一卷完結（全 6 章收錄）",
         theme: "空間摺疊 × 表面張力 × 平方立方定律",
         firstChapterId: 1
       },
@@ -146,7 +146,7 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 3,
       totalChapters: 30,
-      currentChaptersReleased: 50,
+      currentChaptersReleased: 60,
       totalWords: "17.5 萬字",
       statusText: "全三卷 · 30章完結"
     },
@@ -347,7 +347,7 @@ window.GEAR_SERIES = [
       totalVolumes: 1,
       currentVolumesReleased: 1,
       totalChapters: 4,
-      currentChaptersReleased: 5,
+      currentChaptersReleased: 6,
       totalWords: "3.2 萬字",
       statusText: "單冊 · 全 4 篇完結"
     },
@@ -359,7 +359,7 @@ window.GEAR_SERIES = [
         title: "手作少女的奇幻旅程",
         subtitle: "心靈繪畫與奇幻成長旅程",
         chaptersCount: 4,
-        releasedChapters: 5,
+        releasedChapters: 6,
         wordCount: "全 4 篇 · 3.2 萬字",
         status: "全 4 篇已完結",
         theme: "親情守護 × 友情和解 × 祖孫跨代 × 心靈自癒",
