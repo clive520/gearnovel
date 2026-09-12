@@ -12360,17 +12360,15 @@
       const mobileContainer = document.getElementById('user-auth-mobile');
 
       if (user) {
-        const displayName = user.displayName || user.name || (user.email ? user.email.split('@')[0] : '探索者');
-        const isSSO = user.provider === 'luyang_sso';
-        const roleLabel = isSSO ? (user.role === 'teacher' ? '鹿陽教師' : (user.role === 'admin' ? '鹿陽管理員' : '鹿陽學生')) : '雲端已同步';
-        const avatarLetter = isSSO ? '🏫' : (displayName[0] || 'G').toUpperCase();
+        const displayName = user.displayName || (user.email ? user.email.split('@')[0] : '探索者');
+        const avatarLetter = (displayName[0] || 'G').toUpperCase();
         const avatarImg = user.photoURL 
           ? `<img src="${user.photoURL}" alt="${displayName}" class="w-8 h-8 rounded-full border border-amber-500/50 object-cover shadow-sm flex-shrink-0" referrerpolicy="no-referrer" />`
-          : `<div class="w-8 h-8 rounded-full ${isSSO ? 'bg-gradient-to-tr from-emerald-500 to-teal-600 text-sm' : 'bg-gradient-to-tr from-amber-500 to-amber-600 text-xs'} text-white font-bold flex items-center justify-center shadow-sm flex-shrink-0">${avatarLetter}</div>`;
+          : `<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 text-white font-bold flex items-center justify-center text-xs shadow-sm flex-shrink-0">${avatarLetter}</div>`;
         
         const mobAvatarImg = user.photoURL
           ? `<img src="${user.photoURL}" alt="${displayName}" class="w-7 h-7 rounded-full border border-amber-500/50 object-cover flex-shrink-0" referrerpolicy="no-referrer" />`
-          : `<div class="w-7 h-7 rounded-full ${isSSO ? 'bg-gradient-to-tr from-emerald-500 to-teal-600 text-sm' : 'bg-gradient-to-tr from-amber-500 to-amber-600 text-xs'} text-white font-bold flex items-center justify-center flex-shrink-0">${avatarLetter}</div>`;
+          : `<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">${avatarLetter}</div>`;
 
         if (desktopContainer) {
           desktopContainer.innerHTML = `
@@ -12378,7 +12376,7 @@
               ${avatarImg}
               <div class="hidden lg:flex flex-col text-left max-w-[110px]">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">${displayName}</span>
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">${roleLabel}</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">雲端已同步</span>
               </div>
               <button onclick="window.triggerSignOut()" title="登出帳號" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
@@ -12394,7 +12392,7 @@
                 ${mobAvatarImg}
                 <div class="flex flex-col min-w-0">
                   <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">${displayName}</span>
-                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">${roleLabel} · 雲端同步中</span>
+                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">雲端書籤與紀錄同步中</span>
                 </div>
               </div>
               <button onclick="window.triggerSignOut()" class="px-2.5 py-1 rounded-lg text-xs text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 font-medium transition-all flex-shrink-0">
@@ -12425,15 +12423,6 @@
         }
       }
     }
-
-    window.triggerLuyangSSOLogin = function () {
-      if (!window.AuthService) {
-        alert('認證模組載入中，請稍候重試！');
-        return;
-      }
-      window.closeAuthModal();
-      window.AuthService.redirectToLuyangSSO();
-    };
 
     window.triggerGoogleSignIn = async function () {
       if (!window.AuthService) return;
