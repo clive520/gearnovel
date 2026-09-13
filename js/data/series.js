@@ -8,19 +8,19 @@ window.GEAR_SERIES = [
     id: "series-10",
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
-    subtitle: "少兒微觀硬核科幻 · 全三卷（第二卷全 6 章完結 · 累計 12 章已上線）",
-    badge: "🎉 第二卷 6 章大完結 · 累計 12 章上線",
-    badgeColor: "emerald",
+    subtitle: "少兒微觀硬核科幻 · 全三卷（第三卷連載中 · 第 13 章已上線）",
+    badge: "🔥 第三卷震撼開篇 · 第 13 章已上線",
+    badgeColor: "amber",
     targetAudience: "9～15 歲適讀 · 微觀物理 × 平方立方定律 × 古董座鐘冒險",
     tagline: "當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！",
     description: "鹿陽國小舊鐘樓頂層閣樓，發明少年誠浩、學霸班長葉旖緁、死黨將江與機械柴犬皮可意外啟動了爺爺封存百年的『渾天星象天文座鐘』。微維度空間摺疊場瞬間將四人壓縮一千倍（身高僅 1.5 毫米），墜入龐大的齒輪底盤！面對如巨岩般的微塵、黏稠致命的果凍水滴、微米靜電雷暴與巡弋的守辰甲蟲，全鐘主發條更啟動了 720 分鐘自毀倒數！微縮旅人們必須在停擺前攀登至頂層的齒輪星核，逆轉力場重返原本世界！",
     stats: {
       totalVolumes: 3,
-      currentVolumesReleased: 2,
+      currentVolumesReleased: 3,
       totalChapters: 18,
-      currentChaptersReleased: 12,
-      totalWords: "6.9 萬字（第二卷完結）",
-      statusText: "第二卷大完結 · 累計 12 章已上線"
+      currentChaptersReleased: 13,
+      totalWords: "7.5 萬字（第三卷連載中）",
+      statusText: "第三卷連載中 · 第 13 章已上線"
     },
     volumes: [
       {
@@ -53,11 +53,11 @@ window.GEAR_SERIES = [
         title: "天體星核的逆轉破曉",
         subtitle: "第三幕：渾天星軌與最後三秒逆轉",
         chaptersCount: 6,
-        releasedChapters: 0,
-        wordCount: "全 6 章規劃中",
-        status: "即將推出",
-        theme: "微重力跳躍 × 歐拉多面體 × 相干脈衝逆轉",
-        firstChapterId: 1
+        releasedChapters: 1,
+        wordCount: "第 13 章已上線 · 6,000 字",
+        status: "第三卷連載中（已釋出 1 章）",
+        theme: "微重力漂浮 × 歐拉星軌 × 動量反衝推進",
+        firstChapterId: 13
       }
     ],
     highlights: [

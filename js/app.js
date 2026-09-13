@@ -1544,7 +1544,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span>🎉 第二卷 6 章大完結 · 累計 12 章已上線</span>
+              <span>🔥 第三卷震撼開篇 · 第 13 章已上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
@@ -1609,26 +1609,29 @@
             </a>
 
             <!-- 卷三 -->
-            <div class="p-3 rounded-2xl bg-white/40 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-70">
+            <a href="#/read/book-26/13" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-amber-500/30 flex items-center justify-between hover:border-amber-500 hover:bg-amber-500/5 transition-all group/vol shadow-sm">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 truncate">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《天體星核的逆轉破曉》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium flex-shrink-0">籌備中</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
                   </div>
-                  <div class="text-[11px] text-slate-400 truncate">全 6 章大結局 · 微重力跳躍 × 歐拉多面體 × 相干脈衝逆轉</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13 章已上線 · 6,000 字 · 微重力漂浮 × 歐拉星軌 × 動量推進</div>
                 </div>
               </div>
-              <span class="text-xs text-slate-400 font-medium">即將推出</span>
-            </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-26') : ''}</span>
+                <span class="text-xs text-amber-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
           </div>
         </div>
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
-          <a href="#/read/book-25/12" class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第二卷大結局（第 12 章）</span>
+          <a href="#/read/book-26/13" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 閱讀第三卷開篇（第 13 章）</span>
           </a>
           <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 18 回大綱目錄
