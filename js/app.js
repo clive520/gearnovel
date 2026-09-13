@@ -736,6 +736,8 @@
       renderPuzzleLab();
     } else if (hash === '#/badges') {
       renderBadges();
+    } else if (hash === '#/analytics' || hash === '#/trends') {
+      renderAnalytics();
     } else {
       renderLibrary();
     }
@@ -2132,6 +2134,19 @@
           ` : ''}
         </div>
       `}
+
+      <!-- 首頁最底部：閱讀數據趨勢看板專屬小連結 -->
+      <div class="mt-8 mb-6 pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>即時閱讀監測運作中 · 每次翻閱自動列入統計</span>
+        </div>
+        <a href="#/analytics" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-amber-500/10 dark:bg-slate-800/80 dark:hover:bg-amber-500/20 text-slate-600 hover:text-amber-600 dark:text-slate-300 dark:hover:text-amber-400 border border-slate-200/70 dark:border-slate-700/60 transition-all font-medium group shadow-sm">
+          <span>📊</span>
+          <span>每日閱讀人次折線圖與熱門榜</span>
+          <span class="group-hover:translate-x-0.5 transition-transform text-[11px] opacity-70">➜</span>
+        </a>
+      </div>
 
       <!-- 全域套書章節目錄彈窗 (Series Catalog Modal) -->
       <div id="series-catalog-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
@@ -12129,7 +12144,418 @@
     `;
   }
 
-    // 全域頂部導覽列與彈窗事件初始化
+  // ================== 頁面渲染器：閱讀數據趨勢與熱門榜 (Analytics Dashboard) ==================
+  let analyticsDays = 7;
+  let analyticsRankTab = 'today'; // 'today' | 'yesterday' | 'all'
+  let analyticsActiveDotIdx = null;
+
+  window.setAnalyticsDays = function (days) {
+    analyticsDays = Number(days) || 7;
+    analyticsActiveDotIdx = null;
+    renderAnalytics();
+  };
+
+  window.setAnalyticsRankTab = function (tab) {
+    analyticsRankTab = tab;
+    renderAnalytics();
+  };
+
+  window.selectChartPoint = function (idx) {
+    analyticsActiveDotIdx = idx;
+    const infoBox = document.getElementById('chart-dot-infobox');
+    const trendList = window.StatsService ? window.StatsService.getDailyTrend(analyticsDays) : [];
+    if (!trendList || !trendList[idx] || !infoBox) return;
+
+    const item = trendList[idx];
+    const dayLabel = item.isToday ? '今天' : (item.isYesterday ? '昨天' : item.weekDay);
+    infoBox.innerHTML = `
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs font-bold animate-fadeIn">
+        <span>📅 ${item.date} (${dayLabel})</span>
+        <span class="text-amber-400">·</span>
+        <span>👥 ${item.count} 人次閱讀</span>
+      </div>
+    `;
+
+    document.querySelectorAll('.chart-dot-highlight').forEach(el => el.classList.add('hidden'));
+    const targetHl = document.getElementById(`chart-dot-hl-${idx}`);
+    if (targetHl) targetHl.classList.remove('hidden');
+  };
+
+  function generateAnalyticsSvgChart(trendList) {
+    if (!trendList || trendList.length === 0) {
+      return `<div class="py-12 text-center text-xs text-slate-400">尚無足夠之歷史統計數據</div>`;
+    }
+
+    const width = 720;
+    const height = 260;
+    const padLeft = 46;
+    const padRight = 24;
+    const padTop = 28;
+    const padBottom = 42;
+    const chartW = width - padLeft - padRight;
+    const chartH = height - padTop - padBottom;
+
+    const counts = trendList.map(t => t.count);
+    const maxVal = Math.max(...counts, 10);
+    const minVal = 0;
+    const yMax = Math.ceil((maxVal * 1.15) / 10) * 10;
+
+    const points = trendList.map((item, idx) => {
+      const x = padLeft + (idx / Math.max(trendList.length - 1, 1)) * chartW;
+      const y = padTop + chartH - ((item.count - minVal) / (yMax - minVal)) * chartH;
+      return { ...item, x, y, idx };
+    });
+
+    // 計算平滑三次貝茲曲線
+    function getBezierSpline(pts) {
+      if (pts.length <= 1) return pts.length === 1 ? `M ${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}` : '';
+      if (pts.length === 2) return `M ${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)} L ${pts[1].x.toFixed(1)},${pts[1].y.toFixed(1)}`;
+      let d = `M ${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = i > 0 ? pts[i - 1] : pts[i];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = i < pts.length - 2 ? pts[i + 2] : p2;
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+        d += ` C ${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+      }
+      return d;
+    }
+
+    const linePath = getBezierSpline(points);
+    const areaPath = `${linePath} L ${points[points.length - 1].x.toFixed(1)},${padTop + chartH} L ${points[0].x.toFixed(1)},${padTop + chartH} Z`;
+
+    // 網格橫線 (4 階)
+    const gridSteps = 4;
+    let gridHtml = '';
+    for (let i = 0; i <= gridSteps; i++) {
+      const val = Math.round((yMax / gridSteps) * i);
+      const y = padTop + chartH - (i / gridSteps) * chartH;
+      gridHtml += `
+        <line x1="${padLeft}" y1="${y}" x2="${padLeft + chartW}" y2="${y}" stroke="currentColor" stroke-dasharray="3 3" class="text-slate-200 dark:text-slate-800/80" stroke-width="1" />
+        <text x="${padLeft - 10}" y="${y + 3.5}" text-anchor="end" font-size="10" font-family="monospace" class="fill-slate-400 dark:fill-slate-500 font-medium">${val}</text>
+      `;
+    }
+
+    // X 軸標籤（按點數密度智慧抽樣，避免重疊）
+    const stepInterval = trendList.length > 20 ? 3 : (trendList.length > 10 ? 2 : 1);
+    let xLabelsHtml = '';
+    points.forEach((pt, idx) => {
+      const isLast = idx === points.length - 1;
+      const showLabel = (idx % stepInterval === 0) || isLast;
+      if (showLabel) {
+        xLabelsHtml += `
+          <text x="${pt.x}" y="${padTop + chartH + 18}" text-anchor="middle" font-size="11" font-weight="${pt.isToday ? 'bold' : 'normal'}" class="${pt.isToday ? 'fill-amber-600 font-bold dark:fill-amber-400' : 'fill-slate-500 dark:fill-slate-400'}">${pt.label}</text>
+          <text x="${pt.x}" y="${padTop + chartH + 31}" text-anchor="middle" font-size="9" class="${pt.isToday ? 'fill-amber-600 font-bold dark:fill-amber-400' : 'fill-slate-400 dark:fill-slate-500'}">${pt.isToday ? '今天' : (pt.isYesterday ? '昨天' : pt.weekDay)}</text>
+        `;
+      }
+    });
+
+    // 數據節點
+    let dotsHtml = points.map((pt, idx) => {
+      return `
+        <g class="cursor-pointer group" onclick="window.selectChartPoint(${idx})" onmouseenter="window.selectChartPoint(${idx})">
+          <!-- 懸停動態高亮圈 -->
+          <circle id="chart-dot-hl-${idx}" cx="${pt.x}" cy="${pt.y}" r="11" class="chart-dot-highlight hidden fill-amber-500/25 stroke-amber-500" stroke-width="1.5" />
+          ${pt.isToday ? `
+            <circle cx="${pt.x}" cy="${pt.y}" r="8" class="fill-amber-500/30 animate-ping" />
+          ` : ''}
+          <circle cx="${pt.x}" cy="${pt.y}" r="${pt.isToday ? 5.5 : 4}" class="${pt.isToday ? 'fill-amber-500 stroke-white dark:stroke-slate-900' : 'fill-amber-500 dark:fill-amber-400 stroke-white dark:stroke-slate-900'} group-hover:scale-125 transition-transform" stroke-width="2.5" />
+          <!-- 寬大透明感應區，觸控友善 -->
+          <circle cx="${pt.x}" cy="${pt.y}" r="20" fill="transparent" />
+        </g>
+      `;
+    }).join('');
+
+    return `
+      <div class="w-full overflow-x-auto">
+        <svg viewBox="0 0 ${width} ${height}" class="w-full h-auto min-w-[580px] select-none">
+          <defs>
+            <linearGradient id="chartGradientFill" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.32" />
+              <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.08" />
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.0" />
+            </linearGradient>
+            <linearGradient id="chartLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#d97706" />
+              <stop offset="50%" stop-color="#f59e0b" />
+              <stop offset="100%" stop-color="#fbbf24" />
+            </linearGradient>
+          </defs>
+
+          <!-- 網格與背景橫線 -->
+          ${gridHtml}
+
+          <!-- 漸層填滿區塊 -->
+          <path d="${areaPath}" fill="url(#chartGradientFill)" />
+
+          <!-- 折線路徑 -->
+          <path d="${linePath}" fill="none" stroke="url(#chartLineGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="drop-shadow-sm" />
+
+          <!-- X 軸文字標籤 -->
+          ${xLabelsHtml}
+
+          <!-- 數據點 -->
+          ${dotsHtml}
+        </svg>
+      </div>
+    `;
+  }
+
+  function renderAnalytics() {
+    const container = document.getElementById('app-main');
+    if (!container || !window.StatsService) return;
+
+    const stats = window.StatsService.getOverviewStats();
+    const trendList = window.StatsService.getDailyTrend(analyticsDays);
+
+    let topList = [];
+    let rankSubText = '';
+    if (analyticsRankTab === 'today') {
+      topList = window.StatsService.getTopChaptersForDate(stats.todayDate, 8);
+      rankSubText = `今日 (${stats.todayDate}) 讀者點閱最熱門的前 8 則故事章節`;
+    } else if (analyticsRankTab === 'yesterday') {
+      topList = window.StatsService.getTopChaptersForDate(stats.yesterdayDate, 8);
+      rankSubText = `昨日 (${stats.yesterdayDate}) 全天點閱最活躍的故事章節`;
+    } else {
+      topList = window.StatsService.getTopChaptersAllTime(8);
+      rankSubText = '全站歷年讀者累積閱讀次數最高之經典章節總榜';
+    }
+
+    // 取得最新一筆 (今日) 數據作為預設展示
+    const latestItem = trendList[trendList.length - 1] || { count: 0, date: stats.todayDate };
+
+    container.innerHTML = `
+      <div class="space-y-8 animate-fadeIn">
+        <!-- 頂部導航與標題 -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-bold mb-2">
+              <span>📊 閱讀數據監測看板</span>
+              <span class="opacity-60">·</span>
+              <span class="flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>即時同步中</span>
+              </span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              每日閱讀趨勢與熱門故事榜
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              即時追蹤每位讀者的探索軌跡 · 呈現每日進場人次折線走勢與人氣故事排行
+            </p>
+          </div>
+
+          <a href="#/library" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all shadow-sm flex-shrink-0 self-start sm:self-auto">
+            <span>← 返回作品書庫</span>
+          </a>
+        </div>
+
+        <!-- 4 大核心指標概覽小卡 -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- 今日閱讀 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-amber-500/30 shadow-sm relative overflow-hidden group">
+            <div class="absolute -right-2 -bottom-2 text-5xl opacity-10 select-none group-hover:scale-110 transition-transform">📈</div>
+            <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">今日閱讀人次</div>
+            <div class="text-3xl font-black text-slate-900 dark:text-white font-mono flex items-baseline gap-1.5">
+              <span>${stats.todayCount}</span>
+              <span class="text-xs text-slate-400 font-normal">次</span>
+            </div>
+            <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+              ${stats.diff >= 0 ? `
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold">▲ +${stats.diff}</span>
+                <span>比昨日增長</span>
+              ` : `
+                <span class="text-slate-400 font-bold">▼ ${stats.diff}</span>
+                <span>較昨日平穩</span>
+              `}
+            </div>
+          </div>
+
+          <!-- 昨日閱讀 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+            <div class="absolute -right-2 -bottom-2 text-5xl opacity-10 select-none group-hover:scale-110 transition-transform">📅</div>
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">昨日閱讀人次</div>
+            <div class="text-3xl font-black text-slate-900 dark:text-white font-mono flex items-baseline gap-1.5">
+              <span>${stats.yesterdayCount}</span>
+              <span class="text-xs text-slate-400 font-normal">次</span>
+            </div>
+            <div class="mt-2 text-[11px] text-slate-400">
+              昨日全天累計點閱結算
+            </div>
+          </div>
+
+          <!-- 近 7 日累計 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+            <div class="absolute -right-2 -bottom-2 text-5xl opacity-10 select-none group-hover:scale-110 transition-transform">📊</div>
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">近 7 日累計人次</div>
+            <div class="text-3xl font-black text-slate-900 dark:text-white font-mono flex items-baseline gap-1.5">
+              <span>${stats.weekTotal}</span>
+              <span class="text-xs text-slate-400 font-normal">次</span>
+            </div>
+            <div class="mt-2 text-[11px] text-slate-400">
+              日均約 ${Math.round(stats.weekTotal / 7)} 人次翻閱
+            </div>
+          </div>
+
+          <!-- 全站累積共讀 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+            <div class="absolute -right-2 -bottom-2 text-5xl opacity-10 select-none group-hover:scale-110 transition-transform">🏆</div>
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">全站歷年累積閱讀</div>
+            <div class="text-3xl font-black text-slate-900 dark:text-white font-mono flex items-baseline gap-1.5">
+              <span>${stats.siteTotal}</span>
+              <span class="text-xs text-slate-400 font-normal">次</span>
+            </div>
+            <div class="mt-2 text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
+              跨 10 大系列 · 26 部作品
+            </div>
+          </div>
+        </div>
+
+        <!-- 每日閱讀人次趨勢折線圖區塊 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-lg">📈</span>
+                <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
+                  每日閱讀人次走勢圖
+                </h2>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                可觸控或將游標懸停於折線點上，查看各日期精準人次
+              </p>
+            </div>
+
+            <!-- 時間跨度切換與互動即時標籤 -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <div id="chart-dot-infobox">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs font-bold">
+                  <span>📅 今天 (${stats.todayDate})</span>
+                  <span class="text-amber-400">·</span>
+                  <span>👥 ${latestItem.count} 人次</span>
+                </div>
+              </div>
+
+              <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+                <button onclick="window.setAnalyticsDays(7)" class="px-3 py-1 rounded-lg transition-all ${analyticsDays === 7 ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                  近 7 天
+                </button>
+                <button onclick="window.setAnalyticsDays(14)" class="px-3 py-1 rounded-lg transition-all ${analyticsDays === 14 ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                  近 14 天
+                </button>
+                <button onclick="window.setAnalyticsDays(30)" class="px-3 py-1 rounded-lg transition-all ${analyticsDays === 30 ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                  近 30 天
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SVG 折線圖掛載 -->
+          ${generateAnalyticsSvgChart(trendList)}
+        </div>
+
+        <!-- 每日熱門故事排行榜 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🔥</span>
+                <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
+                  熱門故事點閱排行榜
+                </h2>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                ${rankSubText}
+              </p>
+            </div>
+
+            <!-- 熱門榜切換按鈕 -->
+            <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+              <button onclick="window.setAnalyticsRankTab('today')" class="px-3 py-1.5 rounded-lg transition-all ${analyticsRankTab === 'today' ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                🔥 今日最熱門
+              </button>
+              <button onclick="window.setAnalyticsRankTab('yesterday')" class="px-3 py-1.5 rounded-lg transition-all ${analyticsRankTab === 'yesterday' ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                📅 昨日最熱門
+              </button>
+              <button onclick="window.setAnalyticsRankTab('all')" class="px-3 py-1.5 rounded-lg transition-all ${analyticsRankTab === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                🏆 全站總排行
+              </button>
+            </div>
+          </div>
+
+          <!-- 排行榜清單 -->
+          <div class="space-y-3">
+            ${topList.map((item, idx) => {
+              const rank = idx + 1;
+              let rankBadge = '';
+              let rowBorder = 'border-slate-200/80 dark:border-slate-800';
+              let rowBg = 'bg-slate-50/50 dark:bg-slate-900/40';
+
+              if (rank === 1) {
+                rankBadge = `<span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 text-white font-black text-xs flex items-center justify-center shadow-md shadow-amber-500/20 ring-2 ring-amber-400/40 flex-shrink-0">🥇</span>`;
+                rowBorder = 'border-amber-400/50 dark:border-amber-500/40 shadow-sm';
+                rowBg = 'bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent';
+              } else if (rank === 2) {
+                rankBadge = `<span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-slate-400 to-slate-300 text-white font-black text-xs flex items-center justify-center shadow-sm flex-shrink-0">🥈</span>`;
+                rowBorder = 'border-slate-300/80 dark:border-slate-700/80';
+              } else if (rank === 3) {
+                rankBadge = `<span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-700 to-amber-600 text-white font-black text-xs flex items-center justify-center shadow-sm flex-shrink-0">🥉</span>`;
+                rowBorder = 'border-amber-700/30 dark:border-amber-700/40';
+              } else {
+                rankBadge = `<span class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold font-mono text-xs flex items-center justify-center flex-shrink-0">${rank}</span>`;
+              }
+
+              return `
+                <div class="p-4 rounded-2xl border ${rowBorder} ${rowBg} hover:border-amber-400/60 dark:hover:border-amber-500/50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
+                  <div class="flex items-center gap-3.5 min-w-0">
+                    ${rankBadge}
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-2 flex-wrap text-xs mb-1">
+                        <span class="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-800 dark:text-amber-300 font-bold text-[11px] truncate max-w-[200px]">
+                          ${escapeHtml(item.seriesTitle)}
+                        </span>
+                        <span class="text-slate-400 dark:text-slate-500 text-[11px] truncate max-w-[180px]">
+                          ${escapeHtml(item.bookTitle)}
+                        </span>
+                      </div>
+                      <a href="#/read/${item.bookId}/${item.chapterId}" class="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-1">
+                        ${escapeHtml(item.chapterTitle)}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-slate-800/80">
+                    <div class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-amber-600 dark:text-amber-400 font-mono font-bold text-xs">
+                      <span>🔥</span>
+                      <span>${item.reads}</span>
+                      <span class="text-[10px] text-slate-400 font-normal">次閱讀</span>
+                    </div>
+                    <a href="#/read/${item.bookId}/${item.chapterId}" class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold text-xs transition-all shadow-sm flex items-center gap-1">
+                      <span>立即閱讀</span>
+                      <span>➜</span>
+                    </a>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- 數據同步提示腳註 -->
+        <div class="py-4 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+          <span>⚡ 數據由 Firebase Realtime Database 跨設備即時記錄</span>
+          <span>·</span>
+          <span>讀者每次開啟故事皆會即時為當日閱讀計數添磚加瓦</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // 全域頂部導覽列與彈窗事件初始化
   function initGlobalEvents() {
     updateNavBookmarkBadge();
 
@@ -12546,12 +12972,14 @@
     initGlobalEvents();
     handleRoute();
 
-    // 監聽雲端閱讀統計數據更新，自動同步更新首頁看板
+    // 監聽雲端閱讀統計數據更新，自動同步更新首頁看板與閱讀數據分析頁
     if (window.StatsService) {
       window.StatsService.onUpdate(() => {
         const curHash = window.location.hash || '';
         if (curHash === '' || curHash === '#/' || curHash === '#/library') {
           renderLibrary();
+        } else if (curHash === '#/analytics' || curHash === '#/trends') {
+          renderAnalytics();
         }
       });
     }
