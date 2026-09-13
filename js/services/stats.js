@@ -62,23 +62,6 @@
     };
   }
 
-  function getSeedNumber(str) {
-    let h = 0;
-    for (let i = 0; i < str.length; i++) {
-      h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
-    }
-    return Math.abs(h);
-  }
-
-  // 取得平滑自然之每日閱讀基準底數（確保新上線時圖表完整，真實點閱將即時疊加於此）
-  function getBaseDailyTotal(dateStr) {
-    const seed = getSeedNumber('gear_daily_total_' + dateStr);
-    const parts = dateStr.split('-');
-    const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-    const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-    return 48 + (seed % 32) + (isWeekend ? 16 : 0);
-  }
-
   // 解析章節所屬之書名與系列名
   function findChapterMeta(bookId, chapterId) {
     const books = (window.GEAR_NOVELS_DATA && window.GEAR_NOVELS_DATA.books) || [];
@@ -228,20 +211,19 @@
       return formatCount(raw, compact ? 'compact' : 'comma');
     },
 
-    // 取得指定日期的閱讀總人次 (基準底數 + 雲端自增/本地自增)
+    // 取得指定日期的閱讀總人次 (純真實數據)
     getDailyCountRaw: function (dateStr) {
-      const base = getBaseDailyTotal(dateStr);
-      let extra = 0;
-      if (isFirebaseReady && cloudData && cloudData.daily && cloudData.daily[dateStr] && cloudData.daily[dateStr].total) {
-        extra = Number(cloudData.daily[dateStr].total) || 0;
+      let count = 0;
+      if (isFirebaseReady && cloudData && cloudData.daily && cloudData.daily[dateStr] && cloudData.daily[dateStr].total != null) {
+        count = Number(cloudData.daily[dateStr].total) || 0;
       } else {
         const local = safeLocalGet(DAILY_PREFIX + 'total_' + dateStr);
-        extra = Number(local) || 0;
+        count = Number(local) || 0;
       }
-      return base + extra;
+      return count;
     },
 
-    // 取得最近 N 天每日閱讀人次趨勢陣列
+    // 取得最近 N 天每日閱讀人次趨勢陣列 (純真實數據)
     getDailyTrend: function (days = 7) {
       const todayStr = getLocalDateStr(0);
       const yesterdayStr = getLocalDateStr(1);
@@ -262,45 +244,18 @@
       return list;
     },
 
-    // 取得指定日期最熱門之故事章節排行
+    // 取得指定日期最熱門之故事章節排行 (純真實數據)
     getTopChaptersForDate: function (dateStr, limit = 8) {
-      const seed = getSeedNumber('gear_daily_top_' + dateStr);
-      const candidateList = [
-        { bookId: 'book-1', chapterId: 1, base: 18 },
-        { bookId: 'book-20', chapterId: 1, base: 16 },
-        { bookId: 'book-14', chapterId: 1, base: 15 },
-        { bookId: 'book-18', chapterId: 1, base: 14 },
-        { bookId: 'book-12', chapterId: 1, base: 13 },
-        { bookId: 'book-6', chapterId: 1, base: 12 },
-        { bookId: 'book-4', chapterId: 1, base: 11 },
-        { bookId: 'book-8', chapterId: 1, base: 10 },
-        { bookId: 'book-1', chapterId: 2, base: 9 },
-        { bookId: 'book-20', chapterId: 2, base: 9 }
-      ];
-
       const cloudDailyChs = (isFirebaseReady && cloudData && cloudData.daily && cloudData.daily[dateStr] && cloudData.daily[dateStr].chapters) || {};
       const map = new Map();
 
-      candidateList.forEach((cand, idx) => {
-        const key = `${cand.bookId}_${cand.chapterId}`;
-        const dayVariance = (seed + idx * 7) % 6;
-        const baseVal = cand.base + dayVariance;
-        map.set(key, {
-          bookId: cand.bookId,
-          chapterId: cand.chapterId,
-          reads: baseVal
-        });
-      });
-
-      // 疊加雲端當日真實點閱紀錄
+      // 讀取雲端當日真實點閱紀錄
       Object.keys(cloudDailyChs).forEach((key) => {
         const extra = Number(cloudDailyChs[key]) || 0;
-        const [bId, cIdStr] = key.split('_');
-        const cId = parseInt(cIdStr, 10);
-        if (map.has(key)) {
-          map.get(key).reads += extra;
-        } else {
-          map.set(key, { bookId: bId, chapterId: cId, reads: extra + 5 });
+        if (extra > 0) {
+          const [bId, cIdStr] = key.split('_');
+          const cId = parseInt(cIdStr, 10);
+          map.set(key, { bookId: bId, chapterId: cId, reads: extra });
         }
       });
 
@@ -313,12 +268,14 @@
               if (lKey && lKey.startsWith(DAILY_PREFIX + 'ch_' + dateStr + '_')) {
                 const chKey = lKey.replace(DAILY_PREFIX + 'ch_' + dateStr + '_', '');
                 const val = Number(safeLocalGet(lKey)) || 0;
-                const [bId, cIdStr] = chKey.split('_');
-                const cId = parseInt(cIdStr, 10);
-                if (map.has(chKey)) {
-                  map.get(chKey).reads += val;
-                } else {
-                  map.set(chKey, { bookId: bId, chapterId: cId, reads: val + 5 });
+                if (val > 0) {
+                  const [bId, cIdStr] = chKey.split('_');
+                  const cId = parseInt(cIdStr, 10);
+                  if (map.has(chKey)) {
+                    map.get(chKey).reads = Math.max(map.get(chKey).reads, val);
+                  } else {
+                    map.set(chKey, { bookId: bId, chapterId: cId, reads: val });
+                  }
                 }
               }
             }
@@ -338,7 +295,7 @@
       return results.slice(0, limit);
     },
 
-    // 取得全站累計總排行
+    // 取得全站累計總排行 (純真實數據)
     getTopChaptersAllTime: function (limit = 8) {
       const books = (window.GEAR_NOVELS_DATA && window.GEAR_NOVELS_DATA.books) || [];
       const allList = [];
@@ -347,27 +304,24 @@
         if (!book.chapters) return;
         book.chapters.forEach((ch) => {
           const raw = this.getChapterReadsRaw(book.id, ch.id);
-          allList.push({
-            bookId: book.id,
-            chapterId: ch.id,
-            bookTitle: book.title,
-            chapterTitle: ch.title,
-            seriesTitle: findChapterMeta(book.id, ch.id).seriesTitle,
-            reads: raw
-          });
+          if (raw > 0) {
+            allList.push({
+              bookId: book.id,
+              chapterId: ch.id,
+              bookTitle: book.title,
+              chapterTitle: ch.title,
+              seriesTitle: findChapterMeta(book.id, ch.id).seriesTitle,
+              reads: raw
+            });
+          }
         });
       });
-
-      const totalReads = allList.reduce((sum, item) => sum + item.reads, 0);
-      if (totalReads === 0) {
-        return this.getTopChaptersForDate(getLocalDateStr(0), limit);
-      }
 
       allList.sort((a, b) => b.reads - a.reads);
       return allList.slice(0, limit);
     },
 
-    // 取得全站數據指標統計概覽
+    // 取得全站數據指標統計概覽 (純真實數據)
     getOverviewStats: function () {
       const todayStr = getLocalDateStr(0);
       const yesterdayStr = getLocalDateStr(1);
@@ -375,7 +329,7 @@
       const yesterdayCount = this.getDailyCountRaw(yesterdayStr);
       const trend7 = this.getDailyTrend(7);
       const weekTotal = trend7.reduce((sum, item) => sum + item.count, 0);
-      const siteTotal = this.getTotalSiteReadsRaw() + weekTotal;
+      const siteTotal = this.getTotalSiteReadsRaw();
 
       const diff = todayCount - yesterdayCount;
       const diffPercent = yesterdayCount > 0 ? Math.round((diff / yesterdayCount) * 100) : 0;

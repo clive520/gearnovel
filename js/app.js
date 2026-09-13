@@ -12198,7 +12198,7 @@
     const counts = trendList.map(t => t.count);
     const maxVal = Math.max(...counts, 10);
     const minVal = 0;
-    const yMax = Math.ceil((maxVal * 1.15) / 10) * 10;
+    const yMax = maxVal > 0 ? Math.ceil((maxVal * 1.15) / 10) * 10 : 10;
 
     const points = trendList.map((item, idx) => {
       const x = padLeft + (idx / Math.max(trendList.length - 1, 1)) * chartW;
@@ -12365,13 +12365,17 @@
               <span class="text-xs text-slate-400 font-normal">次</span>
             </div>
             <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
-              ${stats.diff >= 0 ? `
+              ${stats.yesterdayCount === 0 && stats.todayCount === 0 ? `
+                <span class="text-slate-400">今日尚待首位讀者探索</span>
+              ` : (stats.diff > 0 ? `
                 <span class="text-emerald-600 dark:text-emerald-400 font-bold">▲ +${stats.diff}</span>
                 <span>比昨日增長</span>
-              ` : `
-                <span class="text-slate-400 font-bold">▼ ${stats.diff}</span>
+              ` : (stats.diff < 0 ? `
+                <span class="text-rose-500 dark:text-rose-400 font-bold">▼ ${stats.diff}</span>
                 <span>較昨日平穩</span>
-              `}
+              ` : `
+                <span class="text-slate-400">與昨日持平 (${stats.todayCount} 次)</span>
+              `))}
             </div>
           </div>
 
@@ -12397,7 +12401,7 @@
               <span class="text-xs text-slate-400 font-normal">次</span>
             </div>
             <div class="mt-2 text-[11px] text-slate-400">
-              日均約 ${Math.round(stats.weekTotal / 7)} 人次翻閱
+              近一週讀者累計探索次數
             </div>
           </div>
 
@@ -12410,7 +12414,7 @@
               <span class="text-xs text-slate-400 font-normal">次</span>
             </div>
             <div class="mt-2 text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
-              跨 10 大系列 · 26 部作品
+              跨 10 大系列 · 26 部作品真實點閱
             </div>
           </div>
         </div>
@@ -12426,7 +12430,7 @@
                 </h2>
               </div>
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                可觸控或將游標懸停於折線點上，查看各日期精準人次
+                純真實讀者點閱數據 · 可觸控或將游標懸停於折線點上查看各日人次
               </p>
             </div>
 
@@ -12489,7 +12493,21 @@
 
           <!-- 排行榜清單 -->
           <div class="space-y-3">
-            ${topList.map((item, idx) => {
+            ${topList.length === 0 ? `
+              <div class="py-12 px-4 rounded-2xl bg-slate-50/60 dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-800 text-center">
+                <div class="text-3xl mb-2">📖</div>
+                <div class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ${analyticsRankTab === 'today' ? '今日尚無章節點閱紀錄' : (analyticsRankTab === 'yesterday' ? '昨日尚無章節點閱紀錄' : '全站尚無閱讀紀錄')}
+                </div>
+                <p class="text-xs text-slate-400 max-w-sm mx-auto mb-4">
+                  ${analyticsRankTab === 'today' ? '本榜單採純真實數據計數，每當有讀者開啟章節，立即在此即時上榜！' : '每日詳細統計自此功能部署起開始真實記錄。'}
+                </p>
+                <a href="#/library" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-all shadow-sm">
+                  <span>前往作品書庫開啟閱讀</span>
+                  <span>➜</span>
+                </a>
+              </div>
+            ` : topList.map((item, idx) => {
               const rank = idx + 1;
               let rankBadge = '';
               let rowBorder = 'border-slate-200/80 dark:border-slate-800';
@@ -12547,9 +12565,9 @@
 
         <!-- 數據同步提示腳註 -->
         <div class="py-4 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
-          <span>⚡ 數據由 Firebase Realtime Database 跨設備即時記錄</span>
+          <span>⚡ 100% 純真實數據 · 由 Firebase Realtime Database 跨設備即時記錄</span>
           <span>·</span>
-          <span>讀者每次開啟故事皆會即時為當日閱讀計數添磚加瓦</span>
+          <span>無任何模擬底數，讀者每一次開啟故事皆為真實記錄</span>
         </div>
       </div>
     `;
