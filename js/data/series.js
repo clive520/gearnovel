@@ -8,8 +8,8 @@ window.GEAR_SERIES = [
     id: "series-10",
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
-    subtitle: "少兒微觀硬核科幻 · 全三卷（第二卷連載中 · 第 7～8 章已上線）",
-    badge: "🔥 2026 全新重磅連載 · 第 8 章已上線",
+    subtitle: "少兒微觀硬核科幻 · 全三卷（第二卷連載中 · 第 7～9 章已上線）",
+    badge: "🔥 2026 全新重磅連載 · 第 9 章已上線",
     badgeColor: "amber",
     targetAudience: "9～15 歲適讀 · 微觀物理 × 平方立方定律 × 古董座鐘冒險",
     tagline: "當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！",
@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 2,
       totalChapters: 18,
-      currentChaptersReleased: 8,
-      totalWords: "4.5 萬字（第二卷連載中）",
-      statusText: "第二卷連載中 · 第 7～8 章已上線"
+      currentChaptersReleased: 9,
+      totalWords: "5.1 萬字（第二卷連載中）",
+      statusText: "第二卷連載中 · 第 7～9 章已上線"
     },
     volumes: [
       {
@@ -41,9 +41,9 @@ window.GEAR_SERIES = [
         title: "發條迷宮與黃銅微國",
         subtitle: "第二幕：失落的微型自動偶文明",
         chaptersCount: 6,
-        releasedChapters: 2,
-        wordCount: "第 7～8 章已上線 · 1.2 萬字",
-        status: "第二卷連載中（已釋出 2 章）",
+        releasedChapters: 3,
+        wordCount: "第 7～9 章已上線 · 1.8 萬字",
+        status: "第二卷連載中（已釋出 3 章）",
         theme: "自走自動機 × 剛玉滑道 × 錨式擒縱器",
         firstChapterId: 7
       },
@@ -347,7 +347,7 @@ window.GEAR_SERIES = [
       totalVolumes: 1,
       currentVolumesReleased: 2,
       totalChapters: 4,
-      currentChaptersReleased: 8,
+      currentChaptersReleased: 9,
       totalWords: "3.2 萬字",
       statusText: "單冊 · 全 4 篇完結"
     },
