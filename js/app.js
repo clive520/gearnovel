@@ -1544,7 +1544,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span>🔥 2026 全新重磅連載 · 第 11 章已上線</span>
+              <span>🎉 第二卷 6 章大完結 · 累計 12 章已上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
@@ -1597,9 +1597,9 @@
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《發條迷宮與黃銅微國》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">第二卷完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 7～11 章已上線 · 3.0 萬字 · 錨式擒縱 × 雙金屬天梯 × 行星差速輪</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 3.6 萬字 · 錨式擒縱 × 行星差速輪 × 水銀陀螺</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1627,8 +1627,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
-          <a href="#/read/book-25/11" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 繼續閱讀第 11 章</span>
+          <a href="#/read/book-25/12" class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 閱讀第二卷大結局（第 12 章）</span>
           </a>
           <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 18 回大綱目錄
