@@ -1544,7 +1544,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span>🔥 第三卷震撼開篇 · 第 13 章已上線</span>
+              <span>🔥 第三卷全新連載 · 第 14 章已上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
@@ -1617,7 +1617,7 @@
                     <span class="truncate">《天體星核的逆轉破曉》</span>
                     <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 13 章已上線 · 6,000 字 · 微重力漂浮 × 歐拉星軌 × 動量推進</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13～14 章已上線 · 1.2 萬字 · 歐拉星軌 × 零重力毛細 × 正二十面體</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1630,8 +1630,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
-          <a href="#/read/book-26/13" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 閱讀第三卷開篇（第 13 章）</span>
+          <a href="#/read/book-26/14" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>📖 繼續閱讀第 14 章</span>
           </a>
           <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 18 回大綱目錄

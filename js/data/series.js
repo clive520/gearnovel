@@ -8,8 +8,8 @@ window.GEAR_SERIES = [
     id: "series-10",
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
-    subtitle: "少兒微觀硬核科幻 · 全三卷（第三卷連載中 · 第 13 章已上線）",
-    badge: "🔥 第三卷震撼開篇 · 第 13 章已上線",
+    subtitle: "少兒微觀硬核科幻 · 全三卷（第三卷連載中 · 第 13～14 章已上線）",
+    badge: "🔥 第三卷全新連載 · 第 14 章已上線",
     badgeColor: "amber",
     targetAudience: "9～15 歲適讀 · 微觀物理 × 平方立方定律 × 古董座鐘冒險",
     tagline: "當身高縮小成一毫米，整座古董天文鐘，就是無邊無際的黃銅宇宙！",
@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       totalVolumes: 3,
       currentVolumesReleased: 3,
       totalChapters: 18,
-      currentChaptersReleased: 13,
-      totalWords: "7.5 萬字（第三卷連載中）",
-      statusText: "第三卷連載中 · 第 13 章已上線"
+      currentChaptersReleased: 14,
+      totalWords: "8.1 萬字（第三卷連載中）",
+      statusText: "第三卷連載中 · 第 13～14 章已上線"
     },
     volumes: [
       {
@@ -53,10 +53,10 @@ window.GEAR_SERIES = [
         title: "天體星核的逆轉破曉",
         subtitle: "第三幕：渾天星軌與最後三秒逆轉",
         chaptersCount: 6,
-        releasedChapters: 1,
-        wordCount: "第 13 章已上線 · 6,000 字",
-        status: "第三卷連載中（已釋出 1 章）",
-        theme: "微重力漂浮 × 歐拉星軌 × 動量反衝推進",
+        releasedChapters: 2,
+        wordCount: "第 13～14 章已上線 · 1.2 萬字",
+        status: "第三卷連載中（已釋出 2 章）",
+        theme: "微重力漂浮 × 歐拉星軌 × 毛細之河 × 正二十面體",
         firstChapterId: 13
       }
     ],
