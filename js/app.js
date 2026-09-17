@@ -1676,9 +1676,9 @@
         <div>
           <!-- 標籤與受眾 -->
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5 shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span>🔥 第三卷全新連載 · 第 14 章已上線</span>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>🎉 2026 最新重磅完結 · 全三卷 18 章</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
@@ -1702,8 +1702,8 @@
           <!-- 收錄全三卷列表 -->
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-              <span>📚 全三卷長篇套書（第二卷熱烈連載中）</span>
-              <span class="text-amber-600 font-mono font-bold">全 18 章規劃</span>
+              <span>📚 全三卷長篇套書（全 18 章震撼大完結）</span>
+              <span class="text-emerald-600 font-mono font-bold">全 18 章完結</span>
             </div>
 
             <!-- 卷一 -->
@@ -1749,9 +1749,9 @@
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-amber-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《天體星核的逆轉破曉》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500 text-white font-bold flex-shrink-0">連載中</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">第三卷完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 13～14 章已上線 · 1.2 萬字 · 歐拉星軌 × 零重力毛細 × 正二十面體</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 3.5 萬字 · 歐拉星軌 × 磁流體發電 × 千倍破曉大結局</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1765,7 +1765,7 @@
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-amber-500/20 flex items-center gap-3">
           <a href="#/read/book-26/18" class="flex-1 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md shadow-amber-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>📖 繼續閱讀第 14 章</span>
+            <span>📖 閱讀第 18 章大結局</span>
           </a>
           <button onclick="window.openSeriesModal('series-10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
             📑 全 18 回大綱目錄
