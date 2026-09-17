@@ -406,3 +406,47 @@ u.proper-noun:hover {
 .reader-content.listening-mode-enabled .bilingual-pair:hover .tap-to-read-hint {
   opacity: 1;
 }
+
+/* ================= 閱讀模式：頂部自動隱藏與感知浮現 (Reader Auto-Hide Header & Toolbar) ================= */
+body.is-reading #site-header {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+body.is-reading #site-header.nav-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.is-reading #reader-toolbar {
+  transform: translateY(calc(-100% - 5rem));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+body.is-reading #reader-toolbar.nav-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 頂部滑鼠感應熱區 */
+.reader-top-sensor {
+  display: none;
+}
+
+body.is-reading .reader-top-sensor {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  z-index: 45;
+  pointer-events: auto;
+}
+

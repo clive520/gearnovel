@@ -847,6 +847,11 @@
       window.heroCarouselTimer = null;
     }
 
+    // 若非閱讀模式，確保離開閱讀沉浸式隱藏狀態，恢復全站頂部導覽列常駐
+    if (!hash.startsWith('#/read/') && typeof ReaderAutoHideManager !== 'undefined') {
+      ReaderAutoHideManager.leaveReader();
+    }
+
     if (hash === '#/' || hash === '#/library') {
       renderLibrary();
     } else if (hash.startsWith('#/series-')) {
@@ -2819,6 +2824,160 @@
   };
   window.storySpeaker.init();
 
+  // ================= 閱讀模式：頂部導覽列與工具列自動隱藏／感知浮現管理器 =================
+  const ReaderAutoHideManager = {
+    timer: null,
+    isReading: false,
+    lastScrollY: 0,
+    initialized: false,
+
+    init() {
+      if (this.initialized) return;
+      this.initialized = true;
+
+      // 電腦版：滑鼠游標移動至螢幕頂部感應熱區（Y <= 65px）時平滑浮現
+      window.addEventListener('mousemove', (e) => {
+        if (!this.isReading) return;
+        if (e.clientY <= 65) {
+          this.show();
+          this.scheduleHide(2200);
+        }
+      });
+
+      // 觸控／點擊正文區域切換顯示或隱藏
+      document.addEventListener('click', (e) => {
+        if (!this.isReading) return;
+        // 若點擊在導覽列、工具列、視窗、按鈕、連結、下拉選單、專名號或輸入框，不切換
+        if (e.target.closest('#site-header, #reader-toolbar, #toc-modal, #bookmarks-modal, #auth-modal, #font-dropdown, button, a, input, select, textarea, .proper-noun, [data-proper-noun]')) {
+          return;
+        }
+        // 若使用者在選取文字，不觸發
+        const selection = window.getSelection();
+        if (selection && selection.toString().trim().length > 0) return;
+
+        this.toggle();
+      });
+    },
+
+    isDropdownActive() {
+      const fontDropdown = document.getElementById('font-dropdown');
+      const tocModal = document.getElementById('toc-modal');
+      const bmModal = document.getElementById('bookmarks-modal');
+      const authModal = document.getElementById('auth-modal');
+      if (fontDropdown && !fontDropdown.classList.contains('hidden')) return true;
+      if (tocModal && !tocModal.classList.contains('hidden')) return true;
+      if (bmModal && !bmModal.classList.contains('hidden')) return true;
+      if (authModal && !authModal.classList.contains('hidden')) return true;
+      return false;
+    },
+
+    show() {
+      const header = document.getElementById('site-header');
+      const toolbar = document.getElementById('reader-toolbar');
+      if (header) header.classList.add('nav-visible');
+      if (toolbar) toolbar.classList.add('nav-visible');
+    },
+
+    hide() {
+      if (this.isDropdownActive()) return;
+      const header = document.getElementById('site-header');
+      const toolbar = document.getElementById('reader-toolbar');
+      if (header) header.classList.remove('nav-visible');
+      if (toolbar) toolbar.classList.remove('nav-visible');
+    },
+
+    toggle() {
+      const header = document.getElementById('site-header');
+      if (header && header.classList.contains('nav-visible')) {
+        this.hide();
+      } else {
+        this.show();
+        this.scheduleHide(3000);
+      }
+    },
+
+    scheduleHide(delay = 2200) {
+      if (this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        if (this.isDropdownActive()) return;
+        this.hide();
+      }, delay);
+    },
+
+    enterReader() {
+      this.isReading = true;
+      document.body.classList.add('is-reading');
+      this.lastScrollY = window.scrollY || document.documentElement.scrollTop;
+
+      // 監聽頂部熱區、導覽列與工具列的滑鼠進入/離開，防止操作時誤收合
+      const header = document.getElementById('site-header');
+      const toolbar = document.getElementById('reader-toolbar');
+      const sensor = document.getElementById('reader-top-sensor');
+
+      const stopTimer = () => {
+        if (this.timer) clearTimeout(this.timer);
+      };
+      const resumeTimer = () => {
+        if (this.isReading) this.scheduleHide(1800);
+      };
+
+      if (header) {
+        header.onmouseenter = stopTimer;
+        header.onmouseleave = resumeTimer;
+      }
+      if (toolbar) {
+        toolbar.onmouseenter = stopTimer;
+        toolbar.onmouseleave = resumeTimer;
+      }
+      if (sensor) {
+        sensor.onmouseenter = () => {
+          this.show();
+          this.scheduleHide(2500);
+        };
+      }
+
+      // 初次開啟章節時先短暫顯示導航，2.5 秒後自動隱藏進入沉浸閱讀
+      this.show();
+      this.scheduleHide(2500);
+    },
+
+    leaveReader() {
+      this.isReading = false;
+      if (this.timer) clearTimeout(this.timer);
+      document.body.classList.remove('is-reading');
+      const header = document.getElementById('site-header');
+      const toolbar = document.getElementById('reader-toolbar');
+      if (header) header.classList.remove('nav-visible');
+      if (toolbar) toolbar.classList.remove('nav-visible');
+    },
+
+    handleScroll() {
+      if (!this.isReading) return;
+      const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+      const diff = currentScrollY - this.lastScrollY;
+
+      // 在極頂端（<= 50px）時維持顯示
+      if (currentScrollY <= 50) {
+        this.show();
+        this.lastScrollY = currentScrollY;
+        return;
+      }
+
+      // 向下捲動超過 12px：自動隱藏頂部工具列
+      if (diff > 12) {
+        this.hide();
+      } 
+      // 向上捲動超過 18px：呼出工具列，並預約延遲隱藏
+      else if (diff < -18) {
+        this.show();
+        this.scheduleHide(2800);
+      }
+
+      this.lastScrollY = currentScrollY;
+    }
+  };
+  ReaderAutoHideManager.init();
+
   function renderReader(bookId, chapterId, targetParaIndex = undefined) {
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
     const chapter = book.chapters.find(c => c.id === chapterId || c.globalId === chapterId) || book.chapters[0];
@@ -2848,8 +3007,11 @@
     }
 
     container.innerHTML = `
+      <!-- 頂部滑鼠感應熱區 -->
+      <div id="reader-top-sensor" class="reader-top-sensor"></div>
+
       <!-- 閱讀器頂部懸浮控制列 -->
-      <div class="sticky top-16 z-30 mb-8 py-3 px-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-4">
+      <div id="reader-toolbar" class="sticky top-16 z-30 mb-8 py-3 px-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-4">
         <div class="flex items-center gap-3">
           <a href="#/" class="text-sm font-semibold text-slate-500 hover:text-amber-600 flex items-center gap-1">
             <span>← 書庫</span>
@@ -3058,13 +3220,15 @@
       </div>
     `;
 
-    // 監聽進度條捲動
+    // 監聽進度條捲動與閱讀器自動隱藏
     window.onscroll = function () {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
       const bar = document.getElementById('reading-progress-bar');
       if (bar) bar.style.width = scrolled + '%';
+
+      ReaderAutoHideManager.handleScroll();
     };
 
     // 事件綁定：字體大小調節選單
@@ -3266,6 +3430,9 @@
       if (btnSpeed) btnSpeed.onclick = () => window.storySpeaker.cycleSpeed();
       if (btnClose) btnClose.onclick = () => window.storySpeaker.stopListening();
     }, 150);
+
+    // 啟用閱讀模式自動隱藏控制
+    ReaderAutoHideManager.enterReader();
   }
 
   // 頁面渲染器：人物與裝備圖鑑
