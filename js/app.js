@@ -1695,7 +1695,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-              <span>🌊 2026 全新重磅主線首發 · 第 1 章火熱上線</span>
+              <span>🌊 2026 全新重磅主線首發 · 第 1~2 章火熱上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20 font-mono">
@@ -1720,7 +1720,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 全三卷長篇套書（第一卷震撼開篇）</span>
-              <span class="text-cyan-600 font-mono font-bold">第 1 章連載中</span>
+              <span class="text-cyan-600 font-mono font-bold">第 1~2 章連載中</span>
             </div>
 
             <!-- 卷一 -->
@@ -1730,9 +1730,9 @@
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《幽光之海的下潛者》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 1 章新上線</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 1~2 章熱讀中</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1 章已上線 · 6,000 字 · 萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 1~2 章已上線 · 12,000 字 · 萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
