@@ -1724,22 +1724,34 @@
             </div>
 
             <!-- 卷一 -->
-            <a href="#/read/book-27/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/40 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm ring-1 ring-cyan-500/20">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
-                    <span class="truncate">《幽光之海的下潛者》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 1~2 章熱讀中</span>
+            <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/40 shadow-sm ring-1 ring-cyan-500/20">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                  <div class="min-w-0">
+                    <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
+                      <span class="truncate">《幽光之海的下潛者》</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 2 章最新上線</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 truncate">已上線 2 章 · 12,000 字 · 萬米壓強 × 鈦合金抗壓球 × 自緊密封</div>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 1~2 章已上線 · 12,000 字 · 萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道</div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-27') : ''}</span>
                 </div>
               </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-27') : ''}</span>
-                <span class="text-xs text-cyan-600 font-bold group-hover/vol:translate-x-1 transition-transform">立即閱讀 ➜</span>
+              <!-- 雙章節直達按鈕 -->
+              <div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
+                <a href="#/read/book-27/1" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
+                  <span class="truncate font-medium">第 1 章 · 鈦金屬信標</span>
+                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
+                </a>
+                <a href="#/read/book-27/2" class="px-2.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
+                  <span class="truncate">第 2 章 · 鸚鵡螺-IV</span>
+                  <span class="text-[10px] px-1 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW</span>
+                </a>
               </div>
-            </a>
+            </div>
 
             <!-- 卷二 -->
             <div class="p-3 rounded-2xl bg-slate-50/50 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-75">
@@ -1774,12 +1786,15 @@
         </div>
 
         <!-- 底部行動按鈕 -->
-        <div class="pt-4 border-t border-cyan-500/20 flex items-center gap-3">
-          <a href="#/read/book-27/1" class="flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>🌊 立即搶先閱讀第 1 章</span>
+        <div class="pt-4 border-t border-cyan-500/20 flex flex-col sm:flex-row items-center gap-2.5">
+          <a href="#/read/book-27/2" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>🌊 立即閱讀第 2 章（最新上線）</span>
           </a>
-          <button onclick="window.openSeriesModal('series-11')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center">
-            📑 查看全卷大綱規劃
+          <a href="#/read/book-27/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold text-xs transition-all text-center">
+            📖 回看第 1 章
+          </a>
+          <button onclick="window.openSeriesModal('series-11')" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center whitespace-nowrap">
+            📑 章節目錄
           </button>
         </div>
       </div>
