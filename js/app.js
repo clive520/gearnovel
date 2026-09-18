@@ -535,6 +535,12 @@
     { name: '克羅諾斯長老', role: '發條微國長老' },
     { name: '克羅諾斯', role: '發條微國長老' },
 
+    // === 系列 11：冒險齒輪：馬里亞納的深淵信標 ===
+    { name: '杜海嵐', role: '女主角 · 遠洋科考探險少女' },
+    { name: '海嵐', role: '女主角 · 杜海嵐' },
+    { name: '杜振遠', role: '遠洋科考船「海瀾號」老船長' },
+    { name: '老杜', role: '遠洋科考船「海瀾號」老船長 · 杜振遠' },
+
     // === 系列 2：星願鐘擺與織光少女 ===
     { name: '采婭玆', role: '女主角 · 晨光堂鐘錶學徒' },
     { name: '采婭', role: '女主角 · 晨光堂鐘錶學徒' },
@@ -673,6 +679,12 @@
     { name: 'Buck', role: 'Airship Captain' },
     { name: 'Lan', role: 'Storm Girl' },
     { name: 'Reg', role: 'Fleet Commander' },
+
+    // Series 11
+    { name: 'Du Hailan', role: 'Oceanographic Explorer Girl' },
+    { name: 'Hailan', role: 'Oceanographic Explorer Girl (Du Hailan)' },
+    { name: 'Du Zhenyuan', role: 'Captain of RV Ocean Wave' },
+    { name: 'Captain Du', role: 'Captain of RV Ocean Wave (Du Zhenyuan)' },
 
     // Series 2
     { name: 'Master Cai', role: 'Dawn Hall Master' },
@@ -3447,7 +3459,7 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5' && char.vol !== 'series6');
+    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5' && char.vol !== 'series6' && char.vol !== 'series7' && char.vol !== 'series8' && char.vol !== 'series9' && char.vol !== 'series11');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
     const series3Chars = allChars.filter(char => char.vol === 'series3');
     const series4Chars = allChars.filter(char => char.vol === 'series4');
@@ -3456,6 +3468,7 @@
     const series7Chars = allChars.filter(char => char.vol === 'series7');
     const series8Chars = allChars.filter(char => char.vol === 'series8');
     const series9Chars = allChars.filter(char => char.vol === 'series9');
+    const series11Chars = allChars.filter(char => char.vol === 'series11');
 
     let filteredChars = series1Chars;
     if (activeCharTab === 'series2') filteredChars = series2Chars;
@@ -3466,6 +3479,7 @@
     else if (activeCharTab === 'series7') filteredChars = series7Chars;
     else if (activeCharTab === 'series8') filteredChars = series8Chars;
     else if (activeCharTab === 'series9') filteredChars = series9Chars;
+    else if (activeCharTab === 'series11') filteredChars = series11Chars;
 
     const isSeries1 = activeCharTab === 'series1';
     const isSeries2 = activeCharTab === 'series2';
@@ -3476,6 +3490,7 @@
     const isSeries7 = activeCharTab === 'series7';
     const isSeries8 = activeCharTab === 'series8';
     const isSeries9 = activeCharTab === 'series9';
+    const isSeries11 = activeCharTab === 'series11';
 
     container.innerHTML = `
       <section class="max-w-4xl mx-auto mb-16">
@@ -3593,6 +3608,19 @@
             }">${series9Chars.length}</span>
           </button>
 
+          <button onclick="window.switchCharTab('series11')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
+            isSeries11
+              ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25 ring-2 ring-cyan-400/30 scale-105'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 hover:text-cyan-600'
+          }">
+            <span>《馬里亞納的深淵信標》</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isSeries11
+                ? 'bg-cyan-700 text-cyan-100'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+            }">${series11Chars.length}</span>
+          </button>
+
           <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
             isSeries5
               ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
@@ -3609,6 +3637,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS11Char = char.vol === 'series11';
             const isS9Char = char.vol === 'series9';
             const isS8Char = char.vol === 'series8';
             const isS6Char = char.vol === 'series6';
@@ -3617,7 +3646,8 @@
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS9Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
+            if (isS11Char) volBadgeClass = 'bg-cyan-500/10 text-cyan-600 border-cyan-500/30';
+            else if (isS9Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (isS8Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
             else if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
             else if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';

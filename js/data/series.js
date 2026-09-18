@@ -5,6 +5,72 @@
  */
 window.GEAR_SERIES = [
   {
+    id: "series-11",
+    title: "冒險齒輪：馬里亞納的深淵信標",
+    enTitle: "Adventure Gear: Beacons of the Mariana Abyss",
+    subtitle: "少兒極限深海科幻 · 萬米海淵的黃銅潛航者！",
+    badge: "🌊 全新深海主線開篇",
+    badgeColor: "sky",
+    targetAudience: "9～15 歲適讀 · 極限流體壓強 × 深海聲學通道 × 熱液火山冒險",
+    tagline: "向下下潛一萬一千公尺，每平方公分承受一噸海水的窒息深淵，唯有黃銅齒輪與彼此的心跳不會被壓碎！",
+    description: "誠浩在保養爺爺留下的古董天文座鐘底座時，意外觸發機關彈出一枚被超高壓海水侵蝕的特種鈦鋯合金信標卡盤，座標直指馬里亞納海溝最深處——挑戰者深淵！五十年前秘密地質專案安置在板塊隱沒帶深處的『深海零號鐘台』差速齒輪即將失控，若不在 72 小時內手動校準擒縱器，將引發環太平洋帶特大海底地震與海嘯！誠浩、葉旖緁、將江、機械柴犬皮可攜手遠洋科考少女杜海嵐，搭乘『鸚鵡螺-IV 號』雙球殼黃銅抗壓深潛艇，向萬米深淵全速下潛！",
+    stats: {
+      totalVolumes: 3,
+      currentVolumesReleased: 1,
+      totalChapters: 18,
+      currentChaptersReleased: 1,
+      totalWords: "連載啟動 · 第一卷熱血開篇",
+      statusText: "第一卷連載中 · 第 1 章已上線"
+    },
+    volumes: [
+      {
+        bookId: "book-27",
+        volNum: "第一卷",
+        title: "幽光之海的下潛者",
+        subtitle: "第一幕：鈦金屬信標與千米聲道迷宮",
+        chaptersCount: 6,
+        releasedChapters: 1,
+        wordCount: "第 1 章已上線 · 6,000 字",
+        status: "連載中（第 1 章收錄）",
+        theme: "萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道",
+        firstChapterId: 1
+      },
+      {
+        bookId: "book-28",
+        volNum: "第二卷",
+        title: "黑煙囪與沸騰深淵",
+        subtitle: "第二幕：濁流泥浪與熱液溫差蓄能",
+        chaptersCount: 6,
+        releasedChapters: 0,
+        wordCount: "即將推出",
+        status: "敬請期待",
+        theme: "濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電",
+        firstChapterId: 7
+      },
+      {
+        bookId: "book-29",
+        volNum: "第三卷",
+        title: "挑戰者海淵的破曉信標",
+        subtitle: "第三幕：萬米應變與太平洋破曉警報",
+        chaptersCount: 6,
+        releasedChapters: 0,
+        wordCount: "即將推出",
+        status: "敬請期待",
+        theme: "1100 個大氣壓 × 因瓦合金銷釘 × 聲學全洋警報",
+        firstChapterId: 13
+      }
+    ],
+    highlights: [
+      "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀",
+      "硬核少兒 STEM 極限流體壓強、SOFAR 聲道波導、熱液黑煙囪與深海巨型化生態",
+      "誠浩、葉旖緁、將江、皮可與新女主角杜海嵐的萬米深淵生死下潛"
+    ],
+    themeTone: "sky",
+    coverStyle: "from-cyan-600/10 via-sky-500/5 to-slate-900/40 border-cyan-500/30",
+    startBookId: "book-27",
+    startChapterId: 1
+  },
+  {
     id: "series-10",
     title: "冒險齒輪：齒輪星核的微縮旅人",
     enTitle: "Adventure Gear: Voyagers of the Clockwork Core",
