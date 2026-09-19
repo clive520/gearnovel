@@ -16,11 +16,11 @@ window.GEAR_SERIES = [
     "description": "誠浩在保養爺爺留下的古董天文座鐘底座時，意外觸發機關彈出一枚被超高壓海水侵蝕的特種鈦鋯合金信標卡盤，座標直指馬里亞納海溝最深處——挑戰者深淵！五十年前秘密地質專案安置在板塊隱沒帶深處的『深海零號鐘台』差速齒輪即將失控，若不在 72 小時內手動校準擒縱器，將引發環太平洋帶特大海底地震與海嘯！誠浩、葉旖緁、將江、機械柴犬皮可攜手遠洋科考少女杜海嵐，搭乘『鸚鵡螺-IV 號』雙球殼黃銅抗壓深潛艇，向萬米深淵全速下潛！",
     "stats": {
       "totalVolumes": 3,
-      "currentVolumesReleased": 1,
+      "currentVolumesReleased": 2,
       "totalChapters": 18,
-      "currentChaptersReleased": 6,
-      "totalWords": "第一卷完結 · 全 6 章 36,000 字",
-      "statusText": "第一卷震撼大完結 · 全 6 章已上線"
+      "currentChaptersReleased": 7,
+      "totalWords": "第二卷連載中 · 已上線 42,000 字",
+      "statusText": "第二卷震撼開篇 · 第 7 章火熱上線"
     },
     "volumes": [
       {
@@ -41,9 +41,9 @@ window.GEAR_SERIES = [
         "title": "黑煙囪與沸騰深淵",
         "subtitle": "第二幕：濁流泥浪與熱液溫差蓄能",
         "chaptersCount": 6,
-        "releasedChapters": 0,
-        "wordCount": "即將推出",
-        "status": "敬請期待",
+        "releasedChapters": 1,
+        "wordCount": "第 7 章已上線 · 6,000 字",
+        "status": "第二卷開篇（第 7 章上線）",
         "theme": "濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電",
         "firstChapterId": 7
       },

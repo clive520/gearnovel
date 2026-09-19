@@ -1089,22 +1089,30 @@
             </a>
 
             <!-- 卷二 -->
-            <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
-              <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
-                    <span class="truncate">《千島齒輪海的迷失燈塔》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
+            <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/40 shadow-sm ring-1 ring-cyan-500/20">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                  <div class="min-w-0">
+                    <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
+                      <span class="truncate">《黑煙囪與沸騰深淵》</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 7 章最新上線</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 truncate">第 7 章火熱上線 · 6,000 字 · 濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電</div>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 11～22 章 · 5.2 萬字 · 大航海 × 聲納共振 × 全息折射</div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-28') : ''}</span>
                 </div>
               </div>
-              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
-                <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
+              <!-- 卷二直達按鈕 -->
+              <div class="mt-2 pt-2 border-t border-cyan-500/15">
+                <a href="#/read/book-28/7" class="w-full px-2.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
+                  <span class="truncate">第 07 章 · 阿比斯平原的泥流濁浪</span>
+                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW 開篇</span>
+                </a>
               </div>
-            </a>
+            </div>
 
             <!-- 卷三 -->
             <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
@@ -1695,7 +1703,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-              <span>🌊 2026 全新重磅主線首發 · 第一卷全 6 章震撼大完結</span>
+              <span>🔥 2026 全新重磅主線 · 第二卷震撼開篇 · 第 7 章火熱上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20 font-mono">
@@ -1720,7 +1728,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 全三卷長篇套書（第一卷震撼開篇）</span>
-              <span class="text-cyan-600 font-mono font-bold">第一卷全 6 章已完結</span>
+              <span class="text-cyan-600 font-mono font-bold">第二卷連載中 · 第 7 章最新</span>
             </div>
 
             <!-- 卷一 -->
