@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       "totalVolumes": 3,
       "currentVolumesReleased": 2,
       "totalChapters": 18,
-      "currentChaptersReleased": 7,
-      "totalWords": "第二卷連載中 · 已上線 42,000 字",
-      "statusText": "第二卷震撼開篇 · 第 7 章火熱上線"
+      "currentChaptersReleased": 8,
+      "totalWords": "第二卷連載中 · 已上線 48,000 字",
+      "statusText": "第二卷連載中 · 第 7~8 章已上線"
     },
     "volumes": [
       {
@@ -41,9 +41,9 @@ window.GEAR_SERIES = [
         "title": "黑煙囪與沸騰深淵",
         "subtitle": "第二幕：濁流泥浪與熱液溫差蓄能",
         "chaptersCount": 6,
-        "releasedChapters": 1,
-        "wordCount": "第 7 章已上線 · 6,000 字",
-        "status": "第二卷開篇（第 7 章上線）",
+        "releasedChapters": 2,
+        "wordCount": "第 7~8 章已上線 · 12,000 字",
+        "status": "第二卷連載中（收錄 7~8 章）",
         "theme": "濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電",
         "firstChapterId": 7
       },

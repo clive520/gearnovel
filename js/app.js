@@ -1096,20 +1096,24 @@
                   <div class="min-w-0">
                     <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
                       <span class="truncate">《黑煙囪與沸騰深淵》</span>
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 7 章最新上線</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 8 章最新上線</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 truncate">第 7 章火熱上線 · 6,000 字 · 濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電</div>
+                    <div class="text-[11px] text-slate-500 truncate">已上線 2 章 · 12,000 字 · 濁流盲航 × 380°C 黑煙囪 × 熱液爆裂脫險</div>
                   </div>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                   <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-28') : ''}</span>
                 </div>
               </div>
-              <!-- 卷二直達按鈕 -->
-              <div class="mt-2 pt-2 border-t border-cyan-500/15">
-                <a href="#/read/book-28/7" class="w-full px-2.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
-                  <span class="truncate">第 07 章 · 阿比斯平原的泥流濁浪</span>
-                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW 開篇</span>
+              <!-- 卷二雙章節直達按鈕 -->
+              <div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
+                <a href="#/read/book-28/7" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
+                  <span class="truncate font-medium">第 7 章 · 泥流濁浪</span>
+                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
+                </a>
+                <a href="#/read/book-28/8" class="px-2.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
+                  <span class="truncate">第 8 章 · 黑色噴泉</span>
+                  <span class="text-[10px] px-1 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW</span>
                 </a>
               </div>
             </div>
@@ -1703,7 +1707,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-              <span>🔥 2026 全新重磅主線 · 第二卷震撼開篇 · 第 7 章火熱上線</span>
+              <span>🔥 2026 全新重磅主線 · 第二卷連載中 · 第 7~8 章火熱上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20 font-mono">
@@ -1728,7 +1732,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 全三卷長篇套書（第一卷震撼開篇）</span>
-              <span class="text-cyan-600 font-mono font-bold">第二卷連載中 · 第 7 章最新</span>
+              <span class="text-cyan-600 font-mono font-bold">第二卷連載中 · 第 8 章最新</span>
             </div>
 
             <!-- 卷一 -->
