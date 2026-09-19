@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       "totalVolumes": 3,
       "currentVolumesReleased": 1,
       "totalChapters": 18,
-      "currentChaptersReleased": 5,
-      "totalWords": "連載中 · 已上線 30,000 字",
-      "statusText": "第一卷連載中 · 第 1~5 章已上線"
+      "currentChaptersReleased": 6,
+      "totalWords": "第一卷完結 · 全 6 章 36,000 字",
+      "statusText": "第一卷震撼大完結 · 全 6 章已上線"
     },
     "volumes": [
       {
@@ -29,9 +29,9 @@ window.GEAR_SERIES = [
         "title": "幽光之海的下潛者",
         "subtitle": "第一幕：鈦金屬信標與千米聲道迷宮",
         "chaptersCount": 6,
-        "releasedChapters": 5,
-        "wordCount": "第 1~5 章已上線 · 30,000 字",
-        "status": "連載中（收錄 1~5 章）",
+        "releasedChapters": 6,
+        "wordCount": "全 6 章已完結 · 36,000 字",
+        "status": "第一卷大完結（全 6 章）",
         "theme": "萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道",
         "firstChapterId": 1
       },
