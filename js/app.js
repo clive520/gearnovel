@@ -1089,38 +1089,22 @@
             </a>
 
             <!-- 卷二 -->
-            <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/40 shadow-sm ring-1 ring-cyan-500/20">
-              <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
-                  <div class="min-w-0">
-                    <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
-                      <span class="truncate">《黑煙囪與沸騰深淵》</span>
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 9 章最新上線</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 truncate">已上線 3 章 · 18,000 字 · 380°C 溫差發電 × 塞貝克效應 × 恆力發條蓄能</div>
+            <a href="#/read/book-2/11" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《千島齒輪海的迷失燈塔》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">完結</span>
                   </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-28') : ''}</span>
+                  <div class="text-[11px] text-slate-500 truncate">第 11～22 章 · 5.2 萬字 · 大航海 × 聲納共振 × 全息折射</div>
                 </div>
               </div>
-              <!-- 卷二三章節直達按鈕 -->
-              <div class="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
-                <a href="#/read/book-28/7" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 7 章 · 泥流濁浪</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-28/8" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 8 章 · 黑色噴泉</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-28/9" class="px-2 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
-                  <span class="truncate">第 9 章 · 發條充能</span>
-                  <span class="text-[10px] px-1 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW</span>
-                </a>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-2') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover:translate-x-1 transition-transform">閱讀 ➜</span>
               </div>
-            </div>
+            </a>
 
             <!-- 卷三 -->
             <a href="#/read/book-3/23" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-indigo-500/30 flex items-center justify-between hover:border-indigo-500 hover:bg-indigo-500/5 transition-all group shadow-sm">
@@ -1735,70 +1719,45 @@
           <!-- 收錄全三卷列表 -->
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-              <span>📚 全三卷長篇套書（第一卷震撼開篇）</span>
-              <span class="text-cyan-600 font-mono font-bold">第二卷連載中 · 第 9 章最新</span>
+              <span>📚 全三卷長篇套書（第二卷火熱連載中）</span>
+              <span class="text-cyan-600 font-mono font-bold">已上線 9 章 · 5.4 萬字</span>
             </div>
 
             <!-- 卷一 -->
-            <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/40 shadow-sm ring-1 ring-cyan-500/20">
-              <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
-                  <div class="min-w-0">
-                    <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
-                      <span class="truncate">《幽光之海的下潛者》</span>
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">🎉 第一卷大完結</span>
-                    </div>
-                    <div class="text-[11px] text-slate-500 truncate">全 6 章大完結 · 36,000 字 · 四千米午夜深淵 × 零號中繼鐘台 × 飛車鎖定</div>
+            <a href="#/read/book-27/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《幽光之海的下潛者》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">已完結</span>
                   </div>
-                </div>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                  <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-27') : ''}</span>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 3.6 萬字 · 萬米壓強 × 鈦合金抗壓球 × SOFAR 聲道</div>
                 </div>
               </div>
-                            <!-- 六章節直達按鈕（全卷完結） -->
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
-                <a href="#/read/book-27/1" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 1 章 · 鈦金屬信標</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-27/2" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 2 章 · 鸚鵡螺-IV</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-27/3" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 3 章 · 暮色帶光斑</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-27/4" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 4 章 · 千米聲道</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-27/5" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
-                  <span class="truncate font-medium">第 5 章 · 深淵巨腕</span>
-                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
-                </a>
-                <a href="#/read/book-27/6" class="px-2 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
-                  <span class="truncate">第 6 章 · 黃銅流星</span>
-                  <span class="text-[10px] px-1 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">完結</span>
-                </a>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-27') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
               </div>
-            </div>
+            </a>
 
             <!-- 卷二 -->
-            <div class="p-3 rounded-2xl bg-slate-50/50 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-75">
+            <a href="#/read/book-28/7" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm ring-1 ring-cyan-500/20">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 truncate">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《黑煙囪與沸騰深淵》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 font-medium flex-shrink-0">即將推出</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">連載中 · 第 9 章最新</span>
                   </div>
-                  <div class="text-[11px] text-slate-400 truncate">全 6 章敬請期待 · 濁流盲航 × 380°C 熱液噴口 × 塞貝克溫差發電</div>
+                  <div class="text-[11px] text-slate-500 truncate">已上線 3 章 · 1.8 萬字 · 濁流盲航 × 380°C 黑煙囪 × 塞貝克溫差發電</div>
                 </div>
               </div>
-              <span class="text-xs text-slate-400 font-medium">敬請期待</span>
-            </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-28') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
 
             <!-- 卷三 -->
             <div class="p-3 rounded-2xl bg-slate-50/50 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-75">
@@ -1819,14 +1778,14 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-cyan-500/20 flex flex-col sm:flex-row items-center gap-2.5">
-          <a href="#/read/book-27/2" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>🌊 立即閱讀第 2 章（最新上線）</span>
+          <a href="#/read/book-28/9" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 立即閱讀第 9 章（最新上線）</span>
           </a>
           <a href="#/read/book-27/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold text-xs transition-all text-center">
-            📖 回看第 1 章
+            📖 從第一卷開始
           </a>
           <button onclick="window.openSeriesModal('series-11')" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center whitespace-nowrap">
-            📑 章節目錄
+            📑 全套目錄
           </button>
         </div>
       </div>
