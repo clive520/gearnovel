@@ -1695,7 +1695,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-              <span>🌊 2026 全新重磅主線首發 · 第 1~3 章火熱上線</span>
+              <span>🌊 2026 全新重磅主線首發 · 第 1~4 章火熱上線</span>
             </span>
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20 font-mono">
@@ -1720,7 +1720,7 @@
           <div class="space-y-2 mb-5">
             <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
               <span>📚 全三卷長篇套書（第一卷震撼開篇）</span>
-              <span class="text-cyan-600 font-mono font-bold">第 1~3 章連載中</span>
+              <span class="text-cyan-600 font-mono font-bold">第 1~4 章連載中</span>
             </div>
 
             <!-- 卷一 -->
@@ -1731,17 +1731,17 @@
                   <div class="min-w-0">
                     <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
                       <span class="truncate">《幽光之海的下潛者》</span>
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 3 章最新上線</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">第 4 章最新上線</span>
                     </div>
-                    <div class="text-[11px] text-slate-500 truncate">已上線 3 章 · 18,000 字 · 萬米壓強 × 暮色帶微光 × 溫躍層微補償</div>
+                    <div class="text-[11px] text-slate-500 truncate">已上線 4 章 · 24,000 字 · 萬米壓強 × SOFAR聲道 × 零號鐘台脈衝</div>
                   </div>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                   <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-27') : ''}</span>
                 </div>
               </div>
-                            <!-- 三章節直達按鈕 -->
-              <div class="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
+                            <!-- 四章節直達按鈕 -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2 pt-2 border-t border-cyan-500/15">
                 <a href="#/read/book-27/1" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
                   <span class="truncate font-medium">第 1 章 · 鈦金屬信標</span>
                   <span class="text-[10px] text-slate-400 font-mono">➜</span>
@@ -1750,8 +1750,12 @@
                   <span class="truncate font-medium">第 2 章 · 鸚鵡螺-IV</span>
                   <span class="text-[10px] text-slate-400 font-mono">➜</span>
                 </a>
-                <a href="#/read/book-27/3" class="px-2 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
-                  <span class="truncate">第 3 章 · 暮色帶光斑</span>
+                <a href="#/read/book-27/3" class="px-2 py-1.5 rounded-xl bg-slate-100 hover:bg-cyan-500/10 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-semibold flex items-center justify-between transition-all">
+                  <span class="truncate font-medium">第 3 章 · 暮色帶光斑</span>
+                  <span class="text-[10px] text-slate-400 font-mono">➜</span>
+                </a>
+                <a href="#/read/book-27/4" class="px-2 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-bold flex items-center justify-between transition-all">
+                  <span class="truncate">第 4 章 · 千米聲道</span>
                   <span class="text-[10px] px-1 py-0.2 rounded bg-cyan-500 text-white font-bold font-mono">NEW</span>
                 </a>
               </div>
