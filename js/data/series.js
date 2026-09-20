@@ -16,11 +16,11 @@ window.GEAR_SERIES = [
     "description": "誠浩在保養爺爺留下的古董天文座鐘底座時，意外觸發機關彈出一枚被超高壓海水侵蝕的特種鈦鋯合金信標卡盤，座標直指馬里亞納海溝最深處——挑戰者深淵！五十年前秘密地質專案安置在板塊隱沒帶深處的『深海零號鐘台』差速齒輪即將失控，若不在 72 小時內手動校準擒縱器，將引發環太平洋帶特大海底地震與海嘯！誠浩、葉旖緁、將江、機械柴犬皮可攜手遠洋科考少女杜海嵐，搭乘『鸚鵡螺-IV 號』雙球殼黃銅抗壓深潛艇，向萬米深淵全速下潛！",
     "stats": {
       "totalVolumes": 3,
-      "currentVolumesReleased": 2,
+      "currentVolumesReleased": 3,
       "totalChapters": 18,
-      "currentChaptersReleased": 12,
-      "totalWords": "第一、二卷已完結 · 已上線 72,000 字",
-      "statusText": "第一、二卷已完結 · 第三卷即將推出"
+      "currentChaptersReleased": 13,
+      "totalWords": "第三卷連載中 · 已上線 78,000 字",
+      "statusText": "第三卷連載中 · 第 13 章最新"
     },
     "volumes": [
       {
@@ -53,9 +53,9 @@ window.GEAR_SERIES = [
         "title": "挑戰者海淵的破曉信標",
         "subtitle": "第三幕：萬米應變與太平洋破曉警報",
         "chaptersCount": 6,
-        "releasedChapters": 0,
-        "wordCount": "即將推出",
-        "status": "敬請期待",
+        "releasedChapters": 1,
+        "wordCount": "第 13 章已上線 · 6,000 字",
+        "status": "第三卷連載中（收錄第 13 章）",
         "theme": "1100 個大氣壓 × 因瓦合金銷釘 × 聲學全洋警報",
         "firstChapterId": 13
       }

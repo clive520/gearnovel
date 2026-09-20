@@ -1760,26 +1760,29 @@
             </a>
 
             <!-- 卷三 -->
-            <div class="p-3 rounded-2xl bg-slate-50/50 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between opacity-75">
+            <a href="#/read/book-29/13" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm ring-1 ring-cyan-500/20">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="w-8 h-8 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                 <div class="min-w-0">
-                  <div class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 truncate">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《挑戰者海淵的破曉信標》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 font-medium flex-shrink-0">即將推出</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">連載中 · 第 13 章最新</span>
                   </div>
-                  <div class="text-[11px] text-slate-400 truncate">全 6 章敬請期待 · 1100 個大氣壓 × 因瓦合金銷釘 × 聲學全洋警報</div>
+                  <div class="text-[11px] text-slate-500 truncate">第 13 章開篇 · 6,000 字 · 1100 個大氣壓 × 超深淵帶獅子魚 × 萬米底土垂降</div>
                 </div>
               </div>
-              <span class="text-xs text-slate-400 font-medium">敬請期待</span>
-            </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-29') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
           </div>
         </div>
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-cyan-500/20 flex flex-col sm:flex-row items-center gap-2.5">
-          <a href="#/read/book-28/12" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>⚡ 立即閱讀第 12 章（第二卷大完結）</span>
+          <a href="#/read/book-29/13" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 立即閱讀第 13 章（第三卷震撼開篇）</span>
           </a>
           <a href="#/read/book-27/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold text-xs transition-all text-center">
             📖 從第一卷開始
