@@ -1748,9 +1748,9 @@
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《黑煙囪與沸騰深淵》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">連載中 · 第 11 章最新</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">全 6 章已完結</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">已上線 5 章 · 3.0 萬字 · 地熱雙金屬引擎 × 水滴流體擒縱 × 七微米死線</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 3.6 萬字 · 380°C 黑煙囪 × 水滴流體平衡擺 × 金屬玻璃鎖死</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1778,8 +1778,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-cyan-500/20 flex flex-col sm:flex-row items-center gap-2.5">
-          <a href="#/read/book-28/11" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>⚡ 立即閱讀第 11 章（最新上線）</span>
+          <a href="#/read/book-28/12" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 立即閱讀第 12 章（第二卷大完結）</span>
           </a>
           <a href="#/read/book-27/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold text-xs transition-all text-center">
             📖 從第一卷開始
