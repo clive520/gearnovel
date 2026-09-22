@@ -1,9 +1,71 @@
-/**
- * 冒險齒輪 · 少兒科幻小說庫 (GearNovel Online)
- * 套書體系資料庫 (Series Master Database)
- * 前三卷整合為第一套完結套書，第二套規劃為全三卷長篇套書
- */
+// 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
+  {
+    "id": "series-12",
+    "title": "死者請保持安靜",
+    "enTitle": "The Dead Please Keep Quiet",
+    "subtitle": "現代法醫病理學 × 刑偵推理密室 · 替無聲者說出最後的真相！",
+    "badge": "🔬 全新法醫刑偵推理主線",
+    "badgeColor": "slate",
+    "targetAudience": "青年至大眾適讀 · 現代法醫病理學 × 刑偵微量物證 × 硬核密室推理",
+    "tagline": "死者比活人更有禮貌，他們不會說謊，只是靜靜躺在不鏽鋼解剖台前，等待一柄穿透迷霧的理性之刃！",
+    "description": "濱江市深秋的江霧中，一枚卡在死者胃黏膜深處的黃銅鑰匙，撕開了一樁沉睡三十年的連環懸案。市局青年法醫病理學家裴以安、硬派刑偵副隊長周成林與實習法醫蘇棠，從胃內容物排空動力學、青銅雕像中的骨骼哈弗氏系統，到停屍房第十三具零下低溫冰櫃，以嚴謹的現代鑑識科學與微量物證重建，步步逼近跨越兩代人的罪惡核心。當三十年前恩師的泛黃病理手稿重光，黎明破曉之際，死者終於安息！",
+    "stats": {
+      "totalVolumes": 3,
+      "currentVolumesReleased": 3,
+      "totalChapters": 20,
+      "currentChaptersReleased": 20,
+      "totalWords": "全三卷大完結 · 全套 52,000 字",
+      "statusText": "全三卷大完結 · 全套 20 章"
+    },
+    "volumes": [
+      {
+        "bookId": "book-30",
+        "volNum": "第一卷",
+        "title": "胃袋裡的黃銅鑰匙",
+        "subtitle": "第一幕：胃內容物動力學與沉睡保險箱",
+        "chaptersCount": 6,
+        "releasedChapters": 6,
+        "wordCount": "全 6 章已完結 · 15618 字",
+        "status": "第一卷大完結（全 6 章）",
+        "theme": "胃排空動力學 × 羅卡定律 × 密室鎖死機關",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-31",
+        "volNum": "第二卷",
+        "title": "雨夜骨骼交響曲",
+        "subtitle": "第二幕：法醫人類學骨骼重建與百年鐘樓",
+        "chaptersCount": 7,
+        "releasedChapters": 7,
+        "wordCount": "全 7 章已完結 · 18103 字",
+        "status": "第二卷大完結（全 7 章）",
+        "theme": "骨質哈弗氏系統 × 矽藻入血檢驗 × 鐘樓齒輪與管風琴共振",
+        "firstChapterId": 7
+      },
+      {
+        "bookId": "book-32",
+        "volNum": "第三卷",
+        "title": "無聲的最後證詞",
+        "subtitle": "第三幕：零下二十度冰櫃密室與三十年終局",
+        "chaptersCount": 7,
+        "releasedChapters": 7,
+        "wordCount": "全 7 章已完結 · 18160 字",
+        "status": "第三卷大完結（全 7 章）",
+        "theme": "超低溫細胞玻璃化 × 多光譜壓痕拓印 × 司法因果鏈最終閉環",
+        "firstChapterId": 14
+      }
+    ],
+    "highlights": [
+      "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 20 章 964 段逐行相符）",
+      "硬核現代法醫病理學、法醫人類學骨骼推斷、微量物理物證與密室毒理鑑識",
+      "青年法醫病理學家裴以安與老刑警周成林的雙雄默契探案，三十年沉冤昭雪的震撼終局"
+    ],
+    "themeTone": "slate",
+    "coverStyle": "from-slate-700/20 via-cyan-900/10 to-slate-950/40 border-slate-500/30",
+    "startBookId": "book-30",
+    "startChapterId": 1
+  },
   {
     "id": "series-11",
     "title": "冒險齒輪：馬里亞納的深淵信標",
