@@ -1,6 +1,48 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+    "id": "series-13",
+    "title": "稻浪裡的擺渡船",
+    "enTitle": "The Ferryman in the Golden Waves",
+    "subtitle": "臺中烏日・溪尾寮擺渡人傳奇 · 橫跨一甲子的大河記憶！",
+    "badge": "🌾 台灣鄉土文史食農篇",
+    "badgeColor": "amber",
+    "targetAudience": "9～15 歲適讀 · 台灣大河地理飛地 × 治水土木力學 × 鄉土食農傳承",
+    "tagline": "人若慌，水就欺人；心若定，借浪的水力就能靠岸！",
+    "description": "臺中市烏日區溪尾里——這座被烏溪與貓羅溪環抱的大河孤島，曾因日治時期修築防汛大堤而成為「種一條菜瓜，藤旋三縣市」的奇特行政飛地。在沒有橋樑的半個世紀裡，全村求學、就醫與運糧全憑鄉公所公聘擺渡人阿榮伯手中的一根火烤刺竹「定波篙」。怕水的少年阿順在驚濤夏汛中握住竹篙戰勝恐懼，日後考入成大土木系，立志為鄉親建造沖不垮的溪尾大橋。如今，雄偉大橋橫跨大河，阿順的女兒曉棠返鄉推動「擺渡人的食光穗稻」，將大河黑土冠軍米與擺渡傳奇化為世代傳承的生命力量！",
+    "stats": {
+      "totalVolumes": 1,
+      "currentVolumesReleased": 1,
+      "totalChapters": 7,
+      "currentChaptersReleased": 7,
+      "totalWords": "全一冊大完結 · 全套 19,606 字",
+      "statusText": "全書大完結 · 全套 7 章"
+    },
+    "volumes": [
+      {
+        "bookId": "book-33",
+        "volNum": "全一冊",
+        "title": "稻浪裡的擺渡船",
+        "subtitle": "臺中烏日・溪尾寮擺渡人傳奇",
+        "chaptersCount": 7,
+        "releasedChapters": 7,
+        "wordCount": "全 7 章已完結 · 19606 字",
+        "status": "全書大完結（全 7 章）",
+        "theme": "大河飛地水文 × 刺竹定波篙工藝 × 溪尾大橋與食光穗稻",
+        "firstChapterId": 1
+      }
+    ],
+    "highlights": [
+      "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 7 章 355 段逐段相符）",
+      "真實歷史原型：烏日鄉公所公聘擺渡人林權榮兄弟口述傳奇與溪尾大橋興建史",
+      "深度融合荒溪型河川水力學、刺竹耐韌力學、中央山脈沉積黑土與全國獲獎食農教育"
+    ],
+    "themeTone": "amber",
+    "coverStyle": "from-amber-600/20 via-emerald-950/15 to-slate-900/40 border-amber-500/40",
+    "startBookId": "book-33",
+    "startChapterId": 1
+  },
+  {
     "id": "series-12",
     "title": "死者請保持安靜",
     "enTitle": "The Dead Please Keep Quiet",
