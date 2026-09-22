@@ -976,10 +976,10 @@
       if (tab) {
         const isActive = (effectiveIdx === i);
         if (isActive) {
-          const activeToneClass = (i === 0) ? "bg-cyan-600 ring-cyan-400/30" : ((i === 1) ? "bg-amber-600 ring-amber-400/30" : ((i === 2) ? "bg-sky-600 ring-sky-400/30" : ((i === 3) ? "bg-emerald-600 ring-emerald-400/30" : ((i === 4) ? "bg-indigo-600 ring-indigo-400/30" : "bg-amber-600 ring-amber-400/30"))));
+          const activeToneClass = (i === 0) ? "bg-slate-700 ring-slate-400/30" : ((i === 1) ? "bg-cyan-600 ring-cyan-400/30" : ((i === 2) ? "bg-amber-600 ring-amber-400/30" : ((i === 3) ? "bg-sky-600 ring-sky-400/30" : ((i === 4) ? "bg-emerald-600 ring-emerald-400/30" : ((i === 5) ? "bg-indigo-600 ring-indigo-400/30" : "bg-amber-600 ring-amber-400/30")))));
           tab.className = `px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 ${activeToneClass} text-white ring-2 whitespace-nowrap`;
         } else {
-          tab.className = "px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 hover:text-cyan-600 whitespace-nowrap";
+          tab.className = "px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-slate-500 hover:text-slate-700 dark:hover:text-slate-200 whitespace-nowrap";
         }
       }
     }
@@ -999,7 +999,7 @@
         } else {
           dot.classList.remove('hidden');
           if (d === effectiveIdx) {
-            const activeDotColor = (d === 0) ? "bg-cyan-600" : ((d === 1) ? "bg-amber-600" : ((d === 2) ? "bg-sky-600" : ((d === 3) ? "bg-emerald-600" : "bg-amber-600")));
+            const activeDotColor = (d === 0) ? "bg-slate-700" : ((d === 1) ? "bg-cyan-600" : ((d === 2) ? "bg-amber-600" : ((d === 3) ? "bg-sky-600" : ((d === 4) ? "bg-emerald-600" : "bg-amber-600"))));
             dot.className = `w-6 h-2 rounded-full ${activeDotColor} transition-all`;
           } else {
             dot.className = "w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-cyan-400";
@@ -2450,6 +2450,9 @@
           <div id="home-slider-container" class="overflow-hidden rounded-3xl -mx-2 sm:-mx-3">
             <div id="home-slider-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card12}
+              </div>
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card11}
               </div>
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
@@ -2505,6 +2508,7 @@
         <!-- 平鋪雙欄展示模式 (Tiled Grid Mode: 寬螢幕雙欄 · 手機單欄) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'long') ? `
+            <div>${card12}</div>
             <div>${card11}</div>
             <div>${card10}</div>
             <div>${card9}</div>
