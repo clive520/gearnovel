@@ -1760,15 +1760,15 @@
             </a>
 
             <!-- 卷三 -->
-            <a href="#/read/book-29/17" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm ring-1 ring-cyan-500/20">
+            <a href="#/read/book-29/18" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-500 hover:bg-cyan-500/5 transition-all group/vol shadow-sm ring-1 ring-cyan-500/20">
               <div class="flex items-center gap-3 min-w-0">
                 <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
                 <div class="min-w-0">
                   <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-600 transition-colors flex items-center gap-1.5 truncate">
                     <span class="truncate">《挑戰者海淵的破曉信標》</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500 text-white font-bold flex-shrink-0 animate-pulse">連載中 · 第 17 章最新</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">第三卷大完結（全 6 章）</span>
                   </div>
-                  <div class="text-[11px] text-slate-500 truncate">第 13~17 章已上線 · 3.0 萬字 · SOFAR 聲道低頻聚焦 × 板塊應變微分受控洩壓 × 破曉警報全洋廣播</div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章完結 · 3.6 萬字 · 固體浮力材料高速上浮 × 溫躍層密躍 × 破曉金光全套大完結</div>
                 </div>
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -1781,8 +1781,8 @@
 
         <!-- 底部行動按鈕 -->
         <div class="pt-4 border-t border-cyan-500/20 flex flex-col sm:flex-row items-center gap-2.5">
-          <a href="#/read/book-29/17" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
-            <span>⚡ 立即閱讀第 17 章（最新上線）</span>
+          <a href="#/read/book-29/18" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-md shadow-cyan-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 立即閱讀第 18 章（全三卷大完結）</span>
           </a>
           <a href="#/read/book-27/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold text-xs transition-all text-center">
             📖 從第一卷開始
