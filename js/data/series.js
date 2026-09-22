@@ -18,9 +18,9 @@ window.GEAR_SERIES = [
       "totalVolumes": 3,
       "currentVolumesReleased": 3,
       "totalChapters": 18,
-      "currentChaptersReleased": 16,
-      "totalWords": "第三卷連載中 · 已上線 96,000 字",
-      "statusText": "第三卷連載中 · 第 16 章最新"
+      "currentChaptersReleased": 17,
+      "totalWords": "第三卷連載中 · 已上線 102,000 字",
+      "statusText": "第三卷連載中 · 第 17 章最新"
     },
     "volumes": [
       {
@@ -53,9 +53,9 @@ window.GEAR_SERIES = [
         "title": "挑戰者海淵的破曉信標",
         "subtitle": "第三幕：萬米應變與太平洋破曉警報",
         "chaptersCount": 6,
-        "releasedChapters": 4,
-        "wordCount": "第 13~16 章已上線 · 24,000 字",
-        "status": "第三卷連載中（收錄 13~16 章）",
+        "releasedChapters": 5,
+        "wordCount": "第 13~17 章已上線 · 30,000 字",
+        "status": "第三卷連載中（收錄 13~17 章）",
         "theme": "1100 個大氣壓 × 因瓦合金銷釘 × 聲學全洋警報",
         "firstChapterId": 13
       }
