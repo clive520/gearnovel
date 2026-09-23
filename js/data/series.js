@@ -15,7 +15,7 @@ window.GEAR_SERIES = [
       "currentVolumesReleased": 1,
       "totalChapters": 7,
       "currentChaptersReleased": 7,
-      "totalWords": "全一冊大完結 · 全套 19,606 字",
+      "totalWords": "全一冊大完結 · 全套 19,662 字",
       "statusText": "全書大完結 · 全套 7 章"
     },
     "volumes": [
@@ -26,7 +26,7 @@ window.GEAR_SERIES = [
         "subtitle": "臺中烏日・溪尾寮擺渡人傳奇",
         "chaptersCount": 7,
         "releasedChapters": 7,
-        "wordCount": "全 7 章已完結 · 19606 字",
+        "wordCount": "全 7 章已完結 · 19,662 字",
         "status": "全書大完結（全 7 章）",
         "theme": "大河飛地水文 × 刺竹定波篙工藝 × 溪尾大橋與食光穗稻",
         "firstChapterId": 1
