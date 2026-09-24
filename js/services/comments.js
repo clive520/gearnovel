@@ -38,6 +38,19 @@
       .replace(/'/g, '&#39;');
   }
 
+  // 渲染大頭貼 HTML（自動識別圖片 URL 或 Emoji，並防止網址文字溢出）
+  function renderAvatar(avatar, sizeClass = 'w-8 h-8', textClass = 'text-sm') {
+    const raw = (avatar || '').trim();
+    if (raw && (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('data:image/'))) {
+      return `<div class="${sizeClass} rounded-full bg-amber-500/10 border border-amber-500/30 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+        <img src="${escapeHtml(raw)}" alt="avatar" class="w-full h-full object-cover rounded-full" referrerpolicy="no-referrer" onerror="this.outerHTML='<span class=\\'${textClass}\\'>👤</span>'">
+      </div>`;
+    }
+    return `<div class="${sizeClass} rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center ${textClass} font-bold flex-shrink-0 select-none">
+      ${raw || '👤'}
+    </div>`;
+  }
+
   // 取得人性化相對時間標籤（例如：剛剛、10分鐘前、今天 14:30、昨天、或日期）
   function formatRelativeTime(ts) {
     if (!ts) return '';
@@ -245,6 +258,7 @@
     formatRelativeTime: formatRelativeTime,
     formatDateTime: formatDateTime,
     escapeHtml: escapeHtml,
+    renderAvatar: renderAvatar,
 
     // 取得所有留言（依時間倒序）
     getAllComments: function () {

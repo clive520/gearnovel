@@ -71,6 +71,22 @@
       .replace(/'/g, '&#39;');
   }
 
+  // 渲染使用者大頭貼（支援圖片 URL 或 Emoji，防止圖片網址溢出文字）
+  function renderUserAvatarHtml(avatar, sizeClass = 'w-8 h-8', textClass = 'text-sm') {
+    if (window.CommentsService && typeof window.CommentsService.renderAvatar === 'function') {
+      return window.CommentsService.renderAvatar(avatar, sizeClass, textClass);
+    }
+    const raw = (avatar || '').trim();
+    if (raw && (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('data:image/'))) {
+      return `<div class="${sizeClass} rounded-full bg-amber-500/10 border border-amber-500/30 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+        <img src="${escapeHtml(raw)}" alt="avatar" class="w-full h-full object-cover rounded-full" referrerpolicy="no-referrer" onerror="this.outerHTML='<span class=\\'${textClass}\\'>👤</span>'">
+      </div>`;
+    }
+    return `<div class="${sizeClass} rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center ${textClass} font-bold flex-shrink-0 select-none">
+      ${raw || '👤'}
+    </div>`;
+  }
+
   // 成就徽章系統
   function unlockBadge(badgeId) {
     if (!state.unlockedBadges.includes(badgeId)) {
@@ -3928,9 +3944,7 @@
           <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm transition-all hover:border-amber-500/40">
             <div class="flex items-center justify-between mb-2">
               <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-sm font-bold flex-shrink-0">
-                  ${c.userAvatar || '👤'}
-                </div>
+                ${renderUserAvatarHtml(c.userAvatar, 'w-8 h-8', 'text-sm')}
                 <div>
                   <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
                     ${escapeHtml(c.userName)}
@@ -3980,9 +3994,7 @@
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <div class="flex items-center gap-2">
-                <div class="w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-sm font-bold overflow-hidden">
-                  ${user.photoURL ? `<img src="${user.photoURL}" class="w-full h-full object-cover">` : (user.avatar || '👤')}
-                </div>
+                ${renderUserAvatarHtml(user.photoURL || user.avatar, 'w-7 h-7', 'text-xs')}
                 <span class="text-xs font-bold text-slate-700 dark:text-slate-200">
                   以「<strong class="text-amber-600 dark:text-amber-400">${displayName}</strong>」身份發表留言：
                 </span>
@@ -13482,9 +13494,7 @@
                   <div class="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 hover:border-amber-400/60 dark:hover:border-amber-500/50 transition-all flex flex-col gap-2.5 group">
                     <div class="flex items-center justify-between gap-3 flex-wrap">
                       <div class="flex items-center gap-2.5">
-                        <div class="w-7 h-7 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                          ${c.userAvatar || '👤'}
-                        </div>
+                        ${renderUserAvatarHtml(c.userAvatar, 'w-7 h-7', 'text-xs')}
                         <span class="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white">
                           ${escapeHtml(c.userName)}
                         </span>
