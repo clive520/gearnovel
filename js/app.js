@@ -662,7 +662,42 @@
     { name: '賴大雄', role: '大胃王 · 溫暖開心果' },
     { name: '阿寶', role: '班級夥伴 · 死黨少年' },
     { name: '劉老師', role: '體育老師 · 關鍵命運引路人' },
-    { name: '陳老師', role: '班級導師' }
+    { name: '陳老師', role: '班級導師' },
+
+    // === 系列 12：死者請保持安靜 ===
+    { name: '裴以安', role: '男主角 · 市公安局法醫病理學家 / 主檢法醫師' },
+    { name: '以安', pattern: '(?<![可所足以])以安', role: '男主角 · 裴以安' },
+    { name: '小裴', role: '男主角 · 裴以安' },
+    { name: '周成林', role: '男主角 · 刑偵支隊副支隊長 / 硬派指揮官' },
+    { name: '老周', pattern: '老周(?![圍遊])', role: '男主角 · 周成林副支隊長' },
+    { name: '周隊', role: '男主角 · 周成林副支隊長' },
+    { name: '蘇棠', role: '女主角 · 青年實習法醫師' },
+    { name: '小蘇', role: '女主角 · 實習法醫蘇棠' },
+    { name: '宋懷德', role: '濱江法醫病理泰斗 · 退休老法醫' },
+    { name: '陸巡', role: '痕跡檢驗專家 · 理化實驗室主任' },
+    { name: '顧志明', role: '老病理學家 · 濱江法醫研究所研究員' },
+    { name: '秦墨', role: '涉案法醫師 · 青年病理醫師' },
+    { name: '楚天成', role: '濱江天成集團董事長' },
+    { name: '林青遠', role: '三十年前因公殉職老法醫 · 蘇棠生父' },
+    { name: '陳衛國', role: '三十年前老刑警 · 英雄烈士' },
+    { name: '陸思遠', role: '濱江交響樂團大提琴首席' },
+    { name: '陸重山', role: '濱江商會名譽會長' },
+    { name: '嚴東', role: '濱江刑偵支隊隊長' },
+
+    // === 系列 13：稻浪裡的擺渡船 ===
+    { name: '林權榮', role: '男主角 · 烏日鄉公所公聘擺渡人（阿榮伯）' },
+    { name: '阿榮伯', role: '男主角 · 烏日公聘擺渡人 · 林權榮' },
+    { name: '榮伯', role: '男主角 · 烏日公聘擺渡人 · 林權榮' },
+    { name: '權榮', role: '男主角 · 擺渡人林權榮' },
+    { name: '李順安', role: '男主角 · 握篙學徒到橋樑工程師 / 溪尾大橋推手' },
+    { name: '阿順', role: '男主角 · 李順安' },
+    { name: '順安', role: '男主角 · 李順安' },
+    { name: '陳水生', role: '關鍵長者 · 阿順的外公 / 溪尾寮黑土老農' },
+    { name: '水生伯', role: '關鍵長者 · 陳水生' },
+    { name: '水生阿公', role: '關鍵長者 · 陳水生' },
+    { name: '林曉棠', role: '女主角 · 阿順的女兒 / 返鄉食農文化策劃人' },
+    { name: '曉棠', role: '女主角 · 林曉棠' },
+    { name: '秀英嬸', role: '溪尾寮鄉親長輩' }
   ];
   PROPER_NAMES_ZH.sort((a, b) => b.name.length - a.name.length);
   const ZH_NAME_MAP = Object.fromEntries(PROPER_NAMES_ZH.map(n => [n.name, n.role]));
@@ -784,7 +819,39 @@
     { name: 'Wu Da', role: 'Strategist · Wu Ta' },
     { name: 'Wu Ta', role: 'Strategist · Wu Ta' },
     { name: 'Ah-Bao', role: 'Classmate Ah-Bao' },
-    { name: 'Ah-Ta', role: 'Wu Ta' }
+    { name: 'Ah-Ta', role: 'Wu Ta' },
+
+    // Series 12: The Dead Please Keep Quiet
+    { name: 'Pei Yi\'an', role: 'Lead Forensic Pathologist' },
+    { name: 'Yi\'an', role: 'Lead Forensic Pathologist (Pei Yi\'an)' },
+    { name: 'Zhou Chenglin', role: 'Deputy Captain of Major Crimes' },
+    { name: 'Old Zhou', role: 'Deputy Captain Zhou Chenglin' },
+    { name: 'Captain Zhou', role: 'Deputy Captain Zhou Chenglin' },
+    { name: 'Su Tang', role: 'Apprentice Pathologist' },
+    { name: 'Little Su', role: 'Apprentice Pathologist (Su Tang)' },
+    { name: 'Song Huaide', role: 'Veteran Forensic Pathologist' },
+    { name: 'Lu Xun', role: 'Forensic Trace Evidence Expert' },
+    { name: 'Chief Lu', role: 'Bureau Chief / Lu Xun' },
+    { name: 'Gu Zhiming', role: 'Senior Pathologist' },
+    { name: 'Qin Mo', role: 'Associate Pathologist' },
+    { name: 'Chu Tiancheng', role: 'Corporate Tycoon' },
+    { name: 'Lin Qingyuan', role: 'Fallen Pathologist · Father of Su Tang' },
+    { name: 'Chen Weiguo', role: 'Fallen Veteran Detective' },
+    { name: 'Lu Siyuan', role: 'Principal Cellist' },
+    { name: 'Lu Chongshan', role: 'Chamber of Commerce President' },
+
+    // Series 13: The Ferryman in the Golden Waves
+    { name: 'Lin Quanrong', role: 'Official Ferryman (Uncle Rong)' },
+    { name: 'Uncle Rong', role: 'Official Ferryman (Lin Quanrong)' },
+    { name: 'Ah-Rong', role: 'Ferryman Lin Quanrong' },
+    { name: 'Li Shun\'an', role: 'Apprentice to Bridge Engineer (Ah-Shun)' },
+    { name: 'Ah-Shun', role: 'Bridge Engineer (Li Shun\'an)' },
+    { name: 'Shun\'an', role: 'Bridge Engineer (Li Shun\'an)' },
+    { name: 'Chen Shuisheng', role: 'Ah-Shun\'s Grandfather (Uncle Shuisheng)' },
+    { name: 'Uncle Shuisheng', role: 'Village Elder Chen Shuisheng' },
+    { name: 'Lin Xiaotang', role: 'Agro-Food Culture Advocate' },
+    { name: 'Xiaotang', role: 'Agro-Food Culture Advocate (Lin Xiaotang)' },
+    { name: 'Aunt Xiuying', role: 'Village Elder' }
   ];
   PROPER_NAMES_EN.sort((a, b) => b.name.length - a.name.length);
   const EN_NAME_MAP = Object.fromEntries(PROPER_NAMES_EN.map(n => [n.name, n.role]));
@@ -4016,7 +4083,7 @@
     const container = document.getElementById('app-main');
     const allChars = DATA.characters || [];
 
-    const series1Chars = allChars.filter(char => char.vol !== 'series2' && char.vol !== 'series3' && char.vol !== 'series4' && char.vol !== 'series5' && char.vol !== 'series6' && char.vol !== 'series7' && char.vol !== 'series8' && char.vol !== 'series9' && char.vol !== 'series11');
+    const series1Chars = allChars.filter(char => char.vol === 'core' || char.vol === 'vol1' || char.vol === 'vol2' || char.vol === 'vol3' || char.vol === 'series1');
     const series2Chars = allChars.filter(char => char.vol === 'series2');
     const series3Chars = allChars.filter(char => char.vol === 'series3');
     const series4Chars = allChars.filter(char => char.vol === 'series4');
@@ -4025,187 +4092,85 @@
     const series7Chars = allChars.filter(char => char.vol === 'series7');
     const series8Chars = allChars.filter(char => char.vol === 'series8');
     const series9Chars = allChars.filter(char => char.vol === 'series9');
+    const series10Chars = allChars.filter(char => char.vol === 'series10');
     const series11Chars = allChars.filter(char => char.vol === 'series11');
+    const series12Chars = allChars.filter(char => char.vol === 'series12');
+    const series13Chars = allChars.filter(char => char.vol === 'series13');
 
-    let filteredChars = series1Chars;
-    if (activeCharTab === 'series2') filteredChars = series2Chars;
-    else if (activeCharTab === 'series3') filteredChars = series3Chars;
-    else if (activeCharTab === 'series4') filteredChars = series4Chars;
-    else if (activeCharTab === 'series5') filteredChars = series5Chars;
-    else if (activeCharTab === 'series6') filteredChars = series6Chars;
-    else if (activeCharTab === 'series7') filteredChars = series7Chars;
-    else if (activeCharTab === 'series8') filteredChars = series8Chars;
-    else if (activeCharTab === 'series9') filteredChars = series9Chars;
-    else if (activeCharTab === 'series11') filteredChars = series11Chars;
+    const seriesTabs = [
+      { key: 'series1', title: '《冒險齒輪：失落的二十四小時》', chars: series1Chars, icon: '⚙️' },
+      { key: 'series2', title: '《星願鐘擺與織光少女》', chars: series2Chars, icon: '🌸' },
+      { key: 'series3', title: '《我的老師不是人》', chars: series3Chars, icon: '🤖' },
+      { key: 'series4', title: '《來自未來的轉學生》', chars: series4Chars, icon: '🌱' },
+      { key: 'series5', title: '《手作少女的奇幻旅程》', chars: series5Chars, icon: '🎨' },
+      { key: 'series6', title: '《全班作弊中》', chars: series6Chars, icon: '📝' },
+      { key: 'series7', title: '《不可思議事件簿》', chars: series7Chars, icon: '🕵️' },
+      { key: 'series8', title: '《班上鳥事》', chars: series8Chars, icon: '🐦' },
+      { key: 'series9', title: '《平行時空的同班同學》', chars: series9Chars, icon: '🌌' },
+      { key: 'series10', title: '《齒輪星核的微縮旅人》', chars: series10Chars, icon: '🔬' },
+      { key: 'series11', title: '《馬里亞納的深淵信標》', chars: series11Chars, icon: '🌊' },
+      { key: 'series12', title: '《死者請保持安靜》', chars: series12Chars, icon: '🔍' },
+      { key: 'series13', title: '《稻浪裡的擺渡船》', chars: series13Chars, icon: '🌾' }
+    ];
 
-    const isSeries1 = activeCharTab === 'series1';
-    const isSeries2 = activeCharTab === 'series2';
-    const isSeries3 = activeCharTab === 'series3';
-    const isSeries4 = activeCharTab === 'series4';
-    const isSeries5 = activeCharTab === 'series5';
-    const isSeries6 = activeCharTab === 'series6';
-    const isSeries7 = activeCharTab === 'series7';
-    const isSeries8 = activeCharTab === 'series8';
-    const isSeries9 = activeCharTab === 'series9';
-    const isSeries11 = activeCharTab === 'series11';
+    const currentTabObj = seriesTabs.find(t => t.key === activeCharTab) || seriesTabs[0];
+    const filteredChars = currentTabObj.chars;
 
     container.innerHTML = `
-      <section class="max-w-4xl mx-auto mb-16">
+      <section class="max-w-5xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full ${isSeries6 ? 'bg-amber-500/10 text-amber-600' : (isSeries5 ? 'bg-rose-500/10 text-rose-600' : (isSeries4 ? 'bg-emerald-500/10 text-emerald-600' : (isSeries3 ? 'bg-sky-500/10 text-sky-600' : (isSeries2 ? 'bg-rose-500/10 text-rose-600' : 'bg-amber-500/10 text-amber-600'))))} text-xs font-bold mb-3">
-            <span>👥 登場人物與核心機密檔案</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
+            <span>👥 登場人物與核心機密檔案 · 全十三套作品檔案庫</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
-          <p class="text-sm text-slate-500">收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
+          <p class="text-sm text-slate-500">完整收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 五大作品書籤切換 (直接顯示書名) -->
-        <div class="flex items-center justify-center flex-wrap gap-3 mb-10">
-          <button onclick="window.switchCharTab('series1')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries1
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
-          }">
-            <span>《冒險齒輪：失落的二十四小時》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries1
-                ? 'bg-amber-700 text-amber-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series1Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series2')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries2
-              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
-          }">
-            <span>《星願鐘擺與織光少女》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries2
-                ? 'bg-rose-700 text-rose-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series2Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series3')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries3
-              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600'
-          }">
-            <span>《我的老師不是人》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries3
-                ? 'bg-sky-700 text-sky-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series3Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series4')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries4
-              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-2 ring-emerald-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600'
-          }">
-            <span>《來自未來的轉學生》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries4
-                ? 'bg-emerald-700 text-emerald-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series4Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series6')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries6
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
-          }">
-            <span>《全班作弊中》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries6
-                ? 'bg-amber-700 text-amber-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series6Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series7')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries7
-              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 ring-2 ring-indigo-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600'
-          }">
-            <span>《不可思議事件簿》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries7
-                ? 'bg-indigo-700 text-indigo-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series7Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series8')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries8
-              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-2 ring-emerald-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600'
-          }">
-            <span>《班上鳥事》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries8
-                ? 'bg-emerald-700 text-emerald-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series8Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series9')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries9
-              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25 ring-2 ring-sky-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600'
-          }">
-            <span>《平行時空的同班同學》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries9
-                ? 'bg-sky-700 text-sky-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series9Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series11')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries11
-              ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25 ring-2 ring-cyan-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 hover:text-cyan-600'
-          }">
-            <span>《馬里亞納的深淵信標》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries11
-                ? 'bg-cyan-700 text-cyan-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series11Chars.length}</span>
-          </button>
-
-          <button onclick="window.switchCharTab('series5')" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-sm ${
-            isSeries5
-              ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/25 ring-2 ring-rose-400/30 scale-105'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600'
-          }">
-            <span>《手作少女的奇幻旅程》</span>
-            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
-              isSeries5
-                ? 'bg-rose-700 text-rose-100'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
-            }">${series5Chars.length}</span>
-          </button>
+        <!-- 全 13 套作品人物標籤切換 -->
+        <div class="flex items-center justify-center flex-wrap gap-2.5 mb-10">
+          ${seriesTabs.map(tab => {
+            const isActive = activeCharTab === tab.key;
+            return `
+              <button onclick="window.switchCharTab('${tab.key}')" class="px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer ${
+                isActive
+                  ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25 ring-2 ring-amber-400/40 scale-105'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600'
+              }">
+                <span>${tab.icon}</span>
+                <span>${tab.title}</span>
+                <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+                  isActive
+                    ? 'bg-amber-700 text-amber-100'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+                }">${tab.chars.length}</span>
+              </button>
+            `;
+          }).join('')}
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS13Char = char.vol === 'series13';
+            const isS12Char = char.vol === 'series12';
             const isS11Char = char.vol === 'series11';
+            const isS10Char = char.vol === 'series10';
             const isS9Char = char.vol === 'series9';
             const isS8Char = char.vol === 'series8';
+            const isS7Char = char.vol === 'series7';
             const isS6Char = char.vol === 'series6';
             const isS5Char = char.vol === 'series5';
             const isS4Char = char.vol === 'series4';
             const isS3Char = char.vol === 'series3';
             const isS2Char = char.vol === 'series2';
+
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS11Char) volBadgeClass = 'bg-cyan-500/10 text-cyan-600 border-cyan-500/30';
+            if (isS13Char) volBadgeClass = 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30';
+            else if (isS12Char) volBadgeClass = 'bg-slate-500/15 text-slate-800 dark:text-slate-200 border-slate-500/30';
+            else if (isS11Char) volBadgeClass = 'bg-cyan-500/10 text-cyan-600 border-cyan-500/30';
+            else if (isS10Char) volBadgeClass = 'bg-orange-500/10 text-orange-600 border-orange-500/30';
             else if (isS9Char) volBadgeClass = 'bg-sky-500/10 text-sky-600 border-sky-500/30';
             else if (isS8Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
+            else if (isS7Char) volBadgeClass = 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30';
             else if (isS6Char) volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/30';
             else if (isS5Char) volBadgeClass = 'bg-rose-500/10 text-rose-600 border-rose-500/30';
             else if (isS4Char) volBadgeClass = 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30';
