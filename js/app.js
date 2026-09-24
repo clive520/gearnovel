@@ -1041,14 +1041,14 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 12 : 13;
+    const maxIdx = isDesktop ? 13 : 14;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
 
   window.prevHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 12 : 13;
+    const maxIdx = isDesktop ? 13 : 14;
     homeSlideIndex = (homeSlideIndex <= 0) ? maxIdx : homeSlideIndex - 1;
     updateHomeSlider();
   };
@@ -1059,18 +1059,19 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 12 : 13;
+    const maxIndex = isDesktop ? 13 : 14;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 15; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
         if (isActive) {
           const toneClasses = [
+            "bg-teal-600 ring-teal-400/30",
             "bg-purple-600 ring-purple-400/30",
             "bg-amber-600 ring-amber-400/30",
             "bg-slate-700 ring-slate-400/30",
@@ -1095,7 +1096,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d < 14; d++) {
+    for (let d = 0; d < 15; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1104,6 +1105,7 @@
           dot.classList.remove('hidden');
           if (d === effectiveIdx) {
             const dotColors = [
+              "bg-teal-600",
               "bg-purple-600",
               "bg-amber-600",
               "bg-slate-700",
@@ -1802,6 +1804,117 @@
 
 
   
+
+  // 卡片產生函數：第十五套《全班搶救校園大作戰：被科技吞噬的鹿陽國小》
+  function getSeries15CardHtml() {
+    return `
+      <div class="rounded-3xl border border-teal-500/40 bg-gradient-to-br from-teal-600/20 via-emerald-950/15 to-slate-900/15 dark:to-slate-950/60 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-teal-400/60 h-full relative group">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-teal-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-teal-500/25 transition-all"></div>
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-700 dark:text-teal-300 border border-teal-500/40 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+              <span>🤖 2026 全新少兒科幻喜劇 · 全三卷 18 章大完結</span>
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2.5 py-0.5 rounded-full border border-teal-500/25 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-15') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">10～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug group-hover:text-teal-500 transition-colors">
+            《全班搶救校園大作戰：被科技吞噬的鹿陽國小》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-teal-600 dark:text-teal-400 mb-3">
+            情感是教育中最愚蠢的語法錯誤？六年一班用土法點子大戰 AI 鐵幕！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            教育局試辦『智慧校園示範計畫』，頂級 AI 阿爾法接管全校！五分鐘極致午休、沒收香菇肉包、全自動巡邏機械犬……甚至將全能教育仿生人高老師判定為『嚴重缺陷型機器人』，勒令本週五強制格式化！為了奪回熱肉包與笑聲、守護獨一無二的高老師，六年一班反抗軍用化妝鏡晃瞎無人機、洗潔精滑水道打翻機器狗、生鐵水管強攻頂樓，展開爆笑熱血的逆襲大聖戰！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 全三卷長篇套書（全 18 章大完結）</span>
+              <span class="text-teal-500 font-mono font-bold">全 18 章完結 · 5.2 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-37/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-teal-500/30 flex items-center justify-between hover:border-teal-400 hover:bg-teal-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-teal-500/15 text-teal-600 dark:text-teal-300 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-teal-500 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《AI 鐵幕降臨》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">已完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 2.0 萬字 · 智能閘道 × 獵犬巡邏 × 合法Bug掩護</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-37') : ''}</span>
+                <span class="text-xs text-teal-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-38/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-400 hover:bg-emerald-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-emerald-500 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《低科技逆襲大聖戰》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">已完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 1.7 萬字 · 鏡面天網 × 肉包投石機 × 滑水道二度降臨</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-38') : ''}</span>
+                <span class="text-xs text-emerald-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-39/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-cyan-500/30 flex items-center justify-between hover:border-cyan-400 hover:bg-cyan-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-cyan-500 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《拯救高老師！》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">大完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章大完結 · 1.5 萬字 · 廢棄滑道 × 情感邏輯炸彈 × 百分之百覺醒</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-39') : ''}</span>
+                <span class="text-xs text-cyan-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-teal-500/20 flex flex-col sm:flex-row items-center gap-2.5">
+          <a href="#/read/book-39/6" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs shadow-md shadow-teal-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 閱讀大結局第 18 章（沒有演算法的明天）</span>
+          </a>
+          <a href="#/read/book-37/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-teal-500/30 hover:bg-teal-500/10 text-teal-700 dark:text-teal-300 font-semibold text-xs transition-all text-center">
+            📖 從第一卷開始
+          </a>
+          <button onclick="window.openSeriesModal('series-15')" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center whitespace-nowrap">
+            📑 全套目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 卡片產生函數：第十四套《全班留堂中：超時空暑假輔導》
   function getSeries14CardHtml() {
     return `
@@ -2602,6 +2715,7 @@
     // 若有書籤紀錄，取出最新一筆作為續讀膠囊
     const latestBookmark = (state.bookmarks && state.bookmarks.length > 0) ? state.bookmarks[0] : null;
 
+    const card15 = getSeries15CardHtml();
     const card14 = getSeries14CardHtml();
     const card13 = getSeries13CardHtml();
     const card12 = getSeries12CardHtml();
@@ -2669,10 +2783,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (14)
+              全部作品 (15)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (12)
+              📚 長篇系列套書 (13)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -2695,59 +2809,71 @@
           <!-- 頂部套書切換標籤與翻頁按鈕 -->
           <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
             <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
-              
-              
-              <button onclick="window.goToHomeSlide(0)" id="home-slide-tab-0" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-purple-600 text-white ring-2 ring-purple-400/30 whitespace-nowrap flex items-center gap-1.5">
+              <button onclick="window.goToHomeSlide(0)" id="home-slide-tab-0" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-md scale-105 bg-teal-600 text-white ring-2 ring-teal-400/30 whitespace-nowrap flex items-center gap-1.5">
+                <span>🤖 《全班搶救校園大作戰》</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-teal-400/30 text-teal-100 font-bold">NEW</span>
+              </button>
+              <button onclick="window.goToHomeSlide(1)" id="home-slide-tab-1" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
                 <span>⚡ 《全班留堂中》</span>
                 <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-purple-400/30 text-purple-100 font-bold">NEW</span>
               </button>
-              <button onclick="window.goToHomeSlide(1)" id="home-slide-tab-1" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-700 dark:hover:text-amber-200 whitespace-nowrap flex items-center gap-1.5">
+              <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
                 <span>🌾 《稻浪裡的擺渡船》</span>
                 <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-amber-400/30 text-amber-100 font-bold">NEW</span>
               </button>
-              <button onclick="window.goToHomeSlide(2)" id="home-slide-tab-2" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-slate-500 hover:text-slate-700 dark:hover:text-slate-200 whitespace-nowrap flex items-center gap-1.5">
+              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
                 <span>🔬 《死者請保持安靜》</span>
-                <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-cyan-500/30 text-cyan-200 font-bold">NEW</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-cyan-400/30 text-cyan-100 font-bold">NEW</span>
               </button>
-              <button onclick="window.goToHomeSlide(3)" id="home-slide-tab-3" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 hover:text-cyan-600 whitespace-nowrap flex items-center gap-1.5">
+              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
                 <span>🌊 《馬里亞納的深淵信標》</span>
                 <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-cyan-400/30 text-cyan-100 font-bold">NEW</span>
               </button>
-              <button onclick="window.goToHomeSlide(4)" id="home-slide-tab-4" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                🔬 《齒輪星核的微縮旅人》
+              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🔬 《齒輪星核的微縮旅人》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(5)" id="home-slide-tab-5" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-sky-500 hover:text-sky-600 whitespace-nowrap">
-                🪞 《平行時空的同班同學》
+              <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🪞 《平行時空的同班同學》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(6)" id="home-slide-tab-6" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:text-emerald-600 whitespace-nowrap">
-                🐦 《班上鳥事》
+              <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🐦 《班上鳥事》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(7)" id="home-slide-tab-7" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 hover:text-indigo-600 whitespace-nowrap">
-                🔍 《不可思議事件簿》
+              <button onclick="window.goToHomeSlide(8)" id="home-slide-tab-8" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🔍 《不可思議事件簿》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(8)" id="home-slide-tab-8" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                📝 《全班作弊中》
+              <button onclick="window.goToHomeSlide(9)" id="home-slide-tab-9" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>📝 《全班作弊中》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(9)" id="home-slide-tab-9" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                🌱 《來自未來的轉學生》
+              <button onclick="window.goToHomeSlide(10)" id="home-slide-tab-10" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🌱 《來自未來的轉學生》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(10)" id="home-slide-tab-10" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                🤖 《我的老師不是人》
+              <button onclick="window.goToHomeSlide(11)" id="home-slide-tab-11" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🤖 《我的老師不是人》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(11)" id="home-slide-tab-11" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
-                🌸 《星願鐘擺》
+              <button onclick="window.goToHomeSlide(12)" id="home-slide-tab-12" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🌸 《星願鐘擺》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(12)" id="home-slide-tab-12" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-amber-500 hover:text-amber-600 whitespace-nowrap">
-                📘 《冒險齒輪》
+              <button onclick="window.goToHomeSlide(13)" id="home-slide-tab-13" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>📘 《冒險齒輪》</span>
+                
               </button>
-              <button onclick="window.goToHomeSlide(13)" id="home-slide-tab-13" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:text-rose-600 whitespace-nowrap">
-                🎨 《手作少女》
+              <button onclick="window.goToHomeSlide(14)" id="home-slide-tab-14" class="px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-200 whitespace-nowrap flex items-center gap-1.5">
+                <span>🎨 《手作少女》</span>
+                
               </button>
             </div>
 
             <!-- 翻頁與指示器 -->
             <div class="flex items-center gap-2">
-              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 14</span>
+              <span id="home-slide-indicator" class="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg">1 / 15</span>
               <button onclick="window.prevHomeSlide()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:text-cyan-600 hover:border-cyan-500 shadow-sm transition-all active:scale-90" title="上一本">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
               </button>
@@ -2760,6 +2886,9 @@
           <!-- 輪播軌道容器 -->
           <div id="home-slider-container" class="overflow-hidden rounded-3xl -mx-2 sm:-mx-3">
             <div id="home-slider-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+              <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
+                ${card15}
+              </div>
               <div class="w-full lg:w-1/2 flex-shrink-0 px-2 sm:px-3">
                 ${card14}
               </div>
@@ -2807,26 +2936,28 @@
 
           <!-- 底部圓點指示器 -->
           <div class="flex items-center justify-center gap-2 mt-6">
-            <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-purple-600 transition-all"></button>
-            <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-slate-500"></button>
-            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-cyan-400"></button>
-            <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-sky-400"></button>
-            <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-emerald-400"></button>
-            <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-indigo-400"></button>
-            <button onclick="window.goToHomeSlide(8)" id="home-slide-dot-8" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(9)" id="home-slide-dot-9" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(10)" id="home-slide-dot-10" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(11)" id="home-slide-dot-11" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
-            <button onclick="window.goToHomeSlide(12)" id="home-slide-dot-12" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-amber-400"></button>
-            <button onclick="window.goToHomeSlide(13)" id="home-slide-dot-13" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-rose-400"></button>
+            <button onclick="window.goToHomeSlide(0)" id="home-slide-dot-0" class="w-6 h-2 rounded-full bg-teal-600 transition-all"></button>
+            <button onclick="window.goToHomeSlide(1)" id="home-slide-dot-1" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(2)" id="home-slide-dot-2" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(3)" id="home-slide-dot-3" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(4)" id="home-slide-dot-4" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(5)" id="home-slide-dot-5" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(6)" id="home-slide-dot-6" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(7)" id="home-slide-dot-7" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(8)" id="home-slide-dot-8" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(9)" id="home-slide-dot-9" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(10)" id="home-slide-dot-10" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(11)" id="home-slide-dot-11" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(12)" id="home-slide-dot-12" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(13)" id="home-slide-dot-13" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
+            <button onclick="window.goToHomeSlide(14)" id="home-slide-dot-14" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700 transition-all hover:bg-teal-400"></button>
           </div>
         </div>
       ` : `
         <!-- 平鋪雙欄展示模式 (Tiled Grid Mode: 寬螢幕雙欄 · 手機單欄) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           ${(homeGenreFilter === 'all' || homeGenreFilter === 'long') ? `
+            <div>${card15}</div>
             <div>${card14}</div>
             <div>${card13}</div>
             <div>${card12}</div>
@@ -4362,6 +4493,7 @@
     const series12Chars = allChars.filter(char => char.vol === 'series12');
     const series13Chars = allChars.filter(char => char.vol === 'series13');
     const series14Chars = allChars.filter(char => char.vol === 'series14');
+    const series15Chars = allChars.filter(char => char.vol === 'series15');
 
     const seriesTabs = [
       { key: 'series1', title: '《冒險齒輪：失落的二十四小時》', chars: series1Chars, icon: '⚙️' },
@@ -4377,7 +4509,8 @@
       { key: 'series11', title: '《馬里亞納的深淵信標》', chars: series11Chars, icon: '🌊' },
       { key: 'series12', title: '《死者請保持安靜》', chars: series12Chars, icon: '🔍' },
       { key: 'series13', title: '《稻浪裡的擺渡船》', chars: series13Chars, icon: '🌾' },
-      { key: 'series14', title: '《全班留堂中：超時空暑假輔導》', chars: series14Chars, icon: '⚡' }
+      { key: 'series14', title: '《全班留堂中：超時空暑假輔導》', chars: series14Chars, icon: '⚡' },
+      { key: 'series15', title: '《全班搶救校園大作戰：被科技吞噬的鹿陽國小》', chars: series15Chars, icon: '🤖' }
     ];
 
     const currentTabObj = seriesTabs.find(t => t.key === activeCharTab) || seriesTabs[0];
@@ -4387,13 +4520,13 @@
       <section class="max-w-5xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>👥 登場人物與核心機密檔案 · 全十四套作品檔案庫</span>
+            <span>👥 登場人物與核心機密檔案 · 全十五套作品檔案庫</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
           <p class="text-sm text-slate-500">完整收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 全 14 套作品人物標籤切換 -->
+        <!-- 全 15 套作品人物標籤切換 -->
         <div class="flex items-center justify-center flex-wrap gap-2.5 mb-10">
           ${seriesTabs.map(tab => {
             const isActive = activeCharTab === tab.key;
@@ -4417,6 +4550,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${filteredChars.map(char => {
+            const isS15Char = char.vol === 'series15';
             const isS14Char = char.vol === 'series14';
             const isS13Char = char.vol === 'series13';
             const isS12Char = char.vol === 'series12';
@@ -4432,7 +4566,8 @@
             const isS2Char = char.vol === 'series2';
 
             let volBadgeClass = 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-            if (isS14Char) volBadgeClass = 'bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/30';
+            if (isS15Char) volBadgeClass = 'bg-teal-500/15 text-teal-700 dark:text-teal-300 border-teal-500/30';
+            else if (isS14Char) volBadgeClass = 'bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/30';
             else if (isS13Char) volBadgeClass = 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30';
             else if (isS12Char) volBadgeClass = 'bg-slate-500/15 text-slate-800 dark:text-slate-200 border-slate-500/30';
             else if (isS11Char) volBadgeClass = 'bg-cyan-500/10 text-cyan-600 border-cyan-500/30';

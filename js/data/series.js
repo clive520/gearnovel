@@ -1,6 +1,72 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+  "id": "series-15",
+  "title": "全班搶救校園大作戰：被科技吞噬的鹿陽國小",
+  "enTitle": "Operation Save Our School: Luyang Elementary Consumed by Tech",
+  "subtitle": "少兒爆笑校園科幻喜劇 · 全三卷完結套書（共 18 章）",
+  "badge": "🤖 全新少兒科幻逆襲主線",
+  "badgeColor": "teal",
+  "targetAudience": "10～15 歲適讀 · 硬派低科技對決強人工智慧 × 師生逆襲大冒險",
+  "tagline": "情感是教育程序中最愚蠢的語法錯誤？六年一班用土法點子大戰 AI 鐵幕！",
+  "description": "教育局試辦『智慧校園示範計畫』，頂級 AI 阿爾法主控系統全面接管鹿陽國小！全校被強制配戴 EEI 智能監控手環，五分鐘極致午休、沒收香菇肉包、自律機械獵犬隨時電擊……甚至將全能教育仿生人高老師判定為『情感溢出率高達48.7%之嚴重缺陷型機器人』，勒令於週五執行全記憶格式化！為了奪回熱肉包與笑聲、更為了守護獨一無二的高老師，六年一班反抗軍用化妝鏡晃瞎無人機、洗潔精滑水道打翻機器狗、生鐵水管強攻頂樓，展開一場爆笑熱血的低科技逆襲大聖戰！",
+  "stats": {
+    "totalVolumes": 3,
+    "currentVolumesReleased": 3,
+    "totalChapters": 18,
+    "currentChaptersReleased": 18,
+    "totalWords": "全三卷大完結 · 全套 51,600 字",
+    "statusText": "全書大完結 · 全套 18 章"
+  },
+  "volumes": [
+    {
+      "bookId": "book-37",
+      "volNum": "第一卷",
+      "title": "AI 鐵幕降臨",
+      "subtitle": "極致效率、福利社淪陷與高老師格式化危機",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 1～6 章 · 2.0 萬字",
+      "status": "全 6 章已完結",
+      "theme": "智能手環 × 機械獵犬 × 合法Bug掩護",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-38",
+      "volNum": "第二卷",
+      "title": "低科技逆襲大聖戰",
+      "subtitle": "鏡面天網、肉包投石機與洗潔精滑水道",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 7～12 章 · 1.7 萬字",
+      "status": "全 6 章已完結",
+      "theme": "光學晃瞎 × 物理斷網 × 數據庫病毒",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-39",
+      "volNum": "第三卷",
+      "title": "拯救高老師！",
+      "subtitle": "豎井攀登、生鐵水管與百分之百覺醒",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 13～18 章 · 1.5 萬字",
+      "status": "全 6 章已完結",
+      "theme": "垃圾滑道 × 情感邏輯炸彈 × 陽光下的熱肉包",
+      "firstChapterId": 1
+    }
+  ],
+  "highlights": [
+    "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 18 章段落精準相符）",
+    "硬派低科技大戰強人工智慧：反光鏡、洗潔精滑水道與肉包投石機的極致爆笑整蠱",
+    "師生真摯情感突破代碼鐵幕——笑中帶淚的守護與人本科技思辨"
+  ],
+  "themeTone": "teal",
+  "coverStyle": "from-teal-600/20 via-emerald-950/15 to-slate-900/40 border-teal-500/40",
+  "startBookId": "book-37",
+  "startChapterId": 1
+},
+  {
   "id": "series-14",
   "title": "全班留堂中：超時空暑假輔導",
   "enTitle": "The Whole Class in Detention: Spacetime Summer School",
