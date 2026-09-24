@@ -1041,7 +1041,7 @@
 
   window.nextHomeSlide = function() {
     const isDesktop = window.innerWidth >= 1024;
-    const maxIdx = isDesktop ? 11 : 12;
+    const maxIdx = isDesktop ? 12 : 13;
     homeSlideIndex = (homeSlideIndex >= maxIdx) ? 0 : homeSlideIndex + 1;
     updateHomeSlider();
   };
@@ -1059,13 +1059,13 @@
     const isDesktop = window.innerWidth >= 1024;
 
     const stepPercent = isDesktop ? 50 : 100;
-    const maxIndex = isDesktop ? 11 : 12;
+    const maxIndex = isDesktop ? 12 : 13;
     const effectiveIdx = Math.min(Math.max(homeSlideIndex, 0), maxIndex);
 
     track.style.transform = `translateX(-${effectiveIdx * stepPercent}%)`;
 
     // 更新 Tab pills 高亮
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < 14; i++) {
       const tab = document.getElementById(`home-slide-tab-${i}`);
       if (tab) {
         const isActive = (effectiveIdx === i);
@@ -1094,7 +1094,7 @@
     }
 
     // 更新圓點指示
-    for (let d = 0; d < 13; d++) {
+    for (let d = 0; d < 14; d++) {
       const dot = document.getElementById(`home-slide-dot-${d}`);
       if (dot) {
         if (d > maxIndex) {
@@ -1799,6 +1799,117 @@
   
 
 
+  
+  // 卡片產生函數：第十四套《全班留堂中：超時空暑假輔導》
+  function getSeries14CardHtml() {
+    return `
+      <div class="rounded-3xl border border-purple-500/40 bg-gradient-to-br from-purple-600/20 via-violet-950/15 to-slate-900/15 dark:to-slate-950/60 p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all hover:shadow-2xl hover:border-purple-400/60 h-full relative group">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-purple-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/25 transition-all"></div>
+        <div>
+          <!-- 標籤與受眾 -->
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-500/40 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+              <span>⚡ 2026 全新少兒爆笑校園科幻 · 全三卷 18 章大完結</span>
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/15 px-2.5 py-0.5 rounded-full border border-purple-500/25 font-mono">
+                👁️ ${window.StatsService ? window.StatsService.getSeriesReads('series-14') : '0'} 次閱讀
+              </span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">9～15 歲適讀</span>
+            </div>
+          </div>
+
+          <!-- 標題與引言 -->
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1 leading-snug group-hover:text-purple-500 transition-colors">
+            《全班留堂中：超時空暑假輔導》
+          </h3>
+          <p class="text-xs sm:text-sm font-bold text-purple-600 dark:text-purple-400 mb-3">
+            被困在無限重置的下午四點！全校最皮的六年一班大戰絕對算力的仿生人導師！
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            升學銜接大測驗全班集體掛科，學務主任周嚴下達全校唯一的地獄暑輔令！不料紫色雷暴貫穿避雷針，未來少女未晞的時序手環與仿生人導師高峙舷的量子運算核共振，將教學大樓鎖死在下午四點！吃不完的福利社熱肉包、撞不開的時空彈性結界、兩萬四千題訂正算力……點子王阿釁策劃101種大逃脫，直到最後一顆熱肉包與日誌曝光，才揭開笑中帶淚的真正秘密！
+          </p>
+
+          <!-- 收錄全三卷列表 -->
+          <div class="space-y-2 mb-5">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <span>📚 全三卷長篇套書（全 18 章大完結）</span>
+              <span class="text-purple-500 font-mono font-bold">全 18 章完結 · 5.5 萬字</span>
+            </div>
+
+            <!-- 卷一 -->
+            <a href="#/read/book-34/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-purple-500/30 flex items-center justify-between hover:border-purple-400 hover:bg-purple-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-300 font-black text-xs flex items-center justify-center flex-shrink-0">卷一</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-purple-500 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《被困住的下午四點》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">已完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 1.9 萬字 · 雷暴共振 × 時空結界 × 兩萬四千題算力地獄</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-34') : ''}</span>
+                <span class="text-xs text-purple-600 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷二 -->
+            <a href="#/read/book-35/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-violet-500/30 flex items-center justify-between hover:border-violet-400 hover:bg-violet-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-violet-500/15 text-violet-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷二</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-violet-400 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《一○一次大逃脫》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">已完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章已完結 · 1.9 萬字 · 逆向工程 × 萌寵特工 × 總變電箱拉閘</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-35') : ''}</span>
+                <span class="text-xs text-violet-500 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+
+            <!-- 卷三 -->
+            <a href="#/read/book-36/1" class="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-fuchsia-500/30 flex items-center justify-between hover:border-fuchsia-400 hover:bg-fuchsia-500/5 transition-all group/vol shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-8 h-8 rounded-xl bg-fuchsia-500/15 text-fuchsia-500 font-black text-xs flex items-center justify-center flex-shrink-0">卷三</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white group-hover/vol:text-fuchsia-400 transition-colors flex items-center gap-1.5 truncate">
+                    <span class="truncate">《明天，你好！》</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold flex-shrink-0">大完結</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 truncate">全 6 章大完結 · 1.7 萬字 · 情感緩存 × 告別肉包 × 4:01奇蹟</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">👁️ ${window.StatsService ? window.StatsService.getBookReads('book-36') : ''}</span>
+                <span class="text-xs text-fuchsia-500 font-bold group-hover/vol:translate-x-1 transition-transform">閱讀 ➜</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 底部行動按鈕 -->
+        <div class="pt-4 border-t border-purple-500/20 flex flex-col sm:flex-row items-center gap-2.5">
+          <a href="#/read/book-36/6" class="w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md shadow-purple-600/20 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-95 text-center">
+            <span>⚡ 閱讀大結局第 18 章（真正的畢業典禮）</span>
+          </a>
+          <a href="#/read/book-34/1" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-purple-500/30 hover:bg-purple-500/10 text-purple-700 dark:text-purple-300 font-semibold text-xs transition-all text-center">
+            📖 從第一卷開始
+          </a>
+          <button onclick="window.openSeriesModal('series-14')" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs transition-all text-center whitespace-nowrap">
+            📑 全套目錄
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   // 卡片產生函數：第十三套《稻浪裡的擺渡船》
   function getSeries13CardHtml() {
     return `
@@ -2489,6 +2600,7 @@
     // 若有書籤紀錄，取出最新一筆作為續讀膠囊
     const latestBookmark = (state.bookmarks && state.bookmarks.length > 0) ? state.bookmarks[0] : null;
 
+    const card14 = getSeries14CardHtml();
     const card13 = getSeries13CardHtml();
     const card12 = getSeries12CardHtml();
     const card11 = getSeries11CardHtml();
@@ -2555,10 +2667,10 @@
           <!-- 體裁快速篩選標籤 -->
           <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <button onclick="window.setHomeGenreFilter('all')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'all' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              全部作品 (13)
+              全部作品 (14)
             </button>
             <button onclick="window.setHomeGenreFilter('long')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'long' ? 'bg-white dark:bg-slate-900 text-amber-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
-              📚 長篇系列套書 (11)
+              📚 長篇系列套書 (12)
             </button>
             <button onclick="window.setHomeGenreFilter('short')" class="px-3 py-1.5 rounded-lg transition-all ${homeGenreFilter === 'short' ? 'bg-white dark:bg-slate-900 text-rose-600 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
               🎨 療癒短篇集 (1)
@@ -4259,13 +4371,13 @@
       <section class="max-w-5xl mx-auto mb-16">
         <div class="text-center max-w-xl mx-auto mb-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold mb-3">
-            <span>👥 登場人物與核心機密檔案 · 全十三套作品檔案庫</span>
+            <span>👥 登場人物與核心機密檔案 · 全十四套作品檔案庫</span>
           </div>
           <h1 class="text-3xl font-extrabold mb-3 text-slate-900 dark:text-white">人物檔案誌</h1>
           <p class="text-sm text-slate-500">完整收錄核心主角、同伴、導師與各大登場陣營人物檔案。</p>
         </div>
 
-        <!-- 全 13 套作品人物標籤切換 -->
+        <!-- 全 14 套作品人物標籤切換 -->
         <div class="flex items-center justify-center flex-wrap gap-2.5 mb-10">
           ${seriesTabs.map(tab => {
             const isActive = activeCharTab === tab.key;

@@ -1,6 +1,72 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+  "id": "series-14",
+  "title": "全班留堂中：超時空暑假輔導",
+  "enTitle": "The Whole Class in Detention: Spacetime Summer School",
+  "subtitle": "少兒爆笑校園科幻 · 全三卷完結套書（共 18 章）",
+  "badge": "⚡ 少兒爆笑校園科幻篇",
+  "badgeColor": "purple",
+  "targetAudience": "9～15 歲適讀 · 少兒爆笑校園科幻 × 時空迴圈大冒險",
+  "tagline": "被困在無限重置的下午四點！全校最皮的六年一班大戰絕對算力的仿生人導師！",
+  "description": "升學銜接大測驗全班集體掛科，學務主任周嚴下達全校唯一的地獄暑輔令！不料一場突如其來的夏日紫色雷暴貫穿避雷針，未來少女未晞的時序手環與仿生人導師高峙舷的量子運算核產生強烈電磁共振，將整棟教學大樓鎖死在無限重置的下午四點！吃不完的福利社熱肉包、撞不開的時空彈性結界、高老師兩萬四千題的無情訂正算力……點子王阿釁領銜策劃 101 種大逃脫，直到最後一顆熱肉包與加密日誌曝光，才揭開時空錨點背後笑中帶淚的真正秘密！",
+  "stats": {
+    "totalVolumes": 3,
+    "currentVolumesReleased": 3,
+    "totalChapters": 18,
+    "currentChaptersReleased": 18,
+    "totalWords": "全三卷大完結 · 全套 54,800 字",
+    "statusText": "全書大完結 · 全套 18 章"
+  },
+  "volumes": [
+    {
+      "bookId": "book-34",
+      "volNum": "第一卷",
+      "title": "被困住的下午四點",
+      "subtitle": "雷暴共振、無限肉包與算力地獄",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 1～6 章 · 1.9 萬字",
+      "status": "全 6 章已完結",
+      "theme": "地獄暑輔 × 時空手環 × 無限肉包",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-35",
+      "volNum": "第二卷",
+      "title": "一○一次大逃脫",
+      "subtitle": "通風管潛行、時光膠囊與斷電大作戰",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 7～12 章 · 1.9 萬字",
+      "status": "全 6 章已完結",
+      "theme": "逆向工程 × 萌寵特工 × 總變電箱拉閘",
+      "firstChapterId": 1
+    },
+    {
+      "bookId": "book-36",
+      "volNum": "第三卷",
+      "title": "明天，你好！",
+      "subtitle": "加密日誌、最後肉包與畢業奇蹟",
+      "chaptersCount": 6,
+      "releasedChapters": 6,
+      "wordCount": "第 13～18 章 · 1.7 萬字",
+      "status": "全 6 章已完結",
+      "theme": "情感緩存 × 告別肉包 × 4:01奇蹟",
+      "firstChapterId": 1
+    }
+  ],
+  "highlights": [
+    "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 18 章段落精準相符）",
+    "時空手環、仿生算力與 101 次逃脫計策的爆笑腦力攻防",
+    "第四錨點是擁抱明天的勇氣——笑中帶淚的溫暖青春畢業反轉"
+  ],
+  "themeTone": "purple",
+  "coverStyle": "from-purple-600/20 via-violet-950/15 to-slate-900/40 border-purple-500/40",
+  "startBookId": "book-34",
+  "startChapterId": 1
+},
+  {
     "id": "series-13",
     "title": "稻浪裡的擺渡船",
     "enTitle": "The Ferryman in the Golden Waves",
