@@ -60,6 +60,17 @@
     }
   }
 
+  // HTML 安全過濾 (XSS 防護)
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   // 成就徽章系統
   function unlockBadge(badgeId) {
     if (!state.unlockedBadges.includes(badgeId)) {
@@ -3460,17 +3471,17 @@
           ${displayContentHtml}
         </div>
 
-        <!-- 本章密碼卡區塊 -->
-        ${chapter.puzzle ? `
+        <!-- 本章密碼卡區塊 (嚴格檢查物件結構，避免無小百科時渲染出 undefined) -->
+        ${(chapter.puzzle && typeof chapter.puzzle === 'object' && chapter.puzzle.title && chapter.puzzle.title !== 'undefined' && chapter.puzzle.cipher) ? `
           <div class="mt-12 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-sm">
             <div class="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-base mb-2">
               <span>🧩 小偵探密碼小百科：${chapter.puzzle.title}</span>
             </div>
             <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
-              ${chapter.puzzle.concept}
+              ${chapter.puzzle.concept || ''}
             </p>
             <div class="p-3 rounded-lg bg-black/10 font-mono text-xs text-amber-700 dark:text-amber-300">
-              <strong>本章線索：</strong> ${chapter.puzzle.cipher} ➜ <strong>破譯結果：</strong> ${chapter.puzzle.decoded}
+              <strong>本章線索：</strong> ${chapter.puzzle.cipher} ➜ <strong>破譯結果：</strong> ${chapter.puzzle.decoded || ''}
             </div>
           </div>
         ` : ''}
@@ -3506,6 +3517,30 @@
             </a>
           `}
         </footer>
+
+        <!-- 本章讀者留言與互動討論區 -->
+        <section id="chapter-comments-section" class="mt-16 pt-10 border-t-2 border-dashed border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-2.5">
+              <span class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg font-bold">💬</span>
+              <div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>章節讀者討論區</span>
+                  <span id="chapter-comment-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500 text-white font-mono font-bold">0</span>
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">分享你對《${book.title}》本章故事的想法、伏筆猜測與心得</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 留言輸入區塊 (只限登入會員) -->
+          <div id="comment-input-box" class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 mb-8 transition-all">
+          </div>
+
+          <!-- 本章留言列表 -->
+          <div id="chapter-comments-list" class="space-y-3.5">
+          </div>
+        </section>
       </article>
 
       <!-- 兒童友善語音朗讀懸浮播放面板 (Voice Storyteller Dock) -->
@@ -3786,8 +3821,187 @@
       if (btnClose) btnClose.onclick = () => window.storySpeaker.stopListening();
     }, 150);
 
+    // 初始化本章留言板互動系統
+    initChapterComments(bookId, chapter.id, book, chapter);
+
     // 啟用閱讀模式自動隱藏控制
     ReaderAutoHideManager.enterReader();
+  }
+
+  // 章節讀者留言板互動初始化邏輯
+  function initChapterComments(bookId, chapterId, book, chapter) {
+    const listEl = document.getElementById('chapter-comments-list');
+    const inputEl = document.getElementById('comment-input-box');
+    const badgeEl = document.getElementById('chapter-comment-badge');
+    if (!listEl || !inputEl) return;
+
+    const seriesList = window.GEAR_SERIES || [];
+    const series = seriesList.find(s => s.volumes && s.volumes.some(v => v.bookId === bookId));
+    const seriesTitle = series ? series.title : book.title;
+
+    function renderComments() {
+      if (!window.CommentsService) return;
+      const comments = window.CommentsService.getCommentsByChapter(bookId, chapterId);
+      if (badgeEl) badgeEl.innerText = comments.length;
+
+      if (comments.length === 0) {
+        listEl.innerHTML = `
+          <div class="py-10 px-4 rounded-2xl bg-slate-50/60 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 text-center">
+            <div class="text-3xl mb-2">💬</div>
+            <div class="text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">本章目前尚無留言</div>
+            <p class="text-[11px] text-slate-400">登入後成為第一個留下感想或解謎推理的讀者吧！</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = comments.map(c => {
+        const relTime = window.CommentsService.formatRelativeTime(c.timestamp);
+        return `
+          <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm transition-all hover:border-amber-500/40">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                  ${c.userAvatar || '👤'}
+                </div>
+                <div>
+                  <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                    ${escapeHtml(c.userName)}
+                  </span>
+                  <span class="text-[10px] text-slate-400 ml-1.5 font-mono">
+                    ${relTime}
+                  </span>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">
+                ${c.dateStr || ''}
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line pl-10">
+              ${escapeHtml(c.content)}
+            </p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderInput() {
+      const user = window.AuthService ? window.AuthService.getUser() : null;
+      if (!user) {
+        inputEl.innerHTML = `
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-2">
+            <div class="flex items-center gap-3 text-center sm:text-left">
+              <span class="text-2xl">🔒</span>
+              <div>
+                <div class="font-bold text-sm text-slate-800 dark:text-slate-200">
+                  登入冒險齒輪會員即可參與章節討論與交流
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  發表讀書心得、探討劇情伏筆、留下屬於你的探索足跡（只限登入會員）
+                </div>
+              </div>
+            </div>
+            <button onclick="window.openAuthModal('login')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold text-xs shadow-md shadow-amber-500/20 transition-all flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer">
+              <span>🔑 登入 / 註冊會員發表留言</span>
+              <span>➜</span>
+            </button>
+          </div>
+        `;
+      } else {
+        const displayName = escapeHtml(user.displayName || user.accountName || (user.email ? user.email.split('@')[0] : '冒險探索者'));
+        inputEl.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-sm font-bold overflow-hidden">
+                  ${user.photoURL ? `<img src="${user.photoURL}" class="w-full h-full object-cover">` : (user.avatar || '👤')}
+                </div>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-200">
+                  以「<strong class="text-amber-600 dark:text-amber-400">${displayName}</strong>」身份發表留言：
+                </span>
+              </div>
+              <span class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                會員已驗證
+              </span>
+            </div>
+            <div>
+              <textarea id="chapter-comment-textarea" rows="3" maxlength="500" placeholder="寫下你對本章的精彩感想、推理或疑問（500 字以內）..." class="w-full p-3 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-y transition-all"></textarea>
+              <div class="flex items-center justify-between mt-2.5">
+                <span id="comment-char-counter" class="text-[11px] text-slate-400 font-mono">0 / 500 字</span>
+                <button id="btn-submit-chapter-comment" class="px-5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 active:scale-95 text-white font-bold text-xs shadow-md shadow-amber-600/20 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>✍️ 發布留言</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const textarea = document.getElementById('chapter-comment-textarea');
+        const counter = document.getElementById('comment-char-counter');
+        const submitBtn = document.getElementById('btn-submit-chapter-comment');
+
+        if (textarea && counter) {
+          textarea.oninput = () => {
+            counter.innerText = `${textarea.value.length} / 500 字`;
+          };
+        }
+
+        if (submitBtn && textarea) {
+          submitBtn.onclick = async () => {
+            const val = textarea.value.trim();
+            if (!val) {
+              textarea.focus();
+              return;
+            }
+            submitBtn.disabled = true;
+            submitBtn.innerText = '發布中...';
+            try {
+              if (window.CommentsService) {
+                await window.CommentsService.addComment({
+                  bookId,
+                  chapterId,
+                  bookTitle: book.title,
+                  chapterTitle: chapter.title,
+                  seriesTitle,
+                  content: val,
+                  user
+                });
+              }
+              textarea.value = '';
+              if (counter) counter.innerText = '0 / 500 字';
+              renderComments();
+            } catch (err) {
+              alert(err.message || '留言發布失敗，請重試！');
+            } finally {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>✍️ 發布留言</span>';
+            }
+          };
+        }
+      }
+    }
+
+    renderInput();
+    renderComments();
+
+    if (window.AuthService && !inputEl._hasAuthListener) {
+      inputEl._hasAuthListener = true;
+      window.AuthService.onUserChange(() => {
+        if (document.getElementById('comment-input-box')) {
+          renderInput();
+        }
+      });
+    }
+
+    if (window.CommentsService && !listEl._hasCommentListener) {
+      listEl._hasCommentListener = true;
+      window.CommentsService.onChange(() => {
+        if (document.getElementById('chapter-comments-list')) {
+          renderComments();
+        }
+      });
+    }
   }
 
   // 頁面渲染器：人物與裝備圖鑑
@@ -12820,6 +13034,7 @@
   let analyticsDays = 7;
   let analyticsRankTab = 'today'; // 'today' | 'yesterday' | 'all'
   let analyticsActiveDotIdx = null;
+  let analyticsCommentRange = 'today'; // 'today' | 7 | 14 | 30
 
   window.setAnalyticsDays = function (days) {
     analyticsDays = Number(days) || 7;
@@ -12829,6 +13044,11 @@
 
   window.setAnalyticsRankTab = function (tab) {
     analyticsRankTab = tab;
+    renderAnalytics();
+  };
+
+  window.setAnalyticsCommentRange = function (range) {
+    analyticsCommentRange = range;
     renderAnalytics();
   };
 
@@ -13232,6 +13452,100 @@
                 </div>
               `;
             }).join('')}
+          </div>
+        </div>
+
+        <!-- 讀者即時討論與互動留言區 (今日 / 7天 / 14天 / 30天) -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-lg">💬</span>
+                <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
+                  讀者即時討論與留言紀錄
+                </h2>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-mono font-bold">
+                  ${(window.CommentsService ? window.CommentsService.getRecentComments(analyticsCommentRange) : []).length} 則
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                即時掌握全站少年讀者的最新反饋、推理解謎與共讀感想
+              </p>
+            </div>
+
+            <!-- 時間區間篩選按鈕：今日、7天、14天、30天 -->
+            <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+              <button onclick="window.setAnalyticsCommentRange('today')" class="px-3 py-1.5 rounded-lg transition-all ${analyticsCommentRange === 'today' ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                ☀️ 今日
+              </button>
+              <button onclick="window.setAnalyticsCommentRange(7)" class="px-3 py-1.5 rounded-lg transition-all ${(analyticsCommentRange === 7 || analyticsCommentRange === '7') ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                7 天內
+              </button>
+              <button onclick="window.setAnalyticsCommentRange(14)" class="px-3 py-1.5 rounded-lg transition-all ${(analyticsCommentRange === 14 || analyticsCommentRange === '14') ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                14 天內
+              </button>
+              <button onclick="window.setAnalyticsCommentRange(30)" class="px-3 py-1.5 rounded-lg transition-all ${(analyticsCommentRange === 30 || analyticsCommentRange === '30') ? 'bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}">
+                30 天內
+              </button>
+            </div>
+          </div>
+
+          <!-- 留言列表 -->
+          <div class="space-y-3">
+            ${(() => {
+              const commentList = window.CommentsService ? window.CommentsService.getRecentComments(analyticsCommentRange) : [];
+              if (commentList.length === 0) {
+                return `
+                  <div class="py-12 px-4 rounded-2xl bg-slate-50/60 dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-800 text-center">
+                    <div class="text-3xl mb-2">💬</div>
+                    <div class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      ${analyticsCommentRange === 'today' ? '今日尚無新留言' : `近 ${analyticsCommentRange} 天內尚無留言`}
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-sm mx-auto mb-4">
+                      登入會員前往任一作品章節，即可搶先留下第一則討論！
+                    </p>
+                    <a href="#/library" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-all shadow-sm">
+                      <span>挑選故事去留言</span>
+                      <span>➜</span>
+                    </a>
+                  </div>
+                `;
+              }
+              return commentList.map(c => {
+                const relTime = window.CommentsService ? window.CommentsService.formatRelativeTime(c.timestamp) : '';
+                return `
+                  <div class="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 hover:border-amber-400/60 dark:hover:border-amber-500/50 transition-all flex flex-col gap-2.5 group">
+                    <div class="flex items-center justify-between gap-3 flex-wrap">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                          ${c.userAvatar || '👤'}
+                        </div>
+                        <span class="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white">
+                          ${escapeHtml(c.userName)}
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono">
+                          · ${relTime}
+                        </span>
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[11px] font-bold truncate max-w-[150px]">
+                          ${escapeHtml(c.seriesTitle || c.bookTitle)}
+                        </span>
+                        <a href="#/read/${c.bookId}/${c.chapterId}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-700 dark:text-slate-300 transition-all shadow-xs">
+                          <span>${escapeHtml(c.chapterTitle || '前往章節')}</span>
+                          <span>➜</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-9">
+                      ${escapeHtml(c.content)}
+                    </p>
+                  </div>
+                `;
+              }).join('');
+            })()}
           </div>
         </div>
 
