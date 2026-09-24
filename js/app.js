@@ -3922,6 +3922,8 @@
     const series = seriesList.find(s => s.volumes && s.volumes.some(v => v.bookId === bookId));
     const seriesTitle = series ? series.title : book.title;
 
+    window._rerenderCurrentChapterComments = renderComments;
+
     function renderComments() {
       if (!window.CommentsService) return;
       const comments = window.CommentsService.getCommentsByChapter(bookId, chapterId);
@@ -3938,29 +3940,51 @@
         return;
       }
 
+      const currentUser = window.AuthService ? window.AuthService.getUser() : null;
+
       listEl.innerHTML = comments.map(c => {
         const relTime = window.CommentsService.formatRelativeTime(c.timestamp);
+        const isOwner = window.CommentsService.isCommentOwner(c, currentUser);
         return `
-          <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm transition-all hover:border-amber-500/40">
+          <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm transition-all hover:border-amber-500/40" id="chapter-comment-card-${c.id}">
             <div class="flex items-center justify-between mb-2">
               <div class="flex items-center gap-2.5">
                 ${renderUserAvatarHtml(c.userAvatar, 'w-8 h-8', 'text-sm')}
                 <div>
-                  <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
-                    ${escapeHtml(c.userName)}
-                  </span>
-                  <span class="text-[10px] text-slate-400 ml-1.5 font-mono">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                      ${escapeHtml(c.userName)}
+                    </span>
+                    ${c.isEdited ? `<span class="text-[10px] text-amber-600 dark:text-amber-400 font-medium bg-amber-500/10 px-1.5 py-0.5 rounded" title="最後編輯時間：${escapeHtml(c.editedDateStr || '')}">已編輯</span>` : ''}
+                  </div>
+                  <span class="text-[10px] text-slate-400 font-mono">
                     ${relTime}
                   </span>
                 </div>
               </div>
-              <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">
-                ${c.dateStr || ''}
-              </span>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">
+                  ${c.dateStr || ''}
+                </span>
+                ${isOwner ? `
+                  <div class="flex items-center gap-1">
+                    <button onclick="window.startEditChapterComment('${c.id}')" title="編輯留言" class="px-2 py-1 text-xs text-slate-400 hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
+                      <span>✏️</span>
+                      <span class="text-[11px] font-medium hidden sm:inline">編輯</span>
+                    </button>
+                    <button onclick="window.confirmDeleteChapterComment('${c.id}')" title="刪除留言" class="px-2 py-1 text-xs text-slate-400 hover:text-rose-600 dark:text-slate-400 dark:hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
+                      <span>🗑️</span>
+                      <span class="text-[11px] font-medium hidden sm:inline">刪除</span>
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
             </div>
-            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line pl-10">
-              ${escapeHtml(c.content)}
-            </p>
+            <div id="chapter-comment-body-${c.id}">
+              <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line pl-10">
+                ${escapeHtml(c.content)}
+              </p>
+            </div>
           </div>
         `;
       }).join('');
@@ -4070,6 +4094,9 @@
         if (document.getElementById('comment-input-box')) {
           renderInput();
         }
+        if (document.getElementById('chapter-comments-list')) {
+          renderComments();
+        }
       });
     }
 
@@ -4082,6 +4109,106 @@
       });
     }
   }
+
+  // 全域章節留言編輯與刪除互動處理
+  window.startEditChapterComment = function (commentId) {
+    const container = document.getElementById(`chapter-comment-body-${commentId}`);
+    if (!container || !window.CommentsService) return;
+    const comment = window.CommentsService.getAllComments().find(c => c.id === commentId);
+    if (!comment) return;
+
+    container.innerHTML = `
+      <div class="pl-10 pt-1 space-y-2">
+        <textarea id="chapter-comment-edit-textarea-${commentId}" rows="3" maxlength="500" class="w-full p-3 text-sm rounded-xl border-2 border-amber-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-y transition-all">${escapeHtml(comment.content)}</textarea>
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <span id="chapter-comment-edit-counter-${commentId}" class="text-[11px] text-slate-400 font-mono">${comment.content.length} / 500 字</span>
+          <div class="flex items-center gap-2">
+            <button onclick="window.cancelEditChapterComment('${commentId}')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold transition-all cursor-pointer">
+              取消
+            </button>
+            <button id="btn-submit-edit-chapter-${commentId}" onclick="window.submitEditChapterComment('${commentId}')" class="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 active:scale-95 text-white text-xs font-bold shadow-md shadow-amber-600/20 transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>💾 儲存修改</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const ta = document.getElementById(`chapter-comment-edit-textarea-${commentId}`);
+    const counter = document.getElementById(`chapter-comment-edit-counter-${commentId}`);
+    if (ta && counter) {
+      ta.focus();
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+      ta.oninput = () => {
+        counter.innerText = `${ta.value.length} / 500 字`;
+      };
+    }
+  };
+
+  window.cancelEditChapterComment = function (commentId) {
+    if (typeof window._rerenderCurrentChapterComments === 'function') {
+      window._rerenderCurrentChapterComments();
+    }
+  };
+
+  window.submitEditChapterComment = async function (commentId) {
+    const ta = document.getElementById(`chapter-comment-edit-textarea-${commentId}`);
+    const btn = document.getElementById(`btn-submit-edit-chapter-${commentId}`);
+    if (!ta || !window.CommentsService || !window.AuthService) return;
+
+    const val = ta.value.trim();
+    if (!val) {
+      alert('留言內容不可為空！');
+      ta.focus();
+      return;
+    }
+
+    const user = window.AuthService.getUser();
+    if (!user) {
+      alert('請先登入冒險齒輪會員！');
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = '儲存中...';
+    }
+
+    try {
+      await window.CommentsService.updateComment(commentId, val, user);
+      if (typeof window._rerenderCurrentChapterComments === 'function') {
+        window._rerenderCurrentChapterComments();
+      }
+    } catch (err) {
+      alert(err.message || '留言修改失敗，請重試！');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<span>💾 儲存修改</span>';
+      }
+    }
+  };
+
+  window.confirmDeleteChapterComment = async function (commentId) {
+    if (!window.CommentsService || !window.AuthService) return;
+    const user = window.AuthService.getUser();
+    if (!user) {
+      alert('請先登入冒險齒輪會員！');
+      return;
+    }
+
+    if (!confirm('確定要刪除這則留言嗎？刪除後無法恢復。')) {
+      return;
+    }
+
+    try {
+      await window.CommentsService.deleteComment(commentId, user);
+      if (typeof window._rerenderCurrentChapterComments === 'function') {
+        window._rerenderCurrentChapterComments();
+      }
+    } catch (err) {
+      alert(err.message || '留言刪除失敗，請重試！');
+    }
+  };
 
   // 頁面渲染器：人物與裝備圖鑑
   let activeCharTab = 'series1'; // 'series1' | 'series2' | 'series3' | 'series4' | 'series5'
@@ -13029,6 +13156,102 @@
     renderAnalytics();
   };
 
+  window.renderAnalytics = renderAnalytics;
+
+  // 數據儀表板留言編輯與刪除全域處理
+  window.startEditAnalyticsComment = function (commentId) {
+    const container = document.getElementById(`analytics-comment-body-${commentId}`);
+    if (!container || !window.CommentsService) return;
+    const comment = window.CommentsService.getAllComments().find(c => c.id === commentId);
+    if (!comment) return;
+
+    container.innerHTML = `
+      <div class="pl-9 pt-1 space-y-2">
+        <textarea id="analytics-comment-edit-textarea-${commentId}" rows="3" maxlength="500" class="w-full p-2.5 text-sm rounded-xl border-2 border-amber-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-y transition-all">${escapeHtml(comment.content)}</textarea>
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <span id="analytics-comment-edit-counter-${commentId}" class="text-[11px] text-slate-400 font-mono">${comment.content.length} / 500 字</span>
+          <div class="flex items-center gap-2">
+            <button onclick="window.cancelEditAnalyticsComment('${commentId}')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold transition-all cursor-pointer">
+              取消
+            </button>
+            <button id="btn-submit-edit-analytics-${commentId}" onclick="window.submitEditAnalyticsComment('${commentId}')" class="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 active:scale-95 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>💾 儲存修改</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const ta = document.getElementById(`analytics-comment-edit-textarea-${commentId}`);
+    const counter = document.getElementById(`analytics-comment-edit-counter-${commentId}`);
+    if (ta && counter) {
+      ta.focus();
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+      ta.oninput = () => {
+        counter.innerText = `${ta.value.length} / 500 字`;
+      };
+    }
+  };
+
+  window.cancelEditAnalyticsComment = function (commentId) {
+    renderAnalytics();
+  };
+
+  window.submitEditAnalyticsComment = async function (commentId) {
+    const ta = document.getElementById(`analytics-comment-edit-textarea-${commentId}`);
+    const btn = document.getElementById(`btn-submit-edit-analytics-${commentId}`);
+    if (!ta || !window.CommentsService || !window.AuthService) return;
+
+    const val = ta.value.trim();
+    if (!val) {
+      alert('留言內容不可為空！');
+      ta.focus();
+      return;
+    }
+
+    const user = window.AuthService.getUser();
+    if (!user) {
+      alert('請先登入冒險齒輪帳號！');
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = '儲存中...';
+    }
+
+    try {
+      await window.CommentsService.updateComment(commentId, val, user);
+      renderAnalytics();
+    } catch (err) {
+      alert(err.message || '留言修改失敗，請重試！');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<span>💾 儲存修改</span>';
+      }
+    }
+  };
+
+  window.confirmDeleteAnalyticsComment = async function (commentId) {
+    if (!window.CommentsService || !window.AuthService) return;
+    const user = window.AuthService.getUser();
+    if (!user) {
+      alert('請先登入冒險齒輪帳號！');
+      return;
+    }
+
+    if (!confirm('確定要刪除這則留言嗎？刪除後無法恢復。')) {
+      return;
+    }
+
+    try {
+      await window.CommentsService.deleteComment(commentId, user);
+      renderAnalytics();
+    } catch (err) {
+      alert(err.message || '留言刪除失敗，請重試！');
+    }
+  };
+
   window.selectChartPoint = function (idx) {
     analyticsActiveDotIdx = idx;
     const infoBox = document.getElementById('chart-dot-infobox');
@@ -13488,8 +13711,10 @@
                   </div>
                 `;
               }
+              const currentUser = window.AuthService ? window.AuthService.getUser() : null;
               return commentList.map(c => {
                 const relTime = window.CommentsService ? window.CommentsService.formatRelativeTime(c.timestamp) : '';
+                const isOwner = window.CommentsService ? window.CommentsService.isCommentOwner(c, currentUser) : false;
                 return `
                   <div class="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 hover:border-amber-400/60 dark:hover:border-amber-500/50 transition-all flex flex-col gap-2.5 group">
                     <div class="flex items-center justify-between gap-3 flex-wrap">
@@ -13501,6 +13726,7 @@
                         <span class="text-[10px] text-slate-400 font-mono">
                           · ${relTime}
                         </span>
+                        ${c.isEdited ? `<span class="text-[10px] text-amber-600 dark:text-amber-400 font-medium bg-amber-500/10 px-1.5 py-0.5 rounded" title="最後編輯時間：${escapeHtml(c.editedDateStr || '')}">已編輯</span>` : ''}
                       </div>
 
                       <div class="flex items-center gap-2">
@@ -13511,12 +13737,26 @@
                           <span>${escapeHtml(c.chapterTitle || '前往章節')}</span>
                           <span>➜</span>
                         </a>
+                        ${isOwner ? `
+                          <div class="flex items-center gap-1 ml-1">
+                            <button onclick="window.startEditAnalyticsComment('${c.id}')" title="編輯留言" class="px-2 py-1 text-xs text-slate-500 hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
+                              <span>✏️</span>
+                              <span class="text-[11px] font-medium hidden sm:inline">編輯</span>
+                            </button>
+                            <button onclick="window.confirmDeleteAnalyticsComment('${c.id}')" title="刪除留言" class="px-2 py-1 text-xs text-slate-500 hover:text-rose-600 dark:text-slate-400 dark:hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
+                              <span>🗑️</span>
+                              <span class="text-[11px] font-medium hidden sm:inline">刪除</span>
+                            </button>
+                          </div>
+                        ` : ''}
                       </div>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-9">
-                      ${escapeHtml(c.content)}
-                    </p>
+                    <div id="analytics-comment-body-${c.id}">
+                      <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-9">
+                        ${escapeHtml(c.content)}
+                      </p>
+                    </div>
                   </div>
                 `;
               }).join('');

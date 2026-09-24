@@ -11,10 +11,49 @@
 
 (function () {
   const STORAGE_KEY = 'gear_comments_list';
+  const DELETED_STORAGE_KEY = 'gear_comments_deleted_ids';
   const listeners = [];
   let commentsData = [];
   let dbRef = null;
   let isFirebaseReady = false;
+
+  // 已刪除留言 ID 清單快取（防止雲端快照或本地種子重新復活）
+  function getDeletedCommentIds() {
+    try {
+      const raw = localStorage.getItem(DELETED_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function addDeletedCommentId(id) {
+    if (!id) return;
+    try {
+      const set = new Set(getDeletedCommentIds());
+      set.add(String(id));
+      localStorage.setItem(DELETED_STORAGE_KEY, JSON.stringify(Array.from(set)));
+    } catch (e) {
+      console.warn('[CommentsService] 記錄刪除 ID 失敗:', e);
+    }
+  }
+
+  // 驗證是否為留言作者本人
+  function isCommentOwner(comment, user) {
+    if (!comment || !user) return false;
+    const cUid = String(comment.userId || '').trim();
+    const uUid = String(user.uid || '').trim();
+    if (cUid && uUid && cUid === uUid) return true;
+
+    const uAccount = String(user.accountName || '').trim();
+    if (cUid && uAccount && cUid === uAccount) return true;
+
+    const cEmail = String(comment.userEmail || '').trim().toLowerCase();
+    const uEmail = String(user.email || '').trim().toLowerCase();
+    if (cEmail && uEmail && cEmail === uEmail) return true;
+
+    return false;
+  }
 
   // 格式化標準日期時間字串 YYYY-MM-DD HH:mm
   function formatDateTime(ts) {
@@ -155,22 +194,24 @@
     ];
   }
 
-  // 從 LocalStorage 載入
+  // 從 LocalStorage 載入（過濾已刪除項）
   function loadLocalComments() {
+    const deletedSet = new Set(getDeletedCommentIds());
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.filter(c => c && c.id && !c.isDeleted && !deletedSet.has(c.id));
         }
       }
     } catch (e) {
       console.warn('[CommentsService] 讀取本地留言快取失敗:', e);
     }
     const seeds = getSeedComments();
-    saveLocalComments(seeds);
-    return seeds;
+    const validSeeds = seeds.filter(s => !deletedSet.has(s.id));
+    saveLocalComments(validSeeds);
+    return validSeeds;
   }
 
   // 儲存至 LocalStorage
@@ -182,14 +223,24 @@
     }
   }
 
-  // 合併雲端與本地留言（依 ID 去重，最新在最前）
+  // 合併雲端與本地留言（依 ID 去重，過濾已刪除項，最新在最前）
   function mergeComments(cloudList, localList) {
+    const deletedSet = new Set(getDeletedCommentIds());
     const map = new Map();
     (localList || []).forEach(item => {
-      if (item && item.id) map.set(item.id, item);
+      if (item && item.id && !item.isDeleted && !deletedSet.has(item.id)) {
+        map.set(item.id, item);
+      }
     });
     (cloudList || []).forEach(item => {
-      if (item && item.id) map.set(item.id, item);
+      if (item && item.id) {
+        if (item.isDeleted || deletedSet.has(item.id)) {
+          map.delete(item.id);
+          addDeletedCommentId(item.id);
+        } else {
+          map.set(item.id, item);
+        }
+      }
     });
     const merged = Array.from(map.values());
     merged.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
@@ -260,23 +311,26 @@
     escapeHtml: escapeHtml,
     renderAvatar: renderAvatar,
 
+    // 判斷是否為留言作者本人
+    isCommentOwner: isCommentOwner,
+
     // 取得所有留言（依時間倒序）
     getAllComments: function () {
-      return [...commentsData].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      return [...commentsData].filter(c => !c.isDeleted).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     },
 
     // 取得指定文章/章節的留言
     getCommentsByChapter: function (bookId, chapterId) {
       const chIdNum = Number(chapterId);
       return commentsData
-        .filter(c => c.bookId === bookId && Number(c.chapterId) === chIdNum)
+        .filter(c => c.bookId === bookId && Number(c.chapterId) === chIdNum && !c.isDeleted)
         .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     },
 
     // 取得指定文章/章節的留言筆數
     getChapterCommentsCount: function (bookId, chapterId) {
       const chIdNum = Number(chapterId);
-      return commentsData.filter(c => c.bookId === bookId && Number(c.chapterId) === chIdNum).length;
+      return commentsData.filter(c => c.bookId === bookId && Number(c.chapterId) === chIdNum && !c.isDeleted).length;
     },
 
     // 取得時段留言紀錄：支援 'today' | 7 | 14 | 30
@@ -286,11 +340,11 @@
 
       if (range === 'today' || range === 0) {
         const todayStart = getTodayStartTimestamp();
-        filtered = commentsData.filter(c => (c.timestamp || 0) >= todayStart);
+        filtered = commentsData.filter(c => !c.isDeleted && (c.timestamp || 0) >= todayStart);
       } else {
         const days = Number(range) || 7;
         const cutoff = now - days * 86400000;
-        filtered = commentsData.filter(c => (c.timestamp || 0) >= cutoff);
+        filtered = commentsData.filter(c => !c.isDeleted && (c.timestamp || 0) >= cutoff);
       }
 
       return filtered.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
@@ -321,12 +375,14 @@
         bookTitle: bookTitle || String(bookId),
         chapterTitle: chapterTitle || `第 ${chapterId} 章`,
         seriesTitle: seriesTitle || bookTitle || '冒險齒輪系列',
-        userId: user.uid || ('usr_' + now),
+        userId: user.uid || user.accountName || ('usr_' + now),
+        userEmail: user.email || null,
         userName: displayName,
         userAvatar: avatar,
         content: text,
         timestamp: now,
-        dateStr: formatDateTime(now)
+        dateStr: formatDateTime(now),
+        isEdited: false
       };
 
       // 1. 本地更新
@@ -347,6 +403,97 @@
       notifyListeners();
 
       return newComment;
+    },
+
+    // 編輯修改留言（只限作者本人）
+    updateComment: async function (commentId, newContent, user) {
+      if (!user || (!user.uid && !user.accountName)) {
+        throw new Error('未登入使用者無法編輯留言！');
+      }
+      const comment = commentsData.find(c => c.id === commentId && !c.isDeleted);
+      if (!comment) {
+        throw new Error('找不到該則留言！');
+      }
+      if (!isCommentOwner(comment, user)) {
+        throw new Error('您只能編輯屬於自己的留言！');
+      }
+
+      const text = (newContent || '').trim();
+      if (!text) {
+        throw new Error('留言內容不可為空！');
+      }
+      if (text.length > 500) {
+        throw new Error('留言長度上限為 500 個字元！');
+      }
+
+      const now = Date.now();
+      comment.content = text;
+      comment.isEdited = true;
+      comment.editedAt = now;
+      comment.editedDateStr = formatDateTime(now);
+
+      // 1. 本地更新
+      saveLocalComments(commentsData);
+
+      // 2. 雲端同步 (Firebase Realtime Database)
+      if (dbRef) {
+        try {
+          await dbRef.child(commentId).update({
+            content: text,
+            isEdited: true,
+            editedAt: now,
+            editedDateStr: comment.editedDateStr
+          });
+          console.log('[CommentsService] 留言編輯已同步至 Firebase Realtime DB');
+        } catch (e) {
+          console.warn('[CommentsService] Firebase 留言編輯失敗，但本地已安全更新:', e);
+        }
+      }
+
+      // 3. 通知監聽者
+      notifyListeners();
+
+      return comment;
+    },
+
+    // 刪除留言（只限作者本人）
+    deleteComment: async function (commentId, user) {
+      if (!user || (!user.uid && !user.accountName)) {
+        throw new Error('未登入使用者無法刪除留言！');
+      }
+      const comment = commentsData.find(c => c.id === commentId && !c.isDeleted);
+      if (!comment) {
+        throw new Error('找不到該則留言！');
+      }
+      if (!isCommentOwner(comment, user)) {
+        throw new Error('您只能刪除屬於自己的留言！');
+      }
+
+      // 記錄至已刪除清單
+      addDeletedCommentId(commentId);
+
+      // 從本機資料集移除
+      commentsData = commentsData.filter(c => c.id !== commentId);
+      saveLocalComments(commentsData);
+
+      // 雲端同步標記刪除
+      if (dbRef) {
+        try {
+          await dbRef.child(commentId).set({
+            id: commentId,
+            isDeleted: true,
+            deletedAt: Date.now()
+          });
+          console.log('[CommentsService] 留言已同步自 Firebase 標記刪除');
+        } catch (e) {
+          console.warn('[CommentsService] Firebase 留言刪除失敗，但本地已安全移除:', e);
+        }
+      }
+
+      // 通知監聽者
+      notifyListeners();
+
+      return true;
     }
   };
 
