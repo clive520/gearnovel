@@ -3825,8 +3825,94 @@
   };
   ReaderAutoHideManager.init();
 
+
+  // 動態按需非同步載入書籍內文資料 (Lazy Loading)
+  const loadedBookScripts = {};
+  function ensureBookContentLoaded(bookId) {
+    return new Promise((resolve, reject) => {
+      const book = DATA.books.find(b => b.id === bookId);
+      // 若該書的第一章已經有內文，代表已在記憶體中
+      if (book && book.chapters && book.chapters[0] && book.chapters[0].rawContent) {
+        return resolve();
+      }
+
+      // 若 window.GEAR_BOOK_CONTENTS 已有該書資料，直接綁定
+      if (window.GEAR_BOOK_CONTENTS && window.GEAR_BOOK_CONTENTS[bookId]) {
+        attachBookContents(bookId);
+        return resolve();
+      }
+
+      // 避免重複插入相同 script
+      if (loadedBookScripts[bookId]) {
+        return loadedBookScripts[bookId].then(resolve).catch(reject);
+      }
+
+      const promise = new Promise((res, rej) => {
+        const script = document.createElement('script');
+        script.src = `./js/data/books/${bookId}.js`;
+        script.onload = () => {
+          attachBookContents(bookId);
+          res();
+        };
+        script.onerror = () => {
+          console.error(`Failed to load book content for ${bookId}`);
+          rej(new Error(`無法載入書籍內容：${bookId}`));
+        };
+        document.head.appendChild(script);
+      });
+
+      loadedBookScripts[bookId] = promise;
+      promise.then(resolve).catch(reject);
+    });
+  }
+
+  function attachBookContents(bookId) {
+    const book = DATA.books.find(b => b.id === bookId);
+    if (!book || !window.GEAR_BOOK_CONTENTS || !window.GEAR_BOOK_CONTENTS[bookId]) return;
+    const contents = window.GEAR_BOOK_CONTENTS[bookId];
+    contents.forEach(item => {
+      const ch = book.chapters.find(c => c.id === item.id);
+      if (ch) {
+        ch.rawContent = item.rawContent;
+        ch.rawContentEn = item.rawContentEn;
+      }
+    });
+  }
+
   function renderReader(bookId, chapterId, targetParaIndex = undefined) {
     const book = DATA.books.find(b => b.id === bookId) || DATA.books[0];
+    const effectiveBookId = book ? book.id : bookId;
+
+    // 檢查章節內文是否已在記憶體中，若尚未載入則非同步載入該書檔案
+    if (!book || !book.chapters[0] || !book.chapters[0].rawContent) {
+      const container = document.getElementById('app-main');
+      if (container) {
+        container.innerHTML = `
+          <div class="flex flex-col items-center justify-center min-h-[60vh] text-center p-8">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl text-amber-600 animate-spin mb-4">
+              ⚙️
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">正在載入章節內文...</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">極速按需下載章節數據，請稍候</p>
+          </div>
+        `;
+      }
+      ensureBookContentLoaded(effectiveBookId).then(() => {
+        renderReader(effectiveBookId, chapterId, targetParaIndex);
+      }).catch(err => {
+        if (container) {
+          container.innerHTML = `
+            <div class="p-8 text-center text-rose-500">
+              <p class="font-bold mb-2">載入失敗</p>
+              <p class="text-xs text-slate-400">${err.message}</p>
+              <a href="#/" class="inline-block mt-4 px-4 py-2 bg-amber-600 text-white rounded-xl text-xs font-bold">返回書庫</a>
+            </div>
+          `;
+        }
+      });
+      return;
+    }
+
     const chapter = book.chapters.find(c => c.id === chapterId || c.globalId === chapterId) || book.chapters[0];
     saveProgress(bookId, chapter.id);
     if (window.StatsService) {
