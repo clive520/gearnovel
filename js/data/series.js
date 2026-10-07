@@ -1,6 +1,84 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+    "id": "series-16",
+    "title": "頭七解剖室：聽死者說話的法醫",
+    "enTitle": "The Seventh Day in the Morgue: The Forensic Pathologist Who Listens to the Dead",
+    "subtitle": "台灣本土法醫通靈懸疑 · 全四卷完結套書（共 16 章）",
+    "badge": "🔬 台灣本土法醫通靈懸疑篇",
+    "badgeColor": "indigo",
+    "targetAudience": "15 歲以上適讀 · 硬核法醫病理學 × 台灣民俗通靈 × 社會派推理",
+    "tagline": "解剖刀切開的是肉體，拼湊出的是死者未竟的遺願與尊嚴！",
+    "description": "基隆地檢署特約法醫陳念舟天生具備『頭七見亡者』的特殊體質——在死者身故後的第七天，他能在解剖台旁聽見死者殘留的微弱執念與無聲訴說。然而，通靈從不能作為法庭證據；唯有以手術刀切開冰冷皮肉、以病理切片與毒物色譜化驗出不可動搖的科學鐵證，才能替無辜沉冤昭雪、將真兇繩之以法！從基隆港的無名浮屍、豪門鋼琴師的離奇偽裝自殺、九份金瓜石廢棄礦坑的碳化焦屍，到最後解剖台上最敬愛的法醫恩師……陳念舟攜手刑警阿達、地檢署林檢察官，甚至與地府陰差牛頭馬面達成默契協議，展開一場扣人心弦、兼具硬核法醫科學與台灣在地溫情的破案傳奇！",
+    "stats": {
+      "totalVolumes": 4,
+      "currentVolumesReleased": 4,
+      "totalChapters": 16,
+      "currentChaptersReleased": 16,
+      "totalWords": "全四卷大完結 · 全套 62,300 字",
+      "statusText": "全書大完結 · 全套 16 章"
+    },
+    "volumes": [
+      {
+        "bookId": "book-40",
+        "volNum": "第一卷",
+        "title": "冰冷台子上的第一縷青煙",
+        "subtitle": "港口浮屍、解剖初啼與地府陰差的契約",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 1～4 章 · 1.8 萬字",
+        "status": "全 4 章已完結",
+        "theme": "硅藻檢驗 × 頸部扼痕 × 陰差警告執照",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-41",
+        "volNum": "第二卷",
+        "title": "無法言說的秘密與深淵",
+        "subtitle": "豪門墜亡、指甲微物與未完的夜曲",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 5～8 章 · 1.6 萬字",
+        "status": "全 4 章已完結",
+        "theme": "偽裝自殺 × 指甲DNA × 解剖室失竊案",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-42",
+        "volNum": "第三卷",
+        "title": "烈火與深水的沉冤",
+        "subtitle": "礦坑焦屍、生活反應與地府調卷令",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 9～12 章 · 1.6 萬字",
+        "status": "全 4 章已完結",
+        "theme": "熱呼吸道反應 × 三十年遺囑 × 地府調卷令",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-43",
+        "volNum": "第四卷",
+        "title": "命運的最後一場相驗",
+        "subtitle": "恩師之死、隱蔽針孔與最後的法醫課",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 13～16 章 · 1.3 萬字",
+        "status": "全 4 章已完結",
+        "theme": "自體中毒迷局 × 隱蔽注射針孔 × 死者的安息",
+        "firstChapterId": 1
+      }
+    ],
+    "highlights": [
+      "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 16 章段落精準相符）",
+      "硬核台灣法醫病理學 × 在地民俗通靈：以手術刀切開謊言，以化學鐵證替沉冤昭雪",
+      "生者的破曉，死者的安息：融合九份礦坑、基隆港口與在地人情味的動人救贖"
+    ],
+    "themeTone": "indigo",
+    "coverStyle": "from-indigo-900/30 via-slate-900/40 to-slate-950/60 border-indigo-500/40",
+    "startBookId": "book-40",
+    "startChapterId": 1
+  },
+  {
   "id": "series-15",
   "title": "全班搶救校園大作戰：被科技吞噬的鹿陽國小",
   "enTitle": "Operation Save Our School: Luyang Elementary Consumed by Tech",
