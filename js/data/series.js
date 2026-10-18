@@ -1,6 +1,84 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+    "id": "series-17",
+    "title": "零號坍縮：深淵之眼的波函數",
+    "enTitle": "Collapse Zero: The Wavefunction of the Eye of the Abyss",
+    "subtitle": "硬核量子物理密室 × 嚴謹司法病理學 · 全四卷完結套書（共 16 章）",
+    "badge": "🧊 硬核量子物理密室推理篇",
+    "badgeColor": "cyan",
+    "targetAudience": "16 歲以上適讀 · 硬核量子物理密室 × 司法病理學 × 暴風雪山莊",
+    "tagline": "當箱子緊閉時他是活著的；當你決定窺視的那一秒，你親手殺死了他——而且是在七十二小時之前！",
+    "description": "中央山脈暴風雪狂嘯，法務部特任法醫陸青巖受命迫降玉山北峰，進駐地底 450 公尺的『深淵之眼』地下量子低溫實驗基地，作為官方見證人參與首席科學家沈淮安進行的『宏觀量子疊加態人體孤立系統實驗』。然而在 72 小時倒數歸零、觀測窗開啟的 0.4 秒內，艙內心電圖驟然拉平，赫然呈現一具胸腔長滿真菌菌絲網、完全乾癟脫水的白骨化乾屍！兩大不可思議的病理逆論引爆密室風暴：零下極低溫真空乾屍的胃袋深處，竟分離出新鮮溫熱的白米飯；肺泡深處更檢出玉山三千公尺峭壁特有的新鮮高山杜鵑花粉！面對地底光纖盲斷、超導液氦失竊、微觀因果羅網與跨國軍工集團的背叛陰謀，陸青巖手持恩師江敬遠刻有『慎微』的解剖刀，攜手沈淮安之女沈念真，以經典病理鐵證剖開宏觀波函數的重重迷霧！",
+    "stats": {
+      "totalVolumes": 4,
+      "currentVolumesReleased": 4,
+      "totalChapters": 16,
+      "currentChaptersReleased": 16,
+      "totalWords": "全四卷大完結 · 全套 94,000 字",
+      "statusText": "全書大完結 · 全套 16 章"
+    },
+    "volumes": [
+      {
+        "bookId": "book-44",
+        "volNum": "第一卷",
+        "title": "零號之盒",
+        "subtitle": "深淵地底四百五十公尺、絕對隔絕與時空逆論",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 1～4 章 · 3.5 萬字",
+        "status": "全 4 章已完結",
+        "theme": "極限真空 × 絕對白骨化 × 胃袋新鮮米飯 × 杜鵑花粉",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-45",
+        "volNum": "第二卷",
+        "title": "幽閉干涉",
+        "subtitle": "光纖盲斷、雙子球體密室與五位觀測者的羅網",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 5～8 章 · 2.4 萬字",
+        "status": "全 4 章已完結",
+        "theme": "微觀因果羅網 × 零號負艙 × 冰封密室 × 相位盲區",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-46",
+        "volNum": "第三卷",
+        "title": "逆向因果",
+        "subtitle": "惠勒延遲選擇、超臨界萃取與主動入局的薛丁格之貓",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 9～12 章 · 1.9 萬字",
+        "status": "全 4 章已完結",
+        "theme": "延遲選擇實驗 × 高頻昇華 × 消失的超導液氦 × 以身入局",
+        "firstChapterId": 1
+      },
+      {
+        "bookId": "book-47",
+        "volNum": "第四卷",
+        "title": "最後的波函數",
+        "subtitle": "冷卻崩塌、法庭級嚴密閉環與玉山第一道晨光",
+        "chaptersCount": 4,
+        "releasedChapters": 4,
+        "wordCount": "第 13～16 章 · 1.6 萬字",
+        "status": "全 4 章已完結",
+        "theme": "冷卻劑崩塌 × 法庭嚴密閉環 × 未坍縮錄音帶 × 晨光破曉",
+        "firstChapterId": 1
+      }
+    ],
+    "highlights": [
+      "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 16 章段落精準相符）",
+      "硬核量子物理密室 × 司法病理鑑識：彭寧離子阱、超臨界二氧化碳、惠勒延遲選擇的極致智鬥",
+      "橫跨三十年的精神信義：江敬遠『慎微』手術刀傳承、深沉壯烈的父女救贖與國家主權捍衛"
+    ],
+    "themeTone": "cyan",
+    "coverStyle": "from-cyan-950/40 via-slate-900/50 to-slate-950/70 border-cyan-500/40",
+    "startBookId": "book-44",
+    "startChapterId": 1
+  },
+  {
     "id": "series-16",
     "title": "頭七解剖室：聽死者說話的法醫",
     "enTitle": "The Seventh Day in the Morgue: The Forensic Pathologist Who Listens to the Dead",

@@ -4968,6 +4968,202 @@ window.GEAR_NOVELS_DATA = {
           "id": 4
         }
       ]
+    },
+    {
+      "id": "book-44",
+      "title": "零號坍縮：深淵之眼的波函數 · 第一卷",
+      "enTitle": "Collapse Zero: Volume 1",
+      "subtitle": "第一卷 · 零號之盒（第 1～4 章）",
+      "enSubtitle": "Volume 1: Box Zero (Chapters 1-4)",
+      "status": "已完結",
+      "statusColor": "cyan",
+      "coverTag": "極限真空 × 絕對白骨化 × 胃袋新鮮米飯 × 杜鵑花粉",
+      "author": "鹿陽故事工坊",
+      "targetAge": "16 歲以上（高中生至成人）",
+      "totalWords": 36085,
+      "totalChapters": 4,
+      "description": "法務部特任法醫陸青巖迫降玉山北峰地底 450 公尺『深淵之眼』基地，作為官方見證人參與沈淮安教授的宏觀量子疊加態孤立實驗。72小時倒數歸零，觀測窗開啟的 0.4 秒內，艙內心電圖驟然拉平，赫然呈現一具胸腔長滿菌絲網的白骨化乾屍！極寒真空乾屍的胃袋深處竟有溫熱新鮮米飯，肺泡更檢出三千公尺峭壁的高山杜鵑花粉，兩大病理逆論引爆密室風暴！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第01章_深淵地底四百五十米之極限真空.md",
+          "title": "第 1 章：深淵地底四百五十米之極限真空",
+          "enTitle": "Chapter 1: The Extreme Vacuum 450 Meters Deep in the Abyss",
+          "shortTitle": "深淵地底四百五十米之極限真空",
+          "wordCount": 10793
+        },
+        {
+          "id": 2,
+          "file": "第02章_零點四秒的時空逆論：絕對白骨化.md",
+          "title": "第 2 章：零點四秒的時空逆論：絕對白骨化",
+          "enTitle": "Chapter 2: The Spacetime Paradox of 0.4 Seconds: Absolute Skeletonization",
+          "shortTitle": "零點四秒的時空逆論：絕對白骨化",
+          "wordCount": 8705
+        },
+        {
+          "id": 3,
+          "file": "第03章_冰封胃袋裡未冷的新鮮米飯.md",
+          "title": "第 3 章：冰封胃袋裡未冷的新鮮米飯",
+          "enTitle": "Chapter 3: Fresh Rice Still Uncooled Within the Frozen Stomach",
+          "shortTitle": "冰封胃袋裡未冷的新鮮米飯",
+          "wordCount": 8693
+        },
+        {
+          "id": 4,
+          "file": "第04章_肺泡深處漂浮的高山杜鵑花粉.md",
+          "title": "第 4 章：肺泡深處漂浮的高山杜鵑花粉",
+          "enTitle": "Chapter 4: Alpine Rhododendron Pollen Suspended Deep in the Alveoli",
+          "shortTitle": "肺泡深處漂浮的高山杜鵑花粉",
+          "wordCount": 7894
+        }
+      ]
+    },
+    {
+      "id": "book-45",
+      "title": "零號坍縮：深淵之眼的波函數 · 第二卷",
+      "enTitle": "Collapse Zero: Volume 2",
+      "subtitle": "第二卷 · 幽閉干涉（第 5～8 章）",
+      "enSubtitle": "Volume 2: Claustrophobic Interference (Chapters 5-8)",
+      "status": "已完結",
+      "statusColor": "cyan",
+      "coverTag": "微觀因果羅網 × 零號負艙 × 冰封密室 × 相位盲區",
+      "author": "鹿陽故事工坊",
+      "targetAge": "16 歲以上（高中生至成人）",
+      "totalWords": 25303,
+      "totalChapters": 4,
+      "description": "三條軍用防中子光纜遭激光熔斷，全基地防核爆失壓自鎖陷入絕命盲斷。陸青巖與沈念真在地下暗河水囊中揭發第二個對稱超導球體『零號負艙』，搜獲沈淮安最後敲擊出的【零號沉】莫斯密碼與三十年前同框老照片！眾人攻入標高負 520 公尺的第三冰封密室，德籍專家克勞斯已成冰雕，身邊特勤小隊長的終極倒戈引爆生死交鋒！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第05章_五位觀測者的微觀因果羅網.md",
+          "title": "第 5 章：五位觀測者的微觀因果羅網",
+          "enTitle": "Chapter 5: The Microscopic Causal Web of Five Observers",
+          "shortTitle": "五位觀測者的微觀因果羅網",
+          "wordCount": 6564
+        },
+        {
+          "id": 2,
+          "file": "第06章_地底光纖盲斷與黑暗中的莫斯低鳴.md",
+          "title": "第 6 章：地底光纖盲斷與黑暗中的莫斯低鳴",
+          "enTitle": "Chapter 6: Underground Fiber Optic Blackout and Morse Murmurs in the Dark",
+          "shortTitle": "地底光纖盲斷與黑暗中的莫斯低鳴",
+          "wordCount": 6384
+        },
+        {
+          "id": 3,
+          "file": "第07章_零下一百九十六度的冰封密室.md",
+          "title": "第 7 章：零下一百九十六度的冰封密室",
+          "enTitle": "Chapter 7: The Frozen Chamber at Minus 196 Degrees",
+          "shortTitle": "零下一百九十六度的冰封密室",
+          "wordCount": 6198
+        },
+        {
+          "id": 4,
+          "file": "第08章_光學偏振分束器下的相位盲區.md",
+          "title": "第 8 章：光學偏振分束器下的相位盲區",
+          "enTitle": "Chapter 8: Phase Blind Spots Beneath the Optical Polarizing Beam Splitter",
+          "shortTitle": "光學偏振分束器下的相位盲區",
+          "wordCount": 6157
+        }
+      ]
+    },
+    {
+      "id": "book-46",
+      "title": "零號坍縮：深淵之眼的波函數 · 第三卷",
+      "enTitle": "Collapse Zero: Volume 3",
+      "subtitle": "第三卷 · 逆向因果（第 9～12 章）",
+      "enSubtitle": "Volume 3: Retrocausality (Chapters 9-12)",
+      "status": "已完結",
+      "statusColor": "cyan",
+      "coverTag": "延遲選擇實驗 × 高頻昇華 × 消失的超導液氦 × 以身入局",
+      "author": "鹿陽故事工坊",
+      "targetAge": "16 歲以上（高中生至成人）",
+      "totalWords": 20068,
+      "totalChapters": 4,
+      "description": "惠勒延遲選擇實驗在宏觀密室上演——觀測者的決定逆向覆寫過去！基地 120 公升超導液氦不翼而飛，沈淮安患漸凍人症晚期真相曝光。老科學家為了守護國家重器『零號拓撲晶圓母體』，毅然以自身為薛丁格之貓反鎖入局，引誘跨國軍工集團收買的叛徒網絡現形！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第09章_惠勒延遲選擇：被未來逆寫的過去.md",
+          "title": "第 9 章：惠勒延遲選擇：被未來逆寫的過去",
+          "enTitle": "Chapter 9: Wheeler's Delayed Choice: Past Overwritten by the Future",
+          "shortTitle": "惠勒延遲選擇：被未來逆寫的過去",
+          "wordCount": 5348
+        },
+        {
+          "id": 2,
+          "file": "第10章_超臨界萃取與高頻昇華魔術.md",
+          "title": "第 10 章：超臨界萃取與高頻昇華魔術",
+          "enTitle": "Chapter 10: Supercritical Extraction and High-Frequency Sublimation Magic",
+          "shortTitle": "超臨界萃取與高頻昇華魔術",
+          "wordCount": 5682
+        },
+        {
+          "id": 3,
+          "file": "第11章_消失的一百二十公升超導液氦.md",
+          "title": "第 11 章：消失的一百二十公升超導液氦",
+          "enTitle": "Chapter 11: The Disappearance of 120 Liters of Superconducting Liquid Helium",
+          "shortTitle": "消失的一百二十公升超導液氦",
+          "wordCount": 4762
+        },
+        {
+          "id": 4,
+          "file": "第12章_主動踏入死局的薛丁格之貓.md",
+          "title": "第 12 章：主動踏入死局的薛丁格之貓",
+          "enTitle": "Chapter 12: Schrödinger's Cat Voluntarily Entering the Dead End",
+          "shortTitle": "主動踏入死局的薛丁格之貓",
+          "wordCount": 4276
+        }
+      ]
+    },
+    {
+      "id": "book-47",
+      "title": "零號坍縮：深淵之眼的波函數 · 第四卷",
+      "enTitle": "Collapse Zero: Volume 4",
+      "subtitle": "第四卷 · 最後的波函數（第 13～16 章）",
+      "enSubtitle": "Volume 4: The Final Wavefunction (Chapters 13-16)",
+      "status": "已完結",
+      "statusColor": "cyan",
+      "coverTag": "冷卻劑崩塌 × 法庭嚴密閉環 × 未坍縮錄音帶 × 晨光破曉",
+      "author": "鹿陽故事工坊",
+      "targetAge": "16 歲以上（高中生至成人）",
+      "totalWords": 16135,
+      "totalChapters": 4,
+      "description": "絕對零度冷卻劑管路崩塌在即，陸青巖手持恩師江敬遠刻有『慎微』的解剖刀，在特種軍事法庭上以病理切片與量子干涉光譜築起法庭級嚴密閉環，徹底擊潰跨國財閥代表律師團！封印在玉山東峰第十八號防空洞的本尊波函數終於定格，當第一道金色晨光刺穿玉山地底深淵，死者安息，生者迎來破曉！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第13章_對峙於冷卻劑崩塌之絕對零度.md",
+          "title": "第 13 章：對峙於冷卻劑崩塌之絕對零度",
+          "enTitle": "Chapter 13: Confrontation at Absolute Zero of Coolant Collapse",
+          "shortTitle": "對峙於冷卻劑崩塌之絕對零度",
+          "wordCount": 5244
+        },
+        {
+          "id": 2,
+          "file": "第14章_宏觀糾纏的終結：法庭級嚴密閉環.md",
+          "title": "第 14 章：宏觀糾纏的終結：法庭級嚴密閉環",
+          "enTitle": "Chapter 14: The End of Macroscopic Entanglement: Court-Grade Strict Closure",
+          "shortTitle": "宏觀糾纏的終結：法庭級嚴密閉環",
+          "wordCount": 3888
+        },
+        {
+          "id": 3,
+          "file": "第15章_留給未來的未坍縮錄音帶.md",
+          "title": "第 15 章：留給未來的未坍縮錄音帶",
+          "enTitle": "Chapter 15: The Uncollapsed Tape Left for the Future",
+          "shortTitle": "留給未來的未坍縮錄音帶",
+          "wordCount": 3763
+        },
+        {
+          "id": 4,
+          "file": "第16章_當玉山第一道晨光刺穿深淵.md",
+          "title": "第 16 章：當玉山第一道晨光刺穿深淵",
+          "enTitle": "Chapter 16: When Jade Mountain's First Morning Ray Pierces the Abyss",
+          "shortTitle": "當玉山第一道晨光刺穿深淵",
+          "wordCount": 3240
+        }
+      ]
     }
   ],
   "characters": [
@@ -7582,6 +7778,166 @@ window.GEAR_NOVELS_DATA = {
         {
           "name": "極細微孔隱蔽注射器",
           "desc": "特製超微直徑針管，專門用於無痕注入劇毒神經毒素的作案凶器。"
+        }
+      ]
+    },
+    {
+      "name": "陸青巖（首席法醫）",
+      "enName": "Lu Qing-yan (Chief Pathologist)",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "男主角 · 法務部特任病理組首席法醫",
+      "age": "36 歲",
+      "class": "法務部法醫研究所 / 刑事局鑑識中心",
+      "avatar": "🔬",
+      "badge": "絕對理性法醫 / 江老關門弟子",
+      "desc": "法醫學界年輕一代的頂級泰斗，江敬遠教授的唯一親傳弟子。極致理性、慎微自持，信奉『法醫不承認量子疊加態，只要是血肉就必須服從病理學重力』。手持江老手刻『慎微』的 11 號手術刀，穿透地底 450 公尺彭寧離子阱的物理謊言。",
+      "items": [
+        {
+          "name": "11 號高碳鎢鋼解剖刀",
+          "desc": "恩師江敬遠親手雕刻『慎微』二字之信物，穿透偽證與迷霧的終極鋒刃。"
+        },
+        {
+          "name": "FOR-TW-0914 三防器材箱",
+          "desc": "強化聚碳酸酯外殼，配備雙波長差分拉曼光譜儀與全息微創採樣單元。"
+        },
+        {
+          "name": "黃色軟包長壽香菸",
+          "desc": "思考案情、串聯微觀邏輯節點與敬奠逝者時點燃的純樸煙火。"
+        }
+      ]
+    },
+    {
+      "name": "沈念真（常溫超導工程師）",
+      "enName": "Shen Nian-zhen (Chief Engineer)",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "女主角 · 深淵之眼首席超導工程師",
+      "age": "26 歲",
+      "class": "玉山北峰深淵之眼地下實驗基地",
+      "avatar": "👩‍🔬",
+      "badge": "第一科學大腦 / 鋼鐵意志女學者",
+      "desc": "沈淮安教授的獨生女兼唯一法定技術繼承人。深居無菌地底，兼具清秀與鋼鐵決心。從最初對父親生死疊加態的痛苦執念，歷經地底背叛與法庭對決，迅速蛻變為在全世界鏡頭前捍衛國家技術主權的頂級女科學家。",
+      "items": [
+        {
+          "name": "原子級磁力顯微鏡（MFM）",
+          "desc": "解密原版硬碟 MRAM 底層纠缠磁場與量子波函數的關鍵利器。"
+        },
+        {
+          "name": "純鈹合金編織戒與白玉蘭胸針",
+          "desc": "父親生前所贈，象徵純潔、尊嚴與不屈的科學信念。"
+        }
+      ]
+    },
+    {
+      "name": "沈淮安 教授（常溫超導泰斗）",
+      "enName": "Prof. Shen Huai-an",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "死者兼終極設計者 · 殉道物理學家",
+      "age": "62 歲（享年）",
+      "class": "深淵之眼實驗基地首席科學家",
+      "avatar": "👴",
+      "badge": "零號密室總設計師 / 活體觀測者",
+      "desc": "享譽國際的常溫超導泰斗，三十年前曾與江敬遠共同創立法醫鑑識實驗室。確診 ALS 漸凍人晚期後，察覺跨國軍工集團掠奪陰謀，毅然布下『宏觀延遲選擇局』以身入局，封印在玉山東峰防空洞作為活體觀測者守護技術主權。",
+      "items": [
+        {
+          "name": "《觀測者之書》染血筆記本",
+          "desc": "純牛皮封面，記載地下雙向對稱管網模型與海森堡不確定性原理血書。"
+        },
+        {
+          "name": "三十年鶯歌粗陶大海碗",
+          "desc": "三十年前放置於氣象站重力地窖，盛裝 72 小時宏觀延遲波導循環米飯的時空信物。"
+        }
+      ]
+    },
+    {
+      "name": "周敬雄（行政總監）",
+      "enName": "Zhou Jing-xiong",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "深淵之眼行政總監（內部間諜內鬼）",
+      "age": "55 歲",
+      "class": "深淵之眼地下基地行政管理部",
+      "avatar": "🕶️",
+      "badge": "貪婪掮客 / 偽裝觀測者",
+      "desc": "看似恪盡職守的基地大管家，實則早被境外勢力巨額收買。利用採購特種苗木走私化學微膠囊毒害沈淮安，並在今晨啟動超臨界二氧化碳高壓清洗企圖滅口毀證，在陸青巖科學鐵證面前被沈念真斷腕制伏。",
+      "items": [
+        {
+          "name": "超臨界清洗改裝高壓閥門",
+          "desc": "用於在零號艙內注入高壓氣體迅速抽提人體水分的行兇工具。"
+        }
+      ]
+    },
+    {
+      "name": "克勞斯 博士（低溫光學專家）",
+      "enName": "Dr. Klaus Mueller",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "德籍低溫物理外聘專家（跨國商業間諜）",
+      "age": "48 歲",
+      "class": "德國馬克斯普朗克量子所客座研究員",
+      "avatar": "🧊",
+      "badge": "金蟬脫殼者 / 冰雕死者",
+      "desc": "受跨國軍工巨頭重金收買的頂級光學專家。利用相位共軛鏡製造長達 72 小時的監控盲區，企圖金蟬脫殼潛入第三艙盜取晶圓母體，最終死於預埋在偏振光學系統中的高能雷射反射灼傷，化為冰雕。",
+      "items": [
+        {
+          "name": "非線性光學相位共軛鏡組",
+          "desc": "利用非線性四波混頻技術製造全息光學假象的偽裝裝置。"
+        }
+      ]
+    },
+    {
+      "name": "陳啟明（量子射頻工程師）",
+      "enName": "Chen Qi-ming",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "深淵之眼低溫射頻與控制主管",
+      "age": "38 歲",
+      "class": "深淵之眼控制工程部",
+      "avatar": "📡",
+      "badge": "技術幫兇 / 盲斷執行者",
+      "desc": "因投資失敗欠下巨債被周敬雄拉攏下水。利用微波注入器破壞約瑟夫森結微波相位，並以高能雷射熔斷地下三條防中子光纜製造基地盲斷，最終在陸青巖的步態壓力分析下徹底崩潰認罪。",
+      "items": [
+        {
+          "name": "約瑟夫森結微波注入探針",
+          "desc": "用於遠程干擾超導量子干涉儀相位的非法改裝探頭。"
+        }
+      ]
+    },
+    {
+      "name": "趙烈（特勤小隊長）",
+      "enName": "Captain Zhao Lie",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "國防部軍備局玉山安保特勤隊長（雙面特工）",
+      "age": "42 歲",
+      "class": "國防部軍備局駐玉山特種維安小隊",
+      "avatar": "🔫",
+      "badge": "最後倒戈者 / 深淵行刑人",
+      "desc": "全書身邊最強防禦力量的終極倒戈者。表面上身先士卒護衛陸青巖，實為境外勢力部署在安保系統最後底牌。在第三艙冰瀑中拔槍對峙，被陸青巖以法醫盲區槍術與沈念真的超導磁場脈衝聯手制伏。",
+      "items": [
+        {
+          "name": "制式 T97 特種滅音突擊步槍",
+          "desc": "配備微光夜視瞄具，曾在暗河盲斷中精準射擊掩護間諜脫逃。"
+        }
+      ]
+    },
+    {
+      "name": "江敬遠（一代法醫宗師）",
+      "enName": "Dr. Jiang Jing-yuan",
+      "vol": "series17",
+      "volName": "第十七套硬核量子物理密室推理",
+      "role": "法務部法醫研究所創所顧問 · 精神導師",
+      "age": "71 歲（全書精神圖騰）",
+      "class": "法醫研究所榮譽顧問 / 台大名譽教授",
+      "avatar": "👴",
+      "badge": "慎微刀銘傳承者 / 正義基石",
+      "desc": "陸青巖的恩師，台灣司法病理學的靈魂人物。三十年前與沈淮安並肩作戰，親手將刻有『慎微』的手術刀傳承給陸青巖，其嚴謹求真的法醫科學精神，成為全書破開量子物理密室終極陰謀的精神燈塔。",
+      "items": [
+        {
+          "name": "江老三十年《法醫鑑定通則》真跡",
+          "desc": "寫下『慎微自持，莫讓死者含冤』之墨寶手稿。"
         }
       ]
     }
@@ -10843,6 +11199,212 @@ window.GEAR_NOVELS_DATA = {
       "displayChapter": 16,
       "upcoming": false,
       "volTitle": "第十六套 · 命運的最後一場相驗"
+    },
+    {
+      "id": 283,
+      "name": "深淵地底極限真空",
+      "icon": "🔬",
+      "desc": "閱讀《零號坍縮》第 1 章：深淵地底四百五十米之極限真空：法醫陸青巖迫降玉山北峰、見證宏觀量子孤立系統解密，白骨乾屍震驚深淵！",
+      "series": "series17",
+      "bookId": "book-44",
+      "chapterId": 1,
+      "displayChapter": 1,
+      "upcoming": false,
+      "volTitle": "第十七套 · 零號之盒"
+    },
+    {
+      "id": 284,
+      "name": "零點四秒絕對白骨化",
+      "icon": "💀",
+      "desc": "閱讀《零號坍縮》第 2 章：零點四秒的時空逆論：絕對白骨化：超臨界流體抽提人體水分質量暴跌、全息CT掃描查獲枕骨大孔延髓穿刺！",
+      "series": "series17",
+      "bookId": "book-44",
+      "chapterId": 2,
+      "displayChapter": 2,
+      "upcoming": false,
+      "volTitle": "第十七套 · 零號之盒"
+    },
+    {
+      "id": 285,
+      "name": "冰封胃袋的未冷米飯",
+      "icon": "🍚",
+      "desc": "閱讀《零號坍縮》第 3 章：冰封胃袋裡未冷的新鮮米飯：剖開皮革化胃囊查獲QD-PT-09量子相變膠囊、拆穿超低溫物理鎖定時間切片！",
+      "series": "series17",
+      "bookId": "book-44",
+      "chapterId": 3,
+      "displayChapter": 3,
+      "upcoming": false,
+      "volTitle": "第十七套 · 零號之盒"
+    },
+    {
+      "id": 286,
+      "name": "玉山杜鵑花粉獵影",
+      "icon": "🌸",
+      "desc": "閱讀《零號坍縮》第 4 章：肺泡深處漂浮的高山杜鵑花粉：拉曼光譜分析查獲PFOS奈米膠囊毒素、斷腕制伏周敬雄、晨光刺穿深淵！",
+      "series": "series17",
+      "bookId": "book-44",
+      "chapterId": 4,
+      "displayChapter": 4,
+      "upcoming": false,
+      "volTitle": "第十七套 · 零號之盒"
+    },
+    {
+      "id": 287,
+      "name": "五位觀測者因果羅網",
+      "icon": "🕸️",
+      "desc": "閱讀《零號坍縮》第 5 章：五位觀測者的微觀因果羅網：磁力顯微鏡解密MRAM糾纏日誌、切開替身鎖骨發現ΨB接骨板代碼！",
+      "series": "series17",
+      "bookId": "book-45",
+      "chapterId": 1,
+      "displayChapter": 5,
+      "upcoming": false,
+      "volTitle": "第十七套 · 幽閉干涉"
+    },
+    {
+      "id": 288,
+      "name": "地底盲斷零號沉",
+      "icon": "⚡",
+      "desc": "閱讀《零號坍縮》第 6 章：地底光纖盲斷與黑暗中的莫斯低鳴：高能激光熔斷光纜、破譯管道金屬敲擊密碼【零號沉】、探入暗河負艙！",
+      "series": "series17",
+      "bookId": "book-45",
+      "chapterId": 2,
+      "displayChapter": 6,
+      "upcoming": false,
+      "volTitle": "第十七套 · 幽閉干涉"
+    },
+    {
+      "id": 289,
+      "name": "負一百九十六度冰封室",
+      "icon": "🧊",
+      "desc": "閱讀《零號坍縮》第 7 章：零下一百九十六度的冰封密室：攻入固態空氣冰瀑第三艙、查驗微波解剖刀灼痕、揭穿克勞斯金蟬脫殼！",
+      "series": "series17",
+      "bookId": "book-45",
+      "chapterId": 3,
+      "displayChapter": 7,
+      "upcoming": false,
+      "volTitle": "第十七套 · 幽閉干涉"
+    },
+    {
+      "id": 290,
+      "name": "偏振光學相位盲區",
+      "icon": "🪞",
+      "desc": "閱讀《零號坍縮》第 8 章：光學偏振分束器下的相位盲區：識破非線性相位共軛鏡全息盲區、鎖定特勤小隊長趙烈倒戈之死穴！",
+      "series": "series17",
+      "bookId": "book-45",
+      "chapterId": 4,
+      "displayChapter": 8,
+      "upcoming": false,
+      "volTitle": "第十七套 · 幽閉干涉"
+    },
+    {
+      "id": 291,
+      "name": "惠勒延遲選擇之弈",
+      "icon": "⏳",
+      "desc": "閱讀《零號坍縮》第 9 章：惠勒延遲選擇：被未來逆寫的過去：量子雙狹縫延遲決定、微波深層熟化灼傷剖析、因果律逆反大智鬥！",
+      "series": "series17",
+      "bookId": "book-46",
+      "chapterId": 1,
+      "displayChapter": 9,
+      "upcoming": false,
+      "volTitle": "第十七套 · 逆向因果"
+    },
+    {
+      "id": 292,
+      "name": "超臨界昇華魔術",
+      "icon": "🌫️",
+      "desc": "閱讀《零號坍縮》第 10 章：超臨界萃取與高頻昇華魔術：低溫分步昇華捕捉飛克級微晶、SQUID心磁圖鎖定最後神經顫動！",
+      "series": "series17",
+      "bookId": "book-46",
+      "chapterId": 2,
+      "displayChapter": 10,
+      "upcoming": false,
+      "volTitle": "第十七套 · 逆向因果"
+    },
+    {
+      "id": 293,
+      "name": "超導液氦暗河溯源",
+      "icon": "🧪",
+      "desc": "閱讀《零號坍縮》第 11 章：消失的一百二十公升超導液氦：超流態勞森薄膜無阻流動、過冷水潛熱爆發、追查液氦輸送暗管！",
+      "series": "series17",
+      "bookId": "book-46",
+      "chapterId": 3,
+      "displayChapter": 11,
+      "upcoming": false,
+      "volTitle": "第十七套 · 逆向因果"
+    },
+    {
+      "id": 294,
+      "name": "以身入局薛丁格貓",
+      "icon": "🐈",
+      "desc": "閱讀《零號坍縮》第 12 章：主動踏入死局的薛丁格之貓：毒物動力學精準反推吸收時間、沈淮安宏觀以身入局全盤曝光！",
+      "series": "series17",
+      "bookId": "book-46",
+      "chapterId": 4,
+      "displayChapter": 12,
+      "upcoming": false,
+      "volTitle": "第十七套 · 逆向因果"
+    },
+    {
+      "id": 295,
+      "name": "絕對零度冷卻劑崩塌",
+      "icon": "❄️",
+      "desc": "閱讀《零號坍縮》第 13 章：對峙於冷卻劑崩塌之絕對零度：超導磁體失超極限逃生、反常脫衣低溫休克鑑識、陸青巖拔槍斷線！",
+      "series": "series17",
+      "bookId": "book-47",
+      "chapterId": 1,
+      "displayChapter": 13,
+      "upcoming": false,
+      "volTitle": "第十七套 · 最後的波函數"
+    },
+    {
+      "id": 296,
+      "name": "法庭級嚴密閉環",
+      "icon": "⚖️",
+      "desc": "閱讀《零號坍縮》第 14 章：宏觀糾纏的終結：法庭級嚴密閉環：軍事法庭嚴格證據鏈無懈可擊、擊潰跨國軍工財閥辯護律師團！",
+      "series": "series17",
+      "bookId": "book-47",
+      "chapterId": 2,
+      "displayChapter": 14,
+      "upcoming": false,
+      "volTitle": "第十七套 · 最後的波函數"
+    },
+    {
+      "id": 297,
+      "name": "未坍縮的時空遺音",
+      "icon": "📼",
+      "desc": "閱讀《零號坍縮》第 15 章：留給未來的未坍縮錄音帶：解開抗電磁屏蔽黑匣子、沈淮安穿越時空的真情告白、量子擦除器歷史重現！",
+      "series": "series17",
+      "bookId": "book-47",
+      "chapterId": 3,
+      "displayChapter": 15,
+      "upcoming": false,
+      "volTitle": "第十七套 · 最後的波函數"
+    },
+    {
+      "id": 298,
+      "name": "玉山之巔的第一縷晨光",
+      "icon": "🌅",
+      "desc": "閱讀《零號坍縮》第 16 章：當玉山第一道晨光刺穿深淵：江敬遠『慎微』之刀傳承不息、沈念真捍衛技術主權、晨光驅散深淵萬丈陰霾！",
+      "series": "series17",
+      "bookId": "book-47",
+      "chapterId": 4,
+      "displayChapter": 16,
+      "upcoming": false,
+      "volTitle": "第十七套 · 最後的波函數"
+    },
+    {
+      "id": 299,
+      "name": "深淵觀測大師",
+      "nameEn": "Master Observer of the Abyss",
+      "icon": "🏆",
+      "desc": "通讀完成第十七套《零號坍縮：深淵之眼的波函數》全四卷 16 章（9.4 萬字），以經典法醫病理之刀剖開量子密室迷霧，在深淵盡頭見證真理與永恆之愛！",
+      "descEn": "Complete all 16 chapters of Series 17 (94,000 words), piercing the quantum macroscopic box with forensic pathology and upholding the truth across the abyss!",
+      "series": "series17",
+      "bookId": "book-47",
+      "chapterId": 4,
+      "displayChapter": 16,
+      "upcoming": false,
+      "volTitle": "第十七套 · 最後的波函數"
     }
   ]
 };
