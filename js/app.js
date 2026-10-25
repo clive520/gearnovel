@@ -4290,7 +4290,7 @@
               <span>聽這章故事</span>
             </button>
             <span>📖 約 ${chapter.wordCount} 字</span>
-            <span>⏱️ 閱讀時間約 ${chapter.readTimeMin} 分鐘</span>
+            <span>⏱️ 閱讀時間約 ${chapter.readTimeMin || Math.max(1, Math.round((chapter.wordCount || 3000) / 350))} 分鐘</span>
             <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold">
               👁️ ${window.StatsService ? window.StatsService.getChapterReads(bookId, chapter.id) : ''} 次閱讀
             </span>

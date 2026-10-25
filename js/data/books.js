@@ -4794,7 +4794,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 1: The Seventh Day Beneath the Scalpel",
           "shortTitle": "解剖刀下的第七天",
           "wordCount": 5257,
-          "id": 1
+          "id": 1,
+          "readTimeMin": 15
         },
         {
           "file": "第02章_無名浮屍的最後一封掛號信.md",
@@ -4802,7 +4803,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 2: The Unidentified Floater's Final Registered Letter",
           "shortTitle": "無名浮屍的最後一封掛號信",
           "wordCount": 4505,
-          "id": 2
+          "id": 2,
+          "readTimeMin": 13
         },
         {
           "file": "第03章_夜市路口的香蔥肉燥飯.md",
@@ -4810,7 +4812,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 3: Minced Pork Rice with Scallions at the Night Market Corner",
           "shortTitle": "夜市路口的香蔥肉燥飯",
           "wordCount": 3962,
-          "id": 3
+          "id": 3,
+          "readTimeMin": 11
         },
         {
           "file": "第04章_牛頭馬面的警告執照.md",
@@ -4818,7 +4821,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 4: The Warning License from Bull-Head and Horse-Face",
           "shortTitle": "牛頭馬面的警告執照",
           "wordCount": 3876,
-          "id": 4
+          "id": 4,
+          "readTimeMin": 11
         }
       ]
     },
@@ -4843,7 +4847,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 5: The Wealthy Pianist Deemed a \"Suicide\"",
           "shortTitle": "被判定「自殺」的豪門鋼琴師",
           "wordCount": 3724,
-          "id": 1
+          "id": 1,
+          "readTimeMin": 11
         },
         {
           "file": "第06章_留在指甲縫裡的第二個人.md",
@@ -4851,7 +4856,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 6: The Second Person Beneath the Fingernails",
           "shortTitle": "留在指甲縫裡的第二個人",
           "wordCount": 3248,
-          "id": 2
+          "id": 2,
+          "readTimeMin": 9
         },
         {
           "file": "第07章_未曾彈完的蕭邦夜曲.md",
@@ -4859,7 +4865,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 07: The Unfinished Chopin Nocturne",
           "shortTitle": "未曾彈完的蕭邦夜曲",
           "wordCount": 4356,
-          "id": 3
+          "id": 3,
+          "readTimeMin": 12
         },
         {
           "file": "第08章_阿達的平安符與解剖室失竊案.md",
@@ -4867,7 +4874,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 08: Ah-Da's Peace Talisman and the Morgue Heist",
           "shortTitle": "阿達的平安符與解剖室失竊案",
           "wordCount": 4312,
-          "id": 4
+          "id": 4,
+          "readTimeMin": 12
         }
       ]
     },
@@ -4892,7 +4900,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 09: The Charred Body in the Abandoned Gold Mine of Jiufen-Jinguashi",
           "shortTitle": "九份金瓜石廢棄礦坑裡的焦屍",
           "wordCount": 4429,
-          "id": 1
+          "id": 1,
+          "readTimeMin": 13
         },
         {
           "file": "第10章_碳化氣管裡的最後一口呼吸.md",
@@ -4900,7 +4909,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 10: The Last Breath in the Carbonized Trachea",
           "shortTitle": "碳化氣管裡的最後一口呼吸",
           "wordCount": 4201,
-          "id": 2
+          "id": 2,
+          "readTimeMin": 12
         },
         {
           "file": "第11章_老礦工埋藏三十年的金條與遺囑.md",
@@ -4908,7 +4918,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 11: The Old Miner's Thirty-Year Gold Bars and Testament",
           "shortTitle": "老礦工埋藏三十年的金條與遺囑",
           "wordCount": 3716,
-          "id": 3
+          "id": 3,
+          "readTimeMin": 11
         },
         {
           "file": "第12章_牛頭的長壽菸與地府調卷令.md",
@@ -4916,7 +4927,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 12: Ox-Head's Long Life Cigarette and the Underworld Case Warrant",
           "shortTitle": "牛頭的長壽菸與地府調卷令",
           "wordCount": 3586,
-          "id": 4
+          "id": 4,
+          "readTimeMin": 10
         }
       ]
     },
@@ -4941,7 +4953,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 13: The Mentor on the Autopsy Table",
           "shortTitle": "解剖台上的恩師",
           "wordCount": 3425,
-          "id": 1
+          "id": 1,
+          "readTimeMin": 10
         },
         {
           "file": "第14章_自體中毒？心臟深處的隱蔽針孔.md",
@@ -4949,7 +4962,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 14: Endogenous Poisoning? The Hidden Puncture Deep Within the Heart",
           "shortTitle": "自體中毒？心臟深處的隱蔽針孔",
           "wordCount": 4010,
-          "id": 2
+          "id": 2,
+          "readTimeMin": 11
         },
         {
           "file": "第15章_倒數24小時的最後一堂課.md",
@@ -4957,7 +4971,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 15: The Final Lecture in the Last 24 Hours",
           "shortTitle": "倒數24小時的最後一堂課",
           "wordCount": 3007,
-          "id": 3
+          "id": 3,
+          "readTimeMin": 9
         },
         {
           "file": "第16章_生者的破曉，死者的安息.md",
@@ -4965,7 +4980,8 @@ window.GEAR_NOVELS_DATA = {
           "enTitle": "Chapter 16: Dawn of the Living, Rest of the Dead",
           "shortTitle": "生者的破曉，死者的安息",
           "wordCount": 2740,
-          "id": 4
+          "id": 4,
+          "readTimeMin": 8
         }
       ]
     },
@@ -4990,7 +5006,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 1 章：深淵地底四百五十米之極限真空",
           "enTitle": "Chapter 1: The Extreme Vacuum 450 Meters Deep in the Abyss",
           "shortTitle": "深淵地底四百五十米之極限真空",
-          "wordCount": 10793
+          "wordCount": 10793,
+          "readTimeMin": 31
         },
         {
           "id": 2,
@@ -4998,7 +5015,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 2 章：零點四秒的時空逆論：絕對白骨化",
           "enTitle": "Chapter 2: The Spacetime Paradox of 0.4 Seconds: Absolute Skeletonization",
           "shortTitle": "零點四秒的時空逆論：絕對白骨化",
-          "wordCount": 8705
+          "wordCount": 8705,
+          "readTimeMin": 25
         },
         {
           "id": 3,
@@ -5006,7 +5024,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 3 章：冰封胃袋裡未冷的新鮮米飯",
           "enTitle": "Chapter 3: Fresh Rice Still Uncooled Within the Frozen Stomach",
           "shortTitle": "冰封胃袋裡未冷的新鮮米飯",
-          "wordCount": 8693
+          "wordCount": 8693,
+          "readTimeMin": 25
         },
         {
           "id": 4,
@@ -5014,7 +5033,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 4 章：肺泡深處漂浮的高山杜鵑花粉",
           "enTitle": "Chapter 4: Alpine Rhododendron Pollen Suspended Deep in the Alveoli",
           "shortTitle": "肺泡深處漂浮的高山杜鵑花粉",
-          "wordCount": 7894
+          "wordCount": 7894,
+          "readTimeMin": 23
         }
       ]
     },
@@ -5039,7 +5059,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 5 章：五位觀測者的微觀因果羅網",
           "enTitle": "Chapter 5: The Microscopic Causal Web of Five Observers",
           "shortTitle": "五位觀測者的微觀因果羅網",
-          "wordCount": 6564
+          "wordCount": 6564,
+          "readTimeMin": 19
         },
         {
           "id": 2,
@@ -5047,7 +5068,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 6 章：地底光纖盲斷與黑暗中的莫斯低鳴",
           "enTitle": "Chapter 6: Underground Fiber Optic Blackout and Morse Murmurs in the Dark",
           "shortTitle": "地底光纖盲斷與黑暗中的莫斯低鳴",
-          "wordCount": 6384
+          "wordCount": 6384,
+          "readTimeMin": 18
         },
         {
           "id": 3,
@@ -5055,7 +5077,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 7 章：零下一百九十六度的冰封密室",
           "enTitle": "Chapter 7: The Frozen Chamber at Minus 196 Degrees",
           "shortTitle": "零下一百九十六度的冰封密室",
-          "wordCount": 6198
+          "wordCount": 6198,
+          "readTimeMin": 18
         },
         {
           "id": 4,
@@ -5063,7 +5086,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 8 章：光學偏振分束器下的相位盲區",
           "enTitle": "Chapter 8: Phase Blind Spots Beneath the Optical Polarizing Beam Splitter",
           "shortTitle": "光學偏振分束器下的相位盲區",
-          "wordCount": 6157
+          "wordCount": 6157,
+          "readTimeMin": 18
         }
       ]
     },
@@ -5088,7 +5112,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 9 章：惠勒延遲選擇：被未來逆寫的過去",
           "enTitle": "Chapter 9: Wheeler's Delayed Choice: Past Overwritten by the Future",
           "shortTitle": "惠勒延遲選擇：被未來逆寫的過去",
-          "wordCount": 5348
+          "wordCount": 5348,
+          "readTimeMin": 15
         },
         {
           "id": 2,
@@ -5096,7 +5121,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 10 章：超臨界萃取與高頻昇華魔術",
           "enTitle": "Chapter 10: Supercritical Extraction and High-Frequency Sublimation Magic",
           "shortTitle": "超臨界萃取與高頻昇華魔術",
-          "wordCount": 5682
+          "wordCount": 5682,
+          "readTimeMin": 16
         },
         {
           "id": 3,
@@ -5104,7 +5130,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 11 章：消失的一百二十公升超導液氦",
           "enTitle": "Chapter 11: The Disappearance of 120 Liters of Superconducting Liquid Helium",
           "shortTitle": "消失的一百二十公升超導液氦",
-          "wordCount": 4762
+          "wordCount": 4762,
+          "readTimeMin": 14
         },
         {
           "id": 4,
@@ -5112,7 +5139,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 12 章：主動踏入死局的薛丁格之貓",
           "enTitle": "Chapter 12: Schrödinger's Cat Voluntarily Entering the Dead End",
           "shortTitle": "主動踏入死局的薛丁格之貓",
-          "wordCount": 4276
+          "wordCount": 4276,
+          "readTimeMin": 12
         }
       ]
     },
@@ -5137,7 +5165,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 13 章：對峙於冷卻劑崩塌之絕對零度",
           "enTitle": "Chapter 13: Confrontation at Absolute Zero of Coolant Collapse",
           "shortTitle": "對峙於冷卻劑崩塌之絕對零度",
-          "wordCount": 5244
+          "wordCount": 5244,
+          "readTimeMin": 15
         },
         {
           "id": 2,
@@ -5145,7 +5174,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 14 章：宏觀糾纏的終結：法庭級嚴密閉環",
           "enTitle": "Chapter 14: The End of Macroscopic Entanglement: Court-Grade Strict Closure",
           "shortTitle": "宏觀糾纏的終結：法庭級嚴密閉環",
-          "wordCount": 3888
+          "wordCount": 3888,
+          "readTimeMin": 11
         },
         {
           "id": 3,
@@ -5153,7 +5183,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 15 章：留給未來的未坍縮錄音帶",
           "enTitle": "Chapter 15: The Uncollapsed Tape Left for the Future",
           "shortTitle": "留給未來的未坍縮錄音帶",
-          "wordCount": 3763
+          "wordCount": 3763,
+          "readTimeMin": 11
         },
         {
           "id": 4,
@@ -5161,7 +5192,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 16 章：當玉山第一道晨光刺穿深淵",
           "enTitle": "Chapter 16: When Jade Mountain's First Morning Ray Pierces the Abyss",
           "shortTitle": "當玉山第一道晨光刺穿深淵",
-          "wordCount": 3240
+          "wordCount": 3240,
+          "readTimeMin": 9
         }
       ]
     },
@@ -5186,7 +5218,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 01 章：石階深處的綠皮郵差包",
           "enTitle": "Chapter 1: The Green Mailbag Deep in the Stone Steps",
           "shortTitle": "石階深處的綠皮郵差包",
-          "wordCount": 8287
+          "wordCount": 8287,
+          "readTimeMin": 24
         },
         {
           "id": 2,
@@ -5194,7 +5227,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 02 章：沒有地址的橡皮擦情書",
           "enTitle": "Chapter 2: The Eraser Love Letter Without an Address",
           "shortTitle": "沒有地址的橡皮擦情書",
-          "wordCount": 7558
+          "wordCount": 7558,
+          "readTimeMin": 22
         },
         {
           "id": 3,
@@ -5202,7 +5236,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 03 章：午夜十二點的盲文紙飛機",
           "enTitle": "Chapter 3: The Braille Paper Airplane at Midnight",
           "shortTitle": "午夜十二點的盲文紙飛機",
-          "wordCount": 6982
+          "wordCount": 6982,
+          "readTimeMin": 20
         },
         {
           "id": 4,
@@ -5210,7 +5245,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 04 章：摔碎在雨夜裡的瓷茶杯",
           "enTitle": "Chapter 4: The Porcelain Teacup Shattered in the Rainy Night",
           "shortTitle": "摔碎在雨夜裡的瓷茶杯",
-          "wordCount": 6608
+          "wordCount": 6608,
+          "readTimeMin": 19
         }
       ]
     },
@@ -5235,7 +5271,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 05 章：蒸籠底下的那碗冷豬腳麵線",
           "enTitle": "Chapter 5: The Cold Pig Trotter Vermicelli Beneath the Steamer",
           "shortTitle": "蒸籠底下的那碗冷豬腳麵線",
-          "wordCount": 10187
+          "wordCount": 10187,
+          "readTimeMin": 29
         },
         {
           "id": 2,
@@ -5243,7 +5280,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 06 章：長在青苔石階上的紅毛衣",
           "enTitle": "Chapter 6: The Red Sweater on the Mossy Stone Steps",
           "shortTitle": "長在青苔石階上的紅毛衣",
-          "wordCount": 7440
+          "wordCount": 7440,
+          "readTimeMin": 21
         },
         {
           "id": 3,
@@ -5251,7 +5289,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 07 章：修錶師抽屜裡的無聲擺輪",
           "enTitle": "Chapter 7: The Silent Balance Wheel in the Watchmaker's Drawer",
           "shortTitle": "修錶師抽屜裡的無聲擺輪",
-          "wordCount": 6966
+          "wordCount": 6966,
+          "readTimeMin": 20
         },
         {
           "id": 4,
@@ -5259,7 +5298,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 08 章：屋簷下的半把破油紙傘",
           "enTitle": "Chapter 8: The Half-Broken Oil-Paper Umbrella Under the Eaves",
           "shortTitle": "屋簷下的半把破油紙傘",
-          "wordCount": 6849
+          "wordCount": 6849,
+          "readTimeMin": 20
         }
       ]
     },
@@ -5284,7 +5324,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 09 章：老樟樹洞裡的最後一張火車票",
           "enTitle": "Chapter 9: The Last Train Ticket in the Old Camphor Tree Hollow",
           "shortTitle": "老樟樹洞裡的最後一張火車票",
-          "wordCount": 6254
+          "wordCount": 6254,
+          "readTimeMin": 18
         },
         {
           "id": 2,
@@ -5292,7 +5333,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 10 章：顧老的綠皮老式自行車",
           "enTitle": "Chapter 10: Old Gu's Vintage Green Bicycle",
           "shortTitle": "顧老的綠皮老式自行車",
-          "wordCount": 7947
+          "wordCount": 7947,
+          "readTimeMin": 23
         },
         {
           "id": 3,
@@ -5300,7 +5342,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 11 章：雨停之前，請把我的心臟送出去",
           "enTitle": "Chapter 11: Deliver My Heart Before the Rain Stops",
           "shortTitle": "雨停之前，請把我的心臟送出去",
-          "wordCount": 7431
+          "wordCount": 7431,
+          "readTimeMin": 21
         },
         {
           "id": 4,
@@ -5308,7 +5351,8 @@ window.GEAR_NOVELS_DATA = {
           "title": "第 12 章：當山城迎來無雨的晴空",
           "enTitle": "Chapter 12: When the Mountain City Welcomes a Rainless Sky",
           "shortTitle": "當山城迎來無雨的晴空",
-          "wordCount": 5883
+          "wordCount": 5883,
+          "readTimeMin": 17
         }
       ]
     }
