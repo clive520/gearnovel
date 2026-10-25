@@ -1,6 +1,72 @@
 // 冒險齒輪系列配置資料庫
 window.GEAR_SERIES = [
   {
+      "id": "series-18",
+      "title": "遲到郵局：山城深處的綠皮信差",
+      "enTitle": "The Overdue Post Office: The Green Mountain Courier",
+      "subtitle": "台灣本土溫暖治癒 × 山城歷史情感 · 全三卷完結套書（共 12 章）",
+      "badge": "💌 台灣本土溫暖治癒篇",
+      "badgeColor": "emerald",
+      "targetAudience": "全齡適讀 · 台灣本土風情 × 郵務歷史 × 溫暖療癒",
+      "tagline": "有些信，就算遲到了三十年，只要送到對的人手裡，就永遠不算晚。",
+      "description": "在基隆與瑞芳交界的忘憂嶺深處，座落著一間地圖上查不到的日治紅磚老郵局——『遲到郵局』。這裡專門收留那些查無此人、地址湮滅或寄件人刻意擱置數十載的死信（Dead Mail）。青年林子揚因都市生活重創逃回山城，意外接下老郵差顧延年的斑駁綠皮郵包，成為第九號郵差實習生。在一封封封存著青春、遺憾、秘密與承諾的信件指引下，子揚穿梭於長滿青苔的雨霧石階與歷史記憶之間，修復破碎的人心，同時解開顧老深藏半世紀的未竟之約與自己的救贖之謎！",
+      "stats": {
+          "totalVolumes": 3,
+          "currentVolumesReleased": 3,
+          "totalChapters": 12,
+          "currentChaptersReleased": 12,
+          "totalWords": "全三卷大完結 · 全套 6.8 萬字",
+          "statusText": "全書大完結 · 全套 12 章"
+      },
+      "volumes": [
+          {
+              "bookId": "book-48",
+              "volNum": "第一卷",
+              "title": "修復自我之信",
+              "subtitle": "石階郵包、無名情書、盲文紙飛機與摔碎的瓷茶杯",
+              "chaptersCount": 4,
+              "releasedChapters": 4,
+              "wordCount": "第 1～4 章 · 2.3 萬字",
+              "status": "全 4 章已完結",
+              "theme": "石階郵差包 × 橡皮擦情書 × 盲文紙飛機 × 金繼修復瓷杯",
+              "firstChapterId": 1
+          },
+          {
+              "bookId": "book-49",
+              "volNum": "第二卷",
+              "title": "體諒他人之信",
+              "subtitle": "冷豬腳麵線、青苔紅毛衣、無聲擺輪與破油紙傘",
+              "chaptersCount": 4,
+              "releasedChapters": 4,
+              "wordCount": "第 5～8 章 · 2.5 萬字",
+              "status": "全 4 章已完結",
+              "theme": "豬腳麵線 × 染血紅毛衣 × 陀飛輪無聲擺輪 × 庇護破油紙傘",
+              "firstChapterId": 1
+          },
+          {
+              "bookId": "book-50",
+              "volNum": "第三卷",
+              "title": "承諾未來之信",
+              "subtitle": "樟樹火車票、綠皮自行車、心臟保溫箱與無雨晴空",
+              "chaptersCount": 4,
+              "releasedChapters": 4,
+              "wordCount": "第 9～12 章 · 2.1 萬字",
+              "status": "全 4 章已完結",
+              "theme": "老樟樹硬卡車票 × 綠皮老車 × 終極器官送遞 × 晴空破曉傳承",
+              "firstChapterId": 1
+          }
+      ],
+      "highlights": [
+          "支援繁體中文／英文雙語 100% 嚴格 1:1 對照閱讀（全 12 章段落精準相符）",
+          "台灣在地歷史文史深度融合：台灣郵政劃撥歷史、金繼修補工藝、盲人點字通信、九份金瓜石採礦記憶",
+          "三代信差的堅守與承諾：從老郵差顧延年的半世紀執著，到林子揚重獲新生的溫暖救贖"
+      ],
+      "themeTone": "emerald",
+      "coverStyle": "from-emerald-950/40 via-teal-900/50 to-slate-950/70 border-emerald-500/40",
+      "startBookId": "book-48",
+      "startChapterId": 1
+  },
+  {
     "id": "series-17",
     "title": "零號坍縮：深淵之眼的波函數",
     "enTitle": "Collapse Zero: The Wavefunction of the Eye of the Abyss",

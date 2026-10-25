@@ -5164,6 +5164,153 @@ window.GEAR_NOVELS_DATA = {
           "wordCount": 3240
         }
       ]
+    },
+    {
+      "id": "book-48",
+      "title": "遲到郵局：山城深處的綠皮信差 · 第一卷",
+      "enTitle": "The Overdue Post Office: Volume 1",
+      "subtitle": "第一卷 · 修復自我之信（第 1～4 章）",
+      "enSubtitle": "Volume 1: Letters of Self-Repair (Chapters 1-4)",
+      "status": "已完結",
+      "statusColor": "emerald",
+      "coverTag": "石階郵差包 × 橡皮擦情書 × 盲文紙飛機 × 金繼修復瓷杯",
+      "author": "鹿陽故事工坊",
+      "targetAge": "全齡適讀（青少年至成人）",
+      "totalWords": 29435,
+      "totalChapters": 4,
+      "description": "青年林子揚因都市創業挫敗逃回瑞芳忘憂嶺，意外接下老郵差顧延年的斑駁綠皮郵包，成為第九號郵差實習生。在一封封封存數十年的死信（Dead Mail）指引下，他見證了藏在橡皮擦屑中的青澀暗戀、穿透午夜黑暗的盲文紙飛機，以及用金繼金粉黏合的摔碎瓷茶杯，從他人的遺憾與修復中，重新尋回直面人生的勇氣！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第01章_石階深處的綠皮郵差包.md",
+          "title": "第 01 章：石階深處的綠皮郵差包",
+          "enTitle": "Chapter 1: The Green Mailbag Deep in the Stone Steps",
+          "shortTitle": "石階深處的綠皮郵差包",
+          "wordCount": 8287
+        },
+        {
+          "id": 2,
+          "file": "第02章_沒有地址的橡皮擦情書.md",
+          "title": "第 02 章：沒有地址的橡皮擦情書",
+          "enTitle": "Chapter 2: The Eraser Love Letter Without an Address",
+          "shortTitle": "沒有地址的橡皮擦情書",
+          "wordCount": 7558
+        },
+        {
+          "id": 3,
+          "file": "第03章_午夜十二點的盲文紙飛機.md",
+          "title": "第 03 章：午夜十二點的盲文紙飛機",
+          "enTitle": "Chapter 3: The Braille Paper Airplane at Midnight",
+          "shortTitle": "午夜十二點的盲文紙飛機",
+          "wordCount": 6982
+        },
+        {
+          "id": 4,
+          "file": "第04章_摔碎在雨夜裡的瓷茶杯.md",
+          "title": "第 04 章：摔碎在雨夜裡的瓷茶杯",
+          "enTitle": "Chapter 4: The Porcelain Teacup Shattered in the Rainy Night",
+          "shortTitle": "摔碎在雨夜裡的瓷茶杯",
+          "wordCount": 6608
+        }
+      ]
+    },
+    {
+      "id": "book-49",
+      "title": "遲到郵局：山城深處的綠皮信差 · 第二卷",
+      "enTitle": "The Overdue Post Office: Volume 2",
+      "subtitle": "第二卷 · 體諒他人之信（第 5～8 章）",
+      "enSubtitle": "Volume 2: Letters of Empathy (Chapters 5-8)",
+      "status": "已完結",
+      "statusColor": "emerald",
+      "coverTag": "豬腳麵線 × 染血紅毛衣 × 陀飛輪無聲擺輪 × 庇護破油紙傘",
+      "author": "鹿陽故事工坊",
+      "targetAge": "全齡適讀（青少年至成人）",
+      "totalWords": 31442,
+      "totalChapters": 4,
+      "description": "暴雨中的山城回音繚繞。蒸籠底端二十年未曾冷卻的豬腳麵線解開了母子宿怨，青苔石階上泛白的紅毛衣映照出代筆先生的深情守候；抽屜裡靜止三十載的陀飛輪擺輪再次滴答轉動，破舊油紙傘下更撐起了礦坑礦工兄弟跨越生死的道義與寬恕！子揚在送信的泥濘山路上，體悟到了體諒他人的無聲溫柔。",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第05章_蒸籠底下的那碗冷豬腳麵線.md",
+          "title": "第 05 章：蒸籠底下的那碗冷豬腳麵線",
+          "enTitle": "Chapter 5: The Cold Pig Trotter Vermicelli Beneath the Steamer",
+          "shortTitle": "蒸籠底下的那碗冷豬腳麵線",
+          "wordCount": 10187
+        },
+        {
+          "id": 2,
+          "file": "第06章_長在青苔石階上的紅毛衣.md",
+          "title": "第 06 章：長在青苔石階上的紅毛衣",
+          "enTitle": "Chapter 6: The Red Sweater on the Mossy Stone Steps",
+          "shortTitle": "長在青苔石階上的紅毛衣",
+          "wordCount": 7440
+        },
+        {
+          "id": 3,
+          "file": "第07章_修錶師抽屜裡的無聲擺輪.md",
+          "title": "第 07 章：修錶師抽屜裡的無聲擺輪",
+          "enTitle": "Chapter 7: The Silent Balance Wheel in the Watchmaker's Drawer",
+          "shortTitle": "修錶師抽屜裡的無聲擺輪",
+          "wordCount": 6966
+        },
+        {
+          "id": 4,
+          "file": "第08章_屋簷下的半把破油紙傘.md",
+          "title": "第 08 章：屋簷下的半把破油紙傘",
+          "enTitle": "Chapter 8: The Half-Broken Oil-Paper Umbrella Under the Eaves",
+          "shortTitle": "屋簷下的半把破油紙傘",
+          "wordCount": 6849
+        }
+      ]
+    },
+    {
+      "id": "book-50",
+      "title": "遲到郵局：山城深處的綠皮信差 · 第三卷",
+      "enTitle": "The Overdue Post Office: Volume 3",
+      "subtitle": "第三卷 · 承諾未來之信（第 9～12 章）",
+      "enSubtitle": "Volume 3: Letters of Future Promise (Chapters 9-12)",
+      "status": "已完結",
+      "statusColor": "emerald",
+      "coverTag": "老樟樹硬卡車票 × 綠皮老車 × 終極器官送遞 × 晴空破曉傳承",
+      "author": "鹿陽故事工坊",
+      "targetAge": "全齡適讀（青少年至成人）",
+      "totalWords": 27515,
+      "totalChapters": 4,
+      "description": "老樟樹洞裡泛黃的 Edmondson 硬卡車票揭開了老郵差顧延年跨越半世紀的海峽遺憾。五十年一遇的超強颱風切斷山城聯外道路，一箱等待移植的鮮活心臟必須在雨停前送達！顧老騎著綠皮老車衝入土石流，子揚以身相護完成最後接力。當山城迎來久違的無雨晴空，第九號信差正式接棒，忘憂嶺的愛與承諾將永遠傳遞！",
+      "chapters": [
+        {
+          "id": 1,
+          "file": "第09章_老樟樹洞裡的最後一張火車票.md",
+          "title": "第 09 章：老樟樹洞裡的最後一張火車票",
+          "enTitle": "Chapter 9: The Last Train Ticket in the Old Camphor Tree Hollow",
+          "shortTitle": "老樟樹洞裡的最後一張火車票",
+          "wordCount": 6254
+        },
+        {
+          "id": 2,
+          "file": "第10章_顧老的綠皮老式自行車.md",
+          "title": "第 10 章：顧老的綠皮老式自行車",
+          "enTitle": "Chapter 10: Old Gu's Vintage Green Bicycle",
+          "shortTitle": "顧老的綠皮老式自行車",
+          "wordCount": 7947
+        },
+        {
+          "id": 3,
+          "file": "第11章_雨停之前，請把我的心臟送出去.md",
+          "title": "第 11 章：雨停之前，請把我的心臟送出去",
+          "enTitle": "Chapter 11: Deliver My Heart Before the Rain Stops",
+          "shortTitle": "雨停之前，請把我的心臟送出去",
+          "wordCount": 7431
+        },
+        {
+          "id": 4,
+          "file": "第12章_當山城迎來無雨的晴空.md",
+          "title": "第 12 章：當山城迎來無雨的晴空",
+          "enTitle": "Chapter 12: When the Mountain City Welcomes a Rainless Sky",
+          "shortTitle": "當山城迎來無雨的晴空",
+          "wordCount": 5883
+        }
+      ]
     }
   ],
   "characters": [
@@ -7938,6 +8085,190 @@ window.GEAR_NOVELS_DATA = {
         {
           "name": "江老三十年《法醫鑑定通則》真跡",
           "desc": "寫下『慎微自持，莫讓死者含冤』之墨寶手稿。"
+        }
+      ]
+    },
+    {
+      "name": "林子揚",
+      "enName": "Lin Zi-yang",
+      "vol": "series18",
+      "volName": "第十八套核心主角",
+      "role": "男主角 · 忘憂嶺第九號信差實習生",
+      "age": "28 歲",
+      "class": "忘憂嶺山城郵政代辦所",
+      "avatar": "🎒",
+      "badge": "山城綠皮信差實習生 / 心靈修復者",
+      "desc": "曾任台北知名設計公司主管，因合夥人背叛與都市高壓崩潰，逃回母親故里忘憂嶺。在雨夜意外遇見顧老並接手綠皮郵包，在一封封遲到了數十年的死信傳遞中，學會了撫平別人的傷痕，也治癒了自己破碎的內心。最終在暴風雨中以肉身護送低溫器官保溫箱，成為被山城人民深愛認可的正式信差。",
+      "items": [
+        {
+          "name": "傳承的墨綠色帆布郵包",
+          "desc": "邊緣已磨損泛白的雙扣郵差包，帶有淡淡的防潮樟腦與山林青苔香氣，收納著未竟的委託信函。"
+        },
+        {
+          "name": "防水羊皮投遞日誌簿",
+          "desc": "子揚隨身攜帶的黑色小筆記本，記錄著忘憂嶺每一道石階戶數、門牌變更歷史與老人家的生活細節。"
+        },
+        {
+          "name": "金繼修補瓷片護身符",
+          "desc": "由阿順伯以純金粉修復的第四章破瓷碎片，代表著『縱使破碎，依然能綻放更堅韌之美』的生命信念。"
+        }
+      ]
+    },
+    {
+      "name": "顧延年（顧老）",
+      "enName": "Gu Yan-nian (Old Gu)",
+      "vol": "series18",
+      "volName": "第十八套靈魂人物",
+      "role": "資深山城信差 · 第八號郵差",
+      "age": "74 歲",
+      "class": "忘憂嶺日治老郵局守護者",
+      "avatar": "👴",
+      "badge": "半世紀守護者 / 山城老信差宗師",
+      "desc": "在基隆與瑞芳交界的忘憂嶺石階上奔波了五十年的傳奇老郵差。性格外冷內熱、寡言剛毅。五十年間堅持不放棄任何一封退件信，在古老紅磚郵局中整理出近萬封未投遞成功的死信。右膝患有嚴重風濕關節炎，但在大風大浪面前從不退縮，深信『信件只有送到手裡，心靈的重擔才算放下』。",
+      "items": [
+        {
+          "name": "富士霸王老式重型自行車",
+          "desc": "車架厚重的軍綠色老單車，後座掛著大鐵皮郵箱與雙面銅鈴，見證了山城半世紀的風雨晨昏。"
+        },
+        {
+          "name": "黃銅刻花封蠟戳記",
+          "desc": "刻有忘憂嶺老郵局獨特標誌的黃銅印章，顧老每將一封遲到死信送達，便在存檔卡上慎重蓋上紅印。"
+        },
+        {
+          "name": "海峽對岸泛黃未寄家書",
+          "desc": "藏在樟樹洞與自行車座墊底部的最後一封信，是他年少離鄉時未曾來得及親手交付的永恆遺憾。"
+        }
+      ]
+    },
+    {
+      "name": "周伯",
+      "enName": "Uncle Zhou",
+      "vol": "series18",
+      "volName": "第十八套重要配角",
+      "role": "山城雜貨舖老闆 · 兼任廢棄鐵道老站長",
+      "age": "71 歲",
+      "class": "忘憂嶺石階中繼站",
+      "avatar": "🏪",
+      "badge": "山城活字典 / 鐵道文史記憶者",
+      "desc": "忘憂嶺唯一一家柑仔店的掌櫃，對山城每一戶人家的興衰變遷了若指掌。過去曾是台鐵平溪線分支小站的站長，珍藏著大量舊式 Edmondson 硬卡火車票與鐵道日誌，是子揚尋訪三十年前收件人地址的重要線索提供者。",
+      "items": [
+        {
+          "name": "銅製手搖火車號誌鈴",
+          "desc": "舊站台拆除時留下的純銅號誌鈴，懸掛在雜貨店門口，清脆的聲響指引著迷霧中的歸人。"
+        },
+        {
+          "name": "鐵道硬卡車票剪票鉗",
+          "desc": "齒痕獨特的台鐵退役剪票鉗，在第九章中協助核驗了老樟樹洞中那一張跨越時空的火車票。"
+        }
+      ]
+    },
+    {
+      "name": "阿順伯",
+      "enName": "Uncle Shun",
+      "vol": "series18",
+      "volName": "第十八套工藝匠人",
+      "role": "退休金瓜石金礦礦工 · 傳統金繼修復師",
+      "age": "68 歲",
+      "class": "水湳洞老工坊",
+      "avatar": "🍵",
+      "badge": "金繼修補宗師 / 礦山義氣守護者",
+      "desc": "年少時在金瓜石礦坑出生入死，深諳黃金與泥土的脾性。晚年隱居石階深處專注於日式『金繼（Kintsugi）』工藝，以天然生漆調合純金粉黏合破裂陶瓷。在第四章與第八章中，他用溫暖的手藝與礦坑生死故事，點化了子揚與老礦工後代的心結。",
+      "items": [
+        {
+          "name": "生漆金粉修復工具組",
+          "desc": "內含各目數砂紙、牛角刮刀、生漆調和碟與九九純金箔粉，能化碎瓷為藝術絕品。"
+        },
+        {
+          "name": "礦工專用防爆瓦斯燈",
+          "desc": "斑駁的黃銅安全礦燈，燈芯閃耀著暖黃微光，象徵在幽暗地底亦不滅的生存希望。"
+        }
+      ]
+    },
+    {
+      "name": "陳富祥（阿祥）",
+      "enName": "Chen Fu-xiang (A-Xiang)",
+      "vol": "series18",
+      "volName": "第十八套真情人物",
+      "role": "九份老街麵線攤老闆 · 浪子回頭的孝子",
+      "age": "45 歲",
+      "class": "老街石梯小吃攤",
+      "avatar": "🍲",
+      "badge": "溫情主廚 / 孝道回歸者",
+      "desc": "年輕時因賭博與打架遠走他鄉，二十年間音訊全無。母親春嬌嫂每日清晨在蒸籠底溫著一碗熱豬腳麵線盼他歸來。在第五章中，子揚排除萬難將母親二十年前寄出的匯款收據與家書送達，促成了母子在白髮蒼蒼時的涕泣團聚。",
+      "items": [
+        {
+          "name": "老式古法砂鍋蒸籠",
+          "desc": "飄散著當歸與老薑香氣的竹製蒸籠，底下永遠保溫著母親對漂泊遊子的牽掛與寬恕。"
+        },
+        {
+          "name": "二十年前郵政劃撥收據",
+          "desc": "浸透著油印與雨水痕跡的藍色存根，見證母親默默替他償清債務的無言厚愛。"
+        }
+      ]
+    },
+    {
+      "name": "蘇秀芬 & 蘇玉嬌",
+      "enName": "Su Xiu-fen & Su Yu-jiao",
+      "vol": "series18",
+      "volName": "第十八套感人姐妹",
+      "role": "盲校退休女教師 & 紡織工廠老繡娘",
+      "age": "65 歲 / 62 歲",
+      "class": "忘憂嶺安養庭園",
+      "avatar": "🧶",
+      "badge": "心靈光明守護者 / 盲界信使",
+      "desc": "秀芬自幼因病失明，卻在盲校傾注一生培育盲童；妹妹玉嬌則在山下紡織廠辛勞織布支持姐姐。兩人因一場青年時期的誤會隔閡二十年，全靠午夜十二點折出的盲文紙飛機與紅羊毛線解開了心結，在黑暗中織出最耀眼的親情光輝。",
+      "items": [
+        {
+          "name": "雙面盲文打字板與刻針",
+          "desc": "厚重黃銅質地的六點盲文點字板，每一點突起都是盲人向世界訴說的真摯語言。"
+        },
+        {
+          "name": "天然茜草染純紅毛線球",
+          "desc": "歷經三十年歲月依然色澤溫潤的紅毛線，串連起石階兩端的溫暖守候。"
+        }
+      ]
+    },
+    {
+      "name": "唐秉正 & 方敬亭",
+      "enName": "Tang Bing-zheng & Fang Jing-ting",
+      "vol": "series18",
+      "volName": "第十八套機械匠人",
+      "role": "九份老鐘錶修復宗師 & 瑞士製錶海歸學徒",
+      "age": "78 歲 / 32 歲",
+      "class": "忘憂時計堂",
+      "avatar": "⏱️",
+      "badge": "時光修復大師 / 機械心臟調校師",
+      "desc": "唐老是全台灣少數能純手工打造陀飛輪擺輪的國寶級鐘錶師；徒弟方敬亭曾因理念不合遠赴瑞士留學。第七章中，子揚送來方敬亭在瑞士寄出的求和零件信函，師徒攜手以 0.02 毫米的精確度校準了停格三十年的鐘樓齒輪，讓時間重歸流動。",
+      "items": [
+        {
+          "name": "雙層藍鋼游絲陀飛輪機芯",
+          "desc": "微米級手工打磨的高級機械機芯，每小時震動 28,800 次，象徵精密與永恆的承諾。"
+        },
+        {
+          "name": "十倍光學修錶目鏡",
+          "desc": "唐老佩戴了一輩子的古銅目鏡，透鏡下倒映著幾十萬顆齒輪交錯咬合的嚴謹世界。"
+        }
+      ]
+    },
+    {
+      "name": "沈阿雲 & 陳金水",
+      "enName": "Shen A-yun & Chen Jin-shui",
+      "vol": "series18",
+      "volName": "第十八套時代情侶",
+      "role": "老樟樹下的等候者 & 跨海老船員",
+      "age": "82 歲 / 享年 79 歲",
+      "class": "九份八番坑古道",
+      "avatar": "🌳",
+      "badge": "半世紀守約人 / 海峽情深見證者",
+      "desc": "第九章的核心人物。半個世紀前，陳金水隨遠洋貨輪離台前夕，在老樟樹洞中留下一張通往基隆港的火車票與相約誓言；阿雲阿嬤在山城古道守候了五十個春秋。當子揚與顧老將遲到了五十年的信函送到阿嬤墓前與床榻旁，時代的眼淚終於在微風中化為寧靜的釋懷。",
+      "items": [
+        {
+          "name": "1962年台鐵 Edmondson 厚卡硬票",
+          "desc": "由牛皮紙漿厚卡壓製、帶有紅色防偽斜線與凸版鋼印的珍貴歷史車票。"
+        },
+        {
+          "name": "密封玻璃油紙防潮信筒",
+          "desc": "老樟樹樹洞深處取出的金屬封口玻璃信筒，完整保存了五十年未受山城雨霧侵蝕的墨跡。"
         }
       ]
     }
@@ -11405,6 +11736,164 @@ window.GEAR_NOVELS_DATA = {
       "displayChapter": 16,
       "upcoming": false,
       "volTitle": "第十七套 · 最後的波函數"
+    },
+    {
+      "id": 300,
+      "name": "石階深處的綠皮信差",
+      "icon": "📮",
+      "desc": "閱讀《遲到郵局》第 1 章：石階深處的綠皮郵差包：踏入地圖上沒有的忘憂嶺日治老郵局，接下顧老斑駁的綠皮郵袋！",
+      "series": "series18",
+      "bookId": "book-48",
+      "chapterId": 1,
+      "displayChapter": 1,
+      "upcoming": false,
+      "volTitle": "第十八套 · 修復自我之信"
+    },
+    {
+      "id": 301,
+      "name": "橡皮擦裡的青春暗戀",
+      "icon": "✏️",
+      "desc": "閱讀《遲到郵局》第 2 章：沒有地址的橡皮擦情書：拂去三十年抽屜擦屑，拼湊出那封未曾敢寄出的青澀告白。",
+      "series": "series18",
+      "bookId": "book-48",
+      "chapterId": 2,
+      "displayChapter": 2,
+      "upcoming": false,
+      "volTitle": "第十八套 · 修復自我之信"
+    },
+    {
+      "id": 302,
+      "name": "穿透黑暗的觸覺飛機",
+      "icon": "✈️",
+      "desc": "閱讀《遲到郵局》第 3 章：午夜十二點的盲文紙飛機：指尖摩挲凸起六點密碼，讓跨越盲界二十載的守護劃破夜空！",
+      "series": "series18",
+      "bookId": "book-48",
+      "chapterId": 3,
+      "displayChapter": 3,
+      "upcoming": false,
+      "volTitle": "第十八套 · 修復自我之信"
+    },
+    {
+      "id": 303,
+      "name": "金繼茶盞的重生之美",
+      "icon": "🍵",
+      "desc": "閱讀《遲到郵局》第 4 章：摔碎在雨夜裡的瓷茶杯：以天然生漆調合純金粉黏合裂痕，見證不完美中的生命尊嚴！",
+      "series": "series18",
+      "bookId": "book-48",
+      "chapterId": 4,
+      "displayChapter": 4,
+      "upcoming": false,
+      "volTitle": "第十八套 · 修復自我之信"
+    },
+    {
+      "id": 304,
+      "name": "蒸籠底下的親情溫度",
+      "icon": "🍜",
+      "desc": "閱讀《遲到郵局》第 5 章：蒸籠底下的那碗冷豬腳麵線：老街深處二十年不斷火的蒸氣，撫平浪子回頭的悔憾與母愛。",
+      "series": "series18",
+      "bookId": "book-49",
+      "chapterId": 1,
+      "displayChapter": 5,
+      "upcoming": false,
+      "volTitle": "第十八套 · 體諒他人之信"
+    },
+    {
+      "id": 305,
+      "name": "青苔石階的深情代筆",
+      "icon": "🧶",
+      "desc": "閱讀《遲到郵局》第 6 章：長在青苔石階上的紅毛衣：紅羊毛線牽繫的代寫家書，揭開兩位老人隱忍半生的含蓄守望。",
+      "series": "series18",
+      "bookId": "book-49",
+      "chapterId": 2,
+      "displayChapter": 6,
+      "upcoming": false,
+      "volTitle": "第十八套 · 體諒他人之信"
+    },
+    {
+      "id": 306,
+      "name": "停格時光的無聲擺輪",
+      "icon": "⏱️",
+      "desc": "閱讀《遲到郵局》第 7 章：修錶師抽屜裡的無聲擺輪：以零點零二毫米游絲喚醒靜止陀飛輪，修復一段三十年的失約友情。",
+      "series": "series18",
+      "bookId": "book-49",
+      "chapterId": 3,
+      "displayChapter": 7,
+      "upcoming": false,
+      "volTitle": "第十八套 · 體諒他人之信"
+    },
+    {
+      "id": 307,
+      "name": "礦坑屋簷的庇護之傘",
+      "icon": "☂️",
+      "desc": "閱讀《遲到郵局》第 8 章：屋簷下的半把破油紙傘：以生桐油紙傘遮蔽風雨，在金瓜石廢礦坑前化解兄弟間的生死道義之結！",
+      "series": "series18",
+      "bookId": "book-49",
+      "chapterId": 4,
+      "displayChapter": 8,
+      "upcoming": false,
+      "volTitle": "第十八套 · 體諒他人之信"
+    },
+    {
+      "id": 308,
+      "name": "老樟樹下的離別票根",
+      "icon": "🎫",
+      "desc": "閱讀《遲到郵局》第 9 章：老樟樹洞裡的最後一張火車票：Edmondson 硬卡車票封存一甲子相思，送達跨越海峽的遲到承諾。",
+      "series": "series18",
+      "bookId": "book-50",
+      "chapterId": 1,
+      "displayChapter": 9,
+      "upcoming": false,
+      "volTitle": "第十八套 · 承諾未來之信"
+    },
+    {
+      "id": 309,
+      "name": "山城車轍的信差背影",
+      "icon": "🚲",
+      "desc": "閱讀《遲到郵局》第 10 章：顧老的綠皮老式自行車：富士霸王重型單車碾過千山萬徑，見證信差職人的五十年風雨奉獻！",
+      "series": "series18",
+      "bookId": "book-50",
+      "chapterId": 2,
+      "displayChapter": 10,
+      "upcoming": false,
+      "volTitle": "第十八套 · 承諾未來之信"
+    },
+    {
+      "id": 310,
+      "name": "暴風雨中的生命急遞",
+      "icon": "❤️",
+      "desc": "閱讀《遲到郵局》第 11 章：雨停之前，請把我的心臟送出去：狂風暴雨坍方孤島，老少信差以命相護跨越四小時低溫極限！",
+      "series": "series18",
+      "bookId": "book-50",
+      "chapterId": 3,
+      "displayChapter": 11,
+      "upcoming": false,
+      "volTitle": "第十八套 · 承諾未來之信"
+    },
+    {
+      "id": 311,
+      "name": "破曉晴空的第九號傳承",
+      "icon": "🌤️",
+      "desc": "閱讀《遲到郵局》第 12 章：當山城迎來無雨的晴空：忘憂嶺迎來久違艷陽，子揚正式扣緊郵袋，成為新一代守護使者！",
+      "series": "series18",
+      "bookId": "book-50",
+      "chapterId": 4,
+      "displayChapter": 12,
+      "upcoming": false,
+      "volTitle": "第十八套 · 承諾未來之信"
+    },
+    {
+      "id": 312,
+      "name": "山城信差大師",
+      "nameEn": "Master Mountain Courier",
+      "icon": "🏆",
+      "desc": "通讀完成第十八套《遲到郵局：山城深處的綠皮信差》全三卷 12 章（6.8 萬字），在石階雨霧與死信信箋中修復人心，見證信守一生的深沉大愛！",
+      "descEn": "Complete all 12 chapters of Series 18 (68,000 words), delivering long-lost dead mail across mist-covered mountain stone steps and repairing human hearts!",
+      "series": "series18",
+      "bookId": "book-50",
+      "chapterId": 4,
+      "displayChapter": 12,
+      "upcoming": false,
+      "volTitle": "第十八套 · 承諾未來之信"
     }
   ]
 };
